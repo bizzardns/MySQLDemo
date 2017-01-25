@@ -11,6 +11,20 @@
     tools:context="com.example.aleksandar.mysqldemo.MainActivity">
 
     <EditText
+        android:backgroundTint="@color/colorPrimary"
+        android:hint="Username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginTop="81dp"
+        android:id="@+id/etUserName"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+         />
+
+    <EditText
+        android:backgroundTint="@color/colorPrimary"
         android:hint="Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,7 +44,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="55dp"
-        android:onClick="OpenReg"/>
+        android:onClick="OpenReg"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        style="@android:style/Widget.Button" />
 
     <Button
         android:text="Login"
@@ -43,16 +59,10 @@
         android:layout_alignRight="@+id/btn_reg"
         android:layout_alignEnd="@+id/btn_reg"
         android:layout_alignLeft="@+id/btn_reg"
-        android:layout_alignStart="@+id/btn_reg" />
+        android:layout_alignStart="@+id/btn_reg"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        style="@android:style/Widget.Button"
+        android:fontFamily="sans-serif" />
 
-    <EditText
-        android:hint="Username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_marginTop="81dp"
-        android:id="@+id/etUserName"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
