@@ -26,6 +26,9 @@ import java.net.URLEncoder;
 public class BackgroundWorker extends AsyncTask<String,Void,String>{
 Context context;
     AlertDialog alertDialog;
+
+
+
     BackgroundWorker(Context ctx){
         context = ctx;
     }
@@ -127,6 +130,7 @@ Context context;
         if (result.contains("failed")){
             alertDialog.setMessage(result);
             alertDialog.show();
+
 
         }
 

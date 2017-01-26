@@ -12,6 +12,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
    // ListView lv;
     //ArrayAdapter<String> adapter;
     @Override
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         PasswordEt = (EditText)findViewById(R.id.etPassword);
 
 
+
+
     }
     public void OnLogin(View view){
 
@@ -32,9 +36,8 @@ public class MainActivity extends AppCompatActivity {
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         backgroundWorker.execute(type, username, password);
 
-
-
     }
+
 
    public void OpenReg (View view){
     startActivity(new Intent(this, Register.class));
