@@ -12,15 +12,6 @@
     android:background="@color/colorPrimary"
     tools:context="com.example.aleksandar.mysqldemo.MainActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/login"
-        android:id="@+id/imageView2"
-        android:layout_marginBottom="92dp"
-        android:layout_alignBottom="@+id/etUserName"
-        android:layout_centerHorizontal="true" />
-
     <EditText
         android:textColorHint="@color/colorPrimary"
         android:background="@android:drawable/editbox_background_normal"
@@ -68,16 +59,16 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         style="@android:style/Widget.Button"
         android:fontFamily="sans-serif"
-        android:layout_marginBottom="39dp"
-        android:layout_above="@+id/btn_reg"
-        android:layout_alignLeft="@+id/etPassword"
-        android:layout_alignStart="@+id/etPassword"
-        android:layout_alignRight="@+id/etPassword"
-        android:layout_alignEnd="@+id/etPassword"
         android:elevation="4dp"
         android:textAlignment="center"
         android:background="@android:drawable/editbox_background_normal"
-        android:backgroundTint="?attr/colorPrimaryDark" />
+        android:backgroundTint="?attr/colorPrimaryDark"
+        android:layout_below="@+id/imageView7"
+        android:layout_alignLeft="@+id/etPassword"
+        android:layout_alignStart="@+id/etPassword"
+        android:layout_marginTop="47dp"
+        android:layout_alignRight="@+id/etPassword"
+        android:layout_alignEnd="@+id/etPassword" />
 
     <Button
         android:textColor="@color/white"
@@ -88,35 +79,42 @@
         android:onClick="OpenReg"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         style="@android:style/Widget.Button"
-        android:layout_marginBottom="78dp"
         android:background="@android:drawable/editbox_background_normal"
-        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:elevation="4dp"
+        android:layout_below="@+id/btnLogin"
+        android:layout_marginTop="9dp"
         android:layout_alignLeft="@+id/btnLogin"
         android:layout_alignStart="@+id/btnLogin"
         android:layout_alignRight="@+id/btnLogin"
-        android:layout_alignEnd="@+id/btnLogin"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:elevation="4dp" />
+        android:layout_alignEnd="@+id/btnLogin" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:srcCompat="@drawable/key"
+        android:id="@+id/imageView7"
+        android:layout_below="@+id/etUserName"
+        android:layout_toLeftOf="@+id/etPassword"
+        android:layout_toStartOf="@+id/etPassword" />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         app:srcCompat="@drawable/user"
         android:id="@+id/imageView6"
         android:layout_alignTop="@+id/etUserName"
         android:layout_toLeftOf="@+id/etUserName"
-        android:layout_toStartOf="@+id/etUserName"
-        android:layout_marginRight="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_toStartOf="@+id/etUserName" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:srcCompat="@drawable/key"
-        android:id="@+id/imageView7"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/imageView6"
-        android:layout_alignStart="@+id/imageView6" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/login"
+        android:id="@+id/imageView2"
+        android:layout_marginBottom="66dp"
+        android:layout_above="@+id/etUserName"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
