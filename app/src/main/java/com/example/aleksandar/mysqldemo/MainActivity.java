@@ -28,10 +28,11 @@ public class MainActivity extends AppCompatActivity {
         String type = "login";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         backgroundWorker.execute(type, username, password);
+
     }
 
-public void OpenReg (View view){
+   public void OpenReg (View view){
     startActivity(new Intent(this, Register.class));
-}
+  }
 
 }

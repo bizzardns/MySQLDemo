@@ -2,6 +2,7 @@ package com.example.aleksandar.mysqldemo;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 
 import java.io.BufferedReader;
@@ -122,7 +123,16 @@ Context context;
     protected void onPostExecute(String result) {
         alertDialog.setMessage(result);
         alertDialog.show();
+        if (result.contains("sucess")) {
+            Intent intent = new Intent(context, Register.class);
+            context.startActivity(intent);
+        }
+
+
+
     }
+
+
 
     @Override
     protected void onProgressUpdate(Void... values) {
