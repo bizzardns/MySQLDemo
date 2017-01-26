@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -117,15 +119,22 @@ Context context;
     protected void onPreExecute() {
         alertDialog = new AlertDialog.Builder(context).create();
         alertDialog.setTitle("Login Status");
+
     }
 
     @Override
     protected void onPostExecute(String result) {
-        alertDialog.setMessage(result);
-        alertDialog.show();
-        if (result.contains("sucess")) {
-            Intent intent = new Intent(context, Register.class);
+        if (result.contains("failed")){
+            alertDialog.setMessage(result);
+            alertDialog.show();
+
+        }
+
+        else {
+
+            Intent intent = new Intent(context,Main2Activity.class);
             context.startActivity(intent);
+
         }
 
 

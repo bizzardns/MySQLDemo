@@ -4,14 +4,16 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.ProgressBar;
 
 public class MainActivity extends AppCompatActivity {
     EditText UserNameEt, PasswordEt;
-    ListView lv;
-    ArrayAdapter<String> adapter;
+
+
+
+   // ListView lv;
+    //ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,11 +25,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void OnLogin(View view){
+
         String username = UserNameEt.getText().toString();
         String password = PasswordEt.getText().toString();
         String type = "login";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         backgroundWorker.execute(type, username, password);
+
+
 
     }
 
