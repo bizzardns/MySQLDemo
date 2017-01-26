@@ -1,13 +1,16 @@
 package com.example.aleksandar.mysqldemo;
 
 import android.annotation.TargetApi;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,6 +33,7 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         setTitle("Rezervisi bend");
+
 
         List<String> spinnerArray = new ArrayList<>(); //PUNITI LISTU IZ BAZE!
         spinnerArray.add("Misa Macak");
@@ -60,13 +64,16 @@ public class Main2Activity extends AppCompatActivity {
         });
 
         DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker2);
-
         Calendar today = Calendar.getInstance();
 
+
+
         datePicker.init(
+
                 today.get(Calendar.YEAR),
-                today.get(Calendar.MONTH) + 1,
+                today.get(Calendar.MONTH) ,
                 today.get(Calendar.DAY_OF_MONTH),
+
 
                 new DatePicker.OnDateChangedListener() {
 

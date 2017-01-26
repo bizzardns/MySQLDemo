@@ -10,21 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.aleksandar.mysqldemo.Main2Activity">
 
-    <DatePicker
-
-        android:calendarTextColor="@color/colorPrimaryDark"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/datePicker2"
-        android:datePickerMode="spinner"
-        android:layout_alignParentTop="false"
-        android:layout_centerHorizontal="true"
-        style="@android:style/Widget.DeviceDefault.DatePicker"
-        android:calendarViewShown="false"
-        android:elevation="0dp"
-        android:spinnersShown="true" />
-
     <Spinner
 
         android:layout_width="match_parent"
@@ -49,5 +34,20 @@
         android:layout_alignStart="@+id/datePicker2"
         style="@android:style/Widget.Button"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <DatePicker
+
+        android:calendarTextColor="@color/colorPrimaryDark"
+        android:id="@+id/datePicker2"
+        style="@android:style/Widget.DeviceDefault.Light.CalendarView"
+        android:calendarViewShown="false"
+        android:elevation="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:spinnersShown="true"
+        android:headerBackground="@color/colorPrimary"
+        android:keepScreenOn="false"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
