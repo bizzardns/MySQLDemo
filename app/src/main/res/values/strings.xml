@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">MySQLDemo</string>
+    <string name="app_name">MM Admin</string>
     <string name="title_activity_lista_bendova">ListaBendova</string>
 </resources>
