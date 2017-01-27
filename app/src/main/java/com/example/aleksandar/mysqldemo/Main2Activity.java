@@ -59,6 +59,7 @@ public class Main2Activity extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    String Vlatko;
 
     @TargetApi(Build.VERSION_CODES.N)
     @Override
