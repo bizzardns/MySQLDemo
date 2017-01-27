@@ -1,16 +1,13 @@
 package com.example.aleksandar.mysqldemo;
 
 import android.annotation.TargetApi;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,8 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main2Activity extends AppCompatActivity {
-
+public class Main3Activity extends AppCompatActivity {
 
     String bend;
     String izabraniDatum;
@@ -31,8 +27,8 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
-        setTitle("Rezervisi");
+        setContentView(R.layout.activity_main3);
+        setTitle("Obrisi");
 
 
         List<String> spinnerArray = new ArrayList<>(); //PUNITI LISTU IZ BAZE!
@@ -93,7 +89,7 @@ public class Main2Activity extends AppCompatActivity {
             public void onClick(View v) {
 
                 setTitle(izabraniDatum + " " + bend); // RADI !!! ALI JE DATUM PREBACEN U STRING
-                Toast.makeText(Main2Activity.this, "Dodato u bazu", Toast.LENGTH_SHORT).show(); //TOAST PORUKA!
+                Toast.makeText(Main3Activity.this, "Dodato u bazu", Toast.LENGTH_SHORT).show(); //TOAST PORUKA!
 
 
             }
@@ -105,7 +101,7 @@ public class Main2Activity extends AppCompatActivity {
 
     }
     public boolean onCreateOptionsMenu(Menu menu){
-      menu.add("Dodaj admina").setIntent(new Intent(this,Register.class));
+        menu.add("Dodaj admina").setIntent(new Intent(this,Register.class));
         menu.add("Rezervisi").setIntent(new Intent(this,Main2Activity.class));
         menu.add("Obrisi rezervaciju").setIntent(new Intent(this,Main3Activity.class));
         return true;

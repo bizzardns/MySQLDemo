@@ -42,7 +42,7 @@ EditText name, surname, username, password;
 
         menu.add("Dodaj admina").setIntent(new Intent(this,Register.class));
         menu.add("Rezervisi").setIntent(new Intent(this,Main2Activity.class));
-        menu.add("Obrisi rezervaciju").setIntent(new Intent(this,MainActivity.class));
+        menu.add("Obrisi rezervaciju").setIntent(new Intent(this,Main3Activity.class));
         return true;
 
 
