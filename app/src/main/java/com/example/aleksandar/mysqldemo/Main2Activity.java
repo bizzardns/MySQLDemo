@@ -66,8 +66,6 @@ public class Main2Activity extends AppCompatActivity {
         DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker2);
         Calendar today = Calendar.getInstance();
 
-
-
         datePicker.init(
 
                 today.get(Calendar.YEAR),
@@ -99,14 +97,9 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
 
-
-
-
-
     }
     public boolean onCreateOptionsMenu(Menu menu){
-      menu.add("Dodaj admina").setIntent(new Intent(this,Register.class));
-        menu.add("Rezervisi").setIntent(new Intent(this,Main2Activity.class));
+        menu.add("Dodaj admina").setIntent(new Intent(this,Register.class));
         menu.add("Obrisi rezervaciju").setIntent(new Intent(this,Main3Activity.class));
         return true;
 
