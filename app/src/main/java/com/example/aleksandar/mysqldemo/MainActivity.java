@@ -1,34 +1,22 @@
 package com.example.aleksandar.mysqldemo;
 
-import android.content.Intent;
+
+import android.content.DialogInterface;
 import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.Spinner;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
     EditText UserNameEt, PasswordEt;
     ContactDB contactBase;
 
 
-   // ListView lv;
+    // ListView lv;
     //ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +25,13 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Login");
 
 
-
-        UserNameEt = (EditText)findViewById(R.id.etUserName);
-        PasswordEt = (EditText)findViewById(R.id.etPassword);
+        UserNameEt = (EditText) findViewById(R.id.etUserName);
+        PasswordEt = (EditText) findViewById(R.id.etPassword);
 
 
         contactBase = new ContactDB(this, null, 1);
-
         final Cursor cursor = contactBase.list_all_contact();
+
 
         while (cursor.moveToNext()) {
             UserNameEt.setText(cursor.getString(1));
@@ -53,38 +40,56 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void OnLogin(View view){
-
-
-
+    public void OnLogin(View view) {
         String username = UserNameEt.getText().toString();
         String password = PasswordEt.getText().toString();
         String type = "login";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         backgroundWorker.execute(type, username, password);
-
     }
-    public void itemClicked(View v){
 
-        String username = UserNameEt.getText().toString();
-        String password = PasswordEt.getText().toString();
-        CheckBox box = (CheckBox)v;
-        if(box.isChecked()){
+    public void itemClicked(View v) {
 
-            if (!(username.isEmpty()&&password.isEmpty())){
+        final String username = UserNameEt.getText().toString();
+        final String password = PasswordEt.getText().toString();
+        CheckBox box = (CheckBox) v;
+        if (box.isChecked()) {
 
-                contactBase.addContact(username,password);
+
+
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+
+
+                                if (!(username.isEmpty() && password.isEmpty())) {
+
+                                    contactBase.addContact(username,password);
+
+                                }
+
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                // Toast.makeText(Main3Activity.this, "NO", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
+
+
 
             }
 
+
+
         }
-
-
     }
 
 
-   public void OpenReg (View view){
-    startActivity(new Intent(this, Register.class));
-  }
-
-}

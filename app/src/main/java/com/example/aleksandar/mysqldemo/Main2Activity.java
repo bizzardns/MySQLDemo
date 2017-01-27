@@ -1,44 +1,34 @@
 package com.example.aleksandar.mysqldemo;
 
 import android.annotation.TargetApi;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -59,7 +49,6 @@ public class Main2Activity extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
-    String Vlatko;
 
     @TargetApi(Build.VERSION_CODES.N)
     @Override
