@@ -94,6 +94,7 @@ public class Main3Activity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu){
         menu.add("Dodaj admina").setIntent(new Intent(this,Register.class));
         menu.add("Rezervisi").setIntent(new Intent(this,Main2Activity.class));
+        menu.add("Broj svadbi").setIntent(new Intent(this,Main3Activity.class));
 
         return true;
 
@@ -106,11 +107,11 @@ public class Main3Activity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
-                        Toast.makeText(Main3Activity.this, "YES", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Main3Activity.this, "YES", Toast.LENGTH_SHORT).show();
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:
-                        Toast.makeText(Main3Activity.this, "NO", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(Main3Activity.this, "NO", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
