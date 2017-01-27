@@ -48,5 +48,13 @@ EditText name, surname, username, password;
 
 
     }
+    public void log(View v){
+
+        ContactDB contactBase = new ContactDB(this, null, 1);
+        contactBase.delete();
+
+
+
+    }
 
 }

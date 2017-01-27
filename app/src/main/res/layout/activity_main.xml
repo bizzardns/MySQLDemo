@@ -49,27 +49,6 @@
         android:layout_alignEnd="@+id/imageView2"
         android:textAlignment="center" />
 
-    <Button
-        android:textColor="@color/white"
-        android:text="Login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnLogin"
-        android:onClick="OnLogin"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        style="@android:style/Widget.Button"
-        android:fontFamily="sans-serif"
-        android:elevation="4dp"
-        android:textAlignment="center"
-        android:background="@android:drawable/editbox_background_normal"
-        android:backgroundTint="?attr/colorPrimaryDark"
-        android:layout_below="@+id/imageView7"
-        android:layout_alignLeft="@+id/etPassword"
-        android:layout_alignStart="@+id/etPassword"
-        android:layout_marginTop="47dp"
-        android:layout_alignRight="@+id/etPassword"
-        android:layout_alignEnd="@+id/etPassword" />
-
     <ImageView
         android:layout_width="25dp"
         android:layout_height="25dp"
@@ -97,7 +76,40 @@
         android:layout_above="@+id/etUserName"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:textColor="@color/white"
+        android:text="Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLogin"
+        android:onClick="OnLogin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        style="@android:style/Widget.Button"
+        android:fontFamily="sans-serif"
+        android:elevation="4dp"
+        android:textAlignment="center"
+        android:background="@android:drawable/editbox_background_normal"
+        android:backgroundTint="?attr/colorPrimaryDark"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/checkBox"
+        android:layout_alignLeft="@+id/etPassword"
+        android:layout_alignStart="@+id/etPassword"
+        android:layout_alignRight="@+id/etPassword"
+        android:layout_alignEnd="@+id/etPassword" />
 
+    <CheckBox
+        android:text="Save"
+        android:onClick="itemClicked"
+        android:background="@color/colorPrimary"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:id="@+id/checkBox"
+        style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+        android:layout_width="80sp"
+        android:textColor="@color/white"
+        app:buttonTint="@color/white"
+        android:layout_below="@+id/etPassword"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
