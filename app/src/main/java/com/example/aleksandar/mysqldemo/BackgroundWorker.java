@@ -23,13 +23,14 @@ import java.net.URLEncoder;
  * Created by Aleksandar on 1/25/2017.
  */
 
-public class BackgroundWorker extends AsyncTask<String,Void,String>{
-Context context;
+public class BackgroundWorker extends AsyncTask<String, Void, String> {
+    Context context;
     AlertDialog alertDialog;
 
 
 
-    BackgroundWorker(Context ctx){
+
+    BackgroundWorker(Context ctx) {
         context = ctx;
     }
 
@@ -38,19 +39,19 @@ Context context;
         String type = params[0];
         String login_url = "http://lp-developers.com/login.php";
         String register_url = "http://lp-developers.com/register.php";
-        if (type.equals("login")){
+        if (type.equals("login")) {
             try {
                 String user_name = params[1];
                 String password = params[2];
 
                 URL url = new URL(login_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String post_data = URLEncoder.encode("user_name", "UTF-8")+"="+URLEncoder.encode(user_name, "UTF-8")+"&"+URLEncoder.encode("password", "UTF-8")+"="+URLEncoder.encode(password, "UTF-8");
+                String post_data = URLEncoder.encode("user_name", "UTF-8") + "=" + URLEncoder.encode(user_name, "UTF-8") + "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -60,7 +61,7 @@ Context context;
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
                 String result = "";
                 String line = "";
-                while((line = bufferedReader.readLine())!=null){
+                while ((line = bufferedReader.readLine()) != null) {
                     result += line;
                 }
                 bufferedReader.close();
@@ -73,8 +74,7 @@ Context context;
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else  if (type.equals("register")){
+        } else if (type.equals("register")) {
             try {
                 String name = params[1];
                 String surname = params[2];
@@ -82,16 +82,16 @@ Context context;
                 String password = params[4];
 
                 URL url = new URL(register_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String post_data = URLEncoder.encode("ime", "UTF-8")+"="+URLEncoder.encode(name, "UTF-8")+"&"
-                                    +URLEncoder.encode("prezime", "UTF-8")+"="+URLEncoder.encode(surname, "UTF-8")+"&"
-                                    +URLEncoder.encode("username", "UTF-8")+"="+URLEncoder.encode(username, "UTF-8")+"&"
-                                    +URLEncoder.encode("password", "UTF-8")+"="+URLEncoder.encode(password, "UTF-8");
+                String post_data = URLEncoder.encode("ime", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8") + "&"
+                        + URLEncoder.encode("prezime", "UTF-8") + "=" + URLEncoder.encode(surname, "UTF-8") + "&"
+                        + URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(username, "UTF-8") + "&"
+                        + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -101,7 +101,7 @@ Context context;
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
                 String result = "";
                 String line = "";
-                while((line = bufferedReader.readLine())!=null){
+                while ((line = bufferedReader.readLine()) != null) {
                     result += line;
                 }
                 bufferedReader.close();
@@ -127,24 +127,20 @@ Context context;
 
     @Override
     protected void onPostExecute(String result) {
-        if (result.contains("failed")){
+        if (result.contains("failed")) {
             alertDialog.setMessage(result);
             alertDialog.show();
 
 
-        }
+        } else {
 
-        else {
-
-            Intent intent = new Intent(context,Main2Activity.class);
+            Intent intent = new Intent(context, Main2Activity.class);
             context.startActivity(intent);
 
         }
 
 
-
     }
-
 
 
     @Override

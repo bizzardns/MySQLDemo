@@ -17,10 +17,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinner2"
         android:layout_below="@+id/datePicker2"
-        android:layout_marginTop="30dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-         />
+        android:layout_alignRight="@+id/datePicker2"
+        android:layout_alignEnd="@+id/datePicker2" />
 
     <Button
         android:onClick="rez"
@@ -28,14 +28,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button"
-        android:layout_marginTop="77dp"
-        android:layout_below="@+id/spinner2"
-        android:layout_alignRight="@+id/datePicker2"
-        android:layout_alignEnd="@+id/datePicker2"
-        android:layout_alignLeft="@+id/datePicker2"
-        android:layout_alignStart="@+id/datePicker2"
         style="@android:style/Widget.Button"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <DatePicker
 
@@ -49,7 +48,9 @@
         android:spinnersShown="true"
         android:headerBackground="@color/green"
         android:keepScreenOn="false"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
