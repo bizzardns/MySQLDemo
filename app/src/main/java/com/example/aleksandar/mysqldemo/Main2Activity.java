@@ -213,6 +213,7 @@ public class Main2Activity extends AppCompatActivity {
         menu.add("Dodaj admina").setIntent(new Intent(this, Register.class));
 
 
+
         return true;
 
     }
