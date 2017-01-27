@@ -15,24 +15,15 @@ public class MainActivity extends AppCompatActivity {
     EditText UserNameEt, PasswordEt;
     ContactDB contactBase;
 
-
-    // ListView lv;
-    //ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Login");
-
-
         UserNameEt = (EditText) findViewById(R.id.etUserName);
         PasswordEt = (EditText) findViewById(R.id.etPassword);
-
-
         contactBase = new ContactDB(this, null, 1);
         final Cursor cursor = contactBase.list_all_contact();
-
-
         while (cursor.moveToNext()) {
             UserNameEt.setText(cursor.getString(1));
             PasswordEt.setText(cursor.getString(2));
@@ -54,36 +45,27 @@ public class MainActivity extends AppCompatActivity {
         final String password = PasswordEt.getText().toString();
         CheckBox box = (CheckBox) v;
         if (box.isChecked()) {
-
-
-
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
-                            case DialogInterface.BUTTON_POSITIVE:
-
-
-                                if (!(username.isEmpty() && password.isEmpty())) {
-
-                                    contactBase.addContact(username,password);
-                                }
-
-                                break;
-
-                            case DialogInterface.BUTTON_NEGATIVE:
-                                // Toast.makeText(Main3Activity.this, "NO", Toast.LENGTH_SHORT).show();
-                                break;
-                        }
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_POSITIVE:
+                            if (!(username.isEmpty() && password.isEmpty())) {
+                                contactBase.addContact(username, password);
+                            }
+                            break;
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            // Toast.makeText(Main3Activity.this, "NO", Toast.LENGTH_SHORT).show();
+                            break;
                     }
-                };
+                }
+            };
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
-                        .setNegativeButton("No", dialogClickListener).show();
-            }
-
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                    .setNegativeButton("No", dialogClickListener).show();
         }
     }
+}
 
 
