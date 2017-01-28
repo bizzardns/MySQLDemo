@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
             BackgroundWorker backgroundWorker = new BackgroundWorker(this);
             backgroundWorker.execute(type, username, password);
 
+        }else{
+
+
+
+            Toast.makeText(MainActivity.this, "Unesite username i password", Toast.LENGTH_LONG).show();
         }
 
     }
@@ -61,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
                             break;
                         case DialogInterface.BUTTON_NEGATIVE:
-                            // Toast.makeText(Main3Activity.this, "NO", Toast.LENGTH_SHORT).show();
+
                             break;
                     }
                 }
