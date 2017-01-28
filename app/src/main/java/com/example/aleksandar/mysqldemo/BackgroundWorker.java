@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -132,12 +133,13 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             alertDialog.show();
 
 
-        } else {
+        } else if(result.contains("sucess")) {
 
             Intent intent = new Intent(context, Main2Activity.class);
             context.startActivity(intent);
 
         }
+
 
 
     }

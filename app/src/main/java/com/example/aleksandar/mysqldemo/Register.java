@@ -24,6 +24,7 @@ EditText name, surname, username, password;
 
 
 
+
     }
 
     public void OnReg (View view){

@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         PasswordEt = (EditText) findViewById(R.id.etPassword);
         contactBase = new ContactDB(this, null, 1);
         final Cursor cursor = contactBase.list_all_contact();
-        while (cursor.moveToNext()) {
+         while (cursor.moveToNext()) {
             UserNameEt.setText(cursor.getString(1));
             PasswordEt.setText(cursor.getString(2));
         }
@@ -32,17 +32,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OnLogin(View view) {
+
         String username = UserNameEt.getText().toString();
         String password = PasswordEt.getText().toString();
-        String type = "login";
-        BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-        backgroundWorker.execute(type, username, password);
+        if (!username.isEmpty()){
+
+            String type = "login";
+            BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+            backgroundWorker.execute(type, username, password);
+
+        }
+
     }
 
     public void itemClicked(View v) {
 
-        final String username = UserNameEt.getText().toString();
-        final String password = PasswordEt.getText().toString();
+        final String username1 = UserNameEt.getText().toString();
+        final String password2 = PasswordEt.getText().toString();
         CheckBox box = (CheckBox) v;
         if (box.isChecked()) {
             DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -50,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     switch (which) {
                         case DialogInterface.BUTTON_POSITIVE:
-                            if (!(username.isEmpty() && password.isEmpty())) {
-                                contactBase.addContact(username, password);
-                            }
+
+                                contactBase.addContact(username1, password2);
+
                             break;
                         case DialogInterface.BUTTON_NEGATIVE:
                             // Toast.makeText(Main3Activity.this, "NO", Toast.LENGTH_SHORT).show();
