@@ -114,7 +114,7 @@ public class Main2Activity extends AppCompatActivity {
             public void onClick(View v) {
 
                 setTitle(izabraniDatum + " " + bend); // RADI !!! ALI JE DATUM PREBACEN U STRING
-                Toast.makeText(Main2Activity.this, "Dodato u bazu", Toast.LENGTH_SHORT).show(); //TOAST PORUKA!
+                //Toast.makeText(Main2Activity.this, "Dodato u bazu", Toast.LENGTH_SHORT).show(); //TOAST PORUKA!
 
 
             }
