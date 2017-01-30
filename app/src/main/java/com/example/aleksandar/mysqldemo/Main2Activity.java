@@ -170,6 +170,7 @@ public class Main2Activity extends AppCompatActivity {
         menu.add("Obrisi rezervaciju").setIntent(new Intent(this, Main3Activity.class));
         menu.add("Broj svadbi").setIntent(new Intent(this, Main2Activity.class));
         menu.add("Dodaj admina").setIntent(new Intent(this, Register.class));
+        menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
 
 
         return true;
