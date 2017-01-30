@@ -32,29 +32,23 @@
         android:calendarViewShown="false"
         android:elevation="0dp"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
         android:spinnersShown="true"
         android:headerBackground="@color/red"
         android:keepScreenOn="false"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_height="450dp" />
 
     <Spinner
+        android:textAlignment="center"
         android:backgroundTint="@color/red"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinner2"
-        android:layout_marginTop="47dp"
         android:layout_below="@+id/datePicker2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-    <TextView
-        android:text="Izaberi bend:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:layout_below="@+id/datePicker2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
+        android:layout_alignParentStart="true"
+        android:spinnerMode="dialog"
+        android:theme="@android:style/Widget.DropDownItem.Spinner" />
 
 </RelativeLayout>

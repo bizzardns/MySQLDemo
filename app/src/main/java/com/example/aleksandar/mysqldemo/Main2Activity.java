@@ -1,6 +1,7 @@
 package com.example.aleksandar.mysqldemo;
 
 import android.annotation.TargetApi;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -55,6 +57,8 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        
+
 
 
         lv = (Spinner) findViewById(R.id.spinner2);
@@ -87,8 +91,8 @@ public class Main2Activity extends AppCompatActivity {
         });
 
         DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker2);
-        Calendar today = Calendar.getInstance();
 
+        Calendar today = Calendar.getInstance();
         datePicker.init(
 
                 today.get(Calendar.YEAR),
