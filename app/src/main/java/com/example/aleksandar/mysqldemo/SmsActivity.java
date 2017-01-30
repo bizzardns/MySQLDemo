@@ -31,14 +31,23 @@ public class SmsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String text = sms.getText().toString();
-                sendSMS("0691050988",text);
+
+               String[] MobNumber = {"0691050988","0691050988","0691050988","0691050988"};
+
+                for (int i = 0; i < MobNumber.length; i++) {
+                    String tempMobileNumber = MobNumber[i];
+                    sendSMS(tempMobileNumber, text);
+                }
+
+
+
+               // sendSMS("0691050988",text);
 
             }
         });
 
 
     } public boolean onCreateOptionsMenu(Menu menu){
-
 
 
 
