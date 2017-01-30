@@ -58,6 +58,8 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+
+
         spinner = (Spinner) findViewById(R.id.spinner2);
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
         bendList.getData();
@@ -104,7 +106,6 @@ public class Main2Activity extends AppCompatActivity {
 
                         izabraniDatum = dayOfMonth + "." + "\n" + (monthOfYear + 1) + "." + "\n" + year + ".";
 
-                        //LOGIKA ZA IZABRANI DATUM!
                     }
                 });
 
@@ -114,7 +115,7 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                setTitle(izabraniDatum + " " + bend); // RADI !!! ALI JE DATUM PREBACEN U STRING
+                setTitle(izabraniDatum + " " + bend); //LOGIKA ZA DODAVANJE U BAZU
                 //Toast.makeText(Main2Activity.this, "Dodato u bazu", Toast.LENGTH_SHORT).show(); //TOAST PORUKA!
 
 

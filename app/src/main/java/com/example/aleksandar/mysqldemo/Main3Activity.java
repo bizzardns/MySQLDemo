@@ -50,7 +50,7 @@ public class Main3Activity extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
 
-        setTitle("Rezervisi");
+        setTitle("Obrisi");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, bendList.data);
@@ -89,7 +89,6 @@ public class Main3Activity extends AppCompatActivity {
 
                         izabraniDatum = dayOfMonth + "." + "\n" + (monthOfYear + 1) + "." + "\n" + year + ".";
 
-                        //LOGIKA ZA IZABRANI DATUM!
                     }
                 });
 
@@ -139,8 +138,9 @@ public class Main3Activity extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        menu.add("Obrisi rezervaciju").setIntent(new Intent(this, Main3Activity.class));
-        menu.add("Broj svadbi").setIntent(new Intent(this, Main2Activity.class));
+
+        menu.add("Rezervisi").setIntent(new Intent(this, Main2Activity.class));
+        menu.add("Broj svadbi").setIntent(new Intent(this, Main3Activity.class));
         menu.add("Dodaj admina").setIntent(new Intent(this, Register.class));
 
 
@@ -156,7 +156,7 @@ public class Main3Activity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
-                        setTitle(izabraniDatum + " " + bend);
+                        setTitle(izabraniDatum + " " + bend); //LOGIKA ZA BRISANJE IZ BAZE
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:
