@@ -43,9 +43,6 @@ public class MainActivity extends AppCompatActivity {
             backgroundWorker.execute(type, username, password);
 
         }else{
-
-
-
             Toast.makeText(MainActivity.this, "Unesite username i password", Toast.LENGTH_LONG).show();
         }
 

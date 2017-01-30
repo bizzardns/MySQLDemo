@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -31,9 +35,12 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
 
 
+
     BackgroundWorker(Context ctx) {
         context = ctx;
     }
+
+
 
     @Override
     protected String doInBackground(String... params) {
@@ -118,6 +125,10 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         }
         return null;
     }
+
+
+
+
 
     @Override
     protected void onPreExecute() {
