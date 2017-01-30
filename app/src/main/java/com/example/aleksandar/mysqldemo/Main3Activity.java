@@ -117,18 +117,7 @@ public class Main3Activity extends AppCompatActivity {
                     }
                 });
 
-        Button clickButton = (Button) findViewById(R.id.button);
-        clickButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-
-                setTitle(izabraniDatum + " " + bend); // RADI !!! ALI JE DATUM PREBACEN U STRING
-                //Toast.makeText(Main2Activity.this, "Dodato u bazu", Toast.LENGTH_SHORT).show(); //TOAST PORUKA!
-
-
-            }
-        });
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -218,13 +207,38 @@ public class Main3Activity extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        menu.add("Rezervisi").setIntent(new Intent(this, Main2Activity.class));
-        menu.add("Broj svadbi").setIntent(new Intent(this, Main3Activity.class));
+        menu.add("Obrisi rezervaciju").setIntent(new Intent(this, Main3Activity.class));
+        menu.add("Broj svadbi").setIntent(new Intent(this, Main2Activity.class));
         menu.add("Dodaj admina").setIntent(new Intent(this, Register.class));
 
 
 
         return true;
+
+    }
+    public void rez(View v){
+
+
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        setTitle(izabraniDatum + " " + bend);
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        // Toast.makeText(Main3Activity.this, "NO", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
+
+
 
     }
 
