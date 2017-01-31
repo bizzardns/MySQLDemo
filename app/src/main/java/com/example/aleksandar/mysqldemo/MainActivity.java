@@ -30,24 +30,18 @@ public class MainActivity extends AppCompatActivity {
             PasswordEt.setText(cursor.getString(2));
         }
     }
-
     public void OnLogin(View view) {
-
         String username = UserNameEt.getText().toString();
         String password = PasswordEt.getText().toString();
         if (!username.isEmpty()){
-
             String type = "login";
             BackgroundWorker backgroundWorker = new BackgroundWorker(this);
             backgroundWorker.execute(type, username, password);
-
         }else{
             Toast.makeText(MainActivity.this, "Unesite username i password", Toast.LENGTH_LONG).show();
         }
     }
-
     public void itemClicked(View v) {
-
         final String username1 = UserNameEt.getText().toString();
         final String password2 = PasswordEt.getText().toString();
         CheckBox box = (CheckBox) v;
@@ -57,17 +51,13 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     switch (which) {
                         case DialogInterface.BUTTON_POSITIVE:
-
                                 contactBase.addContact(username1, password2);
-
                             break;
                         case DialogInterface.BUTTON_NEGATIVE:
-
                             break;
                     }
                 }
             };
-
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
                     .setNegativeButton("No", dialogClickListener).show();

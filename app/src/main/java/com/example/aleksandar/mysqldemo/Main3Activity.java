@@ -47,7 +47,7 @@ public class Main3Activity extends AppCompatActivity {
         spinner = (Spinner) findViewById(R.id.spinner2);
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
         bendList.getData();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, bendList.data);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, bendList.data);
         spinner.setAdapter(adapter);
 
 
