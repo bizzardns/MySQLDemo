@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
             UserNameEt.setText(cursor.getString(1));
             PasswordEt.setText(cursor.getString(2));
         }
-
     }
 
     public void OnLogin(View view) {
@@ -45,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         }else{
             Toast.makeText(MainActivity.this, "Unesite username i password", Toast.LENGTH_LONG).show();
         }
-
     }
 
     public void itemClicked(View v) {

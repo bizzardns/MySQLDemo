@@ -152,8 +152,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             }
 
         }
-
-
         return null;
     }
 

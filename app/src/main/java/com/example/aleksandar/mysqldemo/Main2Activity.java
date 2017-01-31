@@ -26,8 +26,8 @@ public class Main2Activity extends AppCompatActivity {
 
     String bend;
     String izabraniDatum;
-    Spinner spinner;
-    ArrayAdapter<String> adapter;
+    //Spinner spinner;
+    //ArrayAdapter<String> adapter;
     BendList bendList = new BendList();
 
     /**
@@ -42,11 +42,11 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        spinner = (Spinner) findViewById(R.id.spinner2);
+        //spinner = (Spinner) findViewById(R.id.spinner2);
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
         bendList.getData();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, bendList.data);
-        spinner.setAdapter(adapter);
+        //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, bendList.data);
+        //spinner.setAdapter(adapter);
 
         setTitle("Rezervisi");
 
