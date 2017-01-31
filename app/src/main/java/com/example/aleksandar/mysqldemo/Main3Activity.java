@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.Spinner;
+
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -93,7 +94,6 @@ public class Main3Activity extends AppCompatActivity {
                 });
 
 
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -145,17 +145,17 @@ public class Main3Activity extends AppCompatActivity {
         menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
 
 
-
         return true;
 
     }
-    public void rez(View v){
+
+    public void rez(View v) {
 
 
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                switch (which){
+                switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
                         setTitle(izabraniDatum + " " + bend); //LOGIKA ZA BRISANJE IZ BAZE
                         break;
@@ -170,7 +170,6 @@ public class Main3Activity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
                 .setNegativeButton("No", dialogClickListener).show();
-
 
 
     }

@@ -10,7 +10,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-
 /**
  * Created by Aleksandar on 1/30/2017.
  */
@@ -25,7 +24,7 @@ public class BendList {
     String[] data;
 
 
-    public void getData() {
+    void getData() {
         try {
             URL url = new URL(adress);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

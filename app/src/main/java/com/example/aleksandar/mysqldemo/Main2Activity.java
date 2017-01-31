@@ -1,7 +1,6 @@
 package com.example.aleksandar.mysqldemo;
 
 import android.annotation.TargetApi;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.net.Uri;
@@ -11,37 +10,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-import static android.R.attr.data;
 
 
 public class Main2Activity extends AppCompatActivity {
 
     String bend;
     String izabraniDatum;
-
     Spinner spinner;
     ArrayAdapter<String> adapter;
     BendList bendList = new BendList();
@@ -58,24 +42,19 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-
-
         spinner = (Spinner) findViewById(R.id.spinner2);
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
         bendList.getData();
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, bendList.data);
         spinner.setAdapter(adapter);
 
-
         setTitle("Rezervisi");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, bendList.data);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, bendList.data);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final Spinner sItems = (Spinner) findViewById(R.id.spinner2);
         sItems.setAdapter(adapter);
-
 
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -90,41 +69,32 @@ public class Main2Activity extends AppCompatActivity {
         });
 
         DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker2);
-
         Calendar today = Calendar.getInstance();
         datePicker.init(
-
                 today.get(Calendar.YEAR),
                 today.get(Calendar.MONTH),
                 today.get(Calendar.DAY_OF_MONTH),
-
-
                 new DatePicker.OnDateChangedListener() {
 
                     @Override
                     public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
                         izabraniDatum = dayOfMonth + "." + "\n" + (monthOfYear + 1) + "." + "\n" + year + ".";
-
                     }
                 });
-
-        Button clickButton = (Button) findViewById(R.id.button);
-        clickButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                setTitle(izabraniDatum + " " + bend); //LOGIKA ZA DODAVANJE U BAZU
-                //Toast.makeText(Main2Activity.this, "Dodato u bazu", Toast.LENGTH_SHORT).show(); //TOAST PORUKA!
-
-
-            }
-        });
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    public void rez(View view) {
+        setTitle(izabraniDatum + bend);
+        String imeBenda = bend;
+        String datum = izabraniDatum;
+        String type = "rezervisi";
+        BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+        backgroundWorker.execute(type, imeBenda, datum);
+
     }
 
 
@@ -176,4 +146,6 @@ public class Main2Activity extends AppCompatActivity {
         return true;
 
     }
+
+
 }

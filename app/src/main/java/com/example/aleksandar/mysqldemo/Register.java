@@ -1,8 +1,6 @@
 package com.example.aleksandar.mysqldemo;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,7 +9,7 @@ import android.widget.EditText;
 
 public class Register extends AppCompatActivity {
 EditText name, surname, username, password;
-    String str_name, str_surname, str_username, str_password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,10 +19,6 @@ EditText name, surname, username, password;
         username = (EditText)findViewById(R.id.et_username);
         password = (EditText)findViewById(R.id.et_password);
         setTitle("Registruj admina");
-
-
-
-
     }
 
     public void OnReg (View view){
@@ -39,24 +33,15 @@ EditText name, surname, username, password;
     }
     public boolean onCreateOptionsMenu(Menu menu){
 
-
-
-
         menu.add("Rezervisi").setIntent(new Intent(this,Main2Activity.class));
         menu.add("Obrisi rezervaciju").setIntent(new Intent(this,Main3Activity.class));
         menu.add("Broj svadbi").setIntent(new Intent(this,Register.class));
         menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
         return true;
-
-
     }
     public void log(View v){
 
         ContactDB contactBase = new ContactDB(this, null, 1);
         contactBase.delete();
-
-
-
     }
-
 }
