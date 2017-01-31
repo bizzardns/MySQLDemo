@@ -28,8 +28,8 @@ public class Main3Activity extends AppCompatActivity {
     String bend;
     String izabraniDatum;
 
-    Spinner spinner;
-    ArrayAdapter<String> adapter;
+    //Spinner spinner;
+    //ArrayAdapter<String> adapter;
     BendList bendList = new BendList();
 
     /**
@@ -44,17 +44,16 @@ public class Main3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
 
-        spinner = (Spinner) findViewById(R.id.spinner2);
+        //spinner = (Spinner) findViewById(R.id.spinner2);
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
         bendList.getData();
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, bendList.data);
-        spinner.setAdapter(adapter);
+        //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, bendList.data);
+        //spinner.setAdapter(adapter);
 
 
         setTitle("Obrisi");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, bendList.data);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, bendList.data);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final Spinner sItems = (Spinner) findViewById(R.id.spinner2);
@@ -97,6 +96,15 @@ public class Main3Activity extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+    public void brisi(View view) {
+        setTitle(izabraniDatum + bend);
+        String imeBenda = bend;
+        String datum = izabraniDatum;
+        String type = "obrisi";
+        BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+        backgroundWorker.execute(type, imeBenda, datum);
+
     }
 
     /**

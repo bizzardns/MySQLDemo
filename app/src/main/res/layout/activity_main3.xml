@@ -11,7 +11,7 @@
     tools:context="com.example.aleksandar.mysqldemo.Main3Activity">
 
     <Button
-        android:onClick="rez"
+        android:onClick="brisi"
         android:text="Obrisi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
