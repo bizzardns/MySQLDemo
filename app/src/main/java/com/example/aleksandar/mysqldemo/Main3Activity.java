@@ -1,6 +1,7 @@
 package com.example.aleksandar.mysqldemo;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.icu.util.Calendar;
@@ -97,15 +98,6 @@ public class Main3Activity extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
-    public void brisi(View view) {
-        setTitle(izabraniDatum + bend);
-        String imeBenda = bend;
-        String datum = izabraniDatum;
-        String type = "obrisi";
-        BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-        backgroundWorker.execute(type, imeBenda, datum);
-
-    }
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -157,7 +149,7 @@ public class Main3Activity extends AppCompatActivity {
 
     }
 
-    public void rez(View v) {
+    public void brisi(View v) {
 
 
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -166,6 +158,13 @@ public class Main3Activity extends AppCompatActivity {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
                         setTitle(izabraniDatum + " " + bend); //LOGIKA ZA BRISANJE IZ BAZE
+
+                        setTitle(izabraniDatum + bend);
+                        String imeBenda = bend;
+                        String datum = izabraniDatum;
+                        String type = "obrisi";
+                        BackgroundWorker backgroundWorker = new BackgroundWorker(Main3Activity.this);
+                        backgroundWorker.execute(type, imeBenda, datum);
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:
