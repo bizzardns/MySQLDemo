@@ -141,6 +141,7 @@ public class Main2Activity extends AppCompatActivity {
         menu.add("Broj svadbi").setIntent(new Intent(this, Main2Activity.class));
         menu.add("Dodaj admina").setIntent(new Intent(this, Register.class));
         menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
+        menu.add("Pregled bendova").setIntent(new Intent(this, SpisakBendova.class));
 
 
         return true;
