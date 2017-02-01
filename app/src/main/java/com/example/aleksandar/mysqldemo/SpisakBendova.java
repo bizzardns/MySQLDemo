@@ -17,7 +17,8 @@ import java.util.ArrayList;
 
 public class SpisakBendova extends AppCompatActivity {
 
-    BendList bendList = new BendList();
+    ReservationList list = new ReservationList();
+    DatumList datum = new DatumList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,8 @@ public class SpisakBendova extends AppCompatActivity {
         setContentView(R.layout.activity_spisak_bendova);
         setTitle("Lista svadbi");
 
-        bendList.getData();
+        list.getData();
+      datum.getData();
 
 
 
@@ -33,7 +35,7 @@ public class SpisakBendova extends AppCompatActivity {
         final ListView listView = (ListView) findViewById(R.id.list);
         final ArrayList<String> theList = new ArrayList<>();
 
-            final ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, bendList.data);
+            final ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, datum.data);
             listView.setAdapter(listAdapter);
 
 
@@ -46,6 +48,8 @@ public class SpisakBendova extends AppCompatActivity {
                                     long id) {
 
                 String val =(String) parent.getItemAtPosition(position);
+                //ovde da ubacim logiku
+
                 Toast.makeText(getApplicationContext(), val,
                         Toast.LENGTH_SHORT).show();
 
