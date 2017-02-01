@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,19 +23,17 @@ public class SpisakBendova extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spisak_bendova);
+        setTitle("Lista svadbi");
 
         bendList.getData();
+
+
 
 
         final ListView listView = (ListView) findViewById(R.id.list);
         final ArrayList<String> theList = new ArrayList<>();
 
-
-
-
-            //theList.add(cursor.getString(2));
-
-            ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, bendList.data);
+            final ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, bendList.data);
             listView.setAdapter(listAdapter);
 
 
@@ -46,11 +45,10 @@ public class SpisakBendova extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
-                //cursor.moveToPosition(position);
-               // String broj = cursor.getString(1);
+                String val =(String) parent.getItemAtPosition(position);
+                Toast.makeText(getApplicationContext(), val,
+                        Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(SpisakBendova.this,"Radi!!!" ,Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" +broj )));
 
 
             }
