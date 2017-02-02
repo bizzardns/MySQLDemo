@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,55 +15,47 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class SpisakBendova extends AppCompatActivity {
 
     ReservationList list = new ReservationList();
     DatumList datum = new DatumList();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spisak_bendova);
         setTitle("Lista svadbi");
 
-        list.getData();
-      datum.getData();
+           list.getData();
+           datum.getData();
 
+            CustomList adapter = new
+                    CustomList(SpisakBendova.this, datum.data,list.data);
+           ListView list=(ListView)findViewById(R.id.list);
+            list.setAdapter(adapter);
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                   // Toast.makeText(MainActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
 
+                }
+            });
 
-        final ListView listView = (ListView) findViewById(R.id.list);
-        final ArrayList<String> theList = new ArrayList<>();
-
-            final ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, datum.data);
-            listView.setAdapter(listAdapter);
-
-
-
-
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
-
-                String val =(String) parent.getItemAtPosition(position);
-                //ovde da ubacim logiku
-
-                Toast.makeText(getApplicationContext(), val,
-                        Toast.LENGTH_SHORT).show();
-
-
-
-            }
-        });
+        }
 
 
 
 
 
-    }
+
+
+
+
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add("Rezervisi").setIntent(new Intent(this, Main2Activity.class));
         menu.add("Obrisi rezervaciju").setIntent(new Intent(this, Main3Activity.class));
@@ -74,4 +67,7 @@ public class SpisakBendova extends AppCompatActivity {
         return true;
 
     }
+
+
+
 }
