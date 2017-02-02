@@ -17,6 +17,7 @@ import android.widget.TextView;
 
     public class CustomList extends ArrayAdapter<String> {
 
+
         private final Activity context;
         private final String[] web;
         private final String[] imageId;

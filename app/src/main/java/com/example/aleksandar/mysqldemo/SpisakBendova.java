@@ -30,7 +30,7 @@ public class SpisakBendova extends AppCompatActivity {
         setTitle("Lista svadbi");
 
            list.getData();
-        datum.getData();
+           datum.getData();
 
 
 
@@ -52,6 +52,7 @@ public class SpisakBendova extends AppCompatActivity {
                             //Toast.LENGTH_SHORT).show();
 
 
+
                 }
             });
 
@@ -68,8 +69,8 @@ public class SpisakBendova extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add("Rezervisi").setIntent(new Intent(this, Main2Activity.class));
         menu.add("Obrisi rezervaciju").setIntent(new Intent(this, Main3Activity.class));
-        menu.add("Broj svadbi").setIntent(new Intent(this, SpisakBendova.class));
-        menu.add("Dodaj admina").setIntent(new Intent(this, Register.class));
+       // menu.add("Broj svadbi").setIntent(new Intent(this, SpisakBendova.class));
+        menu.add("Admin panel").setIntent(new Intent(this, Register.class));
         menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
 
 

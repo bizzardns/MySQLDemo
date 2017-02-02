@@ -65,6 +65,7 @@ public class Main3Activity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 bend = sItems.getSelectedItem().toString();
+
                 //LOGIKA ZA DOBAVLJANJE IZABRANOG BENDA!
             }
 
@@ -141,9 +142,11 @@ public class Main3Activity extends AppCompatActivity {
 
 
         menu.add("Rezervisi").setIntent(new Intent(this, Main2Activity.class));
-        menu.add("Broj svadbi").setIntent(new Intent(this, Main3Activity.class));
-        menu.add("Dodaj admina").setIntent(new Intent(this, Register.class));
+        menu.add("Pregled rezervacija").setIntent(new Intent(this, SpisakBendova.class));
+       // menu.add("Broj svadbi").setIntent(new Intent(this, Main3Activity.class));
+        menu.add("Admin panel").setIntent(new Intent(this, Register.class));
         menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
+
 
 
         return true;

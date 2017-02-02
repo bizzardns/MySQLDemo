@@ -35,8 +35,10 @@ public class SmsActivity extends AppCompatActivity {
     } public boolean onCreateOptionsMenu(Menu menu){
         menu.add("Rezervisi").setIntent(new Intent(this,Main2Activity.class));
         menu.add("Obrisi rezervaciju").setIntent(new Intent(this,Main3Activity.class));
-        menu.add("Broj svadbi").setIntent(new Intent(this,SmsActivity.class));
-        menu.add("Dodaj admina").setIntent(new Intent(this, Register.class));
+        menu.add("Pregled rezervacija").setIntent(new Intent(this, SpisakBendova.class));
+       // menu.add("Broj svadbi").setIntent(new Intent(this,SmsActivity.class));
+        menu.add("Admin panel").setIntent(new Intent(this, Register.class));
+
         return true;
     }
     public void sendSMS(String phoneNo, String msg) {
