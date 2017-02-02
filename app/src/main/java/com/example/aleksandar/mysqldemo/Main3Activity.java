@@ -88,7 +88,7 @@ public class Main3Activity extends AppCompatActivity {
                     @Override
                     public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-                        izabraniDatum = dayOfMonth + "." + "\n" + (monthOfYear + 1) + "." + "\n" + year + ".";
+                        izabraniDatum = dayOfMonth + "." +  (monthOfYear + 1) + "." +  year + ".";
 
                     }
                 });
