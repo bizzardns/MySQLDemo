@@ -76,6 +76,7 @@ public class Main3Activity extends AppCompatActivity {
         DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker2);
 
         Calendar today = Calendar.getInstance();
+        datePicker.setFirstDayOfWeek(Calendar.MONDAY);
         datePicker.init(
 
                 today.get(Calendar.YEAR),
@@ -159,7 +160,7 @@ public class Main3Activity extends AppCompatActivity {
                     case DialogInterface.BUTTON_POSITIVE:
                         setTitle(izabraniDatum + " " + bend); //LOGIKA ZA BRISANJE IZ BAZE
 
-                        setTitle(izabraniDatum + bend);
+
                         String imeBenda = bend;
                         String datum = izabraniDatum;
                         String type = "obrisi";

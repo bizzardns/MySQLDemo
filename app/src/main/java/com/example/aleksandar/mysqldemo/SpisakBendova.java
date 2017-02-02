@@ -30,10 +30,12 @@ public class SpisakBendova extends AppCompatActivity {
         setTitle("Lista svadbi");
 
            list.getData();
-           datum.getData();
+        datum.getData();
+
+
 
             CustomList adapter = new
-                    CustomList(SpisakBendova.this, datum.data,list.data);
+                    CustomList(SpisakBendova.this,datum.data , list.data);
            ListView list=(ListView)findViewById(R.id.list);
             list.setAdapter(adapter);
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -41,7 +43,14 @@ public class SpisakBendova extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
-                   // Toast.makeText(MainActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
+                    String val =(String) parent.getItemAtPosition(position);
+
+
+                    //ovde da ubacim logiku
+
+                    Toast.makeText(getApplicationContext(), val,
+                            Toast.LENGTH_SHORT).show();
+
 
                 }
             });

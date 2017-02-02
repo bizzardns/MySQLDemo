@@ -69,7 +69,9 @@ public class Main2Activity extends AppCompatActivity {
         });
 
         DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker2);
+
         Calendar today = Calendar.getInstance();
+        datePicker.setFirstDayOfWeek(Calendar.MONDAY);
         datePicker.init(
                 today.get(Calendar.YEAR),
                 today.get(Calendar.MONTH),
