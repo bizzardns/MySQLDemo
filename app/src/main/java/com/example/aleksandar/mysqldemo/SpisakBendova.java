@@ -48,8 +48,8 @@ public class SpisakBendova extends AppCompatActivity {
 
                     //ovde da ubacim logiku
 
-                    Toast.makeText(getApplicationContext(), val,
-                            Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), val,
+                            //Toast.LENGTH_SHORT).show();
 
 
                 }
