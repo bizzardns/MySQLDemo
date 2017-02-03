@@ -31,7 +31,8 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".SmsActivity" />
-        <activity android:name=".SpisakBendova"></activity>
+        <activity android:name=".SpisakBendova" />
+        <activity android:name=".Counter"/>
     </application>
 
 </manifest>

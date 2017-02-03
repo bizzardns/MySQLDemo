@@ -141,7 +141,7 @@ public class Main2Activity extends AppCompatActivity {
 
         menu.add("Obrisi rezervaciju").setIntent(new Intent(this, Main3Activity.class));
         menu.add("Pregled rezervacija").setIntent(new Intent(this, SpisakBendova.class));
-        //menu.add("Broj svadbi").setIntent(new Intent(this, Main2Activity.class));
+        menu.add("Broj svadbi").setIntent(new Intent(this, Counter.class));
         menu.add("Admin panel").setIntent(new Intent(this, Register.class));
         menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
 
