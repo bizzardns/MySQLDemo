@@ -1,6 +1,7 @@
 package com.example.aleksandar.mysqldemo;
 
 
+
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
@@ -29,8 +30,12 @@ public class MainActivity extends AppCompatActivity {
             UserNameEt.setText(cursor.getString(1));
             PasswordEt.setText(cursor.getString(2));
         }
+
     }
+
     public void OnLogin(View view) {
+
+
         String username = UserNameEt.getText().toString();
         String password = PasswordEt.getText().toString();
         if (!username.isEmpty()){
@@ -63,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
                     .setNegativeButton("No", dialogClickListener).show();
         }
     }
+
+
 }
 
 

@@ -12,6 +12,7 @@ public class SpisakBendova extends AppCompatActivity {
 
     ReservationList list = new ReservationList();
     DatumList datum = new DatumList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +21,7 @@ public class SpisakBendova extends AppCompatActivity {
 
            list.getData();
            datum.getData();
+
 
             CustomList adapter = new
                     CustomList(SpisakBendova.this,datum.data , list.data);
@@ -56,7 +58,7 @@ public class SpisakBendova extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add("Rezervisi").setIntent(new Intent(this, Main2Activity.class));
         menu.add("Obrisi rezervaciju").setIntent(new Intent(this, Main3Activity.class));
-       // menu.add("Broj svadbi").setIntent(new Intent(this, SpisakBendova.class));
+        menu.add("Broj svadbi").setIntent(new Intent(this, Counter.class));
         menu.add("Admin panel").setIntent(new Intent(this, Register.class));
         menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
 

@@ -21,7 +21,7 @@ public class BrojacDatuma {
     String result = null;
     String[] data;
 
-    void getDatum() {
+    void getData() {
         try {
             URL url = new URL(adress);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -46,9 +46,13 @@ public class BrojacDatuma {
             JSONObject jo = null;
             data = new String[ja.length()];
             for (int i = 0; i < ja.length(); i++) {
-                for (int j = 0; j < ja.length();)
+
+
                     jo = ja.getJSONObject(i);
-                data[i] = jo.getString("datum");
+                    data[i] = jo.getString("naziv_benda");
+
+
+
             }
 
         } catch (Exception e) {

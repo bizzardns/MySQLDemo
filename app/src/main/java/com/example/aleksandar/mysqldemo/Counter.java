@@ -1,10 +1,13 @@
 package com.example.aleksandar.mysqldemo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
 
 public class Counter extends AppCompatActivity {
 
@@ -20,12 +23,13 @@ public class Counter extends AppCompatActivity {
         setTitle("Broj svadbi po bendu");
 
         brojacBendova.getData();
-        brojacDatuma.getDatum();
+        brojacDatuma.getData();
 
-        CustomList adapter = new
-                CustomList(Counter.this,brojacDatuma.data, brojacBendova.data);
+
+        CustomList ada = new
+                CustomList(Counter.this, brojacBendova.data,brojacDatuma.data);
         ListView list=(ListView)findViewById(R.id.lv);
-        list.setAdapter(adapter);
+        list.setAdapter(ada);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -44,6 +48,19 @@ public class Counter extends AppCompatActivity {
             }
         });
 
+
+    }
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add("Rezervisi").setIntent(new Intent(this, Main2Activity.class));
+        menu.add("Obrisi rezervaciju").setIntent(new Intent(this, Main3Activity.class));
+        menu.add("Pregled rezervacija").setIntent(new Intent(this, SpisakBendova.class));
+        menu.add("Admin panel").setIntent(new Intent(this, Register.class));
+        menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
+
+
+        return true;
 
     }
 }

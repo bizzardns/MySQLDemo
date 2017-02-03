@@ -47,9 +47,13 @@ public class BrojacBendova {
             JSONObject jo = null;
             data = new String[ja.length()];
             for (int i = 0; i < ja.length(); i++) {
-                for (int j = 0; j < ja.length();)
-                jo = ja.getJSONObject(i);
-                data[i] = jo.getString("naziv_benda");
+
+
+                    jo = ja.getJSONObject(i);
+                    data[i] = jo.getString("count");
+
+
+
             }
 
         } catch (Exception e) {
