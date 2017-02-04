@@ -23,6 +23,8 @@ public class SpisakBendova extends AppCompatActivity {
            datum.getData();
 
 
+
+
             CustomList adapter = new
                     CustomList(SpisakBendova.this,datum.data , list.data);
            ListView list=(ListView)findViewById(R.id.list);

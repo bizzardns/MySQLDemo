@@ -2,8 +2,11 @@ package com.example.aleksandar.mysqldemo;
 
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,10 +20,12 @@ public class MainActivity extends AppCompatActivity {
     EditText UserNameEt, PasswordEt;
     ContactDB contactBase;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         setTitle("Login");
         UserNameEt = (EditText) findViewById(R.id.etUserName);
         PasswordEt = (EditText) findViewById(R.id.etPassword);
@@ -30,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
             UserNameEt.setText(cursor.getString(1));
             PasswordEt.setText(cursor.getString(2));
         }
+
+
+
+
 
     }
 
@@ -68,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     .setNegativeButton("No", dialogClickListener).show();
         }
     }
+
 
 
 }

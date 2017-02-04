@@ -58,6 +58,7 @@ public class Counter extends AppCompatActivity {
         menu.add("Pregled rezervacija").setIntent(new Intent(this, SpisakBendova.class));
         menu.add("Admin panel").setIntent(new Intent(this, Register.class));
         menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
+        menu.add("Slobodni bendovi").setIntent(new Intent(this, SlobodniBendovi.class));
 
 
         return true;
