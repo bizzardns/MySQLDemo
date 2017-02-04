@@ -20,8 +20,9 @@ public class Counter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counter);
 
-        setTitle("Broj svadbi po bendu");
 
+
+        setTitle("Broj svadbi");
         brojacBendova.getData();
         brojacDatuma.getData();
 

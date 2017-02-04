@@ -2,6 +2,7 @@ package com.example.aleksandar.mysqldemo;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -20,6 +21,8 @@ public class BrojacBendova {
     String line = null;
     String result = null;
     String[] data;
+
+
 
 
     void getData() {
@@ -51,17 +54,11 @@ public class BrojacBendova {
 
                     jo = ja.getJSONObject(i);
                     data[i] = jo.getString("count");
-
-
-
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-
-
 
 }

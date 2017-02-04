@@ -1,60 +1,47 @@
 package com.example.aleksandar.mysqldemo;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
 
 public class SlobodniBendovi extends AppCompatActivity {
 
     CalendarView calendar;
-    Test list = new Test();
-    ListView listView;
+
+    ListView lv;
+    String urlAdress = "http://lp-developers.com/freebands.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slobodni_bendovi);
-        list.getData();
+        setTitle("Slobodni bendovi");
+        lv = (ListView) findViewById(R.id.lv);
 
-
-        calendar = (CalendarView) findViewById(R.id.calendarView2);
-        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
+        calendar = (CalendarView) findViewById(R.id.calendarView);
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth ) {
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
 
-                String date = dayOfMonth +"." + (month + 1) +"."+ year;
+                String date = dayOfMonth + "." + (month + 1) + "." + year + ".";
 
-
-
-                    //OVDE SE BIRA DATUM POMOCU KOJEG SE DOBAVLJAJU IZ BAZE SLOBODNI BENDOVI!
-
-                Toast.makeText(getApplicationContext(),date,Toast.LENGTH_SHORT).show();
+                SendReceive sr = new SendReceive(urlAdress, SlobodniBendovi.this, date, lv);
+                sr.execute();
+                //OVDE SE BIRA DATUM POMOCU KOJEG SE DOBAVLJAJU IZ BAZE SLOBODNI BENDOVI!
 
             }
         });
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list.data);
-
-        listView = (ListView) findViewById(R.id.lista);
-        listView.setAdapter(adapter);
-
-
-
-
-
-
-
-
-
     }
+
+
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add("Rezervisi").setIntent(new Intent(this, Main2Activity.class));
         menu.add("Obrisi rezervaciju").setIntent(new Intent(this, Main3Activity.class));
@@ -66,4 +53,5 @@ public class SlobodniBendovi extends AppCompatActivity {
         return true;
 
     }
+
 }
