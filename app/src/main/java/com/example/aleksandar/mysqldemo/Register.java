@@ -9,12 +9,12 @@ import android.widget.EditText;
 
 public class Register extends AppCompatActivity {
 EditText name, surname, username, password;
-    IntenetConn conn = new IntenetConn();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        conn.isNetworkConnectionAvailable();
+
         name = (EditText)findViewById(R.id.et_ime);
         surname = (EditText)findViewById(R.id.et_prezime);
         username = (EditText)findViewById(R.id.et_username);
