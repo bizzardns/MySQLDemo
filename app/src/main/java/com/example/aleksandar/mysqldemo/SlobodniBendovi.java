@@ -14,7 +14,7 @@ import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
 public class SlobodniBendovi extends AppCompatActivity {
 
     CalendarView calendar;
-
+    IntenetConn conn = new IntenetConn();
     ListView lv;
     String urlAdress = "http://lp-developers.com/freebands.php";
 
@@ -23,6 +23,7 @@ public class SlobodniBendovi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slobodni_bendovi);
         setTitle("Slobodni bendovi");
+        conn.isNetworkConnectionAvailable();
         lv = (ListView) findViewById(R.id.lv);
 
         calendar = (CalendarView) findViewById(R.id.calendarView);

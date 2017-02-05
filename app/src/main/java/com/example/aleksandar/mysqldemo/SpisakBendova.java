@@ -12,11 +12,12 @@ public class SpisakBendova extends AppCompatActivity {
 
     ReservationList list = new ReservationList();
     DatumList datum = new DatumList();
-
+    IntenetConn conn = new IntenetConn();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spisak_bendova);
+        conn.isNetworkConnectionAvailable();
         setTitle("Lista svadbi");
 
            list.getData();

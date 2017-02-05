@@ -13,13 +13,13 @@ public class Counter extends AppCompatActivity {
 
     BrojacBendova brojacBendova = new BrojacBendova();
     BrojacDatuma brojacDatuma = new BrojacDatuma();
-
+    IntenetConn conn = new IntenetConn();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counter);
-
+        conn.isNetworkConnectionAvailable();
 
 
         setTitle("Broj svadbi");

@@ -13,11 +13,12 @@ import android.widget.Toast;
 public class SmsActivity extends AppCompatActivity {
     EditText sms;
     FloatingActionButton send;
-
+    IntenetConn conn = new IntenetConn();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms);
+        conn.isNetworkConnectionAvailable();
         setTitle("Posalji obavestenje");
         sms= (EditText) findViewById(R.id.messageText);
         final String[] MobNumber = {"0691050988","0649258171"};

@@ -1,15 +1,15 @@
 package com.example.aleksandar.mysqldemo;
 
 
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -20,24 +20,23 @@ public class MainActivity extends AppCompatActivity {
     EditText UserNameEt, PasswordEt;
     ContactDB contactBase;
 
+    IntenetConn conn = new IntenetConn();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        conn.isNetworkConnectionAvailable();
         setTitle("Login");
         UserNameEt = (EditText) findViewById(R.id.etUserName);
         PasswordEt = (EditText) findViewById(R.id.etPassword);
         contactBase = new ContactDB(this, null, 1);
         final Cursor cursor = contactBase.list_all_contact();
-         while (cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             UserNameEt.setText(cursor.getString(1));
             PasswordEt.setText(cursor.getString(2));
         }
-
-
-
 
 
     }
@@ -47,14 +46,15 @@ public class MainActivity extends AppCompatActivity {
 
         String username = UserNameEt.getText().toString();
         String password = PasswordEt.getText().toString();
-        if (!username.isEmpty()){
+        if (!username.isEmpty()) {
             String type = "login";
             BackgroundWorker backgroundWorker = new BackgroundWorker(this);
             backgroundWorker.execute(type, username, password);
-        }else{
+        } else {
             Toast.makeText(MainActivity.this, "Unesite username i password", Toast.LENGTH_LONG).show();
         }
     }
+
     public void itemClicked(View v) {
         final String username1 = UserNameEt.getText().toString();
         final String password2 = PasswordEt.getText().toString();
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     switch (which) {
                         case DialogInterface.BUTTON_POSITIVE:
-                                contactBase.addContact(username1, password2);
+                            contactBase.addContact(username1, password2);
                             break;
                         case DialogInterface.BUTTON_NEGATIVE:
                             break;
@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
                     .setNegativeButton("No", dialogClickListener).show();
         }
     }
-
 
 
 }
