@@ -20,14 +20,46 @@ public class MainActivity extends AppCompatActivity {
     EditText UserNameEt, PasswordEt;
     ContactDB contactBase;
 
-    IntenetConn conn = new IntenetConn();
+    public void checkNetworkConnection(){
+        AlertDialog.Builder builder =new AlertDialog.Builder(this);
+        builder.setTitle("No internet Connection");
+        builder.setMessage("Please turn on internet connection to continue");
+        builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    public boolean isNetworkConnectionAvailable(){
+        ConnectivityManager cm =
+                (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnected();
+        if(isConnected) {
+            Log.d("Network", "Connected");
+            return true;
+        }
+        else{
+            checkNetworkConnection();
+            Log.d("Network","Not Connected");
+            return false;
+        }
+    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        conn.isNetworkConnectionAvailable();
+        //isNetworkConnectionAvailable();
+        //checkNetworkConnection();
+
         setTitle("Login");
         UserNameEt = (EditText) findViewById(R.id.etUserName);
         PasswordEt = (EditText) findViewById(R.id.etPassword);
@@ -42,18 +74,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OnLogin(View view) {
+        if (isNetworkConnectionAvailable() == true) {
+            String username = UserNameEt.getText().toString();
+            String password = PasswordEt.getText().toString();
+            if (!username.isEmpty()) {
+                String type = "login";
+                BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+                backgroundWorker.execute(type, username, password);
+            } else {
+                Toast.makeText(MainActivity.this, "Unesite username i password", Toast.LENGTH_LONG).show();
+            }
 
-
-        String username = UserNameEt.getText().toString();
-        String password = PasswordEt.getText().toString();
-        if (!username.isEmpty()) {
-            String type = "login";
-            BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-            backgroundWorker.execute(type, username, password);
         } else {
-            Toast.makeText(MainActivity.this, "Unesite username i password", Toast.LENGTH_LONG).show();
+    return;
         }
     }
+
 
     public void itemClicked(View v) {
         final String username1 = UserNameEt.getText().toString();

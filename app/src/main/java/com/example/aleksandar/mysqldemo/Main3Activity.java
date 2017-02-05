@@ -32,7 +32,7 @@ public class Main3Activity extends AppCompatActivity {
     //Spinner spinner;
     //ArrayAdapter<String> adapter;
     BendList bendList = new BendList();
-    IntenetConn conn = new IntenetConn();
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -44,7 +44,7 @@ public class Main3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
-        conn.isNetworkConnectionAvailable();
+
         //spinner = (Spinner) findViewById(R.id.spinner2);
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
         bendList.getData();
