@@ -67,10 +67,10 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
                 Parser p =new Parser(c,s,lv);
                 p.execute();
             }else {
-                Toast.makeText(c,"NO DATA", Toast.LENGTH_SHORT).show();
+                Toast.makeText(c,"Svi bendovi su zauzeti za traženi termin!", Toast.LENGTH_SHORT).show();
             }
         }else{
-            Toast.makeText(c,"NO DATA", Toast.LENGTH_SHORT).show();
+            Toast.makeText(c,"Svi bendovi su zauzeti za traženi termin!", Toast.LENGTH_SHORT).show();
         }
 
     }
