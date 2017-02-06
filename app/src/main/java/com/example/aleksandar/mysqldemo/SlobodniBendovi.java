@@ -16,6 +16,7 @@ public class SlobodniBendovi extends AppCompatActivity {
     CalendarView calendar;
 
     ListView lv;
+    ListView ls;
     String urlAdress = "http://lp-developers.com/freebands.php";
 
     @Override
@@ -25,6 +26,7 @@ public class SlobodniBendovi extends AppCompatActivity {
         setTitle("Slobodni bendovi");
 
         lv = (ListView) findViewById(R.id.lv);
+        ls = (ListView) findViewById(R.id.ls);
 
         calendar = (CalendarView) findViewById(R.id.calendarView);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
@@ -36,6 +38,8 @@ public class SlobodniBendovi extends AppCompatActivity {
 
                 SendReceive sr = new SendReceive(urlAdress, SlobodniBendovi.this, date, lv);
                 sr.execute();
+                SendReceive pr = new SendReceive(urlAdress, SlobodniBendovi.this, date, ls);
+                pr.execute();
                 //OVDE SE BIRA DATUM POMOCU KOJEG SE DOBAVLJAJU IZ BAZE SLOBODNI BENDOVI!
 
             }
