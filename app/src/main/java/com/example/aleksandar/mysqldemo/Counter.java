@@ -8,25 +8,21 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-
 public class Counter extends AppCompatActivity {
 
     BrojacBendova brojacBendova = new BrojacBendova();
     BrojacDatuma brojacDatuma = new BrojacDatuma();
-
-
+    ReservationList list = new ReservationList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counter);
-
-
-
         setTitle("Broj svadbi");
         brojacBendova.getData();
         brojacDatuma.getData();
-
-
+        list.getData();
+        int a = list.data.length;
+        setTitle("Ukupan broj svadbi: "+String.valueOf(a));
         CustomList ada = new
                 CustomList(Counter.this, brojacBendova.data,brojacDatuma.data);
         ListView list=(ListView)findViewById(R.id.lv);
@@ -36,7 +32,7 @@ public class Counter extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                String val =(String) parent.getItemAtPosition(position);
+                //String val =(String) parent.getItemAtPosition(position);
 
 
                 //ovde da ubacim logiku
@@ -60,7 +56,6 @@ public class Counter extends AppCompatActivity {
         menu.add("Admin panel").setIntent(new Intent(this, Register.class));
         menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
         menu.add("Slobodni bendovi").setIntent(new Intent(this, SlobodniBendovi.class));
-
 
         return true;
 

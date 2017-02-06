@@ -51,7 +51,7 @@ public class SmsActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Message Sent",
                     Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
-            Toast.makeText(getApplicationContext(),ex.getMessage().toString(),
+            Toast.makeText(getApplicationContext(),ex.getMessage(),
                     Toast.LENGTH_LONG).show();
             ex.printStackTrace();
         }

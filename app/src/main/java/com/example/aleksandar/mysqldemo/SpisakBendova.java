@@ -13,6 +13,7 @@ public class SpisakBendova extends AppCompatActivity {
     ReservationList list = new ReservationList();
     DatumList datum = new DatumList();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +31,14 @@ public class SpisakBendova extends AppCompatActivity {
                     CustomList(SpisakBendova.this,datum.data , list.data);
            ListView list=(ListView)findViewById(R.id.list);
             list.setAdapter(adapter);
+
+
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
-                    String val =(String) parent.getItemAtPosition(position);
+                  //  String val =(String) parent.getItemAtPosition(position);
 
 
                     //ovde da ubacim logiku

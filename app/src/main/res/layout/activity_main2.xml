@@ -41,18 +41,17 @@
         android:theme="@android:style/Widget.DropDownItem.Spinner" />
 
     <DatePicker
-
         android:calendarTextColor="@color/colorPrimaryDark"
         android:id="@+id/datePicker2"
         style="@android:style/Widget.DeviceDefault.Light.CalendarView"
         android:elevation="0dp"
         android:layout_width="wrap_content"
-        android:spinnersShown="true"
         android:headerBackground="@color/green"
         android:keepScreenOn="false"
-        android:layout_height="450dp"
         android:calendarViewShown="false"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_height="450dp"
+        android:paddingBottom="@dimen/appbar_padding_top" />
 
 </RelativeLayout>

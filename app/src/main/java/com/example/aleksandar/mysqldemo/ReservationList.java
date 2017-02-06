@@ -1,9 +1,7 @@
 package com.example.aleksandar.mysqldemo;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;

@@ -1,10 +1,14 @@
 package com.example.aleksandar.mysqldemo.MySQL;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.aleksandar.mysqldemo.R;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -25,6 +29,7 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
     String urlAdress;
     String query;
     ListView lv;
+
 
 
     ProgressDialog pd;
@@ -67,10 +72,25 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
                 Parser p =new Parser(c,s,lv);
                 p.execute();
             }else {
-                Toast.makeText(c,"Svi bendovi su zauzeti za traženi termin!", Toast.LENGTH_SHORT).show();
+
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(c);
+                builder1.setTitle("Obaveštenje!");
+                builder1.setMessage("Svi bendovi su zauzeti za traženi termin.");
+                builder1.setIcon(R.drawable.dijamant);
+                builder1.setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                            }
+                        });
+                builder1.show();
+
             }
         }else{
-            Toast.makeText(c,"Svi bendovi su zauzeti za traženi termin!", Toast.LENGTH_SHORT).show();
+
+
         }
 
     }
