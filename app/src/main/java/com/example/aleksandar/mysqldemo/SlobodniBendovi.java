@@ -18,6 +18,7 @@ public class SlobodniBendovi extends AppCompatActivity {
     ListView lv;
     ListView ls;
     String urlAdress = "http://lp-developers.com/freebands.php";
+    String urlAdress_reserved = "http://lp-developers.com/reservedOnDate.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +36,11 @@ public class SlobodniBendovi extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
 
                 String date = dayOfMonth + "." + (month + 1) + "." + year + ".";
-
+                SendReceive pr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, ls);
+                pr.execute();
                 SendReceive sr = new SendReceive(urlAdress, SlobodniBendovi.this, date, lv);
                 sr.execute();
-                SendReceive pr = new SendReceive(urlAdress, SlobodniBendovi.this, date, ls);
-                pr.execute();
+
                 //OVDE SE BIRA DATUM POMOCU KOJEG SE DOBAVLJAJU IZ BAZE SLOBODNI BENDOVI!
 
             }
