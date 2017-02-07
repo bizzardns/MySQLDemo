@@ -49,6 +49,7 @@ public class Parser extends AsyncTask<Void, Void, Integer>{
             lv.setAdapter(adapter);
 
 
+
         }else{
             Toast.makeText(c,"Unable to parse", Toast.LENGTH_SHORT).show();
         }

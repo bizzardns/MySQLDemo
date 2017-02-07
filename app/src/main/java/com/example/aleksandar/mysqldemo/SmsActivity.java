@@ -39,6 +39,7 @@ public class SmsActivity extends AppCompatActivity {
         menu.add("Pregled rezervacija").setIntent(new Intent(this, SpisakBendova.class));
         menu.add("Broj svadbi").setIntent(new Intent(this, Counter.class));
         menu.add("Admin panel").setIntent(new Intent(this, Register.class));
+        menu.add("Kalendar").setIntent(new Intent(this, SlobodniBendovi.class));
 
         return true;
     }

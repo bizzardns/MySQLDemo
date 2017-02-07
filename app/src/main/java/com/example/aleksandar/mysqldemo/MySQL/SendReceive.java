@@ -73,19 +73,19 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
                 p.execute();
             }else {
 
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(c);
-                builder1.setTitle("Obaveštenje!");
-                builder1.setMessage("Svi bendovi su zauzeti za traženi termin.");
-                builder1.setIcon(R.drawable.dijamant);
-                builder1.setPositiveButton("Ok",
-                        new DialogInterface.OnClickListener() {
+                //AlertDialog.Builder builder1 = new AlertDialog.Builder(c);
+               // builder1.setTitle("Obaveštenje!");
+               // builder1.setMessage("Svi bendovi su zauzeti za traženi termin.");
+               // builder1.setIcon(R.drawable.dijamant);
+              //  builder1.setPositiveButton("Ok",
+                  //      new DialogInterface.OnClickListener() {
 
-                            @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
+                         //   @Override
+                          //  public void onClick(DialogInterface arg0, int arg1) {
 
-                            }
-                        });
-                builder1.show();
+                        //    }
+                       // });
+              //  builder1.show();
 
             }
         }else{

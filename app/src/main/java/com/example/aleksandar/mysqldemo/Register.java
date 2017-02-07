@@ -39,7 +39,7 @@ EditText name, surname, username, password;
         menu.add("Pregled rezervacija").setIntent(new Intent(this, SpisakBendova.class));
         menu.add("Broj svadbi").setIntent(new Intent(this, Counter.class));
         menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
-        menu.add("Slobodni bendovi").setIntent(new Intent(this, SlobodniBendovi.class));
+        menu.add("Kalendar").setIntent(new Intent(this, SlobodniBendovi.class));
 
         return true;
     }
