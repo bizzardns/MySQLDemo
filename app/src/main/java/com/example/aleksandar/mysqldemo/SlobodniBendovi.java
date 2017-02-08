@@ -57,7 +57,7 @@ public class SlobodniBendovi extends AppCompatActivity {
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                img.setVisibility(View.INVISIBLE);
+                img.setVisibility(View.GONE);
                 ls.setVisibility(View.VISIBLE);
                 lv.setVisibility(View.VISIBLE);
 
