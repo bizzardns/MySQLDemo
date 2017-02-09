@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by Aleksandar on 2/4/2017.
  */
 
-public class Parser extends AsyncTask<Void, Void, Integer>{
+public class Parser extends AsyncTask<Void, Void, Integer> {
 
     Context c;
     String data;
@@ -43,32 +43,29 @@ public class Parser extends AsyncTask<Void, Void, Integer>{
     @Override
     protected void onPostExecute(Integer integer) {
         super.onPostExecute(integer);
-        if(integer==1){
+        if (integer == 1) {
             //BIND TO LIST VIEW
-            ArrayAdapter adapter = new ArrayAdapter(c,android.R.layout.simple_list_item_1, names);
+            ArrayAdapter adapter = new ArrayAdapter(c, android.R.layout.simple_list_item_1, names);
             lv.setAdapter(adapter);
 
 
-
-        }else{
-            Toast.makeText(c,"Unable to parse", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(c, "Unable to parse", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private int parse (){
-        try{
+    private int parse() {
+        try {
             JSONArray ja = new JSONArray(data);
             JSONObject jo = null;
             names.clear();
-            for (int i = 0; i<ja.length(); i++){
-                jo=ja.getJSONObject(i);
+            for (int i = 0; i < ja.length(); i++) {
+                jo = ja.getJSONObject(i);
                 String name = jo.getString("naziv_benda");
-                names.add(name);
 
+                names.add(name);
             }
             return 1;
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

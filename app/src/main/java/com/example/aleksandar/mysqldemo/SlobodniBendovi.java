@@ -28,8 +28,10 @@ public class SlobodniBendovi extends AppCompatActivity {
     ImageView img;
     ListView lv = null;
     ListView ls;
+
     String urlAdress = "http://lp-developers.com/freebands.php";
     String urlAdress_reserved = "http://lp-developers.com/reservedOnDate.php";
+    String urlEventData = "http://lp-developers.com/eventData.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class SlobodniBendovi extends AppCompatActivity {
                 pr.execute();
                 SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
                 sr.execute();
+
                 //OVDE SE BIRA DATUM POMOCU KOJEG SE DOBAVLJAJU IZ BAZE SLOBODNI BENDOVI!
 
             }
@@ -76,12 +79,14 @@ public class SlobodniBendovi extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+
                 String val =(String) parent.getItemAtPosition(position);
+
 
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(SlobodniBendovi.this);
                 builder1.setIcon(R.drawable.dijamant);
                 builder1.setTitle(val);
-                builder1.setMessage("Svrha: "+"\n"+"\n"+"Ime: "+"\n"+"\n"+"Grad: "+"\n"+"\n"+ "Restoran: " );
+                builder1.setMessage("Event: "+"\n"+"\n"+"Ime: "+"\n"+"\n"+"Grad: "+"\n"+"\n"+ "Restoran: " );
                 builder1.setIcon(R.drawable.dijamant);
                 builder1.setPositiveButton("Ok",
                         new DialogInterface.OnClickListener() {

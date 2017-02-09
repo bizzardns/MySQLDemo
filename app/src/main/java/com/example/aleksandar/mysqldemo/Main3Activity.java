@@ -155,8 +155,6 @@ public class Main3Activity extends AppCompatActivity {
     }
 
     public void brisi(View v) {
-
-
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
