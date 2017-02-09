@@ -22,6 +22,7 @@ public class Parser extends AsyncTask<Void, Void, Integer> {
     String data;
     ListView lv;
 
+    //Proba
     ArrayList<String> names = new ArrayList<>();
 
     public Parser(Context c, String data, ListView lv) {
@@ -62,7 +63,6 @@ public class Parser extends AsyncTask<Void, Void, Integer> {
             for (int i = 0; i < ja.length(); i++) {
                 jo = ja.getJSONObject(i);
                 String name = jo.getString("naziv_benda");
-
                 names.add(name);
             }
             return 1;
