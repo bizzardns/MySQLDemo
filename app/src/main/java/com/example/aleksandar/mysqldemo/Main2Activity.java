@@ -6,14 +6,19 @@ import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Build;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CalendarView;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -26,6 +31,8 @@ public class Main2Activity extends AppCompatActivity {
 
     String bend;
     String izabraniDatum;
+    CalendarView calendar;
+    EditText ime, event, mesto, restoran;
     //Spinner spinner;
     //ArrayAdapter<String> adapter;
     BendList bendList = new BendList();
@@ -43,6 +50,11 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        event = (EditText)findViewById(R.id.editEvent);
+        ime = (EditText)findViewById(R.id.editIme);
+       mesto = (EditText)findViewById(R.id.editMesto);
+       restoran = (EditText)findViewById(R.id.editRestoran);
 
         //spinner = (Spinner) findViewById(R.id.spinner2);
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
@@ -70,7 +82,7 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
 
-        DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker2);
+        /*DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker2);
         Calendar today = Calendar.getInstance();
         datePicker.setFirstDayOfWeek(Calendar.MONDAY);
         datePicker.init(
@@ -83,7 +95,22 @@ public class Main2Activity extends AppCompatActivity {
                     public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         izabraniDatum = dayOfMonth + "." + "" + (monthOfYear + 1) + "." + "" + year + ".";
                     }
-                });
+                });*/
+
+
+
+        calendar = (CalendarView) findViewById(R.id.calendarView2);
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+
+                izabraniDatum = dayOfMonth + "." + (month + 1) + "." + year + ".";
+
+                //OVDE SE BIRA DATUM POMOCU KOJEG SE DOBAVLJAJU IZ BAZE SLOBODNI BENDOVI!
+
+            }
+        });
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -94,9 +121,13 @@ public class Main2Activity extends AppCompatActivity {
         setTitle(izabraniDatum + bend);
         String imeBenda = bend;
         String datum = izabraniDatum;
+        String str_event = event.getText().toString();
+        String str_ime = ime.getText().toString();
+        String str_mesto = mesto.getText().toString();
+        String str_restoran = restoran.getText().toString();
         String type = "rezervisi";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-        backgroundWorker.execute(type, imeBenda, datum);
+        backgroundWorker.execute(type, imeBenda, datum,str_event,str_ime,str_mesto,str_restoran);
 
     }
 
