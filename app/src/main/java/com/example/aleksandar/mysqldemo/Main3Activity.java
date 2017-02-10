@@ -8,6 +8,7 @@ import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Build;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 
@@ -28,7 +30,7 @@ public class Main3Activity extends AppCompatActivity {
 
     String bend;
     String izabraniDatum;
-
+    CalendarView calendar;
     //Spinner spinner;
     //ArrayAdapter<String> adapter;
     BendList bendList = new BendList();
@@ -74,26 +76,18 @@ public class Main3Activity extends AppCompatActivity {
             }
         });
 
-        DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker2);
+        calendar = (CalendarView) findViewById(R.id.calendarView3);
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
 
-        Calendar today = Calendar.getInstance();
-        datePicker.setFirstDayOfWeek(Calendar.MONDAY);
-        datePicker.init(
+                izabraniDatum = dayOfMonth + "." + (month + 1) + "." + year + ".";
 
-                today.get(Calendar.YEAR),
-                today.get(Calendar.MONTH),
-                today.get(Calendar.DAY_OF_MONTH),
+                //OVDE SE BIRA DATUM POMOCU KOJEG SE DOBAVLJAJU IZ BAZE SLOBODNI BENDOVI!
 
-
-                new DatePicker.OnDateChangedListener() {
-
-                    @Override
-                    public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
-                        izabraniDatum = dayOfMonth + "." +  (monthOfYear + 1) + "." +  year + ".";
-
-                    }
-                });
+            }
+        });
 
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.

@@ -1,35 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
     tools:context="com.example.aleksandar.mysqldemo.Main2Activity">
-
-
-    <DatePicker
-
-        android:calendarTextColor="@color/colorPrimaryDark"
-        android:id="@+id/datePicker2"
-        style="@android:style/Widget.DeviceDefault.Light.CalendarView"
-        android:elevation="0dp"
-        android:layout_width="wrap_content"
-        android:spinnersShown="true"
-        android:headerBackground="@color/green"
-        android:headerDayOfMonthTextAppearance="@color/colorPrimaryDark"
-        android:keepScreenOn="false"
-        android:layout_height="450dp"
-        android:calendarViewShown="false"
-        android:layout_above="@+id/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="9dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
     <Button
         android:onClick="rez"
@@ -39,26 +19,115 @@
         android:id="@+id/button"
         style="@android:style/Widget.Button"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:elevation="1dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:elevation="1dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@+id/calendarView2"
+        android:layout_toEndOf="@+id/calendarView2" />
+
+
+    <CalendarView
+        android:dateTextAppearance="@android:style/TextAppearance.Holo.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/calendarView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/button" />
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        app:srcCompat="@color/slobodni"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:layout_toLeftOf="@+id/button"
+        android:layout_toStartOf="@+id/button" />
 
     <Spinner
 
         android:backgroundTint="@color/colorPrimary"
         android:textAlignment="center"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinner2"
         android:spinnerMode="dialog"
         android:theme="@android:style/Widget.DropDownItem.Spinner"
-        android:layout_width="wrap_content"
-        android:layout_marginRight="86dp"
-        android:layout_marginEnd="86dp"
         android:layout_alignTop="@+id/button"
-        android:layout_toLeftOf="@+id/button"
-        android:layout_marginTop="11dp"
+        android:layout_alignRight="@+id/calendarView2"
+        android:layout_alignEnd="@+id/calendarView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Event"
+        android:ems="10"
+        android:id="@+id/editEvent"
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_width="180dp"
+        android:layout_alignTop="@+id/imageView4"
+        android:layout_alignLeft="@+id/editIme"
+        android:layout_alignStart="@+id/editIme"
+        android:layout_marginTop="20dp"
+        android:layout_alignRight="@+id/editRestoran"
+        android:layout_alignEnd="@+id/editRestoran" />
+
+    <EditText
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Ime"
+        android:ems="10"
+        android:id="@+id/editIme"
+
+        android:layout_below="@+id/editEvent"
+        android:layout_alignLeft="@+id/editMesto"
+        android:layout_alignStart="@+id/editMesto"
+        android:layout_marginTop="10dp"
+        android:layout_alignRight="@+id/editRestoran"
+        android:layout_alignEnd="@+id/editRestoran" />
+
+    <EditText
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:background="@android:drawable/editbox_background_normal"
+        android:hint="Mesto"
+        android:ems="10"
+        android:id="@+id/editMesto"
+        android:layout_below="@+id/editIme"
+        android:layout_alignLeft="@+id/editRestoran"
+        android:layout_alignStart="@+id/editRestoran"
+        android:layout_marginTop="17dp"
+        android:layout_alignRight="@+id/editRestoran"
+        android:layout_alignEnd="@+id/editRestoran" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:background="@android:drawable/editbox_background_normal"
+        android:hint="Restoran"
+        android:ems="10"
+        android:id="@+id/editRestoran"
+
+        android:layout_marginLeft="46dp"
+        android:layout_marginStart="46dp"
+        android:layout_below="@+id/editMesto"
+        android:layout_toRightOf="@+id/calendarView2"
+        android:layout_toEndOf="@+id/calendarView2"
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>
