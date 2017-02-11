@@ -13,7 +13,7 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        setTitle("Meni");
+
     }
     public void btn(View v)
     {

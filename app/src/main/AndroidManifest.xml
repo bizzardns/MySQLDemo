@@ -31,7 +31,10 @@
         <activity android:name=".SpisakBendova" />
         <activity android:name=".Counter" />
         <activity android:name=".SlobodniBendovi" />
-        <activity android:name=".MenuActivity">
+        <activity android:name=".MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
