@@ -25,13 +25,13 @@
         android:padding="10dp"
         android:gravity="center"
         android:text="Bend"
-        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"
+        android:layout_width="400dp" />
 
     <TextView
         android:gravity="center"
@@ -39,13 +39,13 @@
         android:background="@color/colorPrimary"
         android:padding="10dp"
         android:text="Broj svadbi"
-        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/list"
         android:layout_toRightOf="@+id/textView"
         android:id="@+id/textView2"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        tools:ignore="HardcodedText,RtlHardcoded,UnknownIdInLayout" />
+        tools:ignore="HardcodedText,RtlHardcoded,UnknownIdInLayout"
+        android:layout_width="280dp" />
 
 </RelativeLayout>

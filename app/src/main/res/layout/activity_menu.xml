@@ -44,7 +44,9 @@
             android:scaleType="centerInside"
 
             android:layout_height="90dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:elevation="0dp"
+            android:visibility="visible" />
 
         <ImageButton
 
@@ -55,7 +57,8 @@
             android:layout_width="100dp"
             android:scaleType="centerInside"
             android:layout_height="90dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:elevation="0dp" />
 
 
 
