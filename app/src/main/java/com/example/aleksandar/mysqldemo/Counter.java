@@ -16,6 +16,7 @@ public class Counter extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.slide_in,R.anim.slide_out);
         setContentView(R.layout.activity_counter);
         setTitle("Broj svadbi");
         brojacBendova.getData();

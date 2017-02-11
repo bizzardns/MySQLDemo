@@ -45,6 +45,7 @@ public class Main3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.slide_in,R.anim.slide_out);
         setContentView(R.layout.activity_main3);
 
         //spinner = (Spinner) findViewById(R.id.spinner2);

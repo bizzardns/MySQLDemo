@@ -13,6 +13,7 @@ EditText name, surname, username, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.slide_in,R.anim.slide_out);
         setContentView(R.layout.activity_register);
 
         name = (EditText)findViewById(R.id.et_ime);

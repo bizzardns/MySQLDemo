@@ -49,6 +49,7 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.slide_in,R.anim.slide_out);
         setContentView(R.layout.activity_main2);
 
         event = (EditText)findViewById(R.id.editEvent);
