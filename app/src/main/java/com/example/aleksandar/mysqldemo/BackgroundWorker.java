@@ -205,7 +205,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         }
         if (type.equals("datum")) {
             try {
-
+                String urlEventData = "http://lp-developers.com/eventData.php";
                 String datum = params[1];
 
                 URL url = new URL(freebands_url);

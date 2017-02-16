@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,8 +22,6 @@ public class Parser extends AsyncTask<Void, Void, Integer> {
     Context c;
     String data;
     ListView lv;
-
-    //Proba
     ArrayList<String> names = new ArrayList<>();
 
     public Parser(Context c, String data, ListView lv) {
@@ -48,8 +47,6 @@ public class Parser extends AsyncTask<Void, Void, Integer> {
             //BIND TO LIST VIEW
             ArrayAdapter adapter = new ArrayAdapter(c, android.R.layout.simple_list_item_1, names);
             lv.setAdapter(adapter);
-
-
         } else {
             Toast.makeText(c, "Unable to parse", Toast.LENGTH_SHORT).show();
         }
