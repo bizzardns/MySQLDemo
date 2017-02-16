@@ -82,7 +82,13 @@ public class SlobodniBendovi extends AppCompatActivity {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(SlobodniBendovi.this);
                 String val = (String) parent.getItemAtPosition(position);
 
+                builder1.setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener() {
 
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                            }
+                        });
                 builder1.setTitle(val);
                 View modelView = getLayoutInflater().inflate(R.layout.activity_events, null);
                 RecyclerView rv2 = (RecyclerView) modelView.findViewById(R.id.rv2);
@@ -99,16 +105,6 @@ public class SlobodniBendovi extends AppCompatActivity {
                 builder1.setIcon(R.drawable.dijamant);
 
 
-                builder1.setIcon(R.drawable.dijamant);
-
-
-                builder1.setPositiveButton("Ok",
-                        new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
-                            }
-                        });
             }
         });
     }
