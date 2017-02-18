@@ -46,8 +46,6 @@ public class BrojacDatuma {
             JSONObject jo = null;
             data = new String[ja.length()];
             for (int i = 0; i < ja.length(); i++) {
-
-
                     jo = ja.getJSONObject(i);
                     data[i] = jo.getString("naziv_benda");
 

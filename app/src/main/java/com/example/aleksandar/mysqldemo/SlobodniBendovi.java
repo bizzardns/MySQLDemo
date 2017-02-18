@@ -16,7 +16,6 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.ListView;

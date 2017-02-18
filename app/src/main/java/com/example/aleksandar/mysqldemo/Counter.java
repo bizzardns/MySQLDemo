@@ -1,6 +1,7 @@
 package com.example.aleksandar.mysqldemo;
 
 import android.content.Intent;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class Counter extends AppCompatActivity {
+
     ReservationList list = new ReservationList();
     BrojacBendova brojacBendova = new BrojacBendova();
     BrojacDatuma brojacDatuma = new BrojacDatuma();
@@ -17,20 +19,20 @@ public class Counter extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.slide_in,R.anim.slide_out);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         setContentView(R.layout.activity_counter);
+        StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
         bendList.getData();
         list.getData();
         brojacBendova.getData();
         brojacDatuma.getData();
 
 
+        CustomList ada = new CustomList(Counter.this, brojacBendova.data, brojacDatuma.data);
         int a = list.data.length;
-        setTitle("Ukupan broj svadbi: "+String.valueOf(a));
-        CustomList ada = new CustomList(Counter.this, brojacBendova.data,brojacDatuma.data);
-
-        ListView list=(ListView)findViewById(R.id.lv);
+        ListView list = (ListView) findViewById(R.id.lv);
         list.setAdapter(ada);
+
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -45,10 +47,10 @@ public class Counter extends AppCompatActivity {
                 //Toast.LENGTH_SHORT).show();
 
 
-
             }
         });
 
+        setTitle("Ukupan broj svadbi: "+String.valueOf(a));
 
     }
 

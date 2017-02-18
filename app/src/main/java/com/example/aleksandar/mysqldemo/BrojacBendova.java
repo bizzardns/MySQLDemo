@@ -50,8 +50,6 @@ public class BrojacBendova {
             JSONObject jo = null;
             data = new String[ja.length()];
             for (int i = 0; i < ja.length(); i++) {
-
-
                     jo = ja.getJSONObject(i);
                     data[i] = jo.getString("count");
             }
