@@ -76,10 +76,10 @@ public class EventParser extends AsyncTask<Void, Void, Integer> {
                 String lokal = jo.getString("lokal");
 
                 ev = new EventData();
-                ev.setEvent("Event: " + event);
-                ev.setIme("Ime: " + ime);
-                ev.setGrad("Grad: " + grad);
-                ev.setLokal("Lokal: " + lokal);
+                ev.setEvent(event);
+                ev.setIme(ime);
+                ev.setGrad(grad);
+                ev.setLokal(lokal);
 
                 events.add(ev);
             }

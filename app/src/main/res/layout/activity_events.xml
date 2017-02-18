@@ -15,5 +15,6 @@
         android:layout_height="150dp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/rv2" />
+        android:id="@+id/rv2"
+        android:scrollbars="horizontal" />
 </RelativeLayout>

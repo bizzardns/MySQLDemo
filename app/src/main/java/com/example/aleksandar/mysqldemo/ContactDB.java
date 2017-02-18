@@ -9,7 +9,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
+import android.widget.TextView;
 
 
 public class ContactDB extends SQLiteOpenHelper {
@@ -22,13 +22,13 @@ public class ContactDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE CONTACT( ID INTEGER PRIMARY KEY AUTOINCREMENT,PASSWORD TEXT, NAME TEXT);");
+        sqLiteDatabase.execSQL("CREATE TABLE KURAC( ID INTEGER PRIMARY KEY AUTOINCREMENT,PASSWORD TEXT, NAME TEXT);");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS CONTACT;");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS KURAC;");
         onCreate(sqLiteDatabase);
     }
     public void addContact(String number,String name){
@@ -37,19 +37,33 @@ public class ContactDB extends SQLiteOpenHelper {
         contentValues.put("PASSWORD", number);
         contentValues.put("NAME", name);
 
-        this.getWritableDatabase().insertOrThrow("CONTACT", "", contentValues);
+        this.getWritableDatabase().insertOrThrow("KURAC", "", contentValues);
 
     }
-    public Cursor list_all_contact(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM CONTACT",null);
+    public Cursor list_all_contact(TextView textView){
+        Cursor cursor = this.getReadableDatabase().rawQuery("SELECT * FROM KURAC",null);
+
+
+        while (cursor.moveToNext()) {
+
+
+
+
+
+
+
+                    textView.append("Index: " + cursor.getString(1)+ "Index: " + cursor.getString(2)+"\n" );
+
+            }
+
+
         return cursor;
     }
 
 
     public void delete(){
         SQLiteDatabase db = this.getReadableDatabase();
-        db.execSQL("DELETE FROM CONTACT");
+        db.execSQL("DELETE FROM KURAC");
 
     }
 

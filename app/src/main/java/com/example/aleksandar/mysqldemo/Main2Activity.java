@@ -9,6 +9,7 @@ import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +18,7 @@ import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
 import com.google.android.gms.appindexing.Action;
@@ -117,7 +119,7 @@ public class Main2Activity extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
-
+    final String[] MobNumber = {"0691050988"};
     public void rez(View view) {
         setTitle(izabraniDatum + bend);
         String imeBenda = bend;
@@ -129,6 +131,10 @@ public class Main2Activity extends AppCompatActivity {
         String type = "rezervisi";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         backgroundWorker.execute(type, imeBenda, datum,str_event,str_ime,str_mesto,str_restoran);
+        for (int i = 0; i < MobNumber.length; i++) {
+            String tempMobileNumber = MobNumber[i];
+            sendSMS(tempMobileNumber,"Event:" + " " + str_event +"\n" + "Naziv benda:" + " " + imeBenda + "\n" + "Datum:" + " " + datum +"\n"+ "Ime:" + " " + str_ime +"\n" + "Grad:" + " " + str_mesto +"\n"+ "Restoran:" + " " + str_restoran+"\n");
+        }
 
     }
 
@@ -167,6 +173,21 @@ public class Main2Activity extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+    }
+
+    public void sendSMS(String phoneNo, String msg) {
+        try {
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(phoneNo, null, msg, null, null);
+            Toast.makeText(getApplicationContext(), "Sending...",
+                    Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Message Sent",
+                    Toast.LENGTH_LONG).show();
+        } catch (Exception ex) {
+            Toast.makeText(getApplicationContext(),ex.getMessage(),
+                    Toast.LENGTH_LONG).show();
+            ex.printStackTrace();
+        }
     }
 
 

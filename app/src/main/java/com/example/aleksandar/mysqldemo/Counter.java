@@ -18,14 +18,14 @@ public class Counter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slide_in,R.anim.slide_out);
         setContentView(R.layout.activity_counter);
-        setTitle("Broj svadbi");
+
         brojacBendova.getData();
         brojacDatuma.getData();
         list.getData();
-        int a = list.data.length;
+       int a = list.data.length;
         setTitle("Ukupan broj svadbi: "+String.valueOf(a));
-        CustomList ada = new
-                CustomList(Counter.this, brojacBendova.data,brojacDatuma.data);
+        CustomList ada = new CustomList(Counter.this, brojacBendova.data,brojacDatuma.data);
+
         ListView list=(ListView)findViewById(R.id.lv);
         list.setAdapter(ada);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

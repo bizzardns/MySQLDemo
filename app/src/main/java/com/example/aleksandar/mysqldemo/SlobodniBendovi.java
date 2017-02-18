@@ -5,12 +5,14 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
@@ -82,14 +85,28 @@ public class SlobodniBendovi extends AppCompatActivity {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(SlobodniBendovi.this);
                 String val = (String) parent.getItemAtPosition(position);
 
-                builder1.setPositiveButton("Ok",
+                builder1.setPositiveButton("Nazad",
                         new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
                             }
                         });
-                builder1.setTitle(val);
+                //builder1.setIcon(R.drawable.dijamant);
+
+                TextView title = new TextView(getApplicationContext());
+
+                title.setText(val);
+                title.setBackgroundColor(Color.DKGRAY);
+                title.setPadding(10, 10, 10, 10);
+                title.setGravity(Gravity.CENTER);
+                title.setTextColor(Color.WHITE);
+                title.setTextSize(20);
+
+                builder1.setCustomTitle(title);
+
+
+
                 View modelView = getLayoutInflater().inflate(R.layout.activity_events, null);
                 RecyclerView rv2 = (RecyclerView) modelView.findViewById(R.id.rv2);
                 rv2.setLayoutManager(new LinearLayoutManager(SlobodniBendovi.this));
@@ -99,10 +116,11 @@ public class SlobodniBendovi extends AppCompatActivity {
 
                 builder1.setView(modelView);
                 AlertDialog dialog = builder1.create();
+
+
+
                 dialog.show();
 
-
-                builder1.setIcon(R.drawable.dijamant);
 
 
             }

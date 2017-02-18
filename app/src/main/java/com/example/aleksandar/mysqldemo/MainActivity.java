@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -64,11 +65,11 @@ public class MainActivity extends AppCompatActivity {
         UserNameEt = (EditText) findViewById(R.id.etUserName);
         PasswordEt = (EditText) findViewById(R.id.etPassword);
         contactBase = new ContactDB(this, null, 1);
-        final Cursor cursor = contactBase.list_all_contact();
-        while (cursor.moveToNext()) {
-            UserNameEt.setText(cursor.getString(1));
-            PasswordEt.setText(cursor.getString(2));
-        }
+       // final Cursor cursor = contactBase.list_all_contact();
+        //while (cursor.moveToNext()) {
+        //    UserNameEt.setText(cursor.getString(1));
+        //    PasswordEt.setText(cursor.getString(2));
+      //  }
 
 
     }
