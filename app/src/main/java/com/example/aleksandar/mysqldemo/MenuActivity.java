@@ -1,7 +1,6 @@
 package com.example.aleksandar.mysqldemo;
 
 import android.content.Intent;
-import android.provider.Telephony;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,12 +8,12 @@ import android.view.animation.AnimationUtils;
 
 public class MenuActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
-
 
 
     }
@@ -34,6 +33,7 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void btn1(View v)
+
     {   v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
         Intent intent = new Intent(getApplicationContext(), Counter.class);
         startActivity(intent);

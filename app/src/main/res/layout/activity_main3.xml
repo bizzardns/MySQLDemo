@@ -13,11 +13,11 @@
 
     <Button
         android:onClick="brisi"
-        android:text="Obrisi"
+        android:text="Obriši"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button"
-        style="@android:style/Widget.Button"
+        style="@android:style/Widget.DeviceDefault.Button"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
@@ -27,16 +27,11 @@
         android:elevation="1dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="20dp"/>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        app:srcCompat="@color/zauzeti"
-
-        android:layout_marginTop="18dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/ls"
-        android:layout_alignStart="@+id/ls" />
+        android:layout_marginBottom="20dp"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:backgroundTint="@color/red" />
 
     <CalendarView
         android:dateTextAppearance="@android:style/TextAppearance.Holo.Medium"

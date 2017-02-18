@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#a33263</color>
-    <color name="colorPrimaryDark">#2f3293</color>
+    <color name="colorPrimary">#0bbaff</color>
+    <color name="colorPrimaryDark">#3e3e40</color>
     <color name="colorAccent">#ef4984</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="red">#a10707</color>
     <color name="green">#02c602</color>
-    <color name="blue1">#fff202</color>
+    <color name="blue1">#8cef4984</color>
     <color name="slobodni">#1c2ff702</color>
     <color name="zauzeti">#1cef303c</color>
     <color name="pocetna">#2f3293</color>

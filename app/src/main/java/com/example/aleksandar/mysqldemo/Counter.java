@@ -9,20 +9,23 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class Counter extends AppCompatActivity {
-
+    ReservationList list = new ReservationList();
     BrojacBendova brojacBendova = new BrojacBendova();
     BrojacDatuma brojacDatuma = new BrojacDatuma();
-    ReservationList list = new ReservationList();
+    BendList bendList = new BendList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slide_in,R.anim.slide_out);
         setContentView(R.layout.activity_counter);
-
+        bendList.getData();
+        list.getData();
         brojacBendova.getData();
         brojacDatuma.getData();
-        list.getData();
-       int a = list.data.length;
+
+
+        int a = list.data.length;
         setTitle("Ukupan broj svadbi: "+String.valueOf(a));
         CustomList ada = new CustomList(Counter.this, brojacBendova.data,brojacDatuma.data);
 
