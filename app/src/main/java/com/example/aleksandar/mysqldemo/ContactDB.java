@@ -22,7 +22,7 @@ public class ContactDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE JAJE( ID INTEGER PRIMARY KEY AUTOINCREMENT,PASSWORD TEXT, NAME TEXT,LASTNAME TEXT);");
+        sqLiteDatabase.execSQL("CREATE TABLE JAJE( ID INTEGER PRIMARY KEY AUTOINCREMENT, DATUM TEXT, BEND TEXT,EVENT TEXT,IME TEXT,GRAD TEXT,LOKAL TEXT);");
 
     }
 
@@ -31,12 +31,15 @@ public class ContactDB extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS JAJE;");
         onCreate(sqLiteDatabase);
     }
-    public void addContact(String number,String name,String lastname){
+    public void addContact(String datum,String bend,String event,String ime,String grad,String lokal){
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("PASSWORD", number);
-        contentValues.put("NAME", name);
-        contentValues.put("LASTNAME", lastname);
+        contentValues.put("DATUM", datum);
+        contentValues.put("BEND", bend);
+        contentValues.put("EVENT", event);
+        contentValues.put("IME", ime);
+        contentValues.put("GRAD", grad);
+        contentValues.put("LOKAL", lokal);
 
         this.getWritableDatabase().insertOrThrow("JAJE", "", contentValues);
 
@@ -44,22 +47,13 @@ public class ContactDB extends SQLiteOpenHelper {
     public Cursor list_all_contact(TextView textView){
         Cursor cursor = this.getReadableDatabase().rawQuery("SELECT * FROM JAJE",null);
 
-
         while (cursor.moveToNext()) {
-
-
-
-
-
-
-
-                    textView.append(cursor.getString(1)+ " " + cursor.getString(2)+" " + cursor.getString(3)+"\n" );
-
+                    textView.append(cursor.getString(1)+ "  " + cursor.getString(2)+"  " + cursor.getString(3)+"  "+cursor.getString(4)+"  "+ cursor.getString(5)+"  "+ cursor.getString(6)+"\n" );
             }
-
 
         return cursor;
     }
+
 
 
     public void delete(){
