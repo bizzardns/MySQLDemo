@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -131,10 +132,12 @@ public class Main2Activity extends AppCompatActivity {
         String type = "rezervisi";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         backgroundWorker.execute(type, imeBenda, datum,str_event,str_ime,str_mesto,str_restoran);
-        for (int i = 0; i < MobNumber.length; i++) {
-            String tempMobileNumber = MobNumber[i];
-            sendSMS(tempMobileNumber,"Event:" + " " + str_event +"\n" + "Naziv benda:" + " " + imeBenda + "\n" + "Datum:" + " " + datum +"\n"+ "Ime:" + " " + str_ime +"\n" + "Grad:" + " " + str_mesto +"\n"+ "Restoran:" + " " + str_restoran+"\n");
-        }
+                for (int i = 0; i < MobNumber.length; i++) {
+                    String tempMobileNumber = MobNumber[i];
+                    sendSMS(tempMobileNumber,"Event:" + " " + str_event +"\n" + "Naziv benda:" + " " + imeBenda + "\n" + "Datum:" + " " + datum +"\n"+ "Ime:" + " " + str_ime +"\n" + "Grad:" + " " + str_mesto +"\n"+ "Restoran:" + " " + str_restoran+"\n");
+                }
+
+
 
     }
 
