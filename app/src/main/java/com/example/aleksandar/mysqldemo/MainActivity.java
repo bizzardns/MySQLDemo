@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     switch (which) {
                         case DialogInterface.BUTTON_POSITIVE:
-                            contactBase.addContact(username1, password2);
+                            //contactBase.addContact(username1, password2);
                             break;
                         case DialogInterface.BUTTON_NEGATIVE:
                             break;

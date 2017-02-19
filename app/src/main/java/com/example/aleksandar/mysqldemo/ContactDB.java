@@ -22,26 +22,27 @@ public class ContactDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE KURAC( ID INTEGER PRIMARY KEY AUTOINCREMENT,PASSWORD TEXT, NAME TEXT);");
+        sqLiteDatabase.execSQL("CREATE TABLE JAJE( ID INTEGER PRIMARY KEY AUTOINCREMENT,PASSWORD TEXT, NAME TEXT,LASTNAME TEXT);");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS KURAC;");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS JAJE;");
         onCreate(sqLiteDatabase);
     }
-    public void addContact(String number,String name){
+    public void addContact(String number,String name,String lastname){
 
         ContentValues contentValues = new ContentValues();
         contentValues.put("PASSWORD", number);
         contentValues.put("NAME", name);
+        contentValues.put("LASTNAME", lastname);
 
-        this.getWritableDatabase().insertOrThrow("KURAC", "", contentValues);
+        this.getWritableDatabase().insertOrThrow("JAJE", "", contentValues);
 
     }
     public Cursor list_all_contact(TextView textView){
-        Cursor cursor = this.getReadableDatabase().rawQuery("SELECT * FROM KURAC",null);
+        Cursor cursor = this.getReadableDatabase().rawQuery("SELECT * FROM JAJE",null);
 
 
         while (cursor.moveToNext()) {
@@ -52,7 +53,7 @@ public class ContactDB extends SQLiteOpenHelper {
 
 
 
-                    textView.append("Bend: " + cursor.getString(1)+ " " + "Datum: " + cursor.getString(2)+"\n" );
+                    textView.append("Bend: " + cursor.getString(1)+ " " + "Datum: " + cursor.getString(2)+" " + "Datum: " + cursor.getString(3)+"\n" );
 
             }
 
@@ -63,7 +64,7 @@ public class ContactDB extends SQLiteOpenHelper {
 
     public void delete(){
         SQLiteDatabase db = this.getReadableDatabase();
-        db.execSQL("DELETE FROM KURAC");
+        db.execSQL("DELETE FROM JAJE");
 
     }
 
