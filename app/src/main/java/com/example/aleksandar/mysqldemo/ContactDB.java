@@ -52,7 +52,7 @@ public class ContactDB extends SQLiteOpenHelper {
 
 
 
-                    textView.append("Index: " + cursor.getString(1)+ "Index: " + cursor.getString(2)+"\n" );
+                    textView.append("Bend: " + cursor.getString(1)+ " " + "Datum: " + cursor.getString(2)+"\n" );
 
             }
 

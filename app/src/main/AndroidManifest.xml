@@ -38,7 +38,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Events"></activity>
+        <activity android:name=".Events" />
+        <activity android:name=".TestBaza"></activity>
     </application>
 
 </manifest>

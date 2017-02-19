@@ -202,6 +202,7 @@ public class Main2Activity extends AppCompatActivity {
         menu.add("Admin panel").setIntent(new Intent(this, Register.class));
         menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
         menu.add("Kalendar").setIntent(new Intent(this, SlobodniBendovi.class));
+        menu.add("Test baze").setIntent(new Intent(this, TestBaza.class));
 
 
 
