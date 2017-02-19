@@ -53,7 +53,7 @@ public class ContactDB extends SQLiteOpenHelper {
 
 
 
-                    textView.append("Bend: " + cursor.getString(1)+ " " + "Datum: " + cursor.getString(2)+" " + "Datum: " + cursor.getString(3)+"\n" );
+                    textView.append(cursor.getString(1)+ " " + cursor.getString(2)+" " + cursor.getString(3)+"\n" );
 
             }
 
