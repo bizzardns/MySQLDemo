@@ -40,13 +40,13 @@
         android:id="@+id/brisi" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:id="@+id/button6"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/brisi"
-        android:layout_toStartOf="@+id/brisi"
         android:background="@android:drawable/stat_notify_sync"
-        android:backgroundTint="@color/colorPrimary" />
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/brisi" />
 
 </RelativeLayout>

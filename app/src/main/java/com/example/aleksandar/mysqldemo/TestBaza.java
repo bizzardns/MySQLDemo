@@ -29,6 +29,7 @@ public class TestBaza extends AppCompatActivity {
         datumList.getData();
 
         tv =(TextView) findViewById(R.id.textView3);
+        tv.invalidate();
         sync = (Button) findViewById(R.id.button6);
         sync.setOnClickListener(new View.OnClickListener() {
             @Override
