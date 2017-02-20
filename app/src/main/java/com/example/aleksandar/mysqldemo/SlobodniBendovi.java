@@ -9,11 +9,15 @@ import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CalendarView;
@@ -34,7 +38,9 @@ public class SlobodniBendovi extends AppCompatActivity {
     ListView lv = null;
     ListView ls;
     String date;
-
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+    private NavigationView mNavigationView;
     String urlAdress = "http://lp-developers.com/freebands.php";
     String urlAdress_reserved = "http://lp-developers.com/reservedOnDate.php";
     String urlEventData = "http://lp-developers.com/eventData.php";
@@ -44,6 +50,70 @@ public class SlobodniBendovi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         setContentView(R.layout.activity_slobodni_bendovi);
+
+        mDrawerLayout= (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mNavigationView = (NavigationView) findViewById(R.id.nav_item);
+
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                if (id == R.id.nav1) {
+                    Intent myIntent = new Intent(SlobodniBendovi.this, Main2Activity.class);
+                    SlobodniBendovi.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav2)
+                {
+                    Intent myIntent = new Intent(SlobodniBendovi.this, Main3Activity.class);
+                    SlobodniBendovi.this.startActivity(myIntent);
+                }
+                else if (id == R.id.nav3)
+                {
+                    Intent myIntent = new Intent(SlobodniBendovi.this, SlobodniBendovi.class);
+                    SlobodniBendovi.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav4)
+                {
+                    Intent myIntent = new Intent(SlobodniBendovi.this, Counter.class);
+                    SlobodniBendovi.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav5)
+                {
+                    Intent myIntent = new Intent(SlobodniBendovi.this, SmsActivity.class);
+                    SlobodniBendovi.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav6)
+                {
+                    Intent myIntent = new Intent(SlobodniBendovi.this, Register.class);
+                    SlobodniBendovi.this.startActivity(myIntent);
+
+                }
+
+
+                return true;
+            }
+        } );
+
+
+
+
+
+
+
+
+
+
+
+
+
         setTitle("Kalendar");
 
 
@@ -133,6 +203,18 @@ public class SlobodniBendovi extends AppCompatActivity {
         menu.add("Admin panel").setIntent(new Intent(this, Register.class));
         menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(mToggle.onOptionsItemSelected(item)){
+
+            return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

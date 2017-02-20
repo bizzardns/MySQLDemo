@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:background="@color/colorPrimary"
+    android:padding="20dp">
+
+    <TextView
+        android:text="Meni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textSize="36sp"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:fontFamily="sans-serif"
+        android:layout_centerVertical="true"
+        android:textStyle="normal|bold"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

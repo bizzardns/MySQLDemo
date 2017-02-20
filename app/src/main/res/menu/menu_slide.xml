@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav1"
+        android:title="Rezervisi"
+        android:icon="@drawable/upis"/>
+    <item android:id="@+id/nav2"
+        android:title="Obrisi"
+        android:icon="@drawable/brisanje"/>
+    <item android:id="@+id/nav3"
+        android:title="Kalendar"
+        android:icon="@drawable/kalendar"/>
+    <item android:id="@+id/nav4"
+        android:title="Broj svadbi"
+        android:icon="@drawable/brojsvadbi"/>
+    <item android:id="@+id/nav5"
+        android:title="Obavestenja"
+        android:icon="@drawable/sms"/>
+    <item android:id="@+id/nav6"
+        android:title="Admin panel"
+        android:icon="@drawable/paneladmin" />
+
+</menu>

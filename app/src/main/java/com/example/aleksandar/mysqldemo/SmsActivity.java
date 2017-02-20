@@ -2,10 +2,14 @@ package com.example.aleksandar.mysqldemo;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,12 +17,70 @@ import android.widget.Toast;
 public class SmsActivity extends AppCompatActivity {
     EditText sms;
     FloatingActionButton send;
-
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+    private NavigationView mNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slide_in,R.anim.slide_out);
         setContentView(R.layout.activity_sms);
+
+        mDrawerLayout= (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mNavigationView = (NavigationView) findViewById(R.id.nav_item);
+
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                if (id == R.id.nav1) {
+                    Intent myIntent = new Intent(SmsActivity.this, Main2Activity.class);
+                    SmsActivity.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav2)
+                {
+                    Intent myIntent = new Intent(SmsActivity.this, Main3Activity.class);
+                    SmsActivity.this.startActivity(myIntent);
+                }
+                else if (id == R.id.nav3)
+                {
+                    Intent myIntent = new Intent(SmsActivity.this, SlobodniBendovi.class);
+                    SmsActivity.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav4)
+                {
+                    Intent myIntent = new Intent(SmsActivity.this, Counter.class);
+                    SmsActivity.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav5)
+                {
+                    Intent myIntent = new Intent(SmsActivity.this, SmsActivity.class);
+                    SmsActivity.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav6)
+                {
+                    Intent myIntent = new Intent(SmsActivity.this, Register.class);
+                    SmsActivity.this.startActivity(myIntent);
+
+                }
+
+
+                return true;
+            }
+        } );
+
+
+
+
+
 
         setTitle("Posalji obavestenje");
         sms= (EditText) findViewById(R.id.messageText);
@@ -57,5 +119,16 @@ public class SmsActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             ex.printStackTrace();
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(mToggle.onOptionsItemSelected(item)){
+
+            return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

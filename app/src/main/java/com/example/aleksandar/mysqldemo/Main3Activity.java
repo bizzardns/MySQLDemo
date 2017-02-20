@@ -9,10 +9,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,7 +38,9 @@ public class Main3Activity extends AppCompatActivity {
     //Spinner spinner;
     //ArrayAdapter<String> adapter;
     BendList bendList = new BendList();
-
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+    private NavigationView mNavigationView;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -47,6 +53,61 @@ public class Main3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slide_in,R.anim.slide_out);
         setContentView(R.layout.activity_main3);
+
+
+
+        mDrawerLayout= (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mNavigationView = (NavigationView) findViewById(R.id.nav_item);
+
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                if (id == R.id.nav1) {
+                    Intent myIntent = new Intent(Main3Activity.this, Main2Activity.class);
+                    Main3Activity.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav2)
+                {
+                    Intent myIntent = new Intent(Main3Activity.this, Main3Activity.class);
+                    Main3Activity.this.startActivity(myIntent);
+                }
+                else if (id == R.id.nav3)
+                {
+                    Intent myIntent = new Intent(Main3Activity.this, SlobodniBendovi.class);
+                    Main3Activity.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav4)
+                {
+                    Intent myIntent = new Intent(Main3Activity.this, Counter.class);
+                    Main3Activity.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav5)
+                {
+                    Intent myIntent = new Intent(Main3Activity.this, SmsActivity.class);
+                    Main3Activity.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav6)
+                {
+                    Intent myIntent = new Intent(Main3Activity.this, Register.class);
+                    Main3Activity.this.startActivity(myIntent);
+
+                }
+
+
+                return true;
+            }
+        } );
+
+
 
         //spinner = (Spinner) findViewById(R.id.spinner2);
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
@@ -177,6 +238,18 @@ public class Main3Activity extends AppCompatActivity {
                 .setNegativeButton("No", dialogClickListener).show();
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(mToggle.onOptionsItemSelected(item)){
+
+            return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }
