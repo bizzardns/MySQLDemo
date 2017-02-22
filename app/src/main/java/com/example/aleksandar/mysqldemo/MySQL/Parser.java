@@ -55,11 +55,13 @@ public class Parser extends AsyncTask<Void, Void, Integer> {
     private int parse() {
         try {
             JSONArray ja = new JSONArray(data);
-            JSONObject jo = null;
-            names.clear();
+           // JSONObject jo = null;
+            //names.clear();
             for (int i = 0; i < ja.length(); i++) {
-                jo = ja.getJSONObject(i);
-                String name = jo.getString("naziv_benda");
+                //jo = ja.getJSONObject(i);
+                //String name = jo.getString("naziv_benda");
+                JSONObject jsonobject = ja.getJSONObject(i);
+                String name = jsonobject.getString("naziv_benda");
                 names.add(name);
             }
             return 1;

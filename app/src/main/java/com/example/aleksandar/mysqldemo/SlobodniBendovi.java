@@ -103,17 +103,6 @@ public class SlobodniBendovi extends AppCompatActivity {
         } );
 
 
-
-
-
-
-
-
-
-
-
-
-
         setTitle("Kalendar");
 
 
@@ -136,24 +125,32 @@ public class SlobodniBendovi extends AppCompatActivity {
                 lv.setVisibility(View.VISIBLE);
 
                 date = dayOfMonth + "." + (month + 1) + "." + year + ".";
+
                 SendReceive pr = new SendReceive(urlAdress, SlobodniBendovi.this, date, ls);
                 pr.execute();
+
                 SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
                 sr.execute();
+
+
 
                 //OVDE SE BIRA DATUM POMOCU KOJEG SE DOBAVLJAJU IZ BAZE SLOBODNI BENDOVI!
 
             }
         });
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+       lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(SlobodniBendovi.this);
-                String val = (String) parent.getItemAtPosition(position);
 
+
+
+           AlertDialog.Builder builder1 = new AlertDialog.Builder(SlobodniBendovi.this);
+
+                String val = (String) parent.getItemAtPosition(position);
                 builder1.setPositiveButton("Nazad",
                         new DialogInterface.OnClickListener() {
 
@@ -161,7 +158,7 @@ public class SlobodniBendovi extends AppCompatActivity {
                             public void onClick(DialogInterface arg0, int arg1) {
                             }
                         });
-                //builder1.setIcon(R.drawable.dijamant);
+                builder1.setIcon(R.drawable.dijamant);
 
                 TextView title = new TextView(getApplicationContext());
 

@@ -29,9 +29,6 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
     String urlAdress;
     String query;
     ListView lv;
-
-
-
     ProgressDialog pd;
 
 
@@ -64,16 +61,16 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
         super.onPostExecute(s);
         pd.dismiss();
 
-        //SET LV TO EMPTY
-        lv.setAdapter(null);
+          lv.setAdapter(null);
 
         if (s != null){
             if (!s.contains("null")){
                 Parser p =new Parser(c,s,lv);
                 p.execute();
+
             }else {
 
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(c);
+                /*AlertDialog.Builder builder1 = new AlertDialog.Builder(c);
               builder1.setTitle("Obaveštenje!");
                 builder1.setMessage("Svi bendovi su zauzeti za traženi termin.");
                 builder1.setIcon(R.drawable.dijamant);
@@ -85,7 +82,7 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
 
                             }
                        });
-               builder1.show();
+               builder1.show();*/
 
             }
         }else{
@@ -104,12 +101,15 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
             OutputStream os = con.getOutputStream();
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
             bw.write(new DataPackager(query).packageData());
-            bw.flush();
+             bw.flush();
             //RELEASE RES
+
             bw.close();
             os.close();
             //SOME RESPONSE
+
             int responseCode = con.getResponseCode();
+
             //DECODE
             if (responseCode==con.HTTP_OK){
                     //RETURN SOME DATA
