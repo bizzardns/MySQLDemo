@@ -199,7 +199,7 @@ public class Main2Activity extends AppCompatActivity {
         backgroundWorker.execute(type, imeBenda, datum,str_event,str_ime,str_mesto,str_restoran);
                 for (int i = 0; i < MobNumber.length; i++) {
                     String tempMobileNumber = MobNumber[i];
-                    sendSMS(tempMobileNumber,"Event:" + " " + str_event +"\n" + "Naziv benda:" + " " + imeBenda + "\n" + "Datum:" + " " + datum +"\n"+ "Ime:" + " " + str_ime +"\n" + "Grad:" + " " + str_mesto +"\n"+ "Restoran:" + " " + str_restoran+"\n");
+                    sendSMS(tempMobileNumber,imeBenda  + ": " +"\n" + str_event +"\n" + datum +"\n"+ str_ime +"\n" + str_restoran +"\n"+  str_mesto+"\n");
                 }
 
 
