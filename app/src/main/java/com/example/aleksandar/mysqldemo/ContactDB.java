@@ -53,6 +53,11 @@ public class ContactDB extends SQLiteOpenHelper {
 
         return cursor;
     }
+    public Cursor list_all_list(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM JAJE",null);
+        return cursor;
+    }
 
 
 
@@ -61,6 +66,7 @@ public class ContactDB extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM JAJE");
 
     }
+
 
 
 

@@ -1,5 +1,7 @@
 package com.example.aleksandar.mysqldemo;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -42,7 +44,7 @@ public class TestBaza extends AppCompatActivity {
         gradList.getData();
         restoranList.getData();
 
-        tv =(TextView) findViewById(R.id.textView3);
+
         sync = (Button) findViewById(R.id.button6);
         sync.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,11 +78,14 @@ public class TestBaza extends AppCompatActivity {
 
 
                    contactBase.addContact(list.data[a], d , n,j,h,l);
+
+
                 }
 
 
 
-                contactBase.list_all_contact(tv);
+                Toast.makeText(getApplicationContext(), "Baza je sinhronizovana!", Toast.LENGTH_SHORT).show();
+
 
 
 

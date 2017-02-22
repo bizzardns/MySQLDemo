@@ -7,9 +7,7 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.example.aleksandar.mysqldemo.R;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -71,10 +69,10 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
             }else {
 
                 /*AlertDialog.Builder builder1 = new AlertDialog.Builder(c);
-              builder1.setTitle("Obaveštenje!");
+                builder1.setTitle("Obaveštenje!");
                 builder1.setMessage("Svi bendovi su zauzeti za traženi termin.");
                 builder1.setIcon(R.drawable.dijamant);
-               builder1.setPositiveButton("Ok",
+                builder1.setPositiveButton("Ok",
                        new DialogInterface.OnClickListener() {
 
                            @Override
@@ -86,7 +84,6 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
 
             }
         }else{
-
 
         }
 

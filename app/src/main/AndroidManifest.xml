@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".Register" />
-        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".Main2Activity" />
         <activity android:name=".Main3Activity" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -39,7 +39,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Events" />
-        <activity android:name=".TestBaza"></activity>
+        <activity android:name=".TestBaza" />
+        <activity android:name=".OfflineMode"></activity>
     </application>
 
 </manifest>
