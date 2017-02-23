@@ -27,8 +27,6 @@ public class EventDataPackager {
 
             jo.put("naziv_benda", query);
             jo.put("datum", query2);
-
-
             Boolean firstValue = true;
             Iterator it = jo.keys();
             do {

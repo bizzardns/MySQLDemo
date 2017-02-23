@@ -41,9 +41,9 @@ public class SlobodniBendovi extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
-    String urlAdress = "http://lp-developers.com/freebands.php";
-    String urlAdress_reserved = "http://lp-developers.com/reservedOnDate.php";
-    String urlEventData = "http://lp-developers.com/eventData.php";
+    String urlAdress = "http://macakmisamuzika.com/android/freebands.php";
+    String urlAdress_reserved = "http://macakmisamuzika.com/android/reservedOnDate.php";
+    String urlEventData = "http://macakmisamuzika.com/android/eventData.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

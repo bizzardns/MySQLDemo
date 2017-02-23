@@ -14,7 +14,7 @@ import java.net.URL;
  */
 
 public class ReservationList {
-    String adress = "http://lp-developers.com/reservationlist.php";
+    String adress = "http://macakmisamuzika.com/android/reservationlist.php";
     InputStream is = null;
     String line = null;
     String result = null;
