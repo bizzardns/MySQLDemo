@@ -31,6 +31,7 @@ import java.util.ArrayList;
 
 public class OfflineMode extends AppCompatActivity {
 
+
     ContactDB contactBase;
     android.widget.SearchView sv;
     ArrayAdapter<String> adapter;
@@ -43,7 +44,7 @@ public class OfflineMode extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offline_mode);
-
+         setTitle("Offline mode");
         contactBase = new ContactDB(this, null, 1);
 
         sv = (android.widget.SearchView) findViewById(R.id.search);
@@ -53,9 +54,10 @@ public class OfflineMode extends AppCompatActivity {
         final ArrayList<String> theList = new ArrayList<>();
         final Cursor cursor = contactBase.list_all_list();
 
+
         while (cursor.moveToNext()) {
 
-            theList.add(cursor.getString(1)+" "+cursor.getString(2));
+            theList.add(cursor.getString(1)+":"+"\n "+cursor.getString(2)+""+"\n "+cursor.getString(3)+""+"\n "+cursor.getString(4)+""+"\n "+cursor.getString(6)+""+"\n "+cursor.getString(5));
 
             adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,theList);
             listView.setAdapter(adapter);
@@ -69,10 +71,12 @@ public class OfflineMode extends AppCompatActivity {
                 return false;
             }
 
+
             @Override
             public boolean onQueryTextChange(String text) {
 
                 adapter.getFilter().filter(text);
+
                 return false;
             }
         });
@@ -82,57 +86,6 @@ public class OfflineMode extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                String val = (String) parent.getItemAtPosition(position);
-                cursor.moveToPosition(position);
-               /*event = cursor.getString(3);
-                 String bend = cursor.getString(1);
-                   event = cursor.getString(3);
-                ime = cursor.getString(4);
-                restoran = cursor.getString(6);
-                grad = cursor.getString(5);
-
-
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(OfflineMode.this);
-
-
-                builder1.setPositiveButton("Nazad",
-                        new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
-                            }
-                        });
-                builder1.setIcon(R.drawable.dijamant);
-
-                TextView title = new TextView(getApplicationContext());
-
-                title.setText(val);
-                title.setBackgroundColor(Color.DKGRAY);
-                title.setPadding(10, 10, 10, 10);
-                title.setGravity(Gravity.CENTER);
-                title.setTextColor(Color.WHITE);
-                title.setTextSize(20);
-
-                builder1.setCustomTitle(title);
-
-                builder1.setMessage("Event: " + event +"\n" +"Ime: " + ime +"\n" + "Restoran: " + restoran +"\n"+ "Grad: " + grad +"\n" );
-
-                AlertDialog dialog = builder1.create();
-
-
-
-                builder1.show();*/
-
-
-
-
-
-
-
-
-
-                //Toast.makeText(OfflineMode.this,broj ,Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" +broj )));
 
 
             }
