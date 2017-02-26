@@ -20,14 +20,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 
 import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
 import com.example.aleksandar.mysqldemo.MySQL.SendRecieveEvent;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 
 public class SlobodniBendovi extends AppCompatActivity {
@@ -37,7 +43,11 @@ public class SlobodniBendovi extends AppCompatActivity {
     ImageView img;
     ListView lv = null;
     ListView ls;
+    String d;
+    String m;
+    String y;
     String date;
+    String selectedDate;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
@@ -118,6 +128,13 @@ public class SlobodniBendovi extends AppCompatActivity {
 
         calendar = (CalendarView) findViewById(R.id.calendarView);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
+
+
+
+
+
+
+
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -125,8 +142,10 @@ public class SlobodniBendovi extends AppCompatActivity {
                 ls.setVisibility(View.VISIBLE);
                 lv.setVisibility(View.VISIBLE);
 
-                date = dayOfMonth + "." + (month + 1) + "." + year + ".";
 
+                date = dayOfMonth + "." + (month + 1) + "." + year + ".";
+                  //d = String.valueOf(dayOfMonth);
+                 // m= String.valueOf((month + 1));
                 SendReceive pr = new SendReceive(urlAdress, SlobodniBendovi.this, date, ls);
                 pr.execute();
 
@@ -139,6 +158,69 @@ public class SlobodniBendovi extends AppCompatActivity {
 
             }
         });
+
+        ArrayList<String> theList = new ArrayList<>();
+        theList.add("2017");
+        theList.add("2018");
+        theList.add("2019");
+        theList.add("2020");
+        theList.add("2021");
+        theList.add("2022");
+        theList.add("2023");
+        theList.add("2024");
+        theList.add("2025");
+        theList.add("2026");
+        theList.add("2027");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, theList);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        final Spinner sItems = (Spinner) findViewById(R.id.spinner2);
+        sItems.setAdapter(adapter);
+
+        sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                y = sItems.getSelectedItem().toString();
+
+
+
+                selectedDate = "01"+"/"+"06"+"/"+ y;
+                try {
+                    calendar.setDate(new SimpleDateFormat("dd/MM/yyyy").parse(selectedDate).getTime(), true, true);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
