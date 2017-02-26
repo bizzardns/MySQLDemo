@@ -144,8 +144,8 @@ public class SlobodniBendovi extends AppCompatActivity {
 
 
                 date = dayOfMonth + "." + (month + 1) + "." + year + ".";
-                  //d = String.valueOf(dayOfMonth);
-                 // m= String.valueOf((month + 1));
+                  d = String.valueOf(dayOfMonth);
+                  m= String.valueOf((month + 1));
                 SendReceive pr = new SendReceive(urlAdress, SlobodniBendovi.this, date, ls);
                 pr.execute();
 
@@ -185,7 +185,7 @@ public class SlobodniBendovi extends AppCompatActivity {
 
 
 
-                selectedDate = "01"+"/"+"06"+"/"+ y;
+                selectedDate = d+"/"+ m +"/"+ y;
                 try {
                     calendar.setDate(new SimpleDateFormat("dd/MM/yyyy").parse(selectedDate).getTime(), true, true);
                 } catch (ParseException e) {
