@@ -2,11 +2,15 @@ package com.example.aleksandar.mysqldemo;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,11 +18,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -38,7 +44,7 @@ import java.util.HashSet;
 
 public class OfflineMode extends AppCompatActivity {
 
-
+    ImageView img;
     ContactDB contactBase;
     android.widget.SearchView sv;
     ArrayAdapter<String> adapter;
@@ -47,29 +53,86 @@ public class OfflineMode extends AppCompatActivity {
     String date;
     ListView listView;
     ListView listView2;
-    String event;
-    String ime;
-    String grad;
-    String restoran;
-
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+    private NavigationView mNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         setContentView(R.layout.activity_offline_mode);
+        mDrawerLayout= (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mNavigationView = (NavigationView) findViewById(R.id.nav_item);
+        mNavigationView.setItemIconTintList(null);
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                if (id == R.id.nav1) {
+                    Intent myIntent = new Intent(OfflineMode.this, Main2Activity.class);
+                    OfflineMode.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav2)
+                {
+                    Intent myIntent = new Intent(OfflineMode.this, Main3Activity.class);
+                    OfflineMode.this.startActivity(myIntent);
+                }
+                else if (id == R.id.nav3)
+                {
+                    Intent myIntent = new Intent(OfflineMode.this, SlobodniBendovi.class);
+                    OfflineMode.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav4)
+                {
+                    Intent myIntent = new Intent(OfflineMode.this, Counter.class);
+                    OfflineMode.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav5)
+                {
+                    Intent myIntent = new Intent(OfflineMode.this, SmsActivity.class);
+                    OfflineMode.this.startActivity(myIntent);
+
+                }
+                else if (id == R.id.nav6)
+                {
+                    Intent myIntent = new Intent(OfflineMode.this, Register.class);
+                    OfflineMode.this.startActivity(myIntent);
+
+                }
+
+
+                return true;
+            }
+        } );
+
+
          setTitle("Offline mode");
         contactBase = new ContactDB(this, null, 1);
 
 
 
-        listView = (ListView) findViewById(R.id.offline_list2);
-        listView2 = (ListView) findViewById(R.id.offline_list);
+        listView = (ListView) findViewById(R.id.lv);
+        listView2 = (ListView) findViewById(R.id.ls);
+        img = (ImageView) findViewById(R.id.imageView);
+        img.setVisibility(View.VISIBLE);
         calendar = (CalendarView) findViewById(R.id.calendarView);
+        listView.setVisibility(View.INVISIBLE);
+        listView2.setVisibility(View.INVISIBLE);
 
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-
+                img.setVisibility(View.GONE);
+                listView.setVisibility(View.VISIBLE);
+                listView2.setVisibility(View.VISIBLE);
                 ArrayList<String> theList = new ArrayList<>();
                 ArrayList<String> theList2 = new ArrayList<>();
                 ArrayList<String> theList3 = new ArrayList<>();
@@ -149,6 +212,17 @@ public class OfflineMode extends AppCompatActivity {
 
 
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(mToggle.onOptionsItemSelected(item)){
+
+            return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 
