@@ -23,55 +23,77 @@
         android:layout_height="300dp"
         android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2" />
 
-    <ListView
+        <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/dijamant"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/calendarView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+            android:scaleType="fitCenter" />
+
+        <HorizontalScrollView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/calendarView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/calendarView">
+
+
+            <ListView
 
 
         android:background="@color/slobodni"
         android:id="@+id/ls"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
 
-        android:layout_below="@+id/calendarView"
+
         android:dividerHeight="5dp"
         android:headerDividersEnabled="true"
         android:footerDividersEnabled="true"
         android:elevation="0dp"
         android:divider="@color/common_google_signin_btn_text_dark_default"
-        android:layout_width="200dp"
+        android:layout_width="350dp"
         android:visibility="visible"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="2dp" />
 
-    <ListView
+            <ListView
 
-        android:background="@color/zauzeti"
-        android:id="@+id/lv"
-        android:layout_height="wrap_content"
-        android:layout_width="200dp"
-        android:layout_alignParentBottom="true"
+                android:background="@color/zauzeti"
+                android:id="@+id/lv"
+                android:layout_height="wrap_content"
+                android:layout_width="350dp"
 
-        android:dividerHeight="5dp"
-        android:headerDividersEnabled="true"
-        android:footerDividersEnabled="true"
-        android:divider="@color/common_google_signin_btn_text_dark_pressed"
-        android:elevation="0dp"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/calendarView"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="2dp" />
+                android:dividerHeight="5dp"
+                android:headerDividersEnabled="true"
+                android:footerDividersEnabled="true"
+                android:divider="@color/common_google_signin_btn_text_dark_pressed"
+                android:elevation="0dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginStart="14dp"
+                android:layout_toRightOf="@+id/ls"
+                android:layout_toEndOf="@+id/ls"
+                android:layout_alignTop="@+id/ls" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/dijamant"
-        android:id="@+id/imageView"
-        android:layout_below="@+id/calendarView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp" />
+        </RelativeLayout>
+        </HorizontalScrollView>
 
 
-</RelativeLayout>
+
+
+    </RelativeLayout>
 <android.support.design.widget.NavigationView
 android:layout_width="wrap_content"
 android:layout_height="match_parent"

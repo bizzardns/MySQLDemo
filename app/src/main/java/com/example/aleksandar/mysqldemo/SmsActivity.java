@@ -84,7 +84,7 @@ public class SmsActivity extends AppCompatActivity {
 
         setTitle("Posalji obavestenje");
         sms= (EditText) findViewById(R.id.messageText);
-        final String[] MobNumber = {"0691050988","0649258171"};
+        final String[] MobNumber = {"0691050988"};
         send = (FloatingActionButton) findViewById(R.id.floatingActionButton2);
         send.setOnClickListener(new View.OnClickListener() {
             @Override

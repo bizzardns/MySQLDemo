@@ -11,28 +11,45 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.aleksandar.mysqldemo.OfflineMode">
 
+
     <ListView
 
         android:id="@+id/offline_list"
+        android:layout_height="200dp"
+        android:dividerHeight="4dp"
+        android:divider="@color/common_google_signin_btn_text_dark_default"
+        android:headerDividersEnabled="true"
+        android:footerDividersEnabled="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/calendarView"
+        android:background="@color/slobodni"
+        android:layout_width="200dp" />
+
+    <CalendarView
         android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/calendarView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ListView
+
+        android:id="@+id/offline_list2"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:dividerHeight="4dp"
+        android:divider="@color/common_google_signin_btn_text_dark_default"
+        android:headerDividersEnabled="true"
+        android:footerDividersEnabled="true"
+        android:background="@color/zauzeti"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="6dp"
-        android:layout_marginEnd="6dp"
-        android:layout_height="wrap_content"
-        android:dividerHeight="4dp"
-        android:layout_below="@+id/search"
-        android:divider="@color/common_google_signin_btn_text_light_disabled"
-        android:headerDividersEnabled="true"
-        android:footerDividersEnabled="true" />
-
-    <SearchView
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:id="@+id/search"
-        android:layout_alignRight="@+id/offline_list"
-        android:layout_alignEnd="@+id/offline_list"
-        android:layout_height="50dp" />
+        android:layout_below="@+id/calendarView"
+        android:layout_toRightOf="@+id/offline_list"
+        android:layout_toEndOf="@+id/offline_list" />
 
 </RelativeLayout>

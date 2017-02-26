@@ -1,11 +1,14 @@
 package com.example.aleksandar.mysqldemo;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,18 +40,19 @@ public class TestBaza extends AppCompatActivity {
         setContentView(R.layout.activity_test_baza);
         contactBase = new ContactDB(this, null, 1);
 
-        list.getData();
-        datumList.getData();
-        eventList.getData();
-        imeList.getData();
-        gradList.getData();
-        restoranList.getData();
 
 
         sync = (Button) findViewById(R.id.button6);
         sync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                list.getData();
+                datumList.getData();
+                eventList.getData();
+                imeList.getData();
+                gradList.getData();
+                restoranList.getData();
 
 
                 contactBase.delete();
@@ -80,16 +84,27 @@ public class TestBaza extends AppCompatActivity {
                    contactBase.addContact(list.data[a], d , n,j,h,l);
 
 
+
                 }
+               AlertDialog.Builder builder1 = new AlertDialog.Builder(TestBaza.this);
+                builder1.setMessage("Baza je sinhronizovana!");
+                builder1.setPositiveButton("Ok",
+                       new DialogInterface.OnClickListener() {
+
+                           @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                            }
+                       });
+               builder1.show();
 
 
-
-                Toast.makeText(getApplicationContext(), "Baza je sinhronizovana!", Toast.LENGTH_SHORT).show();
-
+               // Toast.makeText(getApplicationContext(), "Baza je sinhronizovana!", Toast.LENGTH_SHORT).show();
 
 
 
             }
+
         });
 
 

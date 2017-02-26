@@ -1,13 +1,10 @@
 package com.example.aleksandar.mysqldemo.MySQL;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.widget.ListView;
-import android.widget.Toast;
-import com.example.aleksandar.mysqldemo.R;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -120,6 +117,7 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
                         while((line = br.readLine()) != null){
                             response.append(line+"\n");
                         }
+
                     }else {
                     return null;
                 }

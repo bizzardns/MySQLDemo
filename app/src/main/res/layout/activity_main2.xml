@@ -10,30 +10,9 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <Button
-        android:onClick="rez"
-        android:text="Rezerviši"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button"
-        style="@android:style/Widget.DeviceDefault.Button"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:elevation="1dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/green"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
 
 
-    <CalendarView
+        <CalendarView
 
         android:dateTextAppearance="@android:style/TextAppearance.Holo.Medium"
         android:layout_width="wrap_content"
@@ -45,23 +24,10 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true" />
-    <Spinner
 
-        android:backgroundTint="@color/colorPrimary"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner2"
-        android:spinnerMode="dialog"
-        android:theme="@android:style/Widget.DropDownItem.Spinner"
-        android:layout_below="@+id/calendarView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="34dp" />
-
-    <EditText
+        <EditText
         android:background="@android:drawable/editbox_background_normal"
-        android:layout_width="180dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:hint="Ime"
@@ -77,24 +43,7 @@
         />
 
 
-    <EditText
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:background="@android:drawable/editbox_background_normal"
-        android:hint="Grad"
-        android:textColorHint="@color/colorPrimary"
-        android:ems="10"
-        android:id="@+id/editMesto"
-        android:layout_below="@+id/editEvent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="36dp"
-        android:layout_marginLeft="5dp"
-        android:layout_alignRight="@+id/editEvent"
-        android:layout_alignEnd="@+id/editEvent" />
-
-    <EditText
+        <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
@@ -110,21 +59,71 @@
         android:layout_alignStart="@+id/editIme"
         android:layout_marginRight="5dp" />
 
-    <EditText
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Event"
-        android:textColorHint="@color/orange"
-        android:ems="10"
-        android:id="@+id/editEvent"
-        android:layout_marginTop="47dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:layout_below="@+id/spinner2"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button"
-        android:layout_width="180dp" />
+        <Spinner
 
-</RelativeLayout>
+            android:backgroundTint="@color/colorPrimary"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner2"
+            android:spinnerMode="dialog"
+            android:theme="@android:style/Widget.DropDownItem.Spinner"
+            android:layout_marginTop="17dp"
+            android:layout_below="@+id/calendarView2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Event"
+            android:textColorHint="@color/orange"
+            android:ems="10"
+            android:id="@+id/editEvent"
+            android:layout_marginTop="21dp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:layout_width="160dp"
+            android:layout_below="@+id/spinner2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:background="@android:drawable/editbox_background_normal"
+            android:hint="Grad"
+            android:textColorHint="@color/colorPrimary"
+            android:ems="10"
+            android:id="@+id/editMesto"
+            android:layout_marginTop="23dp"
+            android:layout_below="@+id/editEvent"
+            android:layout_alignRight="@+id/editEvent"
+            android:layout_alignEnd="@+id/editEvent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:onClick="rez"
+            android:text="Rezerviši"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            style="@android:style/Widget.DeviceDefault.Button"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:elevation="1dp"
+            android:backgroundTint="@color/green"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textSize="18sp"
+            android:textStyle="normal|bold"
+            android:layout_marginTop="13dp"
+            android:layout_below="@+id/editRestoran"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/editRestoran"
+            android:layout_alignEnd="@+id/editRestoran" />
+
+    </RelativeLayout>
 
 <android.support.design.widget.NavigationView
 android:layout_width="wrap_content"
