@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Login");
         UserNameEt = (EditText) findViewById(R.id.etUserName);
         PasswordEt = (EditText) findViewById(R.id.etPassword);
+
+
+
         contactBase = new ContactDB(this, null, 1);
        // final Cursor cursor = contactBase.list_all_contact();
         //while (cursor.moveToNext()) {
@@ -90,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
     return;
         }
     }
+
+
 
 
     public void itemClicked(View v) {

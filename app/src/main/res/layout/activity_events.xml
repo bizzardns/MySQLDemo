@@ -12,10 +12,14 @@
     android:screenOrientation="portrait">
 
     <android.support.v7.widget.RecyclerView
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/rv2"
-        android:scrollbars="horizontal" />
+        android:scrollbars="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

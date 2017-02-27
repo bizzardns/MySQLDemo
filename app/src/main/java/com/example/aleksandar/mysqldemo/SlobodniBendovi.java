@@ -1,7 +1,5 @@
 package com.example.aleksandar.mysqldemo;
 
-import android.app.AlertDialog;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 
@@ -12,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,7 +25,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
@@ -179,7 +177,7 @@ public class SlobodniBendovi extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, theList);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        final Spinner sItems = (Spinner) findViewById(R.id.spinner2);
+        final Spinner sItems = (Spinner) findViewById(R.id.spinnerBand);
         sItems.setAdapter(adapter);
 
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -244,6 +242,7 @@ public class SlobodniBendovi extends AppCompatActivity {
 
 
         });
+    }
 
 
 
@@ -298,8 +297,8 @@ public class SlobodniBendovi extends AppCompatActivity {
 
 
             }
-        });*/
-    }
+        });
+    }*/
 
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add("Rezervisi").setIntent(new Intent(this, Main2Activity.class));

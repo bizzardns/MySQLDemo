@@ -70,13 +70,14 @@ public class EventParser extends AsyncTask<Void, Void, Integer> {
             EventData ev = null;
             for (int i = 0; i < ja.length(); i++) {
                 jo = ja.getJSONObject(i);
-
+                String naziv_benda = jo.getString("naziv_benda");
                 String event = jo.getString("event");
                 String ime = jo.getString("ime");
                 String grad = jo.getString("grad");
                 String lokal = jo.getString("lokal");
 
                 ev = new EventData();
+                ev.setNaziv_benda(naziv_benda);
                 ev.setEvent(event);
                 ev.setIme(ime);
                 ev.setGrad(grad);

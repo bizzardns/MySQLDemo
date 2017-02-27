@@ -11,10 +11,11 @@ import com.example.aleksandar.mysqldemo.R;
  */
 
 public class Holder extends RecyclerView.ViewHolder {
-    TextView eventTxt, imeTxt, gradTxt, lokalTxt;
+    TextView eventTxt, imeTxt, gradTxt, lokalTxt, bendTxt;
 
     public Holder(View itemView) {
         super(itemView);
+        bendTxt = (TextView) itemView.findViewById(R.id.bendTxt);
         eventTxt = (TextView) itemView.findViewById(R.id.eventTxt);
         imeTxt = (TextView) itemView.findViewById(R.id.imeTxt);
         gradTxt = (TextView) itemView.findViewById(R.id.gradTxt);

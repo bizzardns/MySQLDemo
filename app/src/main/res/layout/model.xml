@@ -7,20 +7,11 @@
     android:stretchColumns="*">
 
 
-
     <TableRow
 
-        android:layout_marginTop="10dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:text="Event"
-            android:textStyle="normal|bold"
-            android:textSize="18sp"
-            android:layout_marginLeft="40dp"
-            android:textColor="@android:color/holo_orange_light" />
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
         <TextView
@@ -39,16 +30,6 @@
         android:layout_marginTop="10dp">
 
         <TextView
-            android:layout_marginLeft="40dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:text="Ime"
-            android:textStyle="normal|bold"
-            android:textSize="18sp"
-            android:textColor="@android:color/holo_purple" />
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/imeTxt"
@@ -62,15 +43,6 @@
 
     <TableRow
         android:layout_marginTop="10dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:text="Grad"
-            android:textStyle="normal|bold"
-            android:textSize="18sp"
-            android:textColor="@android:color/holo_blue_dark" />
 
         <TextView
             android:layout_width="match_parent"
@@ -91,18 +63,20 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:text="Restoran"
-            android:textStyle="normal|bold"
+            android:id="@+id/lokalTxt"
             android:textSize="18sp"
-            android:textColor="@android:color/holo_green_dark" />
+            android:textColor="@color/black"
+            android:textStyle="normal|bold" />
+    </TableRow>
 
+    <TableRow
+        android:layout_marginTop="10dp">
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/lokalTxt"
+            android:id="@+id/bendTxt"
             android:textSize="18sp"
             android:textColor="@color/black"
             android:textStyle="normal|bold" />

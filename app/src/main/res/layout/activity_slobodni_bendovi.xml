@@ -98,7 +98,7 @@
             android:textAlignment="center"
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:id="@+id/spinner2"
+            android:id="@+id/spinnerBand"
             android:spinnerMode="dialog"
             android:theme="@android:style/Widget.DropDownItem.Spinner"
             android:layout_alignParentTop="true"

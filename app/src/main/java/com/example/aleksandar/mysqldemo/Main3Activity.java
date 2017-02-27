@@ -1,7 +1,6 @@
 package com.example.aleksandar.mysqldemo;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.icu.util.Calendar;
@@ -21,7 +20,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
-import android.widget.DatePicker;
 import android.widget.Spinner;
 
 import com.google.android.gms.appindexing.Action;
@@ -121,7 +119,7 @@ public class Main3Activity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, bendList.data);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        final Spinner sItems = (Spinner) findViewById(R.id.spinner2);
+        final Spinner sItems = (Spinner) findViewById(R.id.spinnerBand);
         sItems.setAdapter(adapter);
 
 
