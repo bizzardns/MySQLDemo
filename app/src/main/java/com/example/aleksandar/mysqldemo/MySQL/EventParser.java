@@ -58,6 +58,7 @@ public class EventParser extends AsyncTask<Void, Void, Integer> {
             //BIND DATA USING ADAPTER
             Adapter adapter = new Adapter(c, events);
             rv.setAdapter(adapter);
+
         }
     }
 

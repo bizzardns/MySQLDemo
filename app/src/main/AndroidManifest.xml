@@ -6,28 +6,32 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <supports-screens android:smallScreens="true"
-        android:normalScreens="true"
+
+    <supports-screens
+        android:anyDensity="true"
         android:largeScreens="true"
-        android:xlargeScreens="true"
-        android:anyDensity="true" />
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
 
     <application
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_dijamant"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity android:name=".Register" android:screenOrientation="portrait" >
-
-        </activity>
-        <activity android:name=".Main2Activity" android:screenOrientation="portrait"/>
-        <activity android:name=".Main3Activity" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Register"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Main2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Main3Activity"
+            android:screenOrientation="portrait" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -36,23 +40,38 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".SmsActivity" android:screenOrientation="portrait" />
-        <activity android:name=".SpisakBendova" android:screenOrientation="portrait"/>
-        <activity android:name=".Counter" android:screenOrientation="portrait"/>
-        <activity android:name=".SlobodniBendovi" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".SmsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SpisakBendova"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Counter"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SlobodniBendovi"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MenuActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Events" android:screenOrientation="portrait"/>
-        <activity android:name=".TestBaza" android:screenOrientation="portrait"/>
-        <activity android:name=".OfflineMode" android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Events"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestBaza"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OfflineMode"
+            android:screenOrientation="portrait" />
+        <activity android:name=".UpisIzKalendara"></activity>
     </application>
 
 </manifest>

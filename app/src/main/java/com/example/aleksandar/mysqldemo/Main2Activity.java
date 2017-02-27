@@ -62,7 +62,8 @@ public class Main2Activity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in,R.anim.slide_out);
         setContentView(R.layout.activity_main2);
 
-
+        /*Intent intent = getIntent();
+        bend = intent.getStringExtra("key");*/
 
         mDrawerLayout= (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);

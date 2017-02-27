@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
@@ -48,6 +49,9 @@ public class SlobodniBendovi extends AppCompatActivity {
     String y;
     String date;
     String selectedDate;
+    String bend;
+    String izabraniDatum;
+    String long_click;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
@@ -197,33 +201,54 @@ public class SlobodniBendovi extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
+
+
+
             }
         });
 
 
 
 
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                 long_click = (String) parent.getItemAtPosition(position);
+                brisi();
+               // Toast.makeText(getApplicationContext(), long_click +" "+ date, Toast.LENGTH_SHORT).show();
+
+                return false;
+            }
+
+
+        });
+
+        ls.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                long_click = (String) parent.getItemAtPosition(position);
+
+                Intent myIntent = new Intent(SlobodniBendovi.this, UpisIzKalendara.class);
+                myIntent.putExtra("Ime", long_click);
+                myIntent.putExtra("Datum", date);
+                SlobodniBendovi.this.startActivity(myIntent);
+
+               // Toast.makeText(getApplicationContext(), long_click, Toast.LENGTH_SHORT).show();
+
+                return false;
+            }
+
+
+        });
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /*lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -273,7 +298,7 @@ public class SlobodniBendovi extends AppCompatActivity {
 
 
             }
-        });
+        });*/
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -295,6 +320,35 @@ public class SlobodniBendovi extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void brisi() {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //setTitle(izabraniDatum + " " + bend); //LOGIKA ZA BRISANJE IZ BAZE
+
+
+                        String imeBenda = long_click;
+                        String datum = date;
+                        String type = "obrisi";
+                        BackgroundWorker backgroundWorker = new BackgroundWorker(SlobodniBendovi.this);
+                        backgroundWorker.execute(type, imeBenda, datum);
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        // Toast.makeText(Main3Activity.this, "NO", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+        builder.setMessage("Da li želite da obrišete rezervaciju?").setPositiveButton("Da", dialogClickListener)
+                .setNegativeButton("Ne", dialogClickListener).show();
+
+
     }
 
 }

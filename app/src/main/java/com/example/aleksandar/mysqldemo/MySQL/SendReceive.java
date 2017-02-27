@@ -58,6 +58,7 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
 
           lv.setAdapter(null);
 
+
         if (s != null){
             if (!s.contains("null")){
                 Parser p =new Parser(c,s,lv);
