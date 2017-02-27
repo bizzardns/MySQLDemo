@@ -26,6 +26,7 @@ public class TestBaza extends AppCompatActivity {
     GetGrad gradList = new GetGrad();
     GetRestoran restoranList = new GetRestoran();
     ContactDB contactBase;
+    ProgressDialog progress;
     TextView tv;
     String d;
     String n;
@@ -33,6 +34,7 @@ public class TestBaza extends AppCompatActivity {
     String h;
     String l;
     Button sync;
+    int counter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,60 +48,84 @@ public class TestBaza extends AppCompatActivity {
         sync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                list.getData();
-                datumList.getData();
-                eventList.getData();
-                imeList.getData();
-                gradList.getData();
-                restoranList.getData();
-
-
+                progress = ProgressDialog.show(TestBaza.this, "Sinhronizovanje baze podataka!",
+                        "Downloading", true);
+                counter = 0;
                 contactBase.delete();
-
-                for (int a = 0; a < list.data.length; a++) {
-
-                    for (int i = 0; i < datumList.data.length; i++) {
-
-                        d = datumList.data[a];
-                    }
-                    for (int i = 0; i < eventList.data.length; i++) {
-
-                        n= eventList.data[a];
-                    }
-                    for (int i = 0; i < imeList.data.length; i++) {
-
-                        j= imeList.data[a];
-                    }
-                    for (int i = 0; i < gradList.data.length; i++) {
-
-                        h= gradList.data[a];
-                    }
-                    for (int i = 0; i < restoranList.data.length; i++) {
-
-                        l= restoranList.data[a];
-                    }
-
-
-                   contactBase.addContact(list.data[a], d , n,j,h,l);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run()
+                    {   list.getData();
+                        datumList.getData();
+                        eventList.getData();
+                        imeList.getData();
+                        gradList.getData();
+                        restoranList.getData();
 
 
 
-                }
-               AlertDialog.Builder builder1 = new AlertDialog.Builder(TestBaza.this);
-                builder1.setMessage("Baza je sinhronizovana!");
-                builder1.setPositiveButton("Ok",
-                       new DialogInterface.OnClickListener() {
+                        for (int a = 0; a < list.data.length; a++) {
+                            counter++;
+                            for (int i = 0; i < datumList.data.length; i++) {
 
-                           @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
-
+                                d = datumList.data[a];
                             }
-                       });
-               builder1.show();
+                            for (int i = 0; i < eventList.data.length; i++) {
 
+                                n= eventList.data[a];
+                            }
+                            for (int i = 0; i < imeList.data.length; i++) {
+
+                                j= imeList.data[a];
+                            }
+                            for (int i = 0; i < gradList.data.length; i++) {
+
+                                h= gradList.data[a];
+                            }
+                            for (int i = 0; i < restoranList.data.length; i++) {
+
+                                l= restoranList.data[a];
+                            }
+
+
+                            contactBase.addContact(list.data[a], d , n,j,h,l);
+
+
+
+                        }
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run()
+                            {
+                                if (counter == list.data.length){
+
+                                    progress.dismiss();
+                                    AlertDialog.Builder builder1 = new AlertDialog.Builder(TestBaza.this);
+                                    builder1.setMessage("Baza je sinhronizovana!");
+                                    builder1.setPositiveButton("Ok",
+                                            new DialogInterface.OnClickListener() {
+
+                                                @Override
+                                                public void onClick(DialogInterface arg0, int arg1) {
+
+                                                }
+                                            });
+                                    builder1.show();
+
+
+
+                                }
+                            }
+                        });
+                    }
+                }).start();
 
                // Toast.makeText(getApplicationContext(), "Baza je sinhronizovana!", Toast.LENGTH_SHORT).show();
+
+
+
+
 
 
 

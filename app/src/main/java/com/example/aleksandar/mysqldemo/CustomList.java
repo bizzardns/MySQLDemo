@@ -23,7 +23,7 @@ import android.widget.TextView;
         private final String[] imageId;
         public CustomList(Activity context,
                           String[] web, String[] imageId) {
-            super(context, R.layout.list_single, web);
+            super(context, R.layout.list_single, imageId);
             this.context = context;
             this.web = web;
             this.imageId = imageId;
@@ -36,9 +36,9 @@ import android.widget.TextView;
             TextView txtTitle = (TextView) rowView.findViewById(R.id.txt);
 
             TextView imageView = (TextView) rowView.findViewById(R.id.img);
-            txtTitle.setText(web[position]);
-            imageView.setText(imageId[position]);
 
+            imageView.setText(imageId[position]);
+            txtTitle.setText(web[position]);
 
             return rowView;
         }

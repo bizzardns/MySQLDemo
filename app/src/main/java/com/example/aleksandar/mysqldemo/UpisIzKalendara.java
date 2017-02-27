@@ -20,15 +20,6 @@ public class UpisIzKalendara extends AppCompatActivity {
         setContentView(R.layout.activity_upis_iz_kalendara);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-
-
-
-
-
-
-
-
           Intent intent = getIntent();
            bend = intent.getStringExtra("Ime");
           izabraniDatum = intent.getStringExtra("Datum");
@@ -59,9 +50,6 @@ public class UpisIzKalendara extends AppCompatActivity {
         String type = "rezervisi";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         backgroundWorker.execute(type, imeBenda, datum,str_event,str_ime,str_mesto,str_restoran);
-
-
-
 
     }
     @Override

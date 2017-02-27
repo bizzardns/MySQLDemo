@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class Counter extends AppCompatActivity {
 
@@ -101,13 +102,13 @@ public class Counter extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                //String val =(String) parent.getItemAtPosition(position);
+                String val =(String) parent.getItemAtPosition(position);
 
 
                 //ovde da ubacim logiku
 
-                //Toast.makeText(getApplicationContext(), val,
-                //Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), val,
+                Toast.LENGTH_SHORT).show();
 
 
             }
