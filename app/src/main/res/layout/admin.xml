@@ -11,40 +11,51 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/etPassword"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
-        android:id="@+id/naziv_benda"
-        android:hint="Unesite naziv benda" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/naziv_benda"
-        android:layout_alignLeft="@+id/naziv_benda"
-        android:layout_alignStart="@+id/naziv_benda"
-        android:id="@+id/broj_telefona"
-        android:hint="Unesite broj telefona" />
-
-        <Button
-            android:text="Obrisi bend iz baze"
-            android:layout_width="wrap_content"
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="42dp"
-            android:id="@+id/btnDeleteBand"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
+            android:paddingTop="24dp"
+            android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
+            android:paddingRight="?android:attr/listPreferredItemPaddingRight">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/naziv_benda"
+                android:hint="Unesite naziv benda"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="24dp"
+            android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
+            android:paddingRight="?android:attr/listPreferredItemPaddingRight"
+            android:layout_marginTop="106dp"
+
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:onClick="OnDeleteBand"/>
+            android:layout_alignParentStart="true">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dodaj"
+                android:id="@+id/btnAddBend"
+                android:onClick="OnAdd"
+                android:layout_gravity="right"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_weight="1" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/broj_telefona"
+                android:hint="Unesite broj telefona"/>
+        </android.support.design.widget.TextInputLayout>
 
         <Spinner
             android:textAlignment="center"
@@ -54,23 +65,25 @@
             android:id="@+id/spinnerBand"
             android:spinnerMode="dialog"
             android:theme="@android:style/Widget.DropDownItem.Spinner"
-            android:layout_marginBottom="25dp"
-            android:layout_above="@+id/btnDeleteBand"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
-            android:text="Dodaj bend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnAddBend"
-            android:onClick="OnAdd"
-            android:layout_below="@+id/broj_telefona"
+            android:layout_marginBottom="7dp"
+            android:layout_alignBottom="@+id/btnDeleteBand"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="25dp"
+            android:layout_toLeftOf="@+id/btnDeleteBand"
+            android:layout_toStartOf="@+id/btnDeleteBand" />
+
+        <Button
+            android:text="Obrisi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="35dp"
+            android:id="@+id/btnDeleteBand"
+            android:onClick="OnDeleteBand"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="13dp"
+            android:layout_marginEnd="13dp" />
 
 
     </RelativeLayout>

@@ -29,6 +29,9 @@ import android.widget.TextView;
 
 import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
 import com.example.aleksandar.mysqldemo.MySQL.SendRecieveEvent;
+import com.example.aleksandar.mysqldemo.SQLiteData.GetGrad;
+import com.example.aleksandar.mysqldemo.SQLiteData.GetIme;
+import com.example.aleksandar.mysqldemo.SQLiteData.GetRestoran;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -117,7 +120,9 @@ public class SlobodniBendovi extends AppCompatActivity {
 
 
         setTitle("Kalendar");
-
+        GetIme imeList = new GetIme();
+        GetGrad gradList = new GetGrad();
+        GetRestoran restoranList = new GetRestoran();
 
         ls = (ListView) findViewById(R.id.ls);
         img = (ImageView) findViewById(R.id.imageView);

@@ -18,7 +18,7 @@ public class UpisIzKalendara extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upis_iz_kalendara);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Rezervisi");
 
           Intent intent = getIntent();
            bend = intent.getStringExtra("Ime");
