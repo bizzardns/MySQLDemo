@@ -1,6 +1,7 @@
 package com.example.aleksandar.mysqldemo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ public class CustomListSlobodni extends BaseAdapter {
     Context c;
     ArrayList<EventData> events;
     LayoutInflater inflater;
+    String date;
+    String long_click;
 
     public CustomListSlobodni(Context c, ArrayList<EventData> events) {
         this.c = c;
@@ -55,15 +58,25 @@ public class CustomListSlobodni extends BaseAdapter {
         TextView nameTxt= (TextView) convertView.findViewById(R.id.bendTxt);
         nameTxt.setText(events.get(position).getNaziv_benda());
 
+        convertView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                date = SlobodniBendovi.sharedValue;
+                long_click = events.get(position).getNaziv_benda();
+                Intent myIntent = new Intent(c, UpisIzKalendara.class);
+                myIntent.putExtra("Ime", long_click);
+                myIntent.putExtra("Datum", date);
+                c.startActivity(myIntent);
+                //Toast.makeText(c,events.get(position).getNaziv_benda(),Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
 
 
         //ITEM CLICKS
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(c,events.get(position).getNaziv_benda(),Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
         return convertView;
     }

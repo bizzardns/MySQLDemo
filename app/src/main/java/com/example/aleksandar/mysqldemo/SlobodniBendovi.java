@@ -1,5 +1,6 @@
 package com.example.aleksandar.mysqldemo;
 
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 
@@ -43,7 +44,7 @@ import java.util.ArrayList;
 
 public class SlobodniBendovi extends AppCompatActivity {
 
-
+    public static String sharedValue = null;
     CalendarView calendar;
     ImageView img;
     ListView lv = null;
@@ -153,8 +154,8 @@ public class SlobodniBendovi extends AppCompatActivity {
                 ls.setVisibility(View.VISIBLE);
                 lv.setVisibility(View.VISIBLE);
 
-
-                date = dayOfMonth + "." + (month + 1) + "." + year + ".";
+                 date = dayOfMonth + "." + (month + 1) + "." + year + ".";
+                SlobodniBendovi.sharedValue = date;
                   d = String.valueOf(dayOfMonth);
                   m= String.valueOf((month + 1));
                 SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, lv);
@@ -183,7 +184,7 @@ public class SlobodniBendovi extends AppCompatActivity {
         theList.add("2026");
         theList.add("2027");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, theList);
+       /* ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, theList);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final Spinner sItems = (Spinner) findViewById(R.id.spinnerBand);
@@ -212,12 +213,12 @@ public class SlobodniBendovi extends AppCompatActivity {
 
 
             }
-        });
+        });*/
 
 
 
 
-        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        /*lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -230,9 +231,9 @@ public class SlobodniBendovi extends AppCompatActivity {
             }
 
 
-        });
+        });*/
 
-        ls.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+       /* ls.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -250,7 +251,7 @@ public class SlobodniBendovi extends AppCompatActivity {
             }
 
 
-        });
+        });*/
     }
 
 
@@ -379,4 +380,5 @@ public class SlobodniBendovi extends AppCompatActivity {
             mListView.requestLayout();
         }
     }
+
 }
