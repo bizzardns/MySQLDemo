@@ -30,7 +30,8 @@
         android:elevation="0dp"
         android:layout_height="300dp"
         android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:padding="0dp" />
+            android:padding="0dp"
+            tools:theme="@style/AppTheme.NoActionBar" />
 
         <ImageView
         android:layout_width="wrap_content"
