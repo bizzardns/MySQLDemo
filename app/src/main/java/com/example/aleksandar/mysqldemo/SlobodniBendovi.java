@@ -18,16 +18,19 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 
 import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
+import com.example.aleksandar.mysqldemo.MySQL.SendReceiveSlobodni;
 import com.example.aleksandar.mysqldemo.MySQL.SendRecieveEvent;
 import com.example.aleksandar.mysqldemo.SQLiteData.GetGrad;
 import com.example.aleksandar.mysqldemo.SQLiteData.GetIme;
@@ -131,7 +134,8 @@ public class SlobodniBendovi extends AppCompatActivity {
         lv = (ListView) findViewById(R.id.lv);
         lv.setVisibility(View.INVISIBLE);
         ls.setVisibility(View.INVISIBLE);
-
+        lv.setFocusable(false);
+        ls.setFocusable(false);
 
         calendar = (CalendarView) findViewById(R.id.calendarView);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
@@ -153,10 +157,10 @@ public class SlobodniBendovi extends AppCompatActivity {
                 date = dayOfMonth + "." + (month + 1) + "." + year + ".";
                   d = String.valueOf(dayOfMonth);
                   m= String.valueOf((month + 1));
-                SendReceive pr = new SendReceive(urlAdress, SlobodniBendovi.this, date, ls);
+                SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, lv);
                 pr.execute();
 
-                SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
+                SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date,ls);
                 sr.execute();
 
 
@@ -355,4 +359,24 @@ public class SlobodniBendovi extends AppCompatActivity {
 
     }
 
+    public static class ListUtils {
+        public static void setDynamicHeight(ListView mListView) {
+            ListAdapter mListAdapter = mListView.getAdapter();
+            if (mListAdapter == null) {
+                // when adapter is null
+                return;
+            }
+            int height = 0;
+            int desiredWidth = View.MeasureSpec.makeMeasureSpec(mListView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+            for (int i = 0; i < mListAdapter.getCount(); i++) {
+                View listItem = mListAdapter.getView(i, null, mListView);
+                listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+                height += listItem.getMeasuredHeight();
+            }
+            ViewGroup.LayoutParams params = mListView.getLayoutParams();
+            params.height = height + (mListView.getDividerHeight() * (mListAdapter.getCount() - 1));
+            mListView.setLayoutParams(params);
+            mListView.requestLayout();
+        }
+    }
 }

@@ -6,8 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
-import com.example.aleksandar.mysqldemo.CustomListEvent;
+import com.example.aleksandar.mysqldemo.CustomListSlobodni;
 import com.example.aleksandar.mysqldemo.Event.EventData;
 import com.example.aleksandar.mysqldemo.SlobodniBendovi;
 
@@ -18,20 +17,21 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by Aleksandar on 2/4/2017.
+ * Created by Aleksandar on 3/1/2017.
  */
 
-public class Parser extends AsyncTask<Void, Void, Integer> {
-
+public class ParserSlobodni extends AsyncTask<Void, Void, Integer> {
     Context c;
     String data;
-    ListView lv;
+    ListView ls;
+    ArrayAdapter adapter;
     ArrayList<EventData> names = new ArrayList<>();
 
-    public Parser(Context c, String data, ListView lv) {
+
+    public ParserSlobodni(Context c, String data, ListView ls) {
         this.c = c;
         this.data = data;
-        this.lv = lv;
+        this.ls = ls;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Parser extends AsyncTask<Void, Void, Integer> {
 
     @Override
     protected Integer doInBackground(Void... params) {
-        return this.parse();
+        return this.parse2();
     }
 
     @Override
@@ -49,39 +49,36 @@ public class Parser extends AsyncTask<Void, Void, Integer> {
         super.onPostExecute(integer);
         if (integer == 1) {
             //BIND TO LIST VIEW
-            CustomListEvent adapter = new CustomListEvent(c, names);
-            this.lv.setAdapter(adapter);
 
-            SlobodniBendovi.ListUtils.setDynamicHeight(lv);
+
+            CustomListSlobodni adapter = new CustomListSlobodni(c, names);
+            ls.setAdapter(adapter);
+
+            SlobodniBendovi.ListUtils.setDynamicHeight(ls);
+
         } else {
             Toast.makeText(c, "Unable to parse", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private int parse() {
+    private int parse2() {
         try {
             JSONArray ja = new JSONArray(data);
             JSONObject jo = null;
             EventData e = null;
             names.clear();
+
             for (int i = 0; i < ja.length(); i++) {
                 jo = ja.getJSONObject(i);
                 String name = jo.getString("naziv_benda");
-                String event = jo.getString("event");
-                String ime = jo.getString("ime");
-                String grad = jo.getString("grad");
-                String lokal = jo.getString("lokal");
-
-
                 e = new EventData();
                 e.setNaziv_benda(name);
-                e.setEvent(event);
-                e.setIme(ime);
-                e.setGrad(grad);
-                e.setLokal(lokal);
                 names.add(e);
+
             }
             return 1;
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -17,19 +18,21 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 
 /**
- * Created by Aleksandar on 2/4/2017.
+ * Created by Aleksandar on 3/1/2017.
  */
 
-public class SendReceive extends AsyncTask<Void, Void, String> {
+public class SendReceiveSlobodni extends AsyncTask<Void, Void, String> {
 
     Context c;
     String urlAdress;
     String query;
     ListView lv;
+
+
     ProgressDialog pd;
 
 
-    public SendReceive(String urlAdress, Context c, String query, ListView lv) {
+    public SendReceiveSlobodni(String urlAdress, Context c, String query, ListView lv) {
         this.urlAdress = urlAdress;
         this.c = c;
         this.query = query;
@@ -52,67 +55,80 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
     }
 
 
-
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         pd.dismiss();
 
-          lv.setAdapter(null);
+        //SET LV TO EMPTY
+        lv.setAdapter(null);
 
-
-        if (s != null){
-            if (!s.contains("null")){
-                Parser p =new Parser(c,s,lv);
+        if (s != null) {
+            if (!s.contains("null")) {
+                ParserSlobodni p = new ParserSlobodni(c, s, lv);
                 p.execute();
-
-            }else {
+            } else {
                 lv.setVisibility(View.GONE);
-
+                //Toast.makeText(c, "Slobodni parser null", Toast.LENGTH_SHORT).show();
             }
-        }else if (s == null) {
-            Toast.makeText(c, "Parser null", Toast.LENGTH_SHORT).show();
+        } else if (s == null) {
+            Toast.makeText(c, "Parser slobodni null", Toast.LENGTH_SHORT).show();
         }
 
     }
 
-    private String sendAndReceive(){
+
+    private String sendAndReceive() {
 
         HttpURLConnection con = Connector.connect(urlAdress);
-        if(con == null){
+        if (con == null) {
             return null;
-        }try{
-            OutputStream os = con.getOutputStream();
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-            bw.write(new DataPackager(query).packageData());
-             bw.flush();
-            //RELEASE RES
+        }
+        try {
 
+            OutputStream os = new BufferedOutputStream(con.getOutputStream());
+
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+            bw.write(new DataPackager(query).packageData());
+
+            bw.flush();
+            //RELEASE RES
             bw.close();
             os.close();
             //SOME RESPONSE
-
             int responseCode = con.getResponseCode();
 
+
             //DECODE
-            if (responseCode==con.HTTP_OK){
-                    //RETURN SOME DATA
-                    InputStream is = con.getInputStream();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                //RETURN SOME DATA
+                InputStream is = con.getInputStream();
+
 
                 //READ IT
-                    BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                    String line;
-                    StringBuffer response = new StringBuffer();
-                    if (br != null){
-                        while((line = br.readLine()) != null){
-                            response.append(line+"\n");
-                        }
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
-                    }else {
+                String line = null;
+
+                StringBuffer response = new StringBuffer();
+
+
+                if (br != null) {
+                    while ((line = br.readLine()) != null) {
+                        response.append(line + "\n");
+                    }
+                    br.close();
+                } else {
+
                     return null;
                 }
+
                 return response.toString();
-            }else{
+            } else if (responseCode != con.HTTP_OK) {
+
+                Toast.makeText(c, "Poruka", Toast.LENGTH_SHORT).show();
+
+
                 return String.valueOf(responseCode);
             }
 
