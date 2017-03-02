@@ -141,12 +141,6 @@ public class SlobodniBendovi extends AppCompatActivity {
         calendar = (CalendarView) findViewById(R.id.calendarView);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
 
-
-
-
-
-
-
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -214,6 +208,7 @@ public class SlobodniBendovi extends AppCompatActivity {
 
             }
         });*/
+
 
 
 
