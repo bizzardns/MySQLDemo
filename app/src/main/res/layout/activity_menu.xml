@@ -40,16 +40,16 @@
 
         <ImageButton
 
-            android:onClick="btn"
-            app:srcCompat="@drawable/upis"
             android:id="@+id/imageButton6"
             android:layout_width="100dp"
-            android:scaleType="centerInside"
-
             android:layout_height="90dp"
             android:background="@color/white"
             android:elevation="0dp"
-            android:visibility="visible" />
+
+            android:onClick="btn"
+            android:scaleType="centerInside"
+            android:visibility="visible"
+            app:srcCompat="@drawable/calendar_256x256" />
 
         <ImageButton
 
@@ -75,14 +75,14 @@
 
 
         <ImageButton
-            android:onClick="btn2"
-            app:srcCompat="@drawable/kalendar"
             android:id="@+id/imageButton1"
-            android:elevation="0dp"
             android:layout_width="100dp"
-            android:scaleType="centerInside"
             android:layout_height="90dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:elevation="0dp"
+            android:onClick="btn2"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/add_256x256" />
         <ImageButton
             android:onClick="btn1"
             app:srcCompat="@drawable/brojsvadbi"
@@ -111,13 +111,13 @@
             android:background="@color/white" />
 
         <ImageButton
-            android:onClick="btn4"
-            app:srcCompat="@drawable/paneladmin"
             android:id="@+id/imageButton2"
             android:layout_width="100dp"
-            android:scaleType="centerInside"
             android:layout_height="90dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:onClick="btn4"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/settings_256x256" />
 
 
     </TableRow>

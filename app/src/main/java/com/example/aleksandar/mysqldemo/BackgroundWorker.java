@@ -26,8 +26,8 @@ import java.net.URLEncoder;
 public class BackgroundWorker extends AsyncTask<String, Void, String> {
     Context context;
     AlertDialog alertDialog;
-    static final int TIME_OUT = 2000;
 
+    static final int TIME_OUT = 2000;
     static final int MSG_DISMISS_DIALOG = 0;
 
 

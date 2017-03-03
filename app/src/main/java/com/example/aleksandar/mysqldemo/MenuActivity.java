@@ -60,7 +60,7 @@ public class MenuActivity extends AppCompatActivity {
     public void btn(View v)
     {   if(isNetworkConnectionAvailable()== true){
         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
-        Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+        Intent intent = new Intent(getApplicationContext(), SlobodniBendovi.class);
         startActivity(intent);
     }}
     public void btn5(View v)
