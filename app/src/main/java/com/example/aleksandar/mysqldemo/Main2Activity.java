@@ -199,9 +199,7 @@ public class Main2Activity extends AppCompatActivity {
                     String tempMobileNumber = MobNumber[i];
                     sendSMS(tempMobileNumber,imeBenda  + ": " +"\n" + str_event +"\n" + datum +"\n"+ str_ime +"\n" + str_restoran +"\n"+  str_mesto+"\n");
                 }
-
-
-
+                Toast.makeText(Main2Activity.this,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
     }
 
 
