@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,6 +26,10 @@ import java.net.URLEncoder;
 public class BackgroundWorker extends AsyncTask<String, Void, String> {
     Context context;
     AlertDialog alertDialog;
+    static final int TIME_OUT = 2000;
+
+    static final int MSG_DISMISS_DIALOG = 0;
+
 
 
     BackgroundWorker(Context ctx) {
@@ -332,15 +338,37 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        if (result.contains("failed")) {
-            alertDialog.setMessage(result);
+        if (result.contains("trazeni")) {
+            alertDialog.setMessage("Rezervacija jec vec uneta za trazeni bend i datum");
             alertDialog.show();
 
+            Handler mHandler = new Handler() {
+                public void handleMessage(android.os.Message msg) {
+                    switch (msg.what) {
+                        case MSG_DISMISS_DIALOG:
+                            if (alertDialog != null && alertDialog.isShowing()) {
+                                alertDialog.dismiss();
+                            }
+                            break;
 
-        } else if (result.contains("sucess")) {
+                        default:
+                            break;
+                    }
+                }
+            };
 
-            Intent intent = new Intent(context, Main2Activity.class);
-            context.startActivity(intent);
+            mHandler.sendEmptyMessageDelayed(MSG_DISMISS_DIALOG, TIME_OUT);
+
+
+
+            //Toast.makeText(context,"Rezervacija jec vec uneta za trazeni bend i datum",Toast.LENGTH_SHORT).show();
+
+        } else if (result.contains("Uspesno")) {
+
+            Toast.makeText(context,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
+
+            /*Intent intent = new Intent(context, Main2Activity.class);
+            context.startActivity(intent);*/
 
         } else {
 
