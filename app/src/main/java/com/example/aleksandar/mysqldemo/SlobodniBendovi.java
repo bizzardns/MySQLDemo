@@ -57,6 +57,7 @@ public class SlobodniBendovi extends AppCompatActivity {
     String bend;
     String izabraniDatum;
     String long_click;
+    String jaje;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
