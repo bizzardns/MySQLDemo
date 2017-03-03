@@ -69,9 +69,10 @@
     </TableRow>
 
 
-
-
-    <TableRow android:layout_marginBottom="50dp">
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp">
 
 
         <ImageButton
@@ -83,14 +84,15 @@
             android:onClick="btn2"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/add_256x256" />
+
         <ImageButton
-            android:onClick="btn1"
-            app:srcCompat="@drawable/brojsvadbi"
             android:id="@+id/imageButton5"
             android:layout_width="100dp"
-            android:scaleType="centerInside"
             android:layout_height="90dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:onClick="btn1"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/brojsvadbi" />
 
 
     </TableRow>
