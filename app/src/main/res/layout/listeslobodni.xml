@@ -17,6 +17,7 @@
         android:textColor="@color/black"
         android:layout_marginTop="15dp"
         tools:text="AMSTERDAM"
-        android:layout_marginStart="15dp" />
+        android:layout_marginStart="15dp"
+        android:textStyle="normal|bold" />
 
 </RelativeLayout>

@@ -69,12 +69,12 @@ public class SlobodniBendovi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         setContentView(R.layout.activity_slobodni_bendovi);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mDrawerLayout= (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_item);
         mNavigationView.setItemIconTintList(null);
@@ -152,10 +152,10 @@ public class SlobodniBendovi extends AppCompatActivity {
                 SlobodniBendovi.sharedValue = date;
                   d = String.valueOf(dayOfMonth);
                   m= String.valueOf((month + 1));
-                SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, lv);
+                SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
                 pr.execute();
 
-                SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date,ls);
+                SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date,lv);
                 sr.execute();
 
 

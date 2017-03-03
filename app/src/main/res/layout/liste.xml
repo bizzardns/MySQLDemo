@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="70dp">
+    android:layout_height="90dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -13,22 +13,23 @@
         android:textSize="18sp"
         android:layout_marginStart="15dp"
         android:textColor="@color/black"
-        android:layout_marginTop="10dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imeTxt"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/eventTxt"
-        android:layout_toEndOf="@+id/eventTxt"
-        android:layout_marginStart="15dp"
-        android:textSize="14sp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:textStyle="normal|bold" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imeTxt"
+        android:layout_alignParentBottom="true"
+        android:textSize="14sp"
+        android:layout_marginBottom="10dp"
+        android:textStyle="normal|bold"
+        android:layout_toRightOf="@+id/eventTxt"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textAlignment="textStart" />
+
+    <TextView
         android:layout_height="wrap_content"
         android:id="@+id/eventTxt"
         android:layout_alignParentBottom="true"
@@ -38,32 +39,36 @@
         android:textSize="14sp"
         android:layout_marginBottom="10dp"
         android:fontFamily="sans-serif"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:textAlignment="textStart"
+        android:layout_width="130dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lokalTxt"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/imeTxt"
-        android:layout_toEndOf="@+id/imeTxt"
-        android:layout_marginStart="15dp"
-        android:textSize="14sp"
-        android:layout_marginBottom="10dp"
-        android:textStyle="normal|bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/gradTxt"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBaseline="@+id/lokalTxt"
+        android:layout_alignBottom="@+id/lokalTxt"
+        android:layout_alignRight="@+id/eventTxt"
+        android:layout_alignEnd="@+id/eventTxt"
+        android:layout_toEndOf="@+id/eventTxt"
+        android:layout_alignLeft="@+id/bendTxt"
+        android:layout_alignStart="@+id/bendTxt"
+        android:textStyle="normal|bold"
+        android:textAlignment="textStart"
+        android:layout_width="130dp"
+        android:layout_marginTop="1dp" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/lokalTxt"
+        android:textSize="14sp"
+        android:textStyle="normal|bold"
+        android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/lokalTxt"
-        android:layout_toRightOf="@+id/lokalTxt"
-        android:layout_marginStart="15dp"
-        android:textSize="14sp"
-        android:layout_marginBottom="10dp"
-        android:textStyle="normal|bold" />
+        android:layout_toRightOf="@+id/gradTxt"
+        android:layout_toEndOf="@+id/gradTxt"
+        android:textAlignment="textStart" />
 
 </RelativeLayout>
