@@ -63,12 +63,14 @@ public class SendReceiveSlobodni extends AsyncTask<Void, Void, String> {
         //SET LV TO EMPTY
         lv.setAdapter(null);
 
+
         if (s != null) {
             if (!s.contains("null")) {
                 ParserSlobodni p = new ParserSlobodni(c, s, lv);
                 p.execute();
             } else {
                 lv.setVisibility(View.GONE);
+
                 //Toast.makeText(c, "Slobodni parser null", Toast.LENGTH_SHORT).show();
             }
         } else if (s == null) {

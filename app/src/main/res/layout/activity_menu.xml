@@ -16,21 +16,21 @@
 
 
     <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_width="match_parent">
+        android:layout_marginRight="50dp">
 
 
         <ImageView
-            android:layout_gravity="center"
+            android:id="@+id/imageView9"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/dijamant"
-            android:id="@+id/imageView9"
-            android:scaleType="fitCenter"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/dijamant" />
     </RelativeLayout>
 
 
@@ -47,6 +47,7 @@
             android:elevation="0dp"
 
             android:onClick="btn"
+            android:padding="10dp"
             android:scaleType="centerInside"
             android:visibility="visible"
             app:srcCompat="@drawable/calendar_256x256" />
@@ -82,6 +83,7 @@
             android:background="@color/white"
             android:elevation="0dp"
             android:onClick="btn2"
+            android:padding="10dp"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/add_256x256" />
 
@@ -118,6 +120,7 @@
             android:layout_height="90dp"
             android:background="@color/white"
             android:onClick="btn4"
+            android:padding="10dp"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/settings_256x256" />
 
