@@ -141,43 +141,42 @@ public class OfflineMode extends AppCompatActivity {
         } );
 
 
-         setTitle("Offline mode");
+        setTitle("Offline mode");
         contactBase = new ContactDB(this, null, 1);
 
 
 
         listView = (ListView) findViewById(R.id.lv);
         listView2 = (ListView) findViewById(R.id.ls);
-        img = (ImageView) findViewById(R.id.imageView);
+         img = (ImageView) findViewById(R.id.imageView);
         img.setVisibility(View.VISIBLE);
         calendar = (CalendarView) findViewById(R.id.calendarView);
         listView.setVisibility(View.INVISIBLE);
-        listView2.setVisibility(View.INVISIBLE);
+       listView2.setVisibility(View.INVISIBLE);
 
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                img.setVisibility(View.GONE);
+            img.setVisibility(View.GONE);
+                String adate = dayOfMonth + "." + (month + 1) + "." + year + ".";
+                s = String.valueOf(dayOfMonth);
+                m = String.valueOf((month + 1));
+
                 listView.setVisibility(View.VISIBLE);
-                listView2.setVisibility(View.VISIBLE);
+               listView2.setVisibility(View.VISIBLE);
+
+
                 ArrayList<String> theList = new ArrayList<>();
                 ArrayList<String> theList2 = new ArrayList<>();
                 ArrayList<String> theList3 = new ArrayList<>();
                 Cursor cursor = contactBase.list_all_list();
 
-                date = dayOfMonth + "." + (month + 1) + "." + year + ".";
-                s = String.valueOf(dayOfMonth);
-                m = String.valueOf((month + 1));
-
-                adapter1 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,theList);
-                listView.setAdapter(adapter1);
-
                 while (cursor.moveToNext()) {
 
-                    if(cursor.getString(2).contains(date)){
+                    if(cursor.getString(2).equals(adate)) {
 
-                        theList.add(cursor.getString(1)+"\n "+cursor.getString(6)+""+"\n "+cursor.getString(5));
+                        theList.add(cursor.getString(1) + "\n " + cursor.getString(6) + "" + "\n " + cursor.getString(5));
                         theList3.add(cursor.getString(1));
 
                         Collections.sort(theList, new Comparator<String>() {
@@ -186,11 +185,12 @@ public class OfflineMode extends AppCompatActivity {
                                 return s1.compareToIgnoreCase(s2);
                             }
                         });
-                        adapter1 = new ArrayAdapter<String>(OfflineMode.this, android.R.layout.simple_list_item_1,theList);
-                        listView.setAdapter(adapter1);
 
-                    }else if (!cursor.getString(2).contains(date)){
 
+
+
+                    }
+                       else if(!(cursor.getString(2).equals(adate))) {
 
                         theList2.add(cursor.getString(1));
                         HashSet<String> hashSet = new HashSet<String>();
@@ -205,10 +205,14 @@ public class OfflineMode extends AppCompatActivity {
                                 return s1.compareToIgnoreCase(s2);
                             }
                         });
-                        adapter = new ArrayAdapter<String>(OfflineMode.this,android.R.layout.simple_list_item_1,theList2);
-                        listView2.setAdapter(adapter);
+
+
 
                     }
+                    adapter1 = new ArrayAdapter<String>(OfflineMode.this, android.R.layout.simple_list_item_1, theList);
+                    listView.setAdapter(adapter1);
+                    adapter = new ArrayAdapter<String>(OfflineMode.this,android.R.layout.simple_list_item_1,theList2);
+                    listView2.setAdapter(adapter);
 
                 }
 
@@ -377,28 +381,25 @@ public class OfflineMode extends AppCompatActivity {
             int s= calander.get(Calendar.MONTH) + 1;
             int n = calander.get(Calendar.YEAR);
             d = String.valueOf(a);
-             m = String.valueOf(s);
+            m = String.valueOf(s);
             String y = String.valueOf(n);
             String kurcina = d + "." + m + "." + y + ".";
          /*  lv = (ListView) findViewById(R.id.lv);
             ls = (ListView) findViewById(R.id.ls);*/
             listView.setVisibility(View.VISIBLE);
             listView2.setVisibility(View.VISIBLE);
+
+
             ArrayList<String> theList = new ArrayList<>();
             ArrayList<String> theList2 = new ArrayList<>();
             ArrayList<String> theList3 = new ArrayList<>();
             Cursor cursor = contactBase.list_all_list();
 
-
-
-            adapter1 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,theList);
-            listView.setAdapter(adapter1);
-
             while (cursor.moveToNext()) {
 
-                if(cursor.getString(2).contains(kurcina)){
+                if(cursor.getString(2).equals(kurcina)) {
 
-                    theList.add(cursor.getString(1)+"\n "+cursor.getString(6)+""+"\n "+cursor.getString(5));
+                    theList.add(cursor.getString(1) + "\n " + cursor.getString(6) + "" + "\n " + cursor.getString(5));
                     theList3.add(cursor.getString(1));
 
                     Collections.sort(theList, new Comparator<String>() {
@@ -407,11 +408,12 @@ public class OfflineMode extends AppCompatActivity {
                             return s1.compareToIgnoreCase(s2);
                         }
                     });
-                    adapter1 = new ArrayAdapter<String>(OfflineMode.this, android.R.layout.simple_list_item_1,theList);
-                    listView.setAdapter(adapter1);
 
-                }else if (!cursor.getString(2).contains(date)){
 
+
+
+                }
+                else if(!(cursor.getString(2).equals(kurcina))) {
 
                     theList2.add(cursor.getString(1));
                     HashSet<String> hashSet = new HashSet<String>();
@@ -426,10 +428,14 @@ public class OfflineMode extends AppCompatActivity {
                             return s1.compareToIgnoreCase(s2);
                         }
                     });
-                    adapter = new ArrayAdapter<String>(OfflineMode.this,android.R.layout.simple_list_item_1,theList2);
-                    listView2.setAdapter(adapter);
+
+
 
                 }
+                adapter1 = new ArrayAdapter<String>(OfflineMode.this, android.R.layout.simple_list_item_1, theList);
+                listView.setAdapter(adapter1);
+                adapter = new ArrayAdapter<String>(OfflineMode.this,android.R.layout.simple_list_item_1,theList2);
+                listView2.setAdapter(adapter);
 
             }
 

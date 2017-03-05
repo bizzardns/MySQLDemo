@@ -84,13 +84,13 @@ public class MenuActivity extends AppCompatActivity {
 
     {   if(isNetworkConnectionAvailable()== true){
         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
-        Intent intent = new Intent(getApplicationContext(), SmsActivity.class);
+        Intent intent = new Intent(getApplicationContext(), OfflineMode.class);
         startActivity(intent);
     }}
     public void btn3(View v)
     {   if(isNetworkConnectionAvailable()== true){
         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
-        Intent intent = new Intent(getApplicationContext(), OfflineMode.class);
+        Intent intent = new Intent(getApplicationContext(), TestBaza.class);
         startActivity(intent);
     }}
     public void btn4(View v)
