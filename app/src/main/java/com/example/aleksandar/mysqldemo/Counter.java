@@ -119,17 +119,6 @@ public class Counter extends AppCompatActivity {
     }
 
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add("Rezervisi").setIntent(new Intent(this, Main2Activity.class));
-        menu.add("Obrisi rezervaciju").setIntent(new Intent(this, Main3Activity.class));
-        menu.add("Pregled rezervacija").setIntent(new Intent(this, SpisakBendova.class));
-        menu.add("Admin panel").setIntent(new Intent(this, Register.class));
-        menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
-        menu.add("Kalendar").setIntent(new Intent(this, SlobodniBendovi.class));
-
-        return true;
-
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

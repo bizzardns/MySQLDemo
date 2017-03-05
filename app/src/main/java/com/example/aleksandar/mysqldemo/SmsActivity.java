@@ -1,10 +1,12 @@
 package com.example.aleksandar.mysqldemo;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -96,15 +98,6 @@ public class SmsActivity extends AppCompatActivity {
                 }
             }
         });
-    } public boolean onCreateOptionsMenu(Menu menu){
-        menu.add("Rezervisi").setIntent(new Intent(this,Main2Activity.class));
-        menu.add("Obrisi rezervaciju").setIntent(new Intent(this,Main3Activity.class));
-        menu.add("Pregled rezervacija").setIntent(new Intent(this, SpisakBendova.class));
-        menu.add("Broj svadbi").setIntent(new Intent(this, Counter.class));
-        menu.add("Admin panel").setIntent(new Intent(this, Register.class));
-        menu.add("Kalendar").setIntent(new Intent(this, SlobodniBendovi.class));
-
-        return true;
     }
     public void sendSMS(String phoneNo, String msg) {
         try {
@@ -131,4 +124,25 @@ public class SmsActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-}
+    @Override
+    public void onBackPressed() {
+
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Closing Activity")
+                .setMessage("Are you sure you want to close this activity?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+    }
+
+

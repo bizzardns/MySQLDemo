@@ -98,7 +98,8 @@
                     android:layout_marginTop="8dp"
                     android:background="@color/slobodni"
                     android:divider="@android:color/background_light"
-                    android:dividerHeight="8dp"></ListView>
+                    android:dividerHeight="8dp"
+                    android:footerDividersEnabled="true"></ListView>
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>

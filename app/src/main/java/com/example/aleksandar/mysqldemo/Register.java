@@ -230,17 +230,6 @@ public class Register extends AppCompatActivity {
         backgroundWorker.execute(type, str_name, str_surname,str_username,str_password);
 
     }*/
-    public boolean onCreateOptionsMenu(Menu menu) {
 
-        menu.add("Rezervisi").setIntent(new Intent(this, Main2Activity.class));
-        menu.add("Obrisi rezervaciju").setIntent(new Intent(this, Main3Activity.class));
-        menu.add("Pregled rezervacija").setIntent(new Intent(this, SpisakBendova.class));
-        menu.add("Broj svadbi").setIntent(new Intent(this, Counter.class));
-        menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
-        menu.add("Kalendar").setIntent(new Intent(this, SlobodniBendovi.class));
-        menu.add("Offline").setIntent(new Intent(this, OfflineMode.class));
-
-        return true;
-    }
 
 }

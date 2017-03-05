@@ -177,33 +177,7 @@ public class SlobodniBendovi extends AppCompatActivity {
         ls = (ListView) findViewById(R.id.ls);
         lv.setFocusable(false);
         ls.setFocusable(false);
-        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Animation animation1 = new AlphaAnimation(0.2f, 2.0f);
-                animation1.setDuration(1000);
-                view.startAnimation(animation1);
-
-
-                return false;
-            }
-
-
-        });
-        ls.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Animation animation1 = new AlphaAnimation(0.2f, 2.0f);
-                animation1.setDuration(1000);
-                view.startAnimation(animation1);
-
-                return false;
-            }
-
-
-        });
 
         calendar = (CalendarView) findViewById(R.id.calendarView);
         calendar.setFirstDayOfWeek(Calendar.MONDAY);

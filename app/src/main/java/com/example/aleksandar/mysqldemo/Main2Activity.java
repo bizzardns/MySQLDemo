@@ -16,6 +16,7 @@ import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
@@ -117,7 +118,7 @@ public class Main2Activity extends AppCompatActivity {
 
 
 
-
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         event = (EditText)findViewById(R.id.editEvent);
         ime = (EditText)findViewById(R.id.editIme);
        mesto = (EditText)findViewById(R.id.editMesto);
@@ -185,7 +186,7 @@ public class Main2Activity extends AppCompatActivity {
     }
     final String[] MobNumber = {"0691050988"};
     public void rez(View view) {
-        setTitle(izabraniDatum + bend);
+        setTitle(izabraniDatum+" " + bend);
         String imeBenda = bend;
         String datum = izabraniDatum;
         String str_event = event.getText().toString();
@@ -255,22 +256,7 @@ public class Main2Activity extends AppCompatActivity {
     }
 
 
-    public boolean onCreateOptionsMenu(Menu menu) {
 
-        menu.add("Obrisi rezervaciju").setIntent(new Intent(this, Main3Activity.class));
-        menu.add("Pregled rezervacija").setIntent(new Intent(this, SpisakBendova.class));
-        menu.add("Broj svadbi").setIntent(new Intent(this, Counter.class));
-        menu.add("Admin panel").setIntent(new Intent(this, Register.class));
-        menu.add("Posalji obavestenje").setIntent(new Intent(this, SmsActivity.class));
-        menu.add("Kalendar").setIntent(new Intent(this, SlobodniBendovi.class));
-        menu.add("Test baze").setIntent(new Intent(this, TestBaza.class));
-
-
-
-
-        return true;
-
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

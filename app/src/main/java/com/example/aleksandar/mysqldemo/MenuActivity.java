@@ -66,14 +66,14 @@ public class MenuActivity extends AppCompatActivity {
     public void btn5(View v)
     {  isNetworkConnectionAvailable();
         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
-        Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
+        Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
         startActivity(intent);
     }
     public void btn2(View v)
     {  if(isNetworkConnectionAvailable()== true){
 
         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
-        Intent intent = new Intent(getApplicationContext(), SlobodniBendovi.class);
+        Intent intent = new Intent(getApplicationContext(), Counter.class);
         startActivity(intent);
 
 
@@ -84,13 +84,13 @@ public class MenuActivity extends AppCompatActivity {
 
     {   if(isNetworkConnectionAvailable()== true){
         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
-        Intent intent = new Intent(getApplicationContext(), Counter.class);
+        Intent intent = new Intent(getApplicationContext(), SmsActivity.class);
         startActivity(intent);
     }}
     public void btn3(View v)
     {   if(isNetworkConnectionAvailable()== true){
         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
-        Intent intent = new Intent(getApplicationContext(), SmsActivity.class);
+        Intent intent = new Intent(getApplicationContext(), OfflineMode.class);
         startActivity(intent);
     }}
     public void btn4(View v)

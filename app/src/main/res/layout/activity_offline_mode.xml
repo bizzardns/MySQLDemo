@@ -10,6 +10,17 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="199dp"
+            android:background="@android:drawable/stat_notify_sync"
+            android:backgroundTint="@color/colorPrimary"
+            android:visibility="gone" />
         <CalendarView
             android:dateTextAppearance="@android:style/TextAppearance.Holo.Medium"
             android:layout_width="wrap_content"
@@ -90,7 +101,14 @@
             </RelativeLayout>
         </HorizontalScrollView>
 
-
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/imageView"
+            android:layout_toRightOf="@+id/imageView"
+            android:visibility="invisible" />
 
 
     </RelativeLayout>
