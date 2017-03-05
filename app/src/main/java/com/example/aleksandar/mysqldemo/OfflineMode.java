@@ -84,19 +84,20 @@ public class OfflineMode extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         setContentView(R.layout.activity_offline_mode);
-        mDrawerLayout= (DrawerLayout) findViewById(R.id.drawerLayout);
-        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mNavigationView = (NavigationView) findViewById(R.id.nav_item);
         mNavigationView.setItemIconTintList(null);
-        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
@@ -104,32 +105,22 @@ public class OfflineMode extends AppCompatActivity {
                     Intent myIntent = new Intent(OfflineMode.this, Main2Activity.class);
                     OfflineMode.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav2)
-                {
+                } else if (id == R.id.nav2) {
                     Intent myIntent = new Intent(OfflineMode.this, Main3Activity.class);
                     OfflineMode.this.startActivity(myIntent);
-                }
-                else if (id == R.id.nav3)
-                {
+                } else if (id == R.id.nav3) {
                     Intent myIntent = new Intent(OfflineMode.this, SlobodniBendovi.class);
                     OfflineMode.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav4)
-                {
+                } else if (id == R.id.nav4) {
                     Intent myIntent = new Intent(OfflineMode.this, Counter.class);
                     OfflineMode.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav5)
-                {
+                } else if (id == R.id.nav5) {
                     Intent myIntent = new Intent(OfflineMode.this, SmsActivity.class);
                     OfflineMode.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav6)
-                {
+                } else if (id == R.id.nav6) {
                     Intent myIntent = new Intent(OfflineMode.this, Register.class);
                     OfflineMode.this.startActivity(myIntent);
 
@@ -138,33 +129,31 @@ public class OfflineMode extends AppCompatActivity {
 
                 return true;
             }
-        } );
+        });
 
 
         setTitle("Offline mode");
         contactBase = new ContactDB(this, null, 1);
 
-
-
         listView = (ListView) findViewById(R.id.lv);
         listView2 = (ListView) findViewById(R.id.ls);
-         img = (ImageView) findViewById(R.id.imageView);
+        img = (ImageView) findViewById(R.id.imageView);
         img.setVisibility(View.VISIBLE);
         calendar = (CalendarView) findViewById(R.id.calendarView);
         listView.setVisibility(View.INVISIBLE);
-       listView2.setVisibility(View.INVISIBLE);
+        listView2.setVisibility(View.INVISIBLE);
 
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-            img.setVisibility(View.GONE);
+                img.setVisibility(View.GONE);
                 String adate = dayOfMonth + "." + (month + 1) + "." + year + ".";
                 s = String.valueOf(dayOfMonth);
                 m = String.valueOf((month + 1));
 
                 listView.setVisibility(View.VISIBLE);
-               listView2.setVisibility(View.VISIBLE);
+                listView2.setVisibility(View.VISIBLE);
 
 
                 ArrayList<String> theList = new ArrayList<>();
@@ -174,9 +163,9 @@ public class OfflineMode extends AppCompatActivity {
 
                 while (cursor.moveToNext()) {
 
-                    if(cursor.getString(2).equals(adate)) {
+                    if (cursor.getString(2).equals(adate)) {
 
-                        theList.add(cursor.getString(1) + "\n " + cursor.getString(6) + "" + "\n " + cursor.getString(5));
+                        theList.add(cursor.getString(1) + "\n "+ "\n " + cursor.getString(5)  + "    " + cursor.getString(6)+ "\n " + cursor.getString(3)+ "    " + cursor.getString(4));
                         theList3.add(cursor.getString(1));
 
                         Collections.sort(theList, new Comparator<String>() {
@@ -187,10 +176,7 @@ public class OfflineMode extends AppCompatActivity {
                         });
 
 
-
-
-                    }
-                       else if(!(cursor.getString(2).equals(adate))) {
+                    } else if (!(cursor.getString(2).equals(adate))) {
 
                         theList2.add(cursor.getString(1));
                         HashSet<String> hashSet = new HashSet<String>();
@@ -207,49 +193,17 @@ public class OfflineMode extends AppCompatActivity {
                         });
 
 
-
                     }
                     adapter1 = new ArrayAdapter<String>(OfflineMode.this, android.R.layout.simple_list_item_1, theList);
                     listView.setAdapter(adapter1);
-                    adapter = new ArrayAdapter<String>(OfflineMode.this,android.R.layout.simple_list_item_1,theList2);
+                    adapter = new ArrayAdapter<String>(OfflineMode.this, android.R.layout.simple_list_item_1, theList2);
                     listView2.setAdapter(adapter);
 
                 }
 
 
-
-
-
-
-
-
-
-
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         sync = (Button) findViewById(R.id.button6);
@@ -262,14 +216,13 @@ public class OfflineMode extends AppCompatActivity {
                 contactBase.delete();
                 new Thread(new Runnable() {
                     @Override
-                    public void run()
-                    {   list.getData();
+                    public void run() {
+                        list.getData();
                         datumList.getData();
                         eventList.getData();
                         imeList.getData();
                         gradList.getData();
                         restoranList.getData();
-
 
 
                         for (int a = 0; a < list.data.length; a++) {
@@ -280,33 +233,31 @@ public class OfflineMode extends AppCompatActivity {
                             }
                             for (int i = 0; i < eventList.data.length; i++) {
 
-                                n= eventList.data[a];
+                                n = eventList.data[a];
                             }
                             for (int i = 0; i < imeList.data.length; i++) {
 
-                                j= imeList.data[a];
+                                j = imeList.data[a];
                             }
                             for (int i = 0; i < gradList.data.length; i++) {
 
-                                h= gradList.data[a];
+                                h = gradList.data[a];
                             }
                             for (int i = 0; i < restoranList.data.length; i++) {
 
-                                l= restoranList.data[a];
+                                l = restoranList.data[a];
                             }
 
 
-                            contactBase.addContact(list.data[a], d , n,j,h,l);
-
+                            contactBase.addContact(list.data[a], d, n, j, h, l);
 
 
                         }
 
                         runOnUiThread(new Runnable() {
                             @Override
-                            public void run()
-                            {
-                                if (counter == list.data.length){
+                            public void run() {
+                                if (counter == list.data.length) {
 
                                     progress.dismiss();
                                     AlertDialog.Builder builder1 = new AlertDialog.Builder(OfflineMode.this);
@@ -322,7 +273,6 @@ public class OfflineMode extends AppCompatActivity {
                                     builder1.show();
 
 
-
                                 }
                             }
                         });
@@ -332,19 +282,11 @@ public class OfflineMode extends AppCompatActivity {
                 // Toast.makeText(getApplicationContext(), "Baza je sinhronizovana!", Toast.LENGTH_SHORT).show();
 
 
-
-
-
-
-
             }
 
         });
 
     }
-
-
-
 
 
     @Override
@@ -359,14 +301,12 @@ public class OfflineMode extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
 
             return true;
 
         }
         int id = item.getItemId();
-
-
 
 
         if (id == R.id.sync) {
@@ -375,10 +315,10 @@ public class OfflineMode extends AppCompatActivity {
             return true;
         }
         if (id == R.id.today) {
-            calendar.setDate(Calendar.getInstance().getTimeInMillis(),false,true);
+            calendar.setDate(Calendar.getInstance().getTimeInMillis(), false, true);
             Calendar calander = Calendar.getInstance();
             int a = calander.get(Calendar.DAY_OF_MONTH);
-            int s= calander.get(Calendar.MONTH) + 1;
+            int s = calander.get(Calendar.MONTH) + 1;
             int n = calander.get(Calendar.YEAR);
             d = String.valueOf(a);
             m = String.valueOf(s);
@@ -397,7 +337,7 @@ public class OfflineMode extends AppCompatActivity {
 
             while (cursor.moveToNext()) {
 
-                if(cursor.getString(2).equals(kurcina)) {
+                if (cursor.getString(2).equals(kurcina)) {
 
                     theList.add(cursor.getString(1) + "\n " + cursor.getString(6) + "" + "\n " + cursor.getString(5));
                     theList3.add(cursor.getString(1));
@@ -410,10 +350,7 @@ public class OfflineMode extends AppCompatActivity {
                     });
 
 
-
-
-                }
-                else if(!(cursor.getString(2).equals(kurcina))) {
+                } else if (!(cursor.getString(2).equals(kurcina))) {
 
                     theList2.add(cursor.getString(1));
                     HashSet<String> hashSet = new HashSet<String>();
@@ -430,28 +367,13 @@ public class OfflineMode extends AppCompatActivity {
                     });
 
 
-
                 }
                 adapter1 = new ArrayAdapter<String>(OfflineMode.this, android.R.layout.simple_list_item_1, theList);
                 listView.setAdapter(adapter1);
-                adapter = new ArrayAdapter<String>(OfflineMode.this,android.R.layout.simple_list_item_1,theList2);
+                adapter = new ArrayAdapter<String>(OfflineMode.this, android.R.layout.simple_list_item_1, theList2);
                 listView2.setAdapter(adapter);
 
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             //sync.performClick();
@@ -466,16 +388,6 @@ public class OfflineMode extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
-
-
-
-
-
-
 
 
 }
