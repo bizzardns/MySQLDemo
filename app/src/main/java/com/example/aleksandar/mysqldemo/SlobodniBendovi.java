@@ -210,9 +210,9 @@ public class SlobodniBendovi extends AppCompatActivity {
 
 
         sItems = (Spinner) findViewById(R.id.spinner2);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, theList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.spinner_item,theList);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+       // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sItems.setAdapter(adapter);
 
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
