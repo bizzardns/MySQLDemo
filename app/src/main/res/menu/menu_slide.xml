@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/nav1"
-        android:title="Rezervisi"
-        android:icon="@drawable/upis"/>
+        android:title="Online kalendar"
+        android:icon="@drawable/calendaronline"/>
     <item android:id="@+id/nav2"
-        android:title="Obrisi"
-        android:icon="@drawable/brisanje"/>
+        android:title="Rezerviši"
+        android:icon="@drawable/upis"/>
     <item android:id="@+id/nav3"
-        android:title="Kalendar"
-        android:icon="@drawable/kalendar"/>
+        android:title="Statistika"
+        android:icon="@drawable/barchart"/>
     <item android:id="@+id/nav4"
-        android:title="Broj svadbi"
-        android:icon="@drawable/brojsvadbi"/>
-    <item android:id="@+id/nav5"
-        android:title="Obavestenja"
+        android:title="Sms obaveštenja"
         android:icon="@drawable/sms"/>
+    <item android:id="@+id/nav5"
+        android:title="Offline kalendar"
+        android:icon="@drawable/calendaroffline"/>
     <item android:id="@+id/nav6"
         android:title="Admin panel"
-        android:icon="@drawable/paneladmin" />
+        android:icon="@drawable/settings" />
 
 </menu>

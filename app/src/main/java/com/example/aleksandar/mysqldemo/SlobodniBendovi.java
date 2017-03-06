@@ -94,35 +94,25 @@ public class SlobodniBendovi extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
                 if (id == R.id.nav1) {
-                    Intent myIntent = new Intent(SlobodniBendovi.this, Main2Activity.class);
-                    SlobodniBendovi.this.startActivity(myIntent);
-
-                }
-                else if (id == R.id.nav2)
-                {
-                    Intent myIntent = new Intent(SlobodniBendovi.this, Main3Activity.class);
-                    SlobodniBendovi.this.startActivity(myIntent);
-                }
-                else if (id == R.id.nav3)
-                {
                     Intent myIntent = new Intent(SlobodniBendovi.this, SlobodniBendovi.class);
                     SlobodniBendovi.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav4)
-                {
+                } else if (id == R.id.nav2) {
+                    Intent myIntent = new Intent(SlobodniBendovi.this, Main2Activity.class);
+                    SlobodniBendovi.this.startActivity(myIntent);
+                } else if (id == R.id.nav3) {
                     Intent myIntent = new Intent(SlobodniBendovi.this, Counter.class);
                     SlobodniBendovi.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav5)
-                {
+                } else if (id == R.id.nav4) {
                     Intent myIntent = new Intent(SlobodniBendovi.this, SmsActivity.class);
                     SlobodniBendovi.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav6)
-                {
+                } else if (id == R.id.nav5) {
+                    Intent myIntent = new Intent(SlobodniBendovi.this, OfflineMode.class);
+                    SlobodniBendovi.this.startActivity(myIntent);
+
+                } else if (id == R.id.nav6) {
                     Intent myIntent = new Intent(SlobodniBendovi.this, Register.class);
                     SlobodniBendovi.this.startActivity(myIntent);
 

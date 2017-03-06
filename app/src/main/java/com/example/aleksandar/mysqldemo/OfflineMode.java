@@ -102,22 +102,22 @@ public class OfflineMode extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
                 if (id == R.id.nav1) {
-                    Intent myIntent = new Intent(OfflineMode.this, Main2Activity.class);
-                    OfflineMode.this.startActivity(myIntent);
-
-                } else if (id == R.id.nav2) {
-                    Intent myIntent = new Intent(OfflineMode.this, Main3Activity.class);
-                    OfflineMode.this.startActivity(myIntent);
-                } else if (id == R.id.nav3) {
                     Intent myIntent = new Intent(OfflineMode.this, SlobodniBendovi.class);
                     OfflineMode.this.startActivity(myIntent);
 
-                } else if (id == R.id.nav4) {
+                } else if (id == R.id.nav2) {
+                    Intent myIntent = new Intent(OfflineMode.this, Main2Activity.class);
+                    OfflineMode.this.startActivity(myIntent);
+                } else if (id == R.id.nav3) {
                     Intent myIntent = new Intent(OfflineMode.this, Counter.class);
                     OfflineMode.this.startActivity(myIntent);
 
-                } else if (id == R.id.nav5) {
+                } else if (id == R.id.nav4) {
                     Intent myIntent = new Intent(OfflineMode.this, SmsActivity.class);
+                    OfflineMode.this.startActivity(myIntent);
+
+                } else if (id == R.id.nav5) {
+                    Intent myIntent = new Intent(OfflineMode.this, OfflineMode.class);
                     OfflineMode.this.startActivity(myIntent);
 
                 } else if (id == R.id.nav6) {

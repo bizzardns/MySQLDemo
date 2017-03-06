@@ -75,35 +75,25 @@ public class Main2Activity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
                 if (id == R.id.nav1) {
-                    Intent myIntent = new Intent(Main2Activity.this, Main2Activity.class);
-                    Main2Activity.this.startActivity(myIntent);
-
-                }
-                else if (id == R.id.nav2)
-                {
-                    Intent myIntent = new Intent(Main2Activity.this, Main3Activity.class);
-                    Main2Activity.this.startActivity(myIntent);
-                }
-                else if (id == R.id.nav3)
-                {
                     Intent myIntent = new Intent(Main2Activity.this, SlobodniBendovi.class);
                     Main2Activity.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav4)
-                {
+                } else if (id == R.id.nav2) {
+                    Intent myIntent = new Intent(Main2Activity.this, Main2Activity.class);
+                    Main2Activity.this.startActivity(myIntent);
+                } else if (id == R.id.nav3) {
                     Intent myIntent = new Intent(Main2Activity.this, Counter.class);
                     Main2Activity.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav5)
-                {
+                } else if (id == R.id.nav4) {
                     Intent myIntent = new Intent(Main2Activity.this, SmsActivity.class);
                     Main2Activity.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav6)
-                {
+                } else if (id == R.id.nav5) {
+                    Intent myIntent = new Intent(Main2Activity.this, OfflineMode.class);
+                    Main2Activity.this.startActivity(myIntent);
+
+                } else if (id == R.id.nav6) {
                     Intent myIntent = new Intent(Main2Activity.this, Register.class);
                     Main2Activity.this.startActivity(myIntent);
 

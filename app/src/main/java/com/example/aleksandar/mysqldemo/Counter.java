@@ -42,35 +42,25 @@ public class Counter extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
                 if (id == R.id.nav1) {
-                    Intent myIntent = new Intent(Counter.this, Main2Activity.class);
-                    Counter.this.startActivity(myIntent);
-
-                }
-                else if (id == R.id.nav2)
-                {
-                    Intent myIntent = new Intent(Counter.this, Main3Activity.class);
-                    Counter.this.startActivity(myIntent);
-                }
-                else if (id == R.id.nav3)
-                {
                     Intent myIntent = new Intent(Counter.this, SlobodniBendovi.class);
                     Counter.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav4)
-                {
+                } else if (id == R.id.nav2) {
+                    Intent myIntent = new Intent(Counter.this, Main2Activity.class);
+                    Counter.this.startActivity(myIntent);
+                } else if (id == R.id.nav3) {
                     Intent myIntent = new Intent(Counter.this, Counter.class);
                     Counter.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav5)
-                {
+                } else if (id == R.id.nav4) {
                     Intent myIntent = new Intent(Counter.this, SmsActivity.class);
                     Counter.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav6)
-                {
+                } else if (id == R.id.nav5) {
+                    Intent myIntent = new Intent(Counter.this, OfflineMode.class);
+                    Counter.this.startActivity(myIntent);
+
+                } else if (id == R.id.nav6) {
                     Intent myIntent = new Intent(Counter.this, Register.class);
                     Counter.this.startActivity(myIntent);
 

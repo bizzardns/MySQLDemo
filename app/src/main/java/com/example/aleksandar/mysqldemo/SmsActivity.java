@@ -40,35 +40,25 @@ public class SmsActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
                 if (id == R.id.nav1) {
-                    Intent myIntent = new Intent(SmsActivity.this, Main2Activity.class);
-                    SmsActivity.this.startActivity(myIntent);
-
-                }
-                else if (id == R.id.nav2)
-                {
-                    Intent myIntent = new Intent(SmsActivity.this, Main3Activity.class);
-                    SmsActivity.this.startActivity(myIntent);
-                }
-                else if (id == R.id.nav3)
-                {
                     Intent myIntent = new Intent(SmsActivity.this, SlobodniBendovi.class);
                     SmsActivity.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav4)
-                {
+                } else if (id == R.id.nav2) {
+                    Intent myIntent = new Intent(SmsActivity.this, Main2Activity.class);
+                    SmsActivity.this.startActivity(myIntent);
+                } else if (id == R.id.nav3) {
                     Intent myIntent = new Intent(SmsActivity.this, Counter.class);
                     SmsActivity.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav5)
-                {
+                } else if (id == R.id.nav4) {
                     Intent myIntent = new Intent(SmsActivity.this, SmsActivity.class);
                     SmsActivity.this.startActivity(myIntent);
 
-                }
-                else if (id == R.id.nav6)
-                {
+                } else if (id == R.id.nav5) {
+                    Intent myIntent = new Intent(SmsActivity.this, OfflineMode.class);
+                    SmsActivity.this.startActivity(myIntent);
+
+                } else if (id == R.id.nav6) {
                     Intent myIntent = new Intent(SmsActivity.this, Register.class);
                     SmsActivity.this.startActivity(myIntent);
 

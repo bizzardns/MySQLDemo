@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_menu"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="70dp"
     android:paddingRight="70dp"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:stretchColumns="*"
 
-    tools:context="com.example.aleksandar.mysqldemo.MenuActivity"
-    android:weightSum="1">
+    android:weightSum="1"
+    tools:context="com.example.aleksandar.mysqldemo.MenuActivity">
 
 
     <RelativeLayout
@@ -34,7 +34,8 @@
     </RelativeLayout>
 
 
-    <TableRow android:layout_marginBottom="50dp"
+    <TableRow
+        android:layout_marginBottom="50dp"
         android:layout_marginTop="50dp">
 
 
@@ -47,10 +48,9 @@
             android:elevation="0dp"
 
             android:onClick="btn"
-            android:padding="10dp"
             android:scaleType="centerInside"
             android:visibility="visible"
-            app:srcCompat="@drawable/calendar" />
+            app:srcCompat="@drawable/calendaronline" />
 
         <ImageButton
 
@@ -62,9 +62,7 @@
             android:elevation="0dp"
             android:onClick="btn5"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/add" />
-
-
+            app:srcCompat="@drawable/upis" />
 
 
     </TableRow>
@@ -83,9 +81,8 @@
             android:background="@color/white"
             android:elevation="0dp"
             android:onClick="btn2"
-            android:padding="10dp"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/stats" />
+            app:srcCompat="@drawable/barchart" />
 
         <ImageButton
             android:id="@+id/imageButton5"
@@ -112,7 +109,7 @@
             android:onClick="btn3"
 
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/offline" />
+            app:srcCompat="@drawable/calendaroffline" />
 
         <ImageButton
             android:id="@+id/imageButton2"
@@ -120,7 +117,6 @@
             android:layout_height="90dp"
             android:background="@color/white"
             android:onClick="btn4"
-            android:padding="10dp"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/settings" />
 
