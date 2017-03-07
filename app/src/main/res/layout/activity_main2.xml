@@ -14,7 +14,7 @@
         <RelativeLayout
 
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="600dp">
 
 
             <CalendarView
@@ -30,46 +30,12 @@
                 android:dateTextAppearance="@android:style/TextAppearance.Holo.Medium"
                 android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2" />
 
-            <EditText
-                android:id="@+id/editIme"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/editEvent"
-
-                android:layout_marginTop="10dp"
-                android:background="@android:drawable/editbox_background_normal"
-                android:ems="10"
-                android:hint="Ime"
-                android:inputType="textPersonName"
-                android:textColorHint="@android:color/holo_purple" />
-
-
-            <EditText
-                android:id="@+id/editRestoran"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/editIme"
-
-                android:layout_marginTop="10dp"
-                android:background="@android:drawable/editbox_background_normal"
-                android:ems="10"
-                android:hint="Restoran"
-                android:inputType="textPersonName"
-                android:textColorHint="@color/green" />
 
             <Spinner
 
                 android:id="@+id/spinnerBand"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/calendarView2"
@@ -79,44 +45,12 @@
                 android:textAlignment="center"
                 android:theme="@android:style/Widget.DropDownItem.Spinner" />
 
-            <EditText
-                android:id="@+id/editEvent"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/spinnerBand"
-                android:layout_marginTop="21dp"
-                android:background="@android:drawable/editbox_background_normal"
-                android:ems="10"
-                android:hint="Event"
-                android:inputType="textPersonName"
-                android:textColorHint="@color/orange" />
-
-            <EditText
-                android:id="@+id/editMesto"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/editRestoran"
-                android:layout_marginTop="10dp"
-                android:background="@android:drawable/editbox_background_normal"
-                android:ems="10"
-                android:hint="Grad"
-                android:inputType="textPersonName"
-                android:textColorHint="@color/colorPrimary" />
 
             <Button
                 android:id="@+id/button"
                 style="@android:style/Widget.DeviceDefault.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="41dp"
                 android:backgroundTint="@color/green"
                 android:elevation="1dp"
                 android:onClick="rez"
@@ -125,8 +59,75 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_default"
                 android:textSize="18sp"
                 android:textStyle="normal|bold"
-                android:layout_below="@+id/editMesto"
+                android:layout_marginTop="16dp"
+                android:layout_below="@+id/textInputLayout6"
                 android:layout_centerHorizontal="true" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textInputLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textInputLayout4"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <EditText
+                    android:id="@+id/editMesto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Grad"
+                    android:inputType="textPersonName" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textInputLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/spinnerBand"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <EditText
+                    android:id="@+id/editIme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="600dp"
+                    android:ems="10"
+                    android:hint="Ime"
+                    android:inputType="textPersonName" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textInputLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textInputLayout3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <EditText
+                    android:id="@+id/editRestoran"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/spinnerBand"
+                    android:layout_marginTop="11dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Restoran"
+                    android:inputType="textPersonName" />
+            </android.support.design.widget.TextInputLayout>
+
 
         </RelativeLayout>
     </ScrollView>

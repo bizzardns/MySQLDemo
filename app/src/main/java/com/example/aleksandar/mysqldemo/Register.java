@@ -100,6 +100,7 @@ public class Register extends AppCompatActivity {
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
+
                 int id = menuItem.getItemId();
                 if (id == R.id.nav1) {
                     Intent myIntent = new Intent(Register.this, SlobodniBendovi.class);

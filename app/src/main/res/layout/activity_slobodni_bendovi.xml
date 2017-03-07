@@ -12,66 +12,64 @@
 
         android:fillViewport="true"
         android:paddingBottom="8dp">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="1">
 
-        <Spinner
-            android:id="@+id/spinner2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-
-        <CalendarView
-        android:dateTextAppearance="@android:style/TextAppearance.Holo.Medium"
-        android:layout_width="match_parent"
-        android:id="@+id/calendarView"
-            android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:elevation="0dp"
-        android:layout_height="300dp"
-
-            android:padding="0dp"
-            tools:theme="@style/AppTheme.NoActionBar" />
-
-
-        <ListView
-            android:id="@+id/lv"
-            style="@style/Widget.AppCompat.ListView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dip"
-            android:background="@color/zauzeti"
-            android:clickable="true"
-            android:divider="@android:color/background_light"
-            android:dividerHeight="8dp"
-            android:longClickable="true"
-            android:choiceMode="singleChoice"
-            android:listSelector="@android:color/darker_gray"></ListView>
+            android:orientation="vertical"
+            android:weightSum="1">
 
-        <ListView
-            android:clickable="true"
-            android:id="@+id/ls"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@color/slobodni"
-            android:divider="@android:color/background_light"
-            android:dividerHeight="8dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:longClickable="true">
-        </ListView>
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginStart="310dp"
+                android:layout_weight="1"
+                android:background="@color/common_plus_signin_btn_text_dark_default"
+                android:popupBackground="@color/colorPrimary"
+                android:visibility="invisible" />
 
-    </LinearLayout>
+            <CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:dateTextAppearance="@android:style/TextAppearance.Holo.Medium"
+                android:elevation="0dp"
+
+                android:padding="0dp"
+                android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2"
+                tools:theme="@style/AppTheme.NoActionBar" />
+
+
+            <ListView
+                android:id="@+id/lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dip"
+                android:background="@color/zauzeti"
+                android:divider="@android:color/background_light"
+                android:dividerHeight="8dp"></ListView>
+
+            <ListView
+                android:id="@+id/ls"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/slobodni"
+                android:divider="@android:color/background_light"
+                android:dividerHeight="8dp"
+                android:footerDividersEnabled="true"></ListView>
+
+        </LinearLayout>
 
     </ScrollView>
 

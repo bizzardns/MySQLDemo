@@ -25,7 +25,7 @@ public class UpisIzKalendara extends AppCompatActivity {
           izabraniDatum = intent.getStringExtra("Datum");
 
 
-        event = (EditText)findViewById(R.id.editEvent);
+
         ime = (EditText)findViewById(R.id.editIme);
         mesto = (EditText)findViewById(R.id.editMesto);
         restoran = (EditText)findViewById(R.id.editRestoran);
@@ -43,13 +43,12 @@ public class UpisIzKalendara extends AppCompatActivity {
 
         String imeBenda = bend;
         String datum = izabraniDatum;
-        String str_event = event.getText().toString();
         String str_ime = ime.getText().toString();
         String str_mesto = mesto.getText().toString();
         String str_restoran = restoran.getText().toString();
         String type = "rezervisi";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-        backgroundWorker.execute(type, imeBenda, datum,str_event,str_ime,str_mesto,str_restoran);
+        backgroundWorker.execute(type, imeBenda, datum,str_ime,str_mesto,str_restoran);
 
     }
     @Override

@@ -16,7 +16,7 @@ public class Holder extends RecyclerView.ViewHolder {
     public Holder(View itemView) {
         super(itemView);
         bendTxt = (TextView) itemView.findViewById(R.id.bendTxt);
-        eventTxt = (TextView) itemView.findViewById(R.id.eventTxt);
+
         imeTxt = (TextView) itemView.findViewById(R.id.imeTxt);
         gradTxt = (TextView) itemView.findViewById(R.id.gradTxt);
         lokalTxt = (TextView) itemView.findViewById(R.id.lokalTxt);

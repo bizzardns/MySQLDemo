@@ -79,7 +79,7 @@ public class SlobodniBendovi extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-        setContentView(R.layout.test_calendar);
+        setContentView(R.layout.activity_slobodni_bendovi);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mDrawerLayout= (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
@@ -92,6 +92,8 @@ public class SlobodniBendovi extends AppCompatActivity {
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+
                 int id = menuItem.getItemId();
                 if (id == R.id.nav1) {
                     Intent myIntent = new Intent(SlobodniBendovi.this, SlobodniBendovi.class);
@@ -220,19 +222,20 @@ public class SlobodniBendovi extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 kurac = sItems.getSelectedItem().toString();
                 //date = d + "." + m + "." + kurac + ".";
-                selectedDate = d+"."+ m +"."+ kurac + ".";
+                date = d+"."+ m +"."+ kurac + ".";
+                SlobodniBendovi.sharedValue = date;
                 try {
-                    calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(selectedDate).getTime(), false, true);
+                    calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(date).getTime(), false, true);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
                 String r = d + "." + m + "." + kurac +".";
                 ls.setVisibility(View.VISIBLE);
                 lv.setVisibility(View.VISIBLE);
-                SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, selectedDate, ls);
+                SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
                 pr.execute();
 
-                SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, selectedDate,lv);
+                SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date,lv);
                 sr.execute();
 
 

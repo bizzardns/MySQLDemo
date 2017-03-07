@@ -38,6 +38,7 @@ public class SmsActivity extends AppCompatActivity {
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
+                //menuItem.setChecked(true);
                 int id = menuItem.getItemId();
                 if (id == R.id.nav1) {
                     Intent myIntent = new Intent(SmsActivity.this, SlobodniBendovi.class);

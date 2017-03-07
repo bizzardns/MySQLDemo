@@ -73,6 +73,7 @@ public class Main2Activity extends AppCompatActivity {
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
+
                 int id = menuItem.getItemId();
                 if (id == R.id.nav1) {
                     Intent myIntent = new Intent(Main2Activity.this, SlobodniBendovi.class);
@@ -109,7 +110,7 @@ public class Main2Activity extends AppCompatActivity {
 
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        event = (EditText)findViewById(R.id.editEvent);
+
         ime = (EditText)findViewById(R.id.editIme);
        mesto = (EditText)findViewById(R.id.editMesto);
        restoran = (EditText)findViewById(R.id.editRestoran);
@@ -179,16 +180,15 @@ public class Main2Activity extends AppCompatActivity {
         setTitle(izabraniDatum+" " + bend);
         String imeBenda = bend;
         String datum = izabraniDatum;
-        String str_event = event.getText().toString();
         String str_ime = ime.getText().toString();
         String str_mesto = mesto.getText().toString();
         String str_restoran = restoran.getText().toString();
         String type = "rezervisi";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-        backgroundWorker.execute(type, imeBenda, datum,str_event,str_ime,str_mesto,str_restoran);
+        backgroundWorker.execute(type, imeBenda, datum,str_ime,str_mesto,str_restoran);
                 for (int i = 0; i < MobNumber.length; i++) {
                     String tempMobileNumber = MobNumber[i];
-                    sendSMS(tempMobileNumber,imeBenda  + ": " +"\n" + str_event +"\n" + datum +"\n"+ str_ime +"\n" + str_restoran +"\n"+  str_mesto+"\n");
+                    sendSMS(tempMobileNumber,imeBenda  + ": " +"\n" + datum +"\n"+ str_ime +"\n" + str_restoran +"\n"+  str_mesto+"\n");
                 }
                 Toast.makeText(Main2Activity.this,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
     }

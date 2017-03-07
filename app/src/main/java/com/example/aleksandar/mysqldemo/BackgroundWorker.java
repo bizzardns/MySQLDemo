@@ -169,10 +169,9 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             try {
                 String naziv_benda = params[1];
                 String datum = params[2];
-                String event = params[3];
-                String ime = params[4];
-                String grad = params[5];
-                String lokal = params[6];
+                String ime = params[3];
+                String grad = params[4];
+                String lokal = params[5];
 
 
                 URL url = new URL(reserve_url);
@@ -184,7 +183,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
                 String post_data = URLEncoder.encode("naziv_benda", "UTF-8") + "=" + URLEncoder.encode(naziv_benda, "UTF-8") + "&"
                         + URLEncoder.encode("datum", "UTF-8") + "=" + URLEncoder.encode(datum, "UTF-8") + "&"
-                        + URLEncoder.encode("event", "UTF-8") + "=" + URLEncoder.encode(event, "UTF-8") + "&"
                         + URLEncoder.encode("ime", "UTF-8") + "=" + URLEncoder.encode(ime, "UTF-8") + "&"
                         + URLEncoder.encode("grad", "UTF-8") + "=" + URLEncoder.encode(grad, "UTF-8") + "&"
                         + URLEncoder.encode("lokal", "UTF-8") + "=" + URLEncoder.encode(lokal, "UTF-8");

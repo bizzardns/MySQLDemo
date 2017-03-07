@@ -67,7 +67,7 @@ public class Parser extends AsyncTask<Void, Void, Integer> {
             for (int i = 0; i < ja.length(); i++) {
                 jo = ja.getJSONObject(i);
                 String name = jo.getString("naziv_benda");
-                String event = jo.getString("event");
+
                 String ime = jo.getString("ime");
                 String grad = jo.getString("grad");
                 String lokal = jo.getString("lokal");
@@ -75,7 +75,7 @@ public class Parser extends AsyncTask<Void, Void, Integer> {
 
                 e = new EventData();
                 e.setNaziv_benda(name);
-                e.setEvent(event);
+
                 e.setIme(ime);
                 e.setGrad(grad);
                 e.setLokal(lokal);

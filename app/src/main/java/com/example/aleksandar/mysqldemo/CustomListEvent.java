@@ -64,14 +64,14 @@ public class CustomListEvent extends BaseAdapter {
         }
 
         TextView nameTxt= (TextView) convertView.findViewById(R.id.bendTxt);
-        TextView eventTxt= (TextView) convertView.findViewById(R.id.eventTxt);
+
         TextView imeTxt= (TextView) convertView.findViewById(R.id.imeTxt);
         TextView gradTxt= (TextView) convertView.findViewById(R.id.gradTxt);
         TextView lokalTxt= (TextView) convertView.findViewById(R.id.lokalTxt);
 
 
         nameTxt.setText(events.get(position).getNaziv_benda());
-        eventTxt.setText(events.get(position).getEvent());
+
         imeTxt.setText(events.get(position).getIme());
         gradTxt.setText(events.get(position).getGrad());
         lokalTxt.setText(events.get(position).getLokal());

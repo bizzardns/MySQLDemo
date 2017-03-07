@@ -100,6 +100,7 @@ public class OfflineMode extends AppCompatActivity {
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
+
                 int id = menuItem.getItemId();
                 if (id == R.id.nav1) {
                     Intent myIntent = new Intent(OfflineMode.this, SlobodniBendovi.class);
@@ -165,7 +166,7 @@ public class OfflineMode extends AppCompatActivity {
 
                     if (cursor.getString(2).equals(adate)) {
 
-                        theList.add(cursor.getString(1) + "\n "+ "\n " + cursor.getString(5)  + "    " + cursor.getString(6)+ "\n " + cursor.getString(3)+ "    " + cursor.getString(4));
+                        theList.add(cursor.getString(1) + "\n "+ "\n " + cursor.getString(5)  + "    " + cursor.getString(6)+ "\n " + cursor.getString(4));
                         theList3.add(cursor.getString(1));
 
                         Collections.sort(theList, new Comparator<String>() {
@@ -219,7 +220,6 @@ public class OfflineMode extends AppCompatActivity {
                     public void run() {
                         list.getData();
                         datumList.getData();
-                        eventList.getData();
                         imeList.getData();
                         gradList.getData();
                         restoranList.getData();
@@ -231,10 +231,7 @@ public class OfflineMode extends AppCompatActivity {
 
                                 d = datumList.data[a];
                             }
-                            for (int i = 0; i < eventList.data.length; i++) {
 
-                                n = eventList.data[a];
-                            }
                             for (int i = 0; i < imeList.data.length; i++) {
 
                                 j = imeList.data[a];
@@ -339,7 +336,7 @@ public class OfflineMode extends AppCompatActivity {
 
                 if (cursor.getString(2).equals(kurcina)) {
 
-                    theList.add(cursor.getString(1) + "\n " + cursor.getString(6) + "" + "\n " + cursor.getString(5));
+                    theList.add(cursor.getString(1) + "\n "+ "\n " + cursor.getString(5)  + "    " + cursor.getString(6)+ "\n " + cursor.getString(4));
                     theList3.add(cursor.getString(1));
 
                     Collections.sort(theList, new Comparator<String>() {

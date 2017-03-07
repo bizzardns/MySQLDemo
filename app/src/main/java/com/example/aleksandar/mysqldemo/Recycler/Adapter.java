@@ -35,7 +35,7 @@ public class Adapter extends RecyclerView.Adapter<Holder> {
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         holder.bendTxt.setText(events.get(position).getNaziv_benda());
-        holder.eventTxt.setText(events.get(position).getEvent());
+
         holder.imeTxt.setText(events.get(position).getIme());
         holder.gradTxt.setText(events.get(position).getGrad());
         holder.lokalTxt.setText(events.get(position).getLokal());

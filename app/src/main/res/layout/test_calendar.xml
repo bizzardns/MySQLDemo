@@ -8,12 +8,11 @@
     tools:context="com.example.aleksandar.mysqldemo.SlobodniBendovi">
 
 
-
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_collapseParallaxMultiplier="1.0">
+        app:layout_collapseParallaxMultiplier="0.3">
 
 
         <android.support.design.widget.AppBarLayout
@@ -26,8 +25,8 @@
             <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:contentScrim="@color/calendar_scroll"
-                app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+                app:contentScrim="@color/white"
+                app:layout_scrollFlags="scroll|snap"
                 app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
                 app:toolbarId="@+id/toolbar">
 
