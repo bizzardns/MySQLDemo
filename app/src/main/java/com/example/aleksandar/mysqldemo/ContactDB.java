@@ -32,7 +32,7 @@ public class ContactDB extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS JAJE;");
         onCreate(sqLiteDatabase);
     }
-    public void addContact(String datum,String bend,String event,String ime,String grad,String lokal){
+    public void addContact(String datum,String bend,String ime,String grad,String lokal){
 
         ContentValues contentValues = new ContentValues();
         contentValues.put("DATUM", datum);

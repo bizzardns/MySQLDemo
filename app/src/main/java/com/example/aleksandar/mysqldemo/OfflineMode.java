@@ -54,7 +54,6 @@ import java.util.HashSet;
 public class OfflineMode extends AppCompatActivity {
     ReservationList list = new ReservationList();
     DatumList datumList = new DatumList();
-    GetEvent eventList = new GetEvent();
     GetIme imeList = new GetIme();
     GetGrad gradList = new GetGrad();
     GetRestoran restoranList = new GetRestoran();
@@ -166,7 +165,7 @@ public class OfflineMode extends AppCompatActivity {
 
                     if (cursor.getString(2).equals(adate)) {
 
-                        theList.add(cursor.getString(1) + "\n "+ "\n " + cursor.getString(5)  + "    " + cursor.getString(6)+ "\n " + cursor.getString(4));
+                        theList.add(cursor.getString(1) + "\n "+ "\n " + cursor.getString(4)  + "    " + cursor.getString(5)+ "\n " + cursor.getString(3));
                         theList3.add(cursor.getString(1));
 
                         Collections.sort(theList, new Comparator<String>() {
@@ -246,7 +245,7 @@ public class OfflineMode extends AppCompatActivity {
                             }
 
 
-                            contactBase.addContact(list.data[a], d, n, j, h, l);
+                            contactBase.addContact(list.data[a], d, j, h, l);
 
 
                         }
@@ -336,7 +335,7 @@ public class OfflineMode extends AppCompatActivity {
 
                 if (cursor.getString(2).equals(kurcina)) {
 
-                    theList.add(cursor.getString(1) + "\n "+ "\n " + cursor.getString(5)  + "    " + cursor.getString(6)+ "\n " + cursor.getString(4));
+                    theList.add(cursor.getString(1) + "\n "+ "\n " + cursor.getString(4)  + "    " + cursor.getString(5)+ "\n " + cursor.getString(3));
                     theList3.add(cursor.getString(1));
 
                     Collections.sort(theList, new Comparator<String>() {

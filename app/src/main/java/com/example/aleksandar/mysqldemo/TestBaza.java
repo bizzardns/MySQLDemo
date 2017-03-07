@@ -70,10 +70,7 @@ public class TestBaza extends AppCompatActivity {
 
                                 d = datumList.data[a];
                             }
-                            for (int i = 0; i < eventList.data.length; i++) {
 
-                                n= eventList.data[a];
-                            }
                             for (int i = 0; i < imeList.data.length; i++) {
 
                                 j= imeList.data[a];
@@ -88,7 +85,7 @@ public class TestBaza extends AppCompatActivity {
                             }
 
 
-                            contactBase.addContact(list.data[a], d , n,j,h,l);
+                            contactBase.addContact(list.data[a], d ,j,h,l);
 
 
 
