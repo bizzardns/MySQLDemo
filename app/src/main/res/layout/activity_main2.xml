@@ -15,6 +15,15 @@
 
             android:layout_width="match_parent"
             android:layout_height="600dp">
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginStart="310dp"
+                android:layout_weight="1"
+                android:background="@color/common_plus_signin_btn_text_dark_default"
+                android:popupBackground="@color/colorPrimary"
+                android:visibility="invisible" />
 
 
             <CalendarView

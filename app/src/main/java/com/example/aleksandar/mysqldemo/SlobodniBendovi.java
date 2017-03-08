@@ -127,9 +127,7 @@ public class SlobodniBendovi extends AppCompatActivity {
 
 
         setTitle("Kalendar");
-        GetIme imeList = new GetIme();
-        GetGrad gradList = new GetGrad();
-        GetRestoran restoranList = new GetRestoran();
+
 
 
        Calendar calander = Calendar.getInstance();
@@ -142,21 +140,12 @@ public class SlobodniBendovi extends AppCompatActivity {
        String danasnji_datum = d + "." + m + "." + y + ".";
         lv = (ListView) findViewById(R.id.lv);
         ls = (ListView) findViewById(R.id.ls);
+
         SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, danasnji_datum, ls);
         pr.execute();
         SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, danasnji_datum,lv);
         sr.execute();
         SlobodniBendovi.sharedValue = danasnji_datum;
-
-
-
-
-
-
-
-
-
-
 
 
         /*img = (ImageView) findViewById(R.id.imageView);

@@ -7,12 +7,17 @@
     android:layout_height="match_parent"
     tools:context="com.example.aleksandar.mysqldemo.Counter"
     android:screenOrientation="landscape">
+
+
+
     <RelativeLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp">
-    <ListView
+
+
+        <ListView
         android:listSelector="@android:color/transparent"
         android:id="@+id/lv"
         android:layout_width="match_parent"
@@ -55,6 +60,7 @@
         tools:ignore="HardcodedText,RtlCompat,RtlHardcoded,UnknownIdInLayout"
         android:textAlignment="textEnd"
         android:text="Svadbe" />
+
 
 </RelativeLayout>
 <android.support.design.widget.NavigationView

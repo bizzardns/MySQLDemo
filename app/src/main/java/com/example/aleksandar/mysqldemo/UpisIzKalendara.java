@@ -49,6 +49,8 @@ public class UpisIzKalendara extends AppCompatActivity {
         String type = "rezervisi";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         backgroundWorker.execute(type, imeBenda, datum,str_ime,str_mesto,str_restoran);
+        Intent intent = new Intent(getApplicationContext(), SlobodniBendovi.class);
+        startActivity(intent);
 
     }
     @Override
