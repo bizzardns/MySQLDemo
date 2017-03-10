@@ -43,8 +43,8 @@ public class SendRecieveEvent extends AsyncTask<Void, Void, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         pd = new ProgressDialog(c);
-        pd.setTitle("Fetch");
-        pd.setMessage("Fetching... please wait");
+        pd.setTitle("Refresh");
+        pd.setMessage("Refreshing.... please wait");
         pd.show();
     }
 

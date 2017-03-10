@@ -44,7 +44,7 @@
             android:layout_marginTop="42dp"
             android:scaleType="fitCenter" />
 
-        <HorizontalScrollView
+        <ScrollView
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,44 +62,31 @@
 
 
                 <ListView
-
-
-                    android:background="@color/slobodni"
-                    android:id="@+id/ls"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-
-
-                    android:dividerHeight="5dp"
-                    android:headerDividersEnabled="true"
-                    android:footerDividersEnabled="true"
-                    android:elevation="0dp"
-                    android:divider="@color/common_google_signin_btn_text_dark_default"
-                    android:layout_width="350dp"
-                    android:visibility="visible"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginLeft="2dp" />
+                    android:id="@+id/lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dip"
+                    android:background="@color/zauzeti"
+                    android:divider="@android:color/background_light"
+                    android:dividerHeight="8dp"></ListView>
 
                 <ListView
-
-                    android:background="@color/zauzeti"
-                    android:id="@+id/lv"
+                    android:id="@+id/ls"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_width="350dp"
-
-                    android:dividerHeight="5dp"
-                    android:headerDividersEnabled="true"
+                    android:background="@color/slobodni"
+                    android:divider="@android:color/background_light"
+                    android:dividerHeight="8dp"
                     android:footerDividersEnabled="true"
-                    android:divider="@color/common_google_signin_btn_text_dark_pressed"
-                    android:elevation="0dp"
-                    android:layout_marginLeft="14dp"
-                    android:layout_marginStart="14dp"
-                    android:layout_toRightOf="@+id/ls"
-                    android:layout_toEndOf="@+id/ls"
-                    android:layout_alignTop="@+id/ls" />
+                    android:layout_marginTop="16dp"
+                    android:layout_below="@+id/lv"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"></ListView>
 
             </RelativeLayout>
-        </HorizontalScrollView>
+        </ScrollView>
 
         <Spinner
             android:id="@+id/spinner2"

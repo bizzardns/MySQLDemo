@@ -41,8 +41,8 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         pd = new ProgressDialog(c);
-        pd.setTitle("Search");
-        pd.setMessage("Searching.... please wait");
+        pd.setTitle("Refresh");
+        pd.setMessage("Refreshing.... please wait");
         pd.show();
     }
 
@@ -67,7 +67,7 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
                 p.execute();
 
             }else {
-                lv.setVisibility(View.GONE);
+                lv.setVisibility(View.VISIBLE);
 
             }
         }else if (s == null) {

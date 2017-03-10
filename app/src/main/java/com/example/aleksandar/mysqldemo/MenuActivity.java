@@ -3,8 +3,11 @@ package com.example.aleksandar.mysqldemo;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +18,9 @@ import android.widget.EditText;
 
 public class MenuActivity extends AppCompatActivity {
 
+    public static String sharedValue = null;
+    public static String dan = null;
+    public static String mesec = null;
 
     public void checkNetworkConnection(){
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
@@ -50,10 +56,33 @@ public class MenuActivity extends AppCompatActivity {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+
+        Calendar calander = Calendar.getInstance();
+        int a = calander.get(Calendar.DAY_OF_MONTH);
+        int g = calander.get(Calendar.MONTH) + 1;
+        int n = calander.get(Calendar.YEAR);
+        String d = String.valueOf(a);
+        String m = String.valueOf(g);
+        String y = String.valueOf(n);
+        String datum = d + "." + m + "." + y + ".";
+
+        MenuActivity.sharedValue = datum;
+        MenuActivity.dan = d;
+        MenuActivity.mesec = m;
+
+
+
+
+
+
+
+
 
 
     }

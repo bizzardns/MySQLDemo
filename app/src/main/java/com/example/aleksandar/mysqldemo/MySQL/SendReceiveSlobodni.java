@@ -44,8 +44,8 @@ public class SendReceiveSlobodni extends AsyncTask<Void, Void, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         pd = new ProgressDialog(c);
-        pd.setTitle("Search");
-        pd.setMessage("Searching.... please wait");
+        pd.setTitle("Refresh");
+        pd.setMessage("Refreshing.... please wait");
         pd.show();
     }
 
@@ -69,7 +69,7 @@ public class SendReceiveSlobodni extends AsyncTask<Void, Void, String> {
                 ParserSlobodni p = new ParserSlobodni(c, s, lv);
                 p.execute();
             } else {
-                lv.setVisibility(View.GONE);
+                lv.setVisibility(View.VISIBLE);
 
                 //Toast.makeText(c, "Slobodni parser null", Toast.LENGTH_SHORT).show();
             }

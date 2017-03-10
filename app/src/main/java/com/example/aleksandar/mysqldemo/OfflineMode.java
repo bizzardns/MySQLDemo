@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -58,19 +59,19 @@ public class OfflineMode extends AppCompatActivity {
     GetGrad gradList = new GetGrad();
     GetRestoran restoranList = new GetRestoran();
     ProgressDialog progress;
-    TextView tv;
+
     String d;
-    String n;
+
     String j;
     String h;
     String l;
+    String y;
     Button sync;
     int counter;
     Spinner sItems;
     String m;
     String s;
 
-    ImageView img;
     ContactDB contactBase;
     android.widget.SearchView sv;
     ArrayAdapter<String> adapter;
@@ -84,11 +85,12 @@ public class OfflineMode extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-        setContentView(R.layout.activity_offline_mode);
+        setContentView(R.layout.offline_mode_test);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
@@ -132,24 +134,112 @@ public class OfflineMode extends AppCompatActivity {
         });
 
 
-        setTitle("Offline mode");
+        setTitle("");
+
         contactBase = new ContactDB(this, null, 1);
 
+
+        calendar = (CalendarView) findViewById(R.id.calendarOffline);
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
+        sItems = (Spinner) findViewById(R.id.spinner2);
         listView = (ListView) findViewById(R.id.lv);
         listView2 = (ListView) findViewById(R.id.ls);
-        img = (ImageView) findViewById(R.id.imageView);
-        img.setVisibility(View.VISIBLE);
-        calendar = (CalendarView) findViewById(R.id.calendarView);
-        listView.setVisibility(View.INVISIBLE);
-        listView2.setVisibility(View.INVISIBLE);
 
-        calendar.setFirstDayOfWeek(Calendar.MONDAY);
+       /* calendar.setDate(Calendar.getInstance().getTimeInMillis(), false, true);
+        Calendar calander = Calendar.getInstance();
+        int a = calander.get(Calendar.DAY_OF_MONTH);
+        int g = calander.get(Calendar.MONTH) + 1;
+        int n = calander.get(Calendar.YEAR);
+        d = String.valueOf(a);
+        m = String.valueOf(g);
+        y = String.valueOf(n);
+        String datum = d + "." + m + "." + y + ".";*/
+
+
+        String datum = MenuActivity.sharedValue;
+        d =MenuActivity.dan;
+        m =MenuActivity.mesec;
+        try {
+            calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(datum).getTime(), false, true);
+            ArrayList<String> theList = new ArrayList<>();
+            ArrayList<String> theList2 = new ArrayList<>();
+            ArrayList<String> theList3 = new ArrayList<>();
+            ArrayList<String> theList4 = new ArrayList<>();
+            ArrayList<String> theList5 = new ArrayList<>();
+            ArrayList<String> theList6 = new ArrayList<>();
+            Cursor cursor = contactBase.list_all_list();
+
+            while (cursor.moveToNext()) {
+
+                if (cursor.getString(2).equals(datum)) {
+
+                    theList.add(cursor.getString(1));
+
+                    theList4.add(cursor.getString(4));
+
+                    theList5.add(cursor.getString(5));
+
+                    theList6.add(cursor.getString(3));
+
+                    theList3.add(cursor.getString(1));
+
+                    Collections.sort(theList, new Comparator<String>() {
+                        @Override
+                        public int compare(String s1, String s2) {
+                            return s1.compareToIgnoreCase(s2);
+                        }
+                    });
+
+
+                } else if (!(cursor.getString(2).equals(datum))) {
+
+                    theList2.add(cursor.getString(1));
+                    HashSet<String> hashSet = new HashSet<String>();
+                    hashSet.addAll(theList2);
+                    theList2.clear();
+                    theList2.removeAll(theList);
+                    theList2.addAll(hashSet);
+                    theList2.removeAll(theList3);
+                    Collections.sort(theList2, new Comparator<String>() {
+                        @Override
+                        public int compare(String s1, String s2) {
+                            return s1.compareToIgnoreCase(s2);
+                        }
+                    });
+
+
+                }
+                String[] imeBenda = theList.toArray(new String[0]);
+                String[] ime = theList4.toArray(new String[0]);
+                String[] grad = theList5.toArray(new String[0]);
+                String[] restoran = theList6.toArray(new String[0]);
+                String[] imeBenda2 = theList2.toArray(new String[0]);
+
+                OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
+                listView.setAdapter(adapter1);
+                OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
+                listView2.setAdapter(adapter);
+
+            }
+
+            listView = (ListView) findViewById(R.id.lv);
+            listView2 = (ListView) findViewById(R.id.ls);
+            ListUtils.setDynamicHeight(listView2);
+            ListUtils.setDynamicHeight(listView);
+            listView.setFocusable(false);
+            listView2.setFocusable(false);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                img.setVisibility(View.GONE);
+
                 String adate = dayOfMonth + "." + (month + 1) + "." + year + ".";
-                s = String.valueOf(dayOfMonth);
+                d = String.valueOf(dayOfMonth);
                 m = String.valueOf((month + 1));
 
                 listView.setVisibility(View.VISIBLE);
@@ -159,14 +249,26 @@ public class OfflineMode extends AppCompatActivity {
                 ArrayList<String> theList = new ArrayList<>();
                 ArrayList<String> theList2 = new ArrayList<>();
                 ArrayList<String> theList3 = new ArrayList<>();
+                ArrayList<String> theList4 = new ArrayList<>();
+                ArrayList<String> theList5 = new ArrayList<>();
+                ArrayList<String> theList6 = new ArrayList<>();
+
                 Cursor cursor = contactBase.list_all_list();
 
                 while (cursor.moveToNext()) {
 
                     if (cursor.getString(2).equals(adate)) {
 
-                        theList.add(cursor.getString(1) + "\n "+ "\n " + cursor.getString(4)  + "    " + cursor.getString(5)+ "\n " + cursor.getString(3));
+                        theList.add(cursor.getString(1));
+
+                        theList4.add(cursor.getString(4));
+
+                        theList5.add(cursor.getString(5));
+
+                        theList6.add(cursor.getString(3));
+
                         theList3.add(cursor.getString(1));
+
 
                         Collections.sort(theList, new Comparator<String>() {
                             @Override
@@ -194,12 +296,20 @@ public class OfflineMode extends AppCompatActivity {
 
 
                     }
-                    adapter1 = new ArrayAdapter<String>(OfflineMode.this, android.R.layout.simple_list_item_1, theList);
+                    String[] imeBenda = theList.toArray(new String[0]);
+                    String[] ime = theList4.toArray(new String[0]);
+                    String[] grad = theList5.toArray(new String[0]);
+                    String[] restoran = theList6.toArray(new String[0]);
+                    String[] imeBenda2 = theList2.toArray(new String[0]);
+                    OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
                     listView.setAdapter(adapter1);
-                    adapter = new ArrayAdapter<String>(OfflineMode.this, android.R.layout.simple_list_item_1, theList2);
+                    OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
                     listView2.setAdapter(adapter);
 
+
                 }
+                ListUtils.setDynamicHeight(listView2);
+                ListUtils.setDynamicHeight(listView);
 
 
             }
@@ -282,6 +392,117 @@ public class OfflineMode extends AppCompatActivity {
 
         });
 
+        ArrayList<String> godine = new ArrayList<>();
+        godine.add("2017");
+        godine.add("2018");
+        godine.add("2019");
+        godine.add("2020");
+        godine.add("2021");
+        godine.add("2022");
+        godine.add("2023");
+        godine.add("2024");
+
+
+        sItems = (Spinner) findViewById(R.id.spinner2);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, godine);
+
+        // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sItems.setAdapter(adapter);
+
+        sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String kurac = sItems.getSelectedItem().toString();
+                //date = d + "." + m + "." + kurac + ".";
+                String adate = d + "." + m + "." + kurac + ".";
+
+                try {
+                    calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(adate).getTime(), false, true);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                listView.setVisibility(View.VISIBLE);
+                listView2.setVisibility(View.VISIBLE);
+
+
+                ArrayList<String> theList = new ArrayList<>();
+                ArrayList<String> theList2 = new ArrayList<>();
+                ArrayList<String> theList3 = new ArrayList<>();
+                ArrayList<String> theList4 = new ArrayList<>();
+                ArrayList<String> theList5 = new ArrayList<>();
+                ArrayList<String> theList6 = new ArrayList<>();
+
+                Cursor cursor = contactBase.list_all_list();
+
+                while (cursor.moveToNext()) {
+
+                    if (cursor.getString(2).equals(adate)) {
+
+                        theList.add(cursor.getString(1));
+
+                        theList4.add(cursor.getString(4));
+
+                        theList5.add(cursor.getString(5));
+
+                        theList6.add(cursor.getString(3));
+
+                        theList3.add(cursor.getString(1));
+
+
+                        Collections.sort(theList, new Comparator<String>() {
+                            @Override
+                            public int compare(String s1, String s2) {
+                                return s1.compareToIgnoreCase(s2);
+                            }
+                        });
+
+
+                    } else if (!(cursor.getString(2).equals(adate))) {
+
+                        theList2.add(cursor.getString(1));
+                        HashSet<String> hashSet = new HashSet<String>();
+                        hashSet.addAll(theList2);
+                        theList2.clear();
+                        theList2.removeAll(theList);
+                        theList2.addAll(hashSet);
+                        theList2.removeAll(theList3);
+                        Collections.sort(theList2, new Comparator<String>() {
+                            @Override
+                            public int compare(String s1, String s2) {
+                                return s1.compareToIgnoreCase(s2);
+                            }
+                        });
+
+
+                    }
+                    String[] imeBenda = theList.toArray(new String[0]);
+                    String[] ime = theList4.toArray(new String[0]);
+                    String[] grad = theList5.toArray(new String[0]);
+                    String[] restoran = theList6.toArray(new String[0]);
+                    String[] imeBenda2 = theList2.toArray(new String[0]);
+                    OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
+                    listView.setAdapter(adapter1);
+
+                    OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
+                    listView2.setAdapter(adapter);
+
+
+                }
+                ListUtils.setDynamicHeight(listView2);
+                ListUtils.setDynamicHeight(listView);
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+
+            }
+        });
+
+
     }
 
 
@@ -329,13 +550,23 @@ public class OfflineMode extends AppCompatActivity {
             ArrayList<String> theList = new ArrayList<>();
             ArrayList<String> theList2 = new ArrayList<>();
             ArrayList<String> theList3 = new ArrayList<>();
+            ArrayList<String> theList4 = new ArrayList<>();
+            ArrayList<String> theList5 = new ArrayList<>();
+            ArrayList<String> theList6 = new ArrayList<>();
             Cursor cursor = contactBase.list_all_list();
 
             while (cursor.moveToNext()) {
 
                 if (cursor.getString(2).equals(kurcina)) {
 
-                    theList.add(cursor.getString(1) + "\n "+ "\n " + cursor.getString(4)  + "    " + cursor.getString(5)+ "\n " + cursor.getString(3));
+                    theList.add(cursor.getString(1));
+
+                    theList4.add(cursor.getString(4));
+
+                    theList5.add(cursor.getString(5));
+
+                    theList6.add(cursor.getString(3));
+
                     theList3.add(cursor.getString(1));
 
                     Collections.sort(theList, new Comparator<String>() {
@@ -364,25 +595,52 @@ public class OfflineMode extends AppCompatActivity {
 
 
                 }
-                adapter1 = new ArrayAdapter<String>(OfflineMode.this, android.R.layout.simple_list_item_1, theList);
+                String[] imeBenda = theList.toArray(new String[0]);
+                String[] ime = theList4.toArray(new String[0]);
+                String[] grad = theList5.toArray(new String[0]);
+                String[] restoran = theList6.toArray(new String[0]);
+                String[] imeBenda2 = theList2.toArray(new String[0]);
+                OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
                 listView.setAdapter(adapter1);
-                adapter = new ArrayAdapter<String>(OfflineMode.this, android.R.layout.simple_list_item_1, theList2);
+                OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
                 listView2.setAdapter(adapter);
 
             }
 
-
+            ListUtils.setDynamicHeight(listView2);
+            ListUtils.setDynamicHeight(listView);
             //sync.performClick();
             // Toast.makeText(getApplicationContext(),"godina", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (id == R.id.spinner) {
-            //sync.performClick();
+            sItems.performClick();
             // Toast.makeText(getApplicationContext(),"godina", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static class ListUtils {
+        public static void setDynamicHeight(ListView mListView) {
+            ListAdapter mListAdapter = mListView.getAdapter();
+            if (mListAdapter == null) {
+                // when adapter is null
+                return;
+            }
+            int height = 0;
+            int desiredWidth = View.MeasureSpec.makeMeasureSpec(mListView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+            for (int i = 0; i < mListAdapter.getCount(); i++) {
+                View listItem = mListAdapter.getView(i, null, mListView);
+                listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+                height += listItem.getMeasuredHeight();
+            }
+            ViewGroup.LayoutParams params = mListView.getLayoutParams();
+            params.height = height + (mListView.getDividerHeight() * (mListAdapter.getCount() - 1));
+            mListView.setLayoutParams(params);
+            mListView.requestLayout();
+        }
     }
 
 
