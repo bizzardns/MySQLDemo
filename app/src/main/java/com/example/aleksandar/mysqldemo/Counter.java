@@ -1,21 +1,35 @@
 package com.example.aleksandar.mysqldemo;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.Spinner;
+
+import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
+import com.example.aleksandar.mysqldemo.MySQL.SendReceiveSlobodni;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
 
 public class Counter extends AppCompatActivity {
 
+
+    Spinner sItems;
+    String godina;
     ReservationList list = new ReservationList();
     BrojacBendova brojacBendova = new BrojacBendova();
     BrojacDatuma brojacDatuma = new BrojacDatuma();
@@ -23,21 +37,20 @@ public class Counter extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         setContentView(R.layout.activity_counter);
-
-
-        mDrawerLayout= (DrawerLayout) findViewById(R.id.drawerLayout);
-        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mNavigationView = (NavigationView) findViewById(R.id.nav_item);
         mNavigationView.setItemIconTintList(null);
-        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
@@ -70,10 +83,7 @@ public class Counter extends AppCompatActivity {
 
                 return true;
             }
-        } );
-
-
-
+        });
 
 
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
@@ -81,6 +91,39 @@ public class Counter extends AppCompatActivity {
         list.getData();
         brojacBendova.getData();
         brojacDatuma.getData();
+
+        ArrayList<String> theList = new ArrayList<>();
+        theList.add("2017");
+        theList.add("2018");
+        theList.add("2019");
+        theList.add("2020");
+        theList.add("2021");
+        theList.add("2022");
+        theList.add("2023");
+        theList.add("2024");
+
+
+        sItems = (Spinner) findViewById(R.id.spinner2);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, theList);
+
+        // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sItems.setAdapter(adapter);
+
+        sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                godina = sItems.getSelectedItem().toString();
+
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+
+            }
+        });
 
 
         CustomList ada = new CustomList(Counter.this, brojacBendova.data, brojacDatuma.data);
@@ -93,31 +136,55 @@ public class Counter extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                String val =(String) parent.getItemAtPosition(position);
+                String val = (String) parent.getItemAtPosition(position);
 
 
                 //ovde da ubacim logiku
 
-               // Toast.makeText(getApplicationContext(), val,
-               //    Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getApplicationContext(), val,
+                //    Toast.LENGTH_SHORT).show();
 
 
             }
         });
 
-        setTitle("Ukupan broj svadbi: "+String.valueOf(a));
 
     }
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_counter, menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
 
             return true;
 
         }
+        int id = item.getItemId();
+
+
+
+        if (id == R.id.spinner) {
+            sItems.performClick();
+            // Toast.makeText(getApplicationContext(),"godina", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+
+
+
+
+
+
+
+
+
+
 
         return super.onOptionsItemSelected(item);
     }

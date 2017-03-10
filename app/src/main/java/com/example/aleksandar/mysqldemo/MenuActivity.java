@@ -101,7 +101,7 @@ public class MenuActivity extends AppCompatActivity {
     public void btn2(View v)
     {  if(isNetworkConnectionAvailable()== true){
 
-        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
+       v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
         Intent intent = new Intent(getApplicationContext(), Counter.class);
         startActivity(intent);
 
