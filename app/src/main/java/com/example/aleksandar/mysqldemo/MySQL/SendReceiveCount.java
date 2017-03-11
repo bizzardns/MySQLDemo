@@ -17,10 +17,10 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 
 /**
- * Created by Aleksandar on 2/4/2017.
+ * Created by Vlatko Popovic on 11-Mar-17.
  */
 
-public class SendReceive extends AsyncTask<Void, Void, String> {
+public class SendReceiveCount extends AsyncTask<Void, Void, String> {
 
     Context c;
     String urlAdress;
@@ -29,7 +29,7 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
     ProgressDialog pd;
 
 
-    public SendReceive(String urlAdress, Context c, String query, ListView lv) {
+    public SendReceiveCount(String urlAdress, Context c, String query, ListView lv) {
         this.urlAdress = urlAdress;
         this.c = c;
         this.query = query;
@@ -58,12 +58,12 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
         super.onPostExecute(s);
         pd.dismiss();
 
-          lv.setAdapter(null);
+        lv.setAdapter(null);
 
 
         if (s != null){
             if (!s.contains("null")){
-                Parser p =new Parser(c,s,lv);
+                ParserCount p =new ParserCount(c,s,lv);
                 p.execute();
 
             }else {
@@ -84,8 +84,8 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
         }try{
             OutputStream os = con.getOutputStream();
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-            bw.write(new DataPackager(query).packageData());
-             bw.flush();
+            bw.write(new DataPackagerCount(query).packageData());
+            bw.flush();
             //RELEASE RES
 
             bw.close();
@@ -96,19 +96,19 @@ public class SendReceive extends AsyncTask<Void, Void, String> {
 
             //DECODE
             if (responseCode==con.HTTP_OK){
-                    //RETURN SOME DATA
-                    InputStream is = con.getInputStream();
+                //RETURN SOME DATA
+                InputStream is = con.getInputStream();
 
                 //READ IT
-                    BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                    String line;
-                    StringBuffer response = new StringBuffer();
-                    if (br != null){
-                        while((line = br.readLine()) != null){
-                            response.append(line+"\n");
-                        }
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String line;
+                StringBuffer response = new StringBuffer();
+                if (br != null){
+                    while((line = br.readLine()) != null){
+                        response.append(line+"\n");
+                    }
 
-                    }else {
+                }else {
                     return null;
                 }
                 return response.toString();

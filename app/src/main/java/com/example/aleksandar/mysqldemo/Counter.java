@@ -1,8 +1,12 @@
 package com.example.aleksandar.mysqldemo;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.icu.util.Calendar;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,9 +19,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 
 import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
+import com.example.aleksandar.mysqldemo.MySQL.SendReceiveCount;
 import com.example.aleksandar.mysqldemo.MySQL.SendReceiveSlobodni;
 
 import java.text.ParseException;
@@ -30,6 +36,7 @@ public class Counter extends AppCompatActivity {
 
     Spinner sItems;
     String godina;
+    String y;
     ReservationList list = new ReservationList();
     BrojacBendova brojacBendova = new BrojacBendova();
     BrojacDatuma brojacDatuma = new BrojacDatuma();
@@ -37,7 +44,9 @@ public class Counter extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
+    String adress = "http://macakmisamuzika.com/android/counter.php";
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,16 +72,53 @@ public class Counter extends AppCompatActivity {
                     Intent myIntent = new Intent(Counter.this, Main2Activity.class);
                     Counter.this.startActivity(myIntent);
                 } else if (id == R.id.nav3) {
-                    Intent myIntent = new Intent(Counter.this, Counter.class);
-                    Counter.this.startActivity(myIntent);
+                    final ProgressDialog progressDialog = new ProgressDialog(Counter.this);
+                    progressDialog.setMessage("Calculating... Please Wait");
+                    progressDialog.show();
+
+                    new Thread(){
+                        @Override
+                        public void run() {
+                            super.run();
+                            try {
+                                Thread.sleep(3000);
+                                Intent intent = new Intent(getApplicationContext(), Counter.class);
+                                startActivity(intent);
+
+                                if (progressDialog.isShowing())
+                                    progressDialog.dismiss();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }.start();
 
                 } else if (id == R.id.nav4) {
                     Intent myIntent = new Intent(Counter.this, SmsActivity.class);
                     Counter.this.startActivity(myIntent);
 
                 } else if (id == R.id.nav5) {
-                    Intent myIntent = new Intent(Counter.this, OfflineMode.class);
-                    Counter.this.startActivity(myIntent);
+                    final ProgressDialog progressDialog = new ProgressDialog(Counter.this);
+                    progressDialog.setMessage("Calculating... Please Wait");
+                    progressDialog.show();
+
+                    new Thread(){
+                        @Override
+                        public void run() {
+                            super.run();
+                            try {
+                                Thread.sleep(2000);
+                                Intent intent = new Intent(getApplicationContext(), OfflineMode.class);
+                                startActivity(intent);
+
+                                if (progressDialog.isShowing())
+
+                                    progressDialog.dismiss();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }.start();;
 
                 } else if (id == R.id.nav6) {
                     Intent myIntent = new Intent(Counter.this, Register.class);
@@ -80,17 +126,20 @@ public class Counter extends AppCompatActivity {
 
                 }
 
-
                 return true;
             }
         });
 
+        Calendar calander = Calendar.getInstance();
+        int n = calander.get(Calendar.YEAR);
 
-        StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
-        bendList.getData();
-        list.getData();
-        brojacBendova.getData();
-        brojacDatuma.getData();
+      y = String.valueOf(n);
+        /*  list.getData();
+        int a = list.data.length;*/
+
+        setTitle(y+".");
+
+
 
         ArrayList<String> theList = new ArrayList<>();
         theList.add("2017");
@@ -113,8 +162,10 @@ public class Counter extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 godina = sItems.getSelectedItem().toString();
-
-
+                 setTitle(godina+".");
+                ListView lv = (ListView) findViewById(R.id.lv);
+                SendReceiveCount sendReceiveCount = new SendReceiveCount(adress,Counter.this,"%"+godina+"%",lv);
+                sendReceiveCount.execute();
 
             }
 
@@ -126,12 +177,39 @@ public class Counter extends AppCompatActivity {
         });
 
 
-        CustomList ada = new CustomList(Counter.this, brojacBendova.data, brojacDatuma.data);
-        int a = list.data.length;
-        ListView list = (ListView) findViewById(R.id.lv);
-        list.setAdapter(ada);
+        StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
+        ListView lv = (ListView) findViewById(R.id.lv);
+        SendReceiveCount sendReceiveCount = new SendReceiveCount(adress,this,"%"+y+"%",lv);
+        sendReceiveCount.execute();
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //bendList.getData();
+       //list.getData();
+        //brojacBendova.getData();
+        //brojacDatuma.getData();
+
+      /*  CustomList ada = new CustomList(Counter.this, brojacDatuma.data, brojacDatuma.data);
+
+        ListView list = (ListView) findViewById(R.id.lv);
+        list.setAdapter(ada);*/
+
+      /*  list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -146,7 +224,7 @@ public class Counter extends AppCompatActivity {
 
 
             }
-        });
+        });*/
 
 
     }

@@ -33,6 +33,7 @@ import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,7 +72,7 @@ public class OfflineMode extends AppCompatActivity {
     Spinner sItems;
     String m;
     String s;
-
+   ScrollView sw;
     ContactDB contactBase;
     android.widget.SearchView sv;
     ArrayAdapter<String> adapter;
@@ -129,12 +130,14 @@ public class OfflineMode extends AppCompatActivity {
                 }
 
 
+
                 return true;
             }
         });
 
 
         setTitle("");
+        sw = (ScrollView)findViewById(R.id.sw);
 
         contactBase = new ContactDB(this, null, 1);
 
@@ -532,6 +535,7 @@ public class OfflineMode extends AppCompatActivity {
             return true;
         }
         if (id == R.id.today) {
+            sw.smoothScrollTo(0,0);
             calendar.setDate(Calendar.getInstance().getTimeInMillis(), false, true);
             Calendar calander = Calendar.getInstance();
             int a = calander.get(Calendar.DAY_OF_MONTH);
@@ -614,6 +618,8 @@ public class OfflineMode extends AppCompatActivity {
             return true;
         }
         if (id == R.id.spinner) {
+            sw.smoothScrollTo(0,0);
+
             sItems.performClick();
             // Toast.makeText(getApplicationContext(),"godina", Toast.LENGTH_SHORT).show();
             return true;

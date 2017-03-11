@@ -69,7 +69,7 @@ public class SendReceiveSlobodni extends AsyncTask<Void, Void, String> {
                 ParserSlobodni p = new ParserSlobodni(c, s, lv);
                 p.execute();
             } else {
-                lv.setVisibility(View.VISIBLE);
+                lv.setVisibility(View.GONE);
 
                 //Toast.makeText(c, "Slobodni parser null", Toast.LENGTH_SHORT).show();
             }

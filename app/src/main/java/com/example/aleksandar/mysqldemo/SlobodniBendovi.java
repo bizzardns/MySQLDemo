@@ -34,6 +34,7 @@ import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,6 +68,7 @@ public class SlobodniBendovi extends AppCompatActivity {
     String izabraniDatum;
     String long_click;
     String kurac;
+    ScrollView sw;
     Spinner sItems;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -86,7 +88,6 @@ public class SlobodniBendovi extends AppCompatActivity {
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_item);
         mNavigationView.setItemIconTintList(null);
@@ -122,13 +123,15 @@ public class SlobodniBendovi extends AppCompatActivity {
                 }
 
 
+
                 return true;
+
             }
         });
 
 
         setTitle("");
-
+        sw = (ScrollView)findViewById(R.id.sw);
         Calendar calander = Calendar.getInstance();
         int a = calander.get(Calendar.DAY_OF_MONTH);
         int s = calander.get(Calendar.MONTH) + 1;
@@ -259,6 +262,7 @@ public class SlobodniBendovi extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.today) {
+            sw.smoothScrollTo(0,0);
             //Toast.makeText(getApplicationContext(),date, Toast.LENGTH_SHORT).show();
             calendar.setDate(Calendar.getInstance().getTimeInMillis(), false, true);
             Calendar calander = Calendar.getInstance();
@@ -283,6 +287,7 @@ public class SlobodniBendovi extends AppCompatActivity {
             return true;
         }
         if (id == R.id.spinner) {
+            sw.smoothScrollTo(0,0);
             sItems.performClick();
             // Toast.makeText(getApplicationContext(),"godina", Toast.LENGTH_SHORT).show();
             return true;

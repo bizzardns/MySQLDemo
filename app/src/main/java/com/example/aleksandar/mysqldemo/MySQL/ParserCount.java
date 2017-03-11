@@ -2,11 +2,12 @@ package com.example.aleksandar.mysqldemo.MySQL;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
+import com.example.aleksandar.mysqldemo.Counter;
+import com.example.aleksandar.mysqldemo.CustomList;
+import com.example.aleksandar.mysqldemo.CustomListCount;
 import com.example.aleksandar.mysqldemo.CustomListEvent;
 import com.example.aleksandar.mysqldemo.Event.EventData;
 import com.example.aleksandar.mysqldemo.SlobodniBendovi;
@@ -18,17 +19,20 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by Aleksandar on 2/4/2017.
+ * Created by Vlatko Popovic on 11-Mar-17.
  */
 
-public class Parser extends AsyncTask<Void, Void, Integer> {
+
+public class ParserCount extends AsyncTask<Void, Void, Integer> {
 
     Context c;
     String data;
     ListView lv;
+
     ArrayList<EventData> names = new ArrayList<>();
 
-    public Parser(Context c, String data, ListView lv) {
+
+    public ParserCount(Context c, String data, ListView lv) {
         this.c = c;
         this.data = data;
         this.lv = lv;
@@ -49,7 +53,7 @@ public class Parser extends AsyncTask<Void, Void, Integer> {
         super.onPostExecute(integer);
         if (integer == 1) {
             //BIND TO LIST VIEW
-            CustomListEvent adapter = new CustomListEvent(c, names);
+            CustomListCount adapter = new CustomListCount(c,names);
             this.lv.setAdapter(adapter);
 
             SlobodniBendovi.ListUtils.setDynamicHeight(lv);
@@ -67,17 +71,14 @@ public class Parser extends AsyncTask<Void, Void, Integer> {
             for (int i = 0; i < ja.length(); i++) {
                 jo = ja.getJSONObject(i);
                 String name = jo.getString("naziv_benda");
-                String ime = jo.getString("ime");
-                String grad = jo.getString("grad");
-                String lokal = jo.getString("lokal");
+                String count = jo.getString("count");
+
 
 
                 e = new EventData();
                 e.setNaziv_benda(name);
+                e.setCount(count);
 
-                e.setIme(ime);
-                e.setGrad(grad);
-                e.setLokal(lokal);
                 names.add(e);
             }
             return 1;

@@ -1,5 +1,6 @@
 package com.example.aleksandar.mysqldemo;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,12 +16,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MenuActivity extends AppCompatActivity {
 
     public static String sharedValue = null;
     public static String dan = null;
     public static String mesec = null;
+    ProgressDialog progress;
 
     public void checkNetworkConnection(){
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
@@ -77,33 +80,63 @@ public class MenuActivity extends AppCompatActivity {
         MenuActivity.mesec = m;
 
 
-
-
-
-
-
-
-
-
     }
     public void btn(View v)
-    {   if(isNetworkConnectionAvailable()== true){
+    {
+        Toast.makeText(getApplicationContext(), "Online kalendar",
+                Toast.LENGTH_SHORT).show();
+
+        if(isNetworkConnectionAvailable()== true){
         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
         Intent intent = new Intent(getApplicationContext(), SlobodniBendovi.class);
         startActivity(intent);
     }}
     public void btn5(View v)
-    {  isNetworkConnectionAvailable();
-        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
-        Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
-        startActivity(intent);
+    {v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
+
+
+        final ProgressDialog progressDialog = new ProgressDialog(MenuActivity.this);
+        progressDialog.setMessage("Please Wait...");
+        progressDialog.show();
+
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    Thread.sleep(1000);
+                    Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                    startActivity(intent);
+
+                    if (progressDialog.isShowing())
+                        progressDialog.dismiss();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
+        Toast.makeText(getApplicationContext(), "Upis rezervacija",
+                Toast.LENGTH_SHORT).show();
+        if(isNetworkConnectionAvailable()== true){
+
+
+
+        }
     }
     public void btn2(View v)
-    {  if(isNetworkConnectionAvailable()== true){
-
-       v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
+    {  v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
+        Toast.makeText(getApplicationContext(), "Statistika",
+                Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), Counter.class);
         startActivity(intent);
+
+
+
+
+
+
+       if(isNetworkConnectionAvailable()== true){
 
 
     }
@@ -111,22 +144,79 @@ public class MenuActivity extends AppCompatActivity {
     }
     public void btn1(View v)
 
-    {   if(isNetworkConnectionAvailable()== true){
+    {
+        Toast.makeText(getApplicationContext(), "Obaveštenja",
+                Toast.LENGTH_SHORT).show();
+        if(isNetworkConnectionAvailable()== true){
         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
         Intent intent = new Intent(getApplicationContext(), SmsActivity.class);
         startActivity(intent);
     }}
     public void btn3(View v)
-    {   if(isNetworkConnectionAvailable()== true){
-        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
-        Intent intent = new Intent(getApplicationContext(), OfflineMode.class);
-        startActivity(intent);
-    }}
-    public void btn4(View v)
-    {   if(isNetworkConnectionAvailable()== true){
-        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
-        Intent intent = new Intent(getApplicationContext(), Register.class);
-        startActivity(intent);
-    }}
+    {
 
-}
+        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
+
+
+        final ProgressDialog progressDialog = new ProgressDialog(MenuActivity.this);
+        progressDialog.setMessage("Getting Data... Please Wait");
+        progressDialog.show();
+
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    Thread.sleep(2000);
+
+                    Intent intent = new Intent(getApplicationContext(), OfflineMode.class);
+                    startActivity(intent);
+                    if (progressDialog.isShowing())
+                        progressDialog.dismiss();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
+        Toast.makeText(getApplicationContext(), "Offline Calendar",
+                Toast.LENGTH_SHORT).show();
+        if(isNetworkConnectionAvailable()== true){
+
+
+
+        }
+    }
+    public void btn4(View v)
+    { v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
+
+
+        final ProgressDialog progressDialog = new ProgressDialog(MenuActivity.this);
+        progressDialog.setMessage("Please Wait...");
+        progressDialog.show();
+
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    Thread.sleep(1000);
+
+                    Intent intent = new Intent(getApplicationContext(), Register.class);
+                    startActivity(intent);
+                    if (progressDialog.isShowing())
+                        progressDialog.dismiss();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
+        Toast.makeText(getApplicationContext(), "Admin panel",
+                Toast.LENGTH_SHORT).show();
+        if(isNetworkConnectionAvailable()== true){
+
+
+
+        }
+}}

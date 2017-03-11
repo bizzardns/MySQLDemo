@@ -127,6 +127,7 @@ public class Register extends AppCompatActivity {
 
                 }
 
+                mDrawerLayout.closeDrawers();
 
                 return true;
             }
