@@ -15,46 +15,36 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="24dp"
+            android:layout_marginTop="20dp"
             android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
-            android:paddingRight="?android:attr/listPreferredItemPaddingRight">
+            android:paddingRight="?android:attr/listPreferredItemPaddingRight"
+            android:paddingTop="24dp">
 
             <EditText
+                android:id="@+id/naziv_benda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/naziv_benda"
-                android:hint="Unesite naziv benda"/>
+                android:hint="Unesite naziv benda" />
         </android.support.design.widget.TextInputLayout>
 
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayout7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="126dp"
+
             android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
             android:paddingRight="?android:attr/listPreferredItemPaddingRight"
-            android:layout_marginTop="106dp"
-
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dodaj"
-                android:id="@+id/btnAddBend"
-                android:onClick="OnAdd"
-                android:layout_gravity="right"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_weight="1" />
+            android:paddingTop="24dp">
 
             <EditText
+                android:id="@+id/broj_telefona"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/broj_telefona"
-                android:hint="Unesite broj telefona"/>
+                android:hint="Unesite broj telefona" />
         </android.support.design.widget.TextInputLayout>
 
         <Spinner
@@ -65,25 +55,39 @@
             android:id="@+id/spinnerBand"
             android:spinnerMode="dialog"
             android:theme="@android:style/Widget.DropDownItem.Spinner"
-            android:layout_marginBottom="7dp"
-            android:layout_alignBottom="@+id/btnDeleteBand"
+            android:layout_marginBottom="44dp"
+            android:layout_above="@+id/btnDeleteBand"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/btnDeleteBand"
-            android:layout_toStartOf="@+id/btnDeleteBand" />
+            android:layout_alignParentStart="true" />
 
         <Button
-            android:text="Obrisi"
+            android:id="@+id/btnDeleteBand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="35dp"
-            android:id="@+id/btnDeleteBand"
+            android:layout_marginBottom="27dp"
+            android:background="@color/red"
             android:onClick="OnDeleteBand"
+            android:text="Obrisi"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="13dp"
-            android:layout_marginEnd="13dp" />
+            android:layout_alignLeft="@+id/btnAddBend"
+            android:layout_alignStart="@+id/btnAddBend" />
+
+        <Button
+            android:id="@+id/btnAddBend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textInputLayout7"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="right"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@color/green"
+            android:onClick="OnAdd"
+            android:text="Dodaj"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>

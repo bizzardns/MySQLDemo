@@ -23,7 +23,6 @@ public class MenuActivity extends AppCompatActivity {
     public static String sharedValue = null;
     public static String dan = null;
     public static String mesec = null;
-    ProgressDialog progress;
 
     public void checkNetworkConnection(){
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
@@ -57,8 +56,6 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +76,6 @@ public class MenuActivity extends AppCompatActivity {
         MenuActivity.dan = d;
         MenuActivity.mesec = m;
 
-
     }
     public void btn(View v)
     {
@@ -93,7 +89,7 @@ public class MenuActivity extends AppCompatActivity {
     }}
     public void btn5(View v)
     {v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
-
+        if(isNetworkConnectionAvailable()== true){
 
         final ProgressDialog progressDialog = new ProgressDialog(MenuActivity.this);
         progressDialog.setMessage("Please Wait...");
@@ -118,7 +114,6 @@ public class MenuActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(), "Upis rezervacija",
                 Toast.LENGTH_SHORT).show();
-        if(isNetworkConnectionAvailable()== true){
 
 
 
@@ -128,17 +123,12 @@ public class MenuActivity extends AppCompatActivity {
     {  v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
         Toast.makeText(getApplicationContext(), "Statistika",
                 Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(), Counter.class);
-        startActivity(intent);
-
-
-
-
 
 
        if(isNetworkConnectionAvailable()== true){
 
-
+           Intent intent = new Intent(getApplicationContext(), Counter.class);
+           startActivity(intent);
     }
 
     }
@@ -147,11 +137,11 @@ public class MenuActivity extends AppCompatActivity {
     {
         Toast.makeText(getApplicationContext(), "Obaveštenja",
                 Toast.LENGTH_SHORT).show();
-        if(isNetworkConnectionAvailable()== true){
+
         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
         Intent intent = new Intent(getApplicationContext(), SmsActivity.class);
         startActivity(intent);
-    }}
+    }
     public void btn3(View v)
     {
 
@@ -181,14 +171,11 @@ public class MenuActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(), "Offline Calendar",
                 Toast.LENGTH_SHORT).show();
-        if(isNetworkConnectionAvailable()== true){
 
-
-
-        }
     }
     public void btn4(View v)
-    { v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
+    {  if(isNetworkConnectionAvailable()== true){
+        v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
 
 
         final ProgressDialog progressDialog = new ProgressDialog(MenuActivity.this);
@@ -214,9 +201,6 @@ public class MenuActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(), "Admin panel",
                 Toast.LENGTH_SHORT).show();
-        if(isNetworkConnectionAvailable()== true){
-
-
 
         }
 }}

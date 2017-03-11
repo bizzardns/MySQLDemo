@@ -67,7 +67,7 @@ public class SendReceiveCount extends AsyncTask<Void, Void, String> {
                 p.execute();
 
             }else {
-                lv.setVisibility(View.GONE);
+                //lv.setVisibility(View.GONE);
 
             }
         }else if (s == null) {

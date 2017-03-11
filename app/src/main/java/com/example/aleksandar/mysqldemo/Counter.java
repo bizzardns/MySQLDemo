@@ -72,53 +72,16 @@ public class Counter extends AppCompatActivity {
                     Intent myIntent = new Intent(Counter.this, Main2Activity.class);
                     Counter.this.startActivity(myIntent);
                 } else if (id == R.id.nav3) {
-                    final ProgressDialog progressDialog = new ProgressDialog(Counter.this);
-                    progressDialog.setMessage("Calculating... Please Wait");
-                    progressDialog.show();
-
-                    new Thread(){
-                        @Override
-                        public void run() {
-                            super.run();
-                            try {
-                                Thread.sleep(3000);
-                                Intent intent = new Intent(getApplicationContext(), Counter.class);
-                                startActivity(intent);
-
-                                if (progressDialog.isShowing())
-                                    progressDialog.dismiss();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }.start();
+                    Intent myIntent = new Intent(Counter.this, Counter.class);
+                    Counter.this.startActivity(myIntent);
 
                 } else if (id == R.id.nav4) {
                     Intent myIntent = new Intent(Counter.this, SmsActivity.class);
                     Counter.this.startActivity(myIntent);
 
                 } else if (id == R.id.nav5) {
-                    final ProgressDialog progressDialog = new ProgressDialog(Counter.this);
-                    progressDialog.setMessage("Calculating... Please Wait");
-                    progressDialog.show();
-
-                    new Thread(){
-                        @Override
-                        public void run() {
-                            super.run();
-                            try {
-                                Thread.sleep(2000);
-                                Intent intent = new Intent(getApplicationContext(), OfflineMode.class);
-                                startActivity(intent);
-
-                                if (progressDialog.isShowing())
-
-                                    progressDialog.dismiss();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }.start();;
+                    Intent myIntent = new Intent(Counter.this, OfflineMode.class);
+                    Counter.this.startActivity(myIntent);
 
                 } else if (id == R.id.nav6) {
                     Intent myIntent = new Intent(Counter.this, Register.class);
@@ -161,10 +124,10 @@ public class Counter extends AppCompatActivity {
         sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                godina = sItems.getSelectedItem().toString();
-                 setTitle(godina+".");
+                y = sItems.getSelectedItem().toString();
+                 setTitle(y+".");
                 ListView lv = (ListView) findViewById(R.id.lv);
-                SendReceiveCount sendReceiveCount = new SendReceiveCount(adress,Counter.this,"%"+godina+"%",lv);
+                SendReceiveCount sendReceiveCount = new SendReceiveCount(adress,Counter.this,"%"+y+"%",lv);
                 sendReceiveCount.execute();
 
             }
