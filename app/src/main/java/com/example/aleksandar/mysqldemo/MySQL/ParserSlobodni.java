@@ -49,11 +49,8 @@ public class ParserSlobodni extends AsyncTask<Void, Void, Integer> {
         super.onPostExecute(integer);
         if (integer == 1) {
             //BIND TO LIST VIEW
-
-
             CustomListSlobodni adapter = new CustomListSlobodni(c, names);
             ls.setAdapter(adapter);
-
             SlobodniBendovi.ListUtils.setDynamicHeight(ls);
 
         } else {
@@ -74,11 +71,8 @@ public class ParserSlobodni extends AsyncTask<Void, Void, Integer> {
                 e = new EventData();
                 e.setNaziv_benda(name);
                 names.add(e);
-
             }
             return 1;
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
