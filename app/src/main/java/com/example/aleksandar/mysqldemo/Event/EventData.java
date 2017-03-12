@@ -13,7 +13,7 @@ public class EventData {
     String lokal;
     String naziv_benda;
     String datum;
-
+    String count;
     public String getCount() {
         return count;
     }
@@ -22,7 +22,7 @@ public class EventData {
         this.count = count;
     }
 
-    String count;
+
 
     public String getDatum() {
         return datum;

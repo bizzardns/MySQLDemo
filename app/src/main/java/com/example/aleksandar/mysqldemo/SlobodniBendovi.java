@@ -1,33 +1,20 @@
 package com.example.aleksandar.mysqldemo;
 
-import android.app.ActionBar;
-import android.app.Fragment;
-import android.content.DialogInterface;
 import android.content.Intent;
-
-import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.annotation.StringDef;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
@@ -36,16 +23,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-
 
 import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
 import com.example.aleksandar.mysqldemo.MySQL.SendReceiveSlobodni;
-import com.example.aleksandar.mysqldemo.MySQL.SendRecieveEvent;
-import com.example.aleksandar.mysqldemo.SQLiteData.GetGrad;
-import com.example.aleksandar.mysqldemo.SQLiteData.GetIme;
-import com.example.aleksandar.mysqldemo.SQLiteData.GetRestoran;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -75,7 +55,7 @@ public class SlobodniBendovi extends AppCompatActivity {
     private NavigationView mNavigationView;
     String urlAdress = "http://macakmisamuzika.com/android/freebands.php";
     String urlAdress_reserved = "http://macakmisamuzika.com/android/reservedOnDate.php";
-    String urlEventData = "http://macakmisamuzika.com/android/eventData.php";
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override

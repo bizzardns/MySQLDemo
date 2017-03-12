@@ -58,7 +58,6 @@ public class Main2Activity extends AppCompatActivity {
     Spinner bendovi;
 
 
-
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -69,20 +68,20 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.slide_in,R.anim.slide_out);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         setContentView(R.layout.activity_main2);
 
         /*Intent intent = getIntent();
         bend = intent.getStringExtra("key");*/
 
-        mDrawerLayout= (DrawerLayout) findViewById(R.id.drawerLayout);
-        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mNavigationView = (NavigationView) findViewById(R.id.nav_item);
         mNavigationView.setItemIconTintList(null);
-        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
@@ -115,17 +114,14 @@ public class Main2Activity extends AppCompatActivity {
 
                 return true;
             }
-        } );
-
-
-
+        });
 
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        ime = (EditText)findViewById(R.id.editIme);
-       mesto = (EditText)findViewById(R.id.editMesto);
-       restoran = (EditText)findViewById(R.id.editRestoran);
+        ime = (EditText) findViewById(R.id.editIme);
+        mesto = (EditText) findViewById(R.id.editMesto);
+        restoran = (EditText) findViewById(R.id.editRestoran);
 
         //spinner = (Spinner) findViewById(R.id.spinner2);
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
@@ -136,7 +132,7 @@ public class Main2Activity extends AppCompatActivity {
         setTitle("Rezervisi");
         Calendar calander2 = Calendar.getInstance();
         int a = calander2.get(Calendar.DAY_OF_MONTH);
-        int s= calander2.get(Calendar.MONTH) + 1;
+        int s = calander2.get(Calendar.MONTH) + 1;
         int n = calander2.get(Calendar.YEAR);
         d = String.valueOf(a);
         m = String.valueOf(s);
@@ -179,7 +175,6 @@ public class Main2Activity extends AppCompatActivity {
                 });*/
 
 
-
         calendar_unos = (CalendarView) findViewById(R.id.calendarView2);
         calendar_unos.setFirstDayOfWeek(Calendar.MONDAY);
         calendar_unos.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -188,8 +183,7 @@ public class Main2Activity extends AppCompatActivity {
                 izabraniDatum = dayOfMonth + "." + (month + 1) + "." + year + ".";
 
                 d = String.valueOf(dayOfMonth);
-                m= String.valueOf((month + 1));
-
+                m = String.valueOf((month + 1));
 
 
                 //OVDE SE BIRA DATUM POMOCU KOJEG SE DOBAVLJAJU IZ BAZE SLOBODNI BENDOVI!
@@ -200,9 +194,6 @@ public class Main2Activity extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-
-
-
 
 
         ArrayList<String> theList = new ArrayList<>();
@@ -217,7 +208,7 @@ public class Main2Activity extends AppCompatActivity {
 
 
         cItems = (Spinner) findViewById(R.id.spinner2);
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this,R.layout.spinner_item,theList);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, R.layout.spinner_item, theList);
 
         // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cItems.setAdapter(adapter1);
@@ -225,11 +216,11 @@ public class Main2Activity extends AppCompatActivity {
         cItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-             String adate = cItems.getSelectedItem().toString();
+                String adate = cItems.getSelectedItem().toString();
 
-                izabraniDatum = d+"."+ m +"."+ adate + ".";
+                izabraniDatum = d + "." + m + "." + adate + ".";
 
-              //  Toast.makeText(getApplicationContext(),izabraniDatum, Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(getApplicationContext(),izabraniDatum, Toast.LENGTH_SHORT).show();
 
                 try {
                     calendar_unos.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(izabraniDatum).getTime(), false, true);
@@ -238,22 +229,21 @@ public class Main2Activity extends AppCompatActivity {
                 }
 
 
-
-
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
 
 
-
             }
         });
 
     }
+
     final String[] MobNumber = {"0691050988"};
+
     public void rez(View view) {
-        setTitle(izabraniDatum+" " + bend);
+        setTitle(izabraniDatum + " " + bend);
         String imeBenda = bend;
         String datum = izabraniDatum;
         String str_ime = ime.getText().toString();
@@ -261,12 +251,12 @@ public class Main2Activity extends AppCompatActivity {
         String str_restoran = restoran.getText().toString();
         String type = "rezervisi";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-        backgroundWorker.execute(type, imeBenda, datum,str_ime,str_mesto,str_restoran);
-                for (int i = 0; i < MobNumber.length; i++) {
-                    String tempMobileNumber = MobNumber[i];
-                    sendSMS(tempMobileNumber,imeBenda  + ": " +"\n" + datum +"\n"+ str_ime +"\n" + str_restoran +"\n"+  str_mesto+"\n");
-                }
-                //Toast.makeText(Main2Activity.this,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
+        backgroundWorker.execute(type, imeBenda, datum, str_ime, str_mesto, str_restoran);
+        for (int i = 0; i < MobNumber.length; i++) {
+            String tempMobileNumber = MobNumber[i];
+            sendSMS(tempMobileNumber, imeBenda + ": " + "\n" + datum + "\n" + str_ime + "\n" + str_restoran + "\n" + str_mesto + "\n");
+        }
+        //Toast.makeText(Main2Activity.this,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), SlobodniBendovi.class);
         startActivity(intent);
 
@@ -318,12 +308,11 @@ public class Main2Activity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Message Sent",
                     Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
-            Toast.makeText(getApplicationContext(),ex.getMessage(),
+            Toast.makeText(getApplicationContext(), ex.getMessage(),
                     Toast.LENGTH_LONG).show();
             ex.printStackTrace();
         }
     }
-
 
 
     @Override
@@ -338,7 +327,7 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
 
             return true;
 
@@ -348,19 +337,17 @@ public class Main2Activity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.today) {
             //Toast.makeText(getApplicationContext(),date, Toast.LENGTH_SHORT).show();
-            calendar_unos.setDate(Calendar.getInstance().getTimeInMillis(),false,true);
+            calendar_unos.setDate(Calendar.getInstance().getTimeInMillis(), false, true);
             Calendar calander = Calendar.getInstance();
             int a = calander.get(Calendar.DAY_OF_MONTH);
-            int s= calander.get(Calendar.MONTH) + 1;
+            int s = calander.get(Calendar.MONTH) + 1;
             int n = calander.get(Calendar.YEAR);
             d = String.valueOf(a);
             m = String.valueOf(s);
             y = String.valueOf(n);
-             izabraniDatum = d + "." + m + "." + y + ".";
+            izabraniDatum = d + "." + m + "." + y + ".";
 
             // Toast.makeText(getApplicationContext(),kurcina, Toast.LENGTH_SHORT).show();
-
-
 
 
             return true;

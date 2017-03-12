@@ -335,38 +335,19 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         if (result.contains("trazeni")) {
-            alertDialog.setMessage("Rezervacija jec vec uneta za trazeni bend i datum");
-            alertDialog.show();
 
-            Handler mHandler = new Handler() {
-                public void handleMessage(android.os.Message msg) {
-                    switch (msg.what) {
-                        case MSG_DISMISS_DIALOG:
-                            if (alertDialog != null && alertDialog.isShowing()) {
-                                alertDialog.dismiss();
-                            }
-                            break;
-
-                        default:
-                            break;
-                    }
-                }
-            };
-
-            mHandler.sendEmptyMessageDelayed(MSG_DISMISS_DIALOG, TIME_OUT);
-
-
-
-            //Toast.makeText(context,"Rezervacija jec vec uneta za trazeni bend i datum",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"Rezervacija jec vec uneta za trazeni bend i datum",Toast.LENGTH_SHORT).show();
 
         } else if (result.contains("Uspesno")) {
 
             Toast.makeText(context,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
 
-            /*Intent intent = new Intent(context, Main2Activity.class);
-            context.startActivity(intent);*/
 
-        } else {
+
+        } else if (result.contains("obrisana")) {
+
+            Toast.makeText(context,"Rezervacija je uspesno obrisana",Toast.LENGTH_SHORT).show();
+        }else {
 
             alertDialog.setMessage(result);
             alertDialog.show();

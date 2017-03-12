@@ -21,14 +21,18 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.example.aleksandar.mysqldemo.Event.EventData;
 import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
 import com.example.aleksandar.mysqldemo.MySQL.SendReceiveCount;
+import com.example.aleksandar.mysqldemo.MySQL.SendReceiveCountPerYear;
 import com.example.aleksandar.mysqldemo.MySQL.SendReceiveSlobodni;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 
 public class Counter extends AppCompatActivity {
@@ -37,6 +41,8 @@ public class Counter extends AppCompatActivity {
     Spinner sItems;
     String godina;
     String y;
+    TextView tv, tv_ukupno;
+
     ReservationList list = new ReservationList();
     BrojacBendova brojacBendova = new BrojacBendova();
     BrojacDatuma brojacDatuma = new BrojacDatuma();
@@ -45,6 +51,9 @@ public class Counter extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
     String adress = "http://macakmisamuzika.com/android/counter.php";
+    String urlSumPerYear = "http://macakmisamuzika.com/android/counterPerYear.php";
+    int a;
+    String g;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -96,12 +105,13 @@ public class Counter extends AppCompatActivity {
         Calendar calander = Calendar.getInstance();
         int n = calander.get(Calendar.YEAR);
 
-      y = String.valueOf(n);
-        /*  list.getData();
-        int a = list.data.length;*/
+        y = String.valueOf(n);
+        setTitle("Izabrana godina: " + y + ".");
+        tv_ukupno = (TextView) findViewById(R.id.textView4);
+        tv = (TextView) findViewById(R.id.tv);
 
-        setTitle(y+".");
-
+        SendReceiveCountPerYear sendReceiveCountPerYear = new SendReceiveCountPerYear(urlSumPerYear, this, "%" + y + "%", tv);
+        sendReceiveCountPerYear.execute();
 
 
         ArrayList<String> theList = new ArrayList<>();
@@ -125,11 +135,14 @@ public class Counter extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 y = sItems.getSelectedItem().toString();
-                 setTitle(y+".");
+                setTitle("Izabrana godina: " + y + ".");
                 ListView lv = (ListView) findViewById(R.id.lv);
-                SendReceiveCount sendReceiveCount = new SendReceiveCount(adress,Counter.this,"%"+y+"%",lv);
+                SendReceiveCount sendReceiveCount = new SendReceiveCount(adress, Counter.this, "%" + y + "%", lv);
                 sendReceiveCount.execute();
 
+
+                SendReceiveCountPerYear sendReceiveCountPerYear = new SendReceiveCountPerYear(urlSumPerYear, Counter.this, "%" + y + "%", tv);
+                sendReceiveCountPerYear.execute();
             }
 
             @Override
@@ -142,28 +155,12 @@ public class Counter extends AppCompatActivity {
 
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
         ListView lv = (ListView) findViewById(R.id.lv);
-        SendReceiveCount sendReceiveCount = new SendReceiveCount(adress,this,"%"+y+"%",lv);
+        SendReceiveCount sendReceiveCount = new SendReceiveCount(adress, this, "%" + y + "%", lv);
         sendReceiveCount.execute();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //bendList.getData();
-       //list.getData();
+        //list.getData();
         //brojacBendova.getData();
         //brojacDatuma.getData();
 
@@ -191,6 +188,7 @@ public class Counter extends AppCompatActivity {
 
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -209,22 +207,11 @@ public class Counter extends AppCompatActivity {
         int id = item.getItemId();
 
 
-
         if (id == R.id.spinner) {
             sItems.performClick();
             // Toast.makeText(getApplicationContext(),"godina", Toast.LENGTH_SHORT).show();
             return true;
         }
-
-
-
-
-
-
-
-
-
-
 
 
         return super.onOptionsItemSelected(item);

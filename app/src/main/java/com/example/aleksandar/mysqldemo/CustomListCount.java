@@ -60,6 +60,8 @@ public class CustomListCount extends BaseAdapter {
         TextView countTxt= (TextView) convertView.findViewById(R.id.txt);
         countTxt.setText(events.get(position).getCount());
 
+
+
         convertView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
