@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class UpisIzKalendara extends AppCompatActivity {
 
@@ -51,15 +52,22 @@ public class UpisIzKalendara extends AppCompatActivity {
         String str_ime = ime.getText().toString();
         String str_mesto = mesto.getText().toString();
         String str_restoran = restoran.getText().toString();
-        UpisIzKalendara.jedan = imeBenda;
-        UpisIzKalendara.dva = datum;
-        UpisIzKalendara.tri = str_ime;
-        UpisIzKalendara.cetiri = str_mesto;
-        UpisIzKalendara.pet = str_restoran;
-        String type = "izKalendara";
-        BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-        backgroundWorker.execute(type, imeBenda, datum, str_ime, str_mesto, str_restoran);
-
+        if (str_ime.isEmpty()){
+            Toast.makeText(getApplicationContext(),"Unesite ime!", Toast.LENGTH_SHORT).show();
+        }else if (str_restoran.isEmpty()){
+            Toast.makeText(getApplicationContext(),"Unesite restoran!", Toast.LENGTH_SHORT).show();
+        }else if (str_mesto.isEmpty()){
+            Toast.makeText(getApplicationContext(),"Unesite grad!", Toast.LENGTH_SHORT).show();
+        }else {
+            UpisIzKalendara.jedan = imeBenda;
+            UpisIzKalendara.dva = datum;
+            UpisIzKalendara.tri = str_ime;
+            UpisIzKalendara.cetiri = str_mesto;
+            UpisIzKalendara.pet = str_restoran;
+            String type = "izKalendara";
+            BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+            backgroundWorker.execute(type, imeBenda, datum, str_ime, str_mesto, str_restoran);
+        }
 
 
 

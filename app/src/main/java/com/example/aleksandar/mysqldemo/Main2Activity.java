@@ -248,24 +248,29 @@ public class Main2Activity extends AppCompatActivity {
 
 
     public void rez(View view) {
-        setTitle(izabraniDatum + " " + bend);
+        setTitle("");
         String imeBenda = bend;
         String datum = izabraniDatum;
+
         String str_ime = ime.getText().toString();
         String str_mesto = mesto.getText().toString();
         String str_restoran = restoran.getText().toString();
-        Main2Activity.jedan = imeBenda;
-        Main2Activity.dva = datum;
-        Main2Activity.tri = str_ime;
-        Main2Activity.cetiri = str_mesto;
-        Main2Activity.pet = str_restoran;
-        String type = "rezervisi";
-        BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-        backgroundWorker.execute(type, imeBenda, datum, str_ime, str_mesto, str_restoran);
-
-
-
-
+        if (str_ime.isEmpty()){
+            Toast.makeText(getApplicationContext(),"Unesite ime!", Toast.LENGTH_SHORT).show();
+        }else if (str_restoran.isEmpty()){
+            Toast.makeText(getApplicationContext(),"Unesite restoran!", Toast.LENGTH_SHORT).show();
+        }else if (str_mesto.isEmpty()){
+            Toast.makeText(getApplicationContext(),"Unesite grad!", Toast.LENGTH_SHORT).show();
+        }else{
+            Main2Activity.jedan = imeBenda;
+            Main2Activity.dva = datum;
+            Main2Activity.tri = str_ime;
+            Main2Activity.cetiri = str_mesto;
+            Main2Activity.pet = str_restoran;
+            String type = "rezervisi";
+            BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+            backgroundWorker.execute(type, imeBenda, datum, str_ime, str_mesto, str_restoran);
+        }
     }
 
 

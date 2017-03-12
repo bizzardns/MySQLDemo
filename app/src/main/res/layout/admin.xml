@@ -24,7 +24,8 @@
                 android:id="@+id/naziv_benda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Unesite naziv benda" />
+                android:hint="Unesite naziv benda"
+                android:inputType="textCapCharacters"/>
         </android.support.design.widget.TextInputLayout>
 
 

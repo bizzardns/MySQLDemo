@@ -133,10 +133,10 @@ public class Register extends AppCompatActivity {
             }
         });
 
-
+        setTitle("");
         naziv_benda = (EditText) findViewById(R.id.naziv_benda);
         broj_telefona = (EditText) findViewById(R.id.broj_telefona);
-       // broj_telefona2 = (EditText) findViewById(R.id.broj_telefona2);
+        // broj_telefona2 = (EditText) findViewById(R.id.broj_telefona2);
 
 
         /*name = (EditText)findViewById(R.id.et_ime);
