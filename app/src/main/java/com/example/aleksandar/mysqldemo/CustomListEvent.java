@@ -32,6 +32,8 @@ public class CustomListEvent extends BaseAdapter {
     LayoutInflater inflater;
     String long_click;
     String date;
+    public static String jedan = null;
+    public static String dva = null;
 
     public CustomListEvent(Context c, ArrayList<EventData> events) {
         this.c = c;
@@ -109,8 +111,11 @@ public class CustomListEvent extends BaseAdapter {
                         String imeBenda = long_click;
                         String datum = date;
                         String type = "obrisi";
+                        CustomListEvent.jedan = imeBenda;
+                        CustomListEvent.dva = datum;
                         BackgroundWorker backgroundWorker = new BackgroundWorker(c);
                         backgroundWorker.execute(type, imeBenda, datum);
+
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:

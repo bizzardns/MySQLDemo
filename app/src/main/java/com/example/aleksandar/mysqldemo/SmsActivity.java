@@ -75,7 +75,7 @@ public class SmsActivity extends AppCompatActivity {
 
 
 
-        setTitle("Posalji obavestenje");
+        setTitle("");
         sms= (EditText) findViewById(R.id.messageText);
         final String[] MobNumber = {"0691050988"};
         send = (FloatingActionButton) findViewById(R.id.floatingActionButton2);
@@ -94,10 +94,10 @@ public class SmsActivity extends AppCompatActivity {
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNo, null, msg, null, null);
-            Toast.makeText(getApplicationContext(), "Sending...",
+           /* Toast.makeText(getApplicationContext(), "Sending...",
                     Toast.LENGTH_LONG).show();
             Toast.makeText(getApplicationContext(), "Message Sent",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_LONG).show();*/
         } catch (Exception ex) {
             Toast.makeText(getApplicationContext(),ex.getMessage(),
                     Toast.LENGTH_LONG).show();
@@ -119,10 +119,10 @@ public class SmsActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Closing Activity")
-                .setMessage("Are you sure you want to close this activity?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                .setIcon(R.drawable.sms)
+                .setTitle("Exit")
+                .setMessage("Da li ste sigurni?")
+                .setPositiveButton("Da", new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -131,7 +131,7 @@ public class SmsActivity extends AppCompatActivity {
                     }
 
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton("Ne", null)
                 .show();
     }
     }

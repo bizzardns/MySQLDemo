@@ -14,6 +14,12 @@ public class UpisIzKalendara extends AppCompatActivity {
     String izabraniDatum;
     EditText ime, mesto, restoran;
     TextView t1, t2;
+    public static String jedan = null;
+    public static String dva = null;
+    public static String tri = null;
+    public static String cetiri = null;
+    public static String pet = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +51,17 @@ public class UpisIzKalendara extends AppCompatActivity {
         String str_ime = ime.getText().toString();
         String str_mesto = mesto.getText().toString();
         String str_restoran = restoran.getText().toString();
-        String type = "rezervisi";
+        UpisIzKalendara.jedan = imeBenda;
+        UpisIzKalendara.dva = datum;
+        UpisIzKalendara.tri = str_ime;
+        UpisIzKalendara.cetiri = str_mesto;
+        UpisIzKalendara.pet = str_restoran;
+        String type = "izKalendara";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         backgroundWorker.execute(type, imeBenda, datum, str_ime, str_mesto, str_restoran);
-        Intent intent = new Intent(getApplicationContext(), SlobodniBendovi.class);
-        startActivity(intent);
+
+
+
 
     }
 

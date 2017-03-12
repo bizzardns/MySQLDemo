@@ -56,6 +56,11 @@ public class Main2Activity extends AppCompatActivity {
     String date;
     Spinner cItems;
     Spinner bendovi;
+    public static String jedan = null;
+    public static String dva = null;
+    public static String tri = null;
+    public static String cetiri = null;
+    public static String pet = null;
 
 
     /**
@@ -240,7 +245,7 @@ public class Main2Activity extends AppCompatActivity {
 
     }
 
-    final String[] MobNumber = {"0691050988"};
+
 
     public void rez(View view) {
         setTitle(izabraniDatum + " " + bend);
@@ -249,16 +254,17 @@ public class Main2Activity extends AppCompatActivity {
         String str_ime = ime.getText().toString();
         String str_mesto = mesto.getText().toString();
         String str_restoran = restoran.getText().toString();
+        Main2Activity.jedan = imeBenda;
+        Main2Activity.dva = datum;
+        Main2Activity.tri = str_ime;
+        Main2Activity.cetiri = str_mesto;
+        Main2Activity.pet = str_restoran;
         String type = "rezervisi";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         backgroundWorker.execute(type, imeBenda, datum, str_ime, str_mesto, str_restoran);
-        for (int i = 0; i < MobNumber.length; i++) {
-            String tempMobileNumber = MobNumber[i];
-            sendSMS(tempMobileNumber, imeBenda + ": " + "\n" + datum + "\n" + str_ime + "\n" + str_restoran + "\n" + str_mesto + "\n");
-        }
-        //Toast.makeText(Main2Activity.this,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(), SlobodniBendovi.class);
-        startActivity(intent);
+
+
+
 
     }
 
@@ -299,20 +305,7 @@ public class Main2Activity extends AppCompatActivity {
         client.disconnect();
     }
 
-    public void sendSMS(String phoneNo, String msg) {
-        try {
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(phoneNo, null, msg, null, null);
-            /*Toast.makeText(getApplicationContext(), "Sending...",
-                    Toast.LENGTH_LONG).show();*/
-            Toast.makeText(getApplicationContext(), "Message Sent",
-                    Toast.LENGTH_LONG).show();
-        } catch (Exception ex) {
-            Toast.makeText(getApplicationContext(), ex.getMessage(),
-                    Toast.LENGTH_LONG).show();
-            ex.printStackTrace();
-        }
-    }
+
 
 
     @Override
