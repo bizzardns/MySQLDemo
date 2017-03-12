@@ -20,9 +20,9 @@ import java.util.ArrayList;
 public class ParserCountPerYear extends AsyncTask<Void, Void, Integer> {
 
     Context c;
-    String data;
-    TextView tv;
-    String count;
+    private String data;
+    private TextView tv;
+    private String count;
 
     ArrayList<EventData> names = new ArrayList<>();
 
