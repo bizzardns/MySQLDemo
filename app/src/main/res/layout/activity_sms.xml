@@ -31,7 +31,7 @@
             android:maxLines="20"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="18sp"
-            android:layout_below="@+id/brojevi">
+            android:layout_alignTop="@+id/floatingActionButton2">
 
 
         </EditText>
@@ -61,11 +61,19 @@
         <ListView
             android:id="@+id/brojevi"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_above="@+id/floatingActionButton2"
+            android:layout_height="100dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true" />
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:onClick="delete"
+            android:text="Delete" />
 
     </RelativeLayout>
 

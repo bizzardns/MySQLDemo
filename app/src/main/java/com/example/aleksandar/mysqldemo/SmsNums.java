@@ -33,7 +33,7 @@ public class SmsNums extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms_nums);
-        numberDatabse = new NumberDatabse(this, null, 1);
+        numberDatabse = new NumberDatabse(this);
          setTitle("");
         ime = (EditText) findViewById(R.id.ime);
         ime.clearFocus();

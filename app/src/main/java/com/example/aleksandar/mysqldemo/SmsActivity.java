@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.icu.util.Calendar;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -50,8 +51,11 @@ public class SmsActivity extends AppCompatActivity {
     String checkedItems;
     EditText editText;
     android.widget.SearchView sv;
-
-
+    int idx;
+    int id;
+    int broj;
+    int name;
+int bla;
 
 
 
@@ -109,12 +113,12 @@ public class SmsActivity extends AppCompatActivity {
                 return true;
             }
         } );
-       // sv = (android.widget.SearchView) findViewById(R.id.searchView);
-        numberDatabse = new NumberDatabse(this, null, 1);
-       brojevi = (ListView) findViewById(R.id.brojevi);
+        // sv = (android.widget.SearchView) findViewById(R.id.searchView);
+        numberDatabse = new NumberDatabse(this);
+        brojevi = (ListView) findViewById(R.id.brojevi);
         brojevi.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
         theList = new ArrayList<>();
-        cursor = numberDatabse.prikazi_ceo_imenik();
+        cursor = numberDatabse.list_all_list();
         theList2 = new ArrayList<>();
         while (cursor.moveToNext()) {
 
@@ -124,7 +128,7 @@ public class SmsActivity extends AppCompatActivity {
 
         listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, theList);
         brojevi.setAdapter(listAdapter);
-      //  SmsActivity.ListUtils.setDynamicHeight(brojevi);
+        //  SmsActivity.ListUtils.setDynamicHeight(brojevi);
      /*   sv.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String text) {
@@ -145,52 +149,20 @@ public class SmsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+
+                bla = position;
+
+
                 checkedItems = displayCheckedItems(brojevi
                         .getCheckedItemPositions());
                 String izabrani = checkedItems;
-               /* Toast.makeText(getApplicationContext(), checkedItems,
-                        Toast.LENGTH_SHORT).show();*/
+                Toast.makeText(getApplicationContext(), izabrani,
+                        Toast.LENGTH_SHORT).show();
 
                 MobNumber = izabrani.split("\\s*,\\s*");
             }
 
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         setTitle("");
         sms= (EditText) findViewById(R.id.messageText);
@@ -233,14 +205,14 @@ public class SmsActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
 
-
                 listAdapter.getFilter().filter(newText);
 
                 return true;
             }
+
         });
 
-       // menu.add("Add Contact").setIntent(new Intent(this, SmsNums.class));
+        // menu.add("Add Contact").setIntent(new Intent(this, SmsNums.class));
 
         return true;
     }
@@ -307,19 +279,24 @@ public class SmsActivity extends AppCompatActivity {
     }
 
 
+    @NonNull
     private String displayCheckedItems(SparseBooleanArray checkedItems) {
         StringBuffer sb = new StringBuffer("");
         for (int i = 0; i < checkedItems.size(); i++) {
 
             if (checkedItems.valueAt(i)) {
-                int idx = checkedItems.keyAt(i);
+                idx = checkedItems.keyAt(i);
 
                 if (sb.length() > 0)
                     sb.append(", ");
                 cursor.moveToPosition(idx);
-                String broj = cursor.getString(1);
-                String s = (String) brojevi.getAdapter().getItem(idx);
-                sb.append(broj);
+                id = cursor.getInt(0);
+                broj =cursor.getInt(1);
+                name =cursor.getInt(2);
+                String broj2 = cursor.getString(1);
+
+                //String s = (String) brojevi.getAdapter().getItem(idx);
+                sb.append(broj2);
 
             }
         }
@@ -348,9 +325,15 @@ public class SmsActivity extends AppCompatActivity {
         }
     }
 
+    public void delete(View v) {
+
+
+        numberDatabse.deleteContact(id);
+
+
 
 
 
     }
 
-
+}

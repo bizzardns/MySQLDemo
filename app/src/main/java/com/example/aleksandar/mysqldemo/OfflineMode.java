@@ -72,12 +72,17 @@ public class OfflineMode extends AppCompatActivity {
     Spinner sItems;
     String m;
     String s;
-   ScrollView sw;
+    ScrollView sw;
     ContactDB contactBase;
     android.widget.SearchView sv;
     ArrayAdapter<String> adapter;
     ArrayAdapter<String> adapter1;
     ArrayAdapter<String> adapter3;
+    String[] imeBenda;
+    String[] imeBenda2;
+    String[] ime;
+    String[] grad;
+    String[] restoran;
     CalendarView calendar;
     String date;
     ListView listView;
@@ -130,14 +135,13 @@ public class OfflineMode extends AppCompatActivity {
                 }
 
 
-
                 return true;
             }
         });
 
 
         setTitle("");
-        sw = (ScrollView)findViewById(R.id.sw);
+        sw = (ScrollView) findViewById(R.id.sw);
 
         contactBase = new ContactDB(this, null, 1);
 
@@ -160,8 +164,8 @@ public class OfflineMode extends AppCompatActivity {
 
 
         String datum = MenuActivity.sharedValue;
-        d =MenuActivity.dan;
-        m =MenuActivity.mesec;
+        d = MenuActivity.dan;
+        m = MenuActivity.mesec;
         try {
             calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(datum).getTime(), false, true);
             ArrayList<String> theList = new ArrayList<>();
@@ -186,12 +190,12 @@ public class OfflineMode extends AppCompatActivity {
 
                     theList3.add(cursor.getString(1));
 
-                    Collections.sort(theList, new Comparator<String>() {
+                  /*  Collections.sort(theList, new Comparator<String>() {
                         @Override
                         public int compare(String s1, String s2) {
                             return s1.compareToIgnoreCase(s2);
                         }
-                    });
+                    });*/
 
 
                 } else if (!(cursor.getString(2).equals(datum))) {
@@ -212,11 +216,11 @@ public class OfflineMode extends AppCompatActivity {
 
 
                 }
-                String[] imeBenda = theList.toArray(new String[0]);
-                String[] ime = theList4.toArray(new String[0]);
-                String[] grad = theList5.toArray(new String[0]);
-                String[] restoran = theList6.toArray(new String[0]);
-                String[] imeBenda2 = theList2.toArray(new String[0]);
+                imeBenda = theList.toArray(new String[0]);
+                ime = theList4.toArray(new String[0]);
+                grad = theList5.toArray(new String[0]);
+                restoran = theList6.toArray(new String[0]);
+                imeBenda2 = theList2.toArray(new String[0]);
 
                 OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
                 listView.setAdapter(adapter1);
@@ -234,7 +238,6 @@ public class OfflineMode extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
 
 
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -264,21 +267,21 @@ public class OfflineMode extends AppCompatActivity {
 
                         theList.add(cursor.getString(1));
 
-                        theList4.add(cursor.getString(4));
+                        theList4.add(cursor.getString(3));
 
-                        theList5.add(cursor.getString(5));
+                        theList5.add(cursor.getString(4));
 
-                        theList6.add(cursor.getString(3));
+                        theList6.add(cursor.getString(5));
 
                         theList3.add(cursor.getString(1));
 
 
-                        Collections.sort(theList, new Comparator<String>() {
-                            @Override
-                            public int compare(String s1, String s2) {
-                                return s1.compareToIgnoreCase(s2);
-                            }
-                        });
+                        imeBenda = theList.toArray(new String[0]);
+                        ime = theList4.toArray(new String[0]);
+                        grad = theList5.toArray(new String[0]);
+                        restoran = theList6.toArray(new String[0]);
+
+
 
 
                     } else if (!(cursor.getString(2).equals(adate))) {
@@ -296,21 +299,20 @@ public class OfflineMode extends AppCompatActivity {
                                 return s1.compareToIgnoreCase(s2);
                             }
                         });
-
+                        imeBenda2 = theList2.toArray(new String[0]);
 
                     }
-                    String[] imeBenda = theList.toArray(new String[0]);
-                    String[] ime = theList4.toArray(new String[0]);
-                    String[] grad = theList5.toArray(new String[0]);
-                    String[] restoran = theList6.toArray(new String[0]);
-                    String[] imeBenda2 = theList2.toArray(new String[0]);
-                    OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
-                    listView.setAdapter(adapter1);
-                    OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
-                    listView2.setAdapter(adapter);
 
 
                 }
+
+
+                OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
+                adapter1.notifyDataSetChanged();
+                listView.setAdapter(adapter1);
+                OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
+
+                listView2.setAdapter(adapter);
                 ListUtils.setDynamicHeight(listView2);
                 ListUtils.setDynamicHeight(listView);
 
@@ -339,23 +341,18 @@ public class OfflineMode extends AppCompatActivity {
 
                         for (int a = 0; a < list.data.length; a++) {
                             counter++;
-                            for (int i = 0; i < datumList.data.length; i++) {
 
-                                d = datumList.data[a];
-                            }
 
-                            for (int i = 0; i < imeList.data.length; i++) {
+                            d = datumList.data[a];
 
-                                j = imeList.data[a];
-                            }
-                            for (int i = 0; i < gradList.data.length; i++) {
 
-                                h = gradList.data[a];
-                            }
-                            for (int i = 0; i < restoranList.data.length; i++) {
+                            j = imeList.data[a];
 
-                                l = restoranList.data[a];
-                            }
+
+                            h = gradList.data[a];
+
+
+                            l = restoranList.data[a];
 
 
                             contactBase.addContact(list.data[a], d, j, h, l);
@@ -444,21 +441,25 @@ public class OfflineMode extends AppCompatActivity {
 
                         theList.add(cursor.getString(1));
 
-                        theList4.add(cursor.getString(4));
 
-                        theList5.add(cursor.getString(5));
+                        theList4.add(cursor.getString(3));
 
-                        theList6.add(cursor.getString(3));
+
+                        theList5.add(cursor.getString(4));
+
+
+                        theList6.add(cursor.getString(5));
+
 
                         theList3.add(cursor.getString(1));
 
 
-                        Collections.sort(theList, new Comparator<String>() {
+                     /*   Collections.sort(theList, new Comparator<String>() {
                             @Override
                             public int compare(String s1, String s2) {
                                 return s1.compareToIgnoreCase(s2);
                             }
-                        });
+                        });*/
 
 
                     } else if (!(cursor.getString(2).equals(adate))) {
@@ -470,6 +471,12 @@ public class OfflineMode extends AppCompatActivity {
                         theList2.removeAll(theList);
                         theList2.addAll(hashSet);
                         theList2.removeAll(theList3);
+
+
+
+
+
+
                         Collections.sort(theList2, new Comparator<String>() {
                             @Override
                             public int compare(String s1, String s2) {
@@ -535,7 +542,7 @@ public class OfflineMode extends AppCompatActivity {
             return true;
         }
         if (id == R.id.today) {
-            sw.smoothScrollTo(0,0);
+            sw.smoothScrollTo(0, 0);
             calendar.setDate(Calendar.getInstance().getTimeInMillis(), false, true);
             Calendar calander = Calendar.getInstance();
             int a = calander.get(Calendar.DAY_OF_MONTH);
@@ -573,12 +580,12 @@ public class OfflineMode extends AppCompatActivity {
 
                     theList3.add(cursor.getString(1));
 
-                    Collections.sort(theList, new Comparator<String>() {
+                    /*Collections.sort(theList, new Comparator<String>() {
                         @Override
                         public int compare(String s1, String s2) {
                             return s1.compareToIgnoreCase(s2);
                         }
-                    });
+                    });*/
 
 
                 } else if (!(cursor.getString(2).equals(kurcina))) {
@@ -618,7 +625,7 @@ public class OfflineMode extends AppCompatActivity {
             return true;
         }
         if (id == R.id.spinner) {
-            sw.smoothScrollTo(0,0);
+            sw.smoothScrollTo(0, 0);
 
             sItems.performClick();
             // Toast.makeText(getApplicationContext(),"godina", Toast.LENGTH_SHORT).show();
