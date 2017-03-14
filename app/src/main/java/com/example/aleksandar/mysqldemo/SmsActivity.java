@@ -124,7 +124,7 @@ public class SmsActivity extends AppCompatActivity {
 
         listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, theList);
         brojevi.setAdapter(listAdapter);
-        SmsActivity.ListUtils.setDynamicHeight(brojevi);
+      //  SmsActivity.ListUtils.setDynamicHeight(brojevi);
      /*   sv.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String text) {
