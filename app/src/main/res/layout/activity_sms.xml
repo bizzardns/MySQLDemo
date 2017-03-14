@@ -6,31 +6,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.aleksandar.mysqldemo.SmsActivity">
+
     <RelativeLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp">
-    <EditText
-        android:id="@+id/messageText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:hint="Ukucaj poruku"
-        android:maxLines="20"
-        style="@android:style/Widget.DeviceDefault.AutoCompleteTextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="16dp"
-        android:layout_toLeftOf="@+id/floatingActionButton2"
-        android:layout_toStartOf="@+id/floatingActionButton2"
-        android:textSize="18sp"
-        android:inputType="textCapWords">
 
-        <requestFocus />
-    </EditText>
+
+
+        <EditText
+            android:id="@+id/messageText"
+            style="@android:style/Widget.DeviceDefault.AutoCompleteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="Ukucaj poruku"
+            android:maxLines="20"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="18sp"
+            android:layout_alignBottom="@+id/floatingActionButton2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/floatingActionButton2"
+            android:layout_toStartOf="@+id/floatingActionButton2">
+
+
+        </EditText>
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
@@ -39,21 +41,34 @@
         app:fabSize="normal"
         app:srcCompat="@android:drawable/ic_menu_send"
         android:id="@+id/floatingActionButton2"
-        android:layout_alignBottom="@+id/messageText"
+        android:layout_marginTop="164dp"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/dijamant"
-        android:layout_marginTop="77dp"
-        android:id="@+id/imageView3"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        app:fabSize="normal" />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="77dp"
+            android:visibility="gone"
+            app:fabSize="normal"
+            app:srcCompat="@drawable/dijamant" />
 
-</RelativeLayout>
+        <ListView
+            android:id="@+id/brojevi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/messageText"
+            android:layout_marginTop="20dp" />
+
+    </RelativeLayout>
+
 <android.support.design.widget.NavigationView
 android:layout_width="wrap_content"
 android:layout_height="match_parent"

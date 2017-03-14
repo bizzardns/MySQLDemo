@@ -203,7 +203,7 @@ public class Register extends AppCompatActivity {
                             BackgroundWorker backgroundWorker = new BackgroundWorker(Register.this);
                             backgroundWorker.execute(type, bend);
                         } else {
-                            Toast.makeText(Register.this, "Uspesno ste obrisali bend iz baze", Toast.LENGTH_LONG).show();
+                           // Toast.makeText(Register.this, "Uspesno ste obrisali bend iz baze", Toast.LENGTH_LONG).show();
                         }
                         break;
 

@@ -193,6 +193,7 @@ public class Counter extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_counter, menu);
+
         return true;
     }
 
@@ -216,4 +217,5 @@ public class Counter extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
