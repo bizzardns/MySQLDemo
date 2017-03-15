@@ -7,76 +7,60 @@
     android:layout_height="match_parent"
     tools:context="com.example.aleksandar.mysqldemo.SmsActivity">
 
-    <RelativeLayout
 
+    <RelativeLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp">
-
-
-        <EditText
-            android:id="@+id/messageText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/floatingActionButton2"
-            android:layout_toStartOf="@+id/floatingActionButton2"
-            android:layout_weight="2"
-            android:background="@android:drawable/editbox_background_normal"
-            android:hint="Ukucaj poruku"
-            android:inputType="textMultiLine"
-            android:maxLength="2000"
-            android:maxLines="20"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="18sp"
-            android:layout_alignTop="@+id/floatingActionButton2">
-
-
-        </EditText>
-
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:fabSize="normal"
-        app:srcCompat="@android:drawable/ic_menu_send"
-        android:id="@+id/floatingActionButton2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="77dp"
-            android:visibility="gone"
-            app:fabSize="normal"
-            app:srcCompat="@drawable/dijamant" />
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp">
 
         <ListView
             android:id="@+id/brojevi"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true" />
+            android:layout_height="match_parent"
+            android:layout_above="@+id/sendMsgLayout"
+            android:layout_alignParentTop="true"
+            android:transcriptMode="normal"
+            android:stackFromBottom="true"/>
 
-        <Button
-            android:id="@+id/delete"
+    <RelativeLayout
+        android:id="@+id/sendMsgLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimary"
+            android:id="@+id/view" />
+
+        <EditText
+            android:id="@+id/messageText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@+id/imageSend"
+            android:hint="Ukucaj poruku"
+            android:maxLines="6" >
+
+            <requestFocus />
+        </EditText>
+
+        <ImageView
+            android:id="@+id/imageSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:onClick="delete"
-            android:text="Delete" />
-
+            android:layout_alignBottom="@+id/messageText"
+            android:src="@android:drawable/ic_menu_send"
+            android:layout_below="@+id/view"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
-
+    </RelativeLayout>
 <android.support.design.widget.NavigationView
 android:layout_width="wrap_content"
 android:layout_height="match_parent"

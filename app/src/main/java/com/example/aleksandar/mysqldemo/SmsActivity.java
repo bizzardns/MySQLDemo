@@ -28,6 +28,8 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -62,7 +64,7 @@ int bla;
 
 
     EditText sms;
-    FloatingActionButton send;
+    ImageView send;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
@@ -150,23 +152,25 @@ int bla;
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                bla = position;
-
 
                 checkedItems = displayCheckedItems(brojevi
                         .getCheckedItemPositions());
                 String izabrani = checkedItems;
-                Toast.makeText(getApplicationContext(), izabrani,
-                        Toast.LENGTH_SHORT).show();
+
 
                 MobNumber = izabrani.split("\\s*,\\s*");
+                Toast.makeText(getApplicationContext(), checkedItems,
+                        Toast.LENGTH_SHORT).show();
+
+
             }
 
         });
 
+
         setTitle("");
         sms= (EditText) findViewById(R.id.messageText);
-        send = (FloatingActionButton) findViewById(R.id.floatingActionButton2);
+        send = (ImageView) findViewById(R.id.imageSend);
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -204,8 +208,9 @@ int bla;
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
+                listAdapter.notifyDataSetChanged();
                 listAdapter.getFilter().filter(newText);
+
 
                 return true;
             }

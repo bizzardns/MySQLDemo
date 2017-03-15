@@ -22,6 +22,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.aleksandar.mysqldemo.PROBA.DialogList;
+
 public class Register extends AppCompatActivity {
     EditText naziv_benda, broj_telefona, broj_telefona2;
     String bend;
@@ -122,7 +124,7 @@ public class Register extends AppCompatActivity {
                     Register.this.startActivity(myIntent);
 
                 } else if (id == R.id.nav6) {
-                    Intent myIntent = new Intent(Register.this, Register.class);
+                    Intent myIntent = new Intent(Register.this, DialogList.class);
                     Register.this.startActivity(myIntent);
 
                 }

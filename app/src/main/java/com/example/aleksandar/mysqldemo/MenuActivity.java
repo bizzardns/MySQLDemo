@@ -18,6 +18,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.aleksandar.mysqldemo.PROBA.DialogList;
+
 public class MenuActivity extends AppCompatActivity {
 
     public static String sharedValue = null;
