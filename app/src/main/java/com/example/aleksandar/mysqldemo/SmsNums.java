@@ -4,10 +4,16 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.SparseBooleanArray;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.aleksandar.mysqldemo.PROBA.NumberDatabse;
 
@@ -16,7 +22,7 @@ import java.util.ArrayList;
 public class SmsNums extends AppCompatActivity {
     EditText ime,broj_telefona;
     NumberDatabse numberDatabse;
-    ListView brojevi;
+    ListView brisanje;
     ArrayList<String> theList2;
     Cursor cursor;
     ArrayList<String> theList;
@@ -24,20 +30,24 @@ public class SmsNums extends AppCompatActivity {
     String[] MobNumber;
      ListAdapter listAdapter2;
     String checkedItems;
+    int idx;
+    int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms_nums);
         numberDatabse = new NumberDatabse(this);
          setTitle("");
-        ime = (EditText) findViewById(R.id.ime);
-        ime.clearFocus();
         broj_telefona = (EditText) findViewById(R.id.broj_telefona);
-        broj_telefona.clearFocus();
-       /* brojevi = (ListView) findViewById(R.id.brojevi);
-        brojevi.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
+
+        ime = (EditText) findViewById(R.id.ime);
+
+
+
+        brisanje = (ListView) findViewById(R.id.brisanje);
+        brisanje.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
         theList = new ArrayList<>();
-        cursor = numberDatabse.prikazi_ceo_imenik();
+        cursor = numberDatabse.list_all_list();
         theList2 = new ArrayList<>();
         while (cursor.moveToNext()) {
 
@@ -46,16 +56,16 @@ public class SmsNums extends AppCompatActivity {
         }
 
         listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, theList);
-        brojevi.setAdapter(listAdapter);*/
+        brisanje.setAdapter(listAdapter);
 
+        SmsNums.ListUtils.setDynamicHeight(brisanje);
 
-
-  /*      brojevi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        brisanje.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                 checkedItems = displayCheckedItems(brojevi
+                 checkedItems = displayCheckedItems(brisanje
                         .getCheckedItemPositions());
                 String izabrani = checkedItems;
                 Toast.makeText(getApplicationContext(), checkedItems,
@@ -64,7 +74,7 @@ public class SmsNums extends AppCompatActivity {
                MobNumber = izabrani.split("\\s*,\\s*");
             }
 
-        });*/
+        });
 
 
 
@@ -82,33 +92,61 @@ public class SmsNums extends AppCompatActivity {
         Intent intent = new Intent(SmsNums.this, SmsActivity.class);
         startActivity(intent);
     }
-    public void Show(View v){
 
 
-
-
-
-    }
-
-  /*  private String displayCheckedItems(SparseBooleanArray checkedItems) {
+   private String displayCheckedItems(SparseBooleanArray checkedItems) {
         StringBuffer sb = new StringBuffer("");
         for (int i = 0; i < checkedItems.size(); i++) {
 
+
             if (checkedItems.valueAt(i)) {
-                int idx = checkedItems.keyAt(i);
+                idx = checkedItems.keyAt(i);
 
                 if (sb.length() > 0)
                     sb.append(", ");
                 cursor.moveToPosition(idx);
-                String broj = cursor.getString(1);
-                String s = (String) brojevi.getAdapter().getItem(idx);
-                sb.append(broj);
+                id = cursor.getInt(0);
+
+                String broj2 = cursor.getString(1);
+
+                //String s = (String) brojevi.getAdapter().getItem(idx);
+                sb.append(broj2);
 
             }
         }
 
         return sb.toString();
-    }*/
+    }
+    public void Show(View v){
+
+
+        numberDatabse.deleteContact(id);
+        Intent intent = new Intent(SmsNums.this, SmsActivity.class);
+        startActivity(intent);
+
+
+    }
+
+    public static class ListUtils {
+        public static void setDynamicHeight(ListView mListView) {
+            ListAdapter mListAdapter = mListView.getAdapter();
+            if (mListAdapter == null) {
+                // when adapter is null
+                return;
+            }
+            int height = 0;
+            int desiredWidth = View.MeasureSpec.makeMeasureSpec(mListView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+            for (int i = 0; i < mListAdapter.getCount(); i++) {
+                View listItem = mListAdapter.getView(i, null, mListView);
+                listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+                height += listItem.getMeasuredHeight();
+            }
+            ViewGroup.LayoutParams params = mListView.getLayoutParams();
+            params.height = height + (mListView.getDividerHeight() * (mListAdapter.getCount() - 1));
+            mListView.setLayoutParams(params);
+            mListView.requestLayout();
+        }
+    }
 
 
 /*    public void sendSMS(String phoneNo, String msg) {

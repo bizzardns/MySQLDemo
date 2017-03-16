@@ -152,14 +152,14 @@ int bla;
 
 
                 MobNumber = izabrani.split("\\s*,\\s*");
-                Toast.makeText(getApplicationContext(), checkedItems,
-                        Toast.LENGTH_SHORT).show();
+               /* Toast.makeText(getApplicationContext(), checkedItems,
+                        Toast.LENGTH_SHORT).show();*/
 
 
             }
 
         });
-        brojevi.setItemChecked(bla, true);
+
 
 
         setTitle("");
@@ -192,27 +192,10 @@ int bla;
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_search, menu);
-        MenuItem myActionMenuItem = menu.findItem( R.id.action_search);
-        final SearchView searchView = (SearchView) myActionMenuItem.getActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
 
 
-                listAdapter.getFilter().filter(newText);
 
 
-                return true;
-            }
-
-        });
-
-        // menu.add("Add Contact").setIntent(new Intent(this, SmsNums.class));
 
         return true;
     }

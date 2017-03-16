@@ -44,7 +44,7 @@ import java.util.HashMap;
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(
                 "create table contacts " +
-                        "(id integer primary key AUTOINCREMENT, name text,phone text)"
+                        "(id integer primary key, name text,phone text)"
         );
     }
 
@@ -93,6 +93,9 @@ import java.util.HashMap;
         return db.delete("contacts",
                 "id = ? ",
                 new String[] { Integer.toString(id) });
+
+
+
     }
     public ArrayList<String> getAllContacts() {
         ArrayList<String> array_list = new ArrayList<String>();
@@ -111,7 +114,7 @@ import java.util.HashMap;
 
     public Cursor list_all_list(){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM contacts",null);
+        Cursor cursor = db.rawQuery("SELECT * FROM contacts ORDER BY phone asc",null);
         return cursor;
     }
 

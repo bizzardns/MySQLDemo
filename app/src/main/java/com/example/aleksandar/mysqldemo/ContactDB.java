@@ -55,7 +55,7 @@ public class ContactDB extends SQLiteOpenHelper {
     }
     public Cursor list_all_list(){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM JAJE",null);
+        Cursor cursor = db.rawQuery("SELECT * FROM JAJE ORDER BY DATUM asc",null);
         return cursor;
     }
 
