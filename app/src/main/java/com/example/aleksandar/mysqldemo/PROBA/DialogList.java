@@ -61,11 +61,6 @@ public class DialogList extends AppCompatActivity {
 
 
 
-
-
-
-
-
         checkedItems = new boolean[listItems.length];
         checkedItems1 = new boolean[listItems1.length];
 

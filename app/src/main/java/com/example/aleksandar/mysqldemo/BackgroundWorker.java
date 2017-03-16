@@ -435,7 +435,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
             Toast.makeText(context,"Rezervacija je uspesno obrisana",Toast.LENGTH_SHORT).show();
             final String[] MobNumber = {"0691050988"};
-
             String imeBenda1 = CustomListEvent.jedan;
             String datum1= CustomListEvent.dva;
 

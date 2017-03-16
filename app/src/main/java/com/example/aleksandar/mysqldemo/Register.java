@@ -232,7 +232,6 @@ public class Register extends AppCompatActivity {
         String type = "register";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         backgroundWorker.execute(type, str_name, str_surname,str_username,str_password);
-
     }*/
 
 

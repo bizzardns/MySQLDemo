@@ -190,12 +190,16 @@ public class OfflineMode extends AppCompatActivity {
 
                     theList3.add(cursor.getString(1));
 
-                  /*  Collections.sort(theList, new Comparator<String>() {
+
+
+
+
+                 Collections.sort(theList, new Comparator<String>() {
                         @Override
                         public int compare(String s1, String s2) {
                             return s1.compareToIgnoreCase(s2);
                         }
-                    });*/
+                    });
 
 
                 } else if (!(cursor.getString(2).equals(datum))) {
@@ -231,8 +235,14 @@ public class OfflineMode extends AppCompatActivity {
                 OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
                 listView.setAdapter(adapter1);
             }
-            OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
-            listView2.setAdapter(adapter);
+            if (theList.isEmpty()){
+                listView2.setVisibility(View.INVISIBLE);
+
+            }else{
+                OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
+                listView2.setAdapter(adapter);
+            }
+
             ListUtils.setDynamicHeight(listView2);
             ListUtils.setDynamicHeight(listView);
 
@@ -316,8 +326,13 @@ public class OfflineMode extends AppCompatActivity {
                     OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
                     listView.setAdapter(adapter1);
                 }
-                OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
-                listView2.setAdapter(adapter);
+                if (theList.isEmpty()){
+                    listView2.setVisibility(View.INVISIBLE);
+
+                }else{
+                    OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
+                    listView2.setAdapter(adapter);
+                }
                 ListUtils.setDynamicHeight(listView2);
                 ListUtils.setDynamicHeight(listView);
 
@@ -500,9 +515,13 @@ public class OfflineMode extends AppCompatActivity {
                 } else {
                     OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
                     listView.setAdapter(adapter1);
+                }if (theList.isEmpty()){
+                    listView2.setVisibility(View.INVISIBLE);
+
+                }else{
+                    OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
+                    listView2.setAdapter(adapter);
                 }
-                OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
-                listView2.setAdapter(adapter);
                 ListUtils.setDynamicHeight(listView2);
                 ListUtils.setDynamicHeight(listView);
 
@@ -621,9 +640,13 @@ public class OfflineMode extends AppCompatActivity {
             } else {
                 OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
                 listView.setAdapter(adapter1);
+            }if (theList.isEmpty()){
+                listView2.setVisibility(View.INVISIBLE);
+
+            }else{
+                OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
+                listView2.setAdapter(adapter);
             }
-            OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
-            listView2.setAdapter(adapter);
             ListUtils.setDynamicHeight(listView2);
             ListUtils.setDynamicHeight(listView);
             //sync.performClick();

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ import java.util.HashMap;
         return true;
 
     }
-    public Cursor getData(int id) {
+    public Cursor getPodatke(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from contacts where id="+id+"", null );
         return res;
@@ -88,9 +89,11 @@ import java.util.HashMap;
         db.update("contacts", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
         return true;
     }
-    public Integer deleteContact (Integer id) {
+    public Integer deleteContact (int id) {
+
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete("contacts",
+
+       return db.delete("contacts",
                 "id = ? ",
                 new String[] { Integer.toString(id) });
 
@@ -125,6 +128,18 @@ import java.util.HashMap;
         db.execSQL("DELETE FROM contacts");
 
     }
+
+
+
+
+
+
+
+  /*  public void deleteRec(String[] ids) { //ids is an array
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("contacts", "CAST("+CONTACTS_COLUMN_ID+" AS TEXT) IN (" + new String(new char[ids.length-1]).replace("\0", "?,") + "?)", ids);
+        db.close();
+    }*/
 
 
 }

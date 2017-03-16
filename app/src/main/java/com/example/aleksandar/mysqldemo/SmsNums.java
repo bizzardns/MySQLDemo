@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -20,29 +21,31 @@ import com.example.aleksandar.mysqldemo.PROBA.NumberDatabse;
 import java.util.ArrayList;
 
 public class SmsNums extends AppCompatActivity {
-    EditText ime,broj_telefona;
+    EditText ime, broj_telefona;
     NumberDatabse numberDatabse;
     ListView brisanje;
     ArrayList<String> theList2;
     Cursor cursor;
     ArrayList<String> theList;
+    ArrayAdapter<String> adapter;
     ListAdapter listAdapter;
     String[] MobNumber;
-     ListAdapter listAdapter2;
+    ListAdapter listAdapter2;
     String checkedItems;
+    Button delete;
     int idx;
     int id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms_nums);
         numberDatabse = new NumberDatabse(this);
-         setTitle("");
+        setTitle("");
         broj_telefona = (EditText) findViewById(R.id.broj_telefona);
 
         ime = (EditText) findViewById(R.id.ime);
-
-
+        delete = (Button) findViewById(R.id.button5);
 
         brisanje = (ListView) findViewById(R.id.brisanje);
         brisanje.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
@@ -54,9 +57,9 @@ public class SmsNums extends AppCompatActivity {
             theList.add(cursor.getString(2));
 
         }
-
-        listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, theList);
-        brisanje.setAdapter(listAdapter);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, theList);
+        //listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, theList);
+        brisanje.setAdapter(adapter);
 
         SmsNums.ListUtils.setDynamicHeight(brisanje);
 
@@ -65,36 +68,65 @@ public class SmsNums extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                 checkedItems = displayCheckedItems(brisanje
+                checkedItems = displayCheckedItems(brisanje
                         .getCheckedItemPositions());
                 String izabrani = checkedItems;
                 Toast.makeText(getApplicationContext(), checkedItems,
                         Toast.LENGTH_SHORT).show();
 
-               MobNumber = izabrani.split("\\s*,\\s*");
+                MobNumber = izabrani.split("\\s*,\\s*");
             }
 
         });
 
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SparseBooleanArray checkedItemPositions = brisanje.getCheckedItemPositions();
+                for (int i = 0; i < brisanje.getCount(); i++){
+
+                    if (checkedItemPositions.get(i)==true)
+                    {
+                        numberDatabse.deleteContact(i);
+
+                    }
+                    adapter.notifyDataSetChanged();
+
+                }
+                brisanje.clearChoices();
+            }
 
 
 
 
 
+
+                /*int itemCount = brisanje.getCount();
+
+                for (int i = 0; i < itemCount; i++) {
+                    if (checkedItemPositions.get(i)) {
+                        adapter.remove(theList.get(i));
+                        --i;
+                    }
+                }
+                checkedItemPositions.clear();
+                adapter.notifyDataSetChanged();*/
+
+        });
     }
 
-    public void Save(View v){
+    public void Save(View v) {
 
-          String ime1 = ime.getText().toString();
-          String broj1 = broj_telefona.getText().toString();
+        String ime1 = ime.getText().toString();
+        String broj1 = broj_telefona.getText().toString();
 
-            numberDatabse.save_u_imenik(ime1,broj1);
+        numberDatabse.save_u_imenik(ime1, broj1);
         Intent intent = new Intent(SmsNums.this, SmsActivity.class);
         startActivity(intent);
     }
 
 
-   private String displayCheckedItems(SparseBooleanArray checkedItems) {
+    private String displayCheckedItems(SparseBooleanArray checkedItems) {
         StringBuffer sb = new StringBuffer("");
         for (int i = 0; i < checkedItems.size(); i++) {
 
@@ -117,12 +149,17 @@ public class SmsNums extends AppCompatActivity {
 
         return sb.toString();
     }
-    public void Show(View v){
 
 
-        numberDatabse.deleteContact(id);
+
+
+
+    public void Show(View v) {
+
+
+        /*numberDatabse.deleteContact(id);
         Intent intent = new Intent(SmsNums.this, SmsActivity.class);
-        startActivity(intent);
+        startActivity(intent);*/
 
 
     }
@@ -147,6 +184,7 @@ public class SmsNums extends AppCompatActivity {
             mListView.requestLayout();
         }
     }
+
 
 
 /*    public void sendSMS(String phoneNo, String msg) {
