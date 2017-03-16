@@ -4,17 +4,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telephony.SmsManager;
-import android.util.SparseBooleanArray;
 import android.view.View;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.example.aleksandar.mysqldemo.PROBA.NumberDatabse;
 
 import java.util.ArrayList;
 

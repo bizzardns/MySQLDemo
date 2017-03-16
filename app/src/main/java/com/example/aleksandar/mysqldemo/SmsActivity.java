@@ -1,13 +1,9 @@
 package com.example.aleksandar.mysqldemo;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.icu.util.Calendar;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,8 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.telephony.SmsManager;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,16 +22,14 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.aleksandar.mysqldemo.PROBA.NumberDatabse;
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
 
 public class SmsActivity extends AppCompatActivity {
 
@@ -121,7 +113,7 @@ int bla;
         brojevi.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
         theList = new ArrayList<>();
         cursor = numberDatabse.list_all_list();
-        theList2 = new ArrayList<>();
+        //theList2 = new ArrayList<>();
         while (cursor.moveToNext()) {
 
             theList.add(cursor.getString(2));
@@ -130,6 +122,8 @@ int bla;
 
         listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, theList);
         brojevi.setAdapter(listAdapter);
+
+
         //  SmsActivity.ListUtils.setDynamicHeight(brojevi);
      /*   sv.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
             @Override
@@ -151,8 +145,7 @@ int bla;
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
-
+                bla = position;
                 checkedItems = displayCheckedItems(brojevi
                         .getCheckedItemPositions());
                 String izabrani = checkedItems;
@@ -166,6 +159,7 @@ int bla;
             }
 
         });
+        brojevi.setItemChecked(bla, true);
 
 
         setTitle("");
@@ -208,7 +202,8 @@ int bla;
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                listAdapter.notifyDataSetChanged();
+
+
                 listAdapter.getFilter().filter(newText);
 
 

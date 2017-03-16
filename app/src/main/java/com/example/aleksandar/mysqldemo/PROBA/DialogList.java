@@ -6,18 +6,16 @@ package com.example.aleksandar.mysqldemo.PROBA;
         import android.os.Bundle;
         import android.support.v7.app.AlertDialog;
         import android.support.v7.app.AppCompatActivity;
-        import android.util.SparseBooleanArray;
         import android.view.View;
-        import android.widget.AbsListView;
         import android.widget.Button;
         import android.widget.ListView;
         import android.widget.TextView;
-        import android.widget.Toast;
 
-        import com.example.aleksandar.mysqldemo.NumberDatabse;
         import com.example.aleksandar.mysqldemo.R;
 
         import java.util.ArrayList;
+        import java.util.Collections;
+        import java.util.Comparator;
 
 public class DialogList extends AppCompatActivity {
 

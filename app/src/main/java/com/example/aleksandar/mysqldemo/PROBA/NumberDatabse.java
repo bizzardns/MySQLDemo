@@ -1,4 +1,4 @@
-package com.example.aleksandar.mysqldemo;
+package com.example.aleksandar.mysqldemo.PROBA;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -44,7 +44,7 @@ import java.util.HashMap;
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(
                 "create table contacts " +
-                        "(id integer primary key, name text,phone text)"
+                        "(id integer primary key AUTOINCREMENT, name text,phone text)"
         );
     }
 
