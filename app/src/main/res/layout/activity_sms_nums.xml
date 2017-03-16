@@ -48,11 +48,14 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textInput1"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp"
         android:onClick="Save"
-        android:text="Save" />
+        android:text="Save"
+        android:layout_below="@+id/textInput1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="128dp"
+        android:layout_marginEnd="128dp" />
 
 
 </RelativeLayout>
