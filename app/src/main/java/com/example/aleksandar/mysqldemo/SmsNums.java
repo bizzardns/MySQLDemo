@@ -49,20 +49,7 @@ public class SmsNums extends AppCompatActivity {
         brojevi.setAdapter(listAdapter);*/
 
 
-      /*  brojevi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
 
-                cursor.moveToPosition(position);
-                String broj = cursor.getString(1);
-                theList2.add(broj);
-
-                Toast.makeText(getApplicationContext(), broj, Toast.LENGTH_SHORT).show();
-
-            }
-
-        });*/
   /*      brojevi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
