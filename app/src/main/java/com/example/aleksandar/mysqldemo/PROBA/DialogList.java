@@ -93,9 +93,7 @@ public class DialogList extends AppCompatActivity {
                         if(isChecked){
 
                             mUserItems.add(position);
-                           /* String bla =  cursor.getString(1);
-                            Toast.makeText(getApplicationContext(), bla,
-                                    Toast.LENGTH_LONG).show();*/
+
 
                         }else{
                             mUserItems.remove((Integer.valueOf(position)));
