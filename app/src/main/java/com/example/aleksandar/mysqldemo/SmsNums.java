@@ -187,6 +187,7 @@ public class SmsNums extends AppCompatActivity {
 
 
 
+
 /*    public void sendSMS(String phoneNo, String msg) {
         try {
             SmsManager smsManager = SmsManager.getDefault();

@@ -62,7 +62,7 @@ public class OfflineMode extends AppCompatActivity {
     ProgressDialog progress;
 
     String d;
-
+    String datum;
     String j;
     String h;
     String l;
@@ -87,6 +87,7 @@ public class OfflineMode extends AppCompatActivity {
     String date;
     ListView listView;
     ListView listView2;
+    TextView textView;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
@@ -151,6 +152,7 @@ public class OfflineMode extends AppCompatActivity {
         sItems = (Spinner) findViewById(R.id.spinner2);
         listView = (ListView) findViewById(R.id.lv);
         listView2 = (ListView) findViewById(R.id.ls);
+        textView = (TextView)findViewById(R.id.textView6);
 
        /* calendar.setDate(Calendar.getInstance().getTimeInMillis(), false, true);
         Calendar calander = Calendar.getInstance();
@@ -163,7 +165,7 @@ public class OfflineMode extends AppCompatActivity {
         String datum = d + "." + m + "." + y + ".";*/
 
 
-        String datum = MenuActivity.sharedValue;
+         datum = MenuActivity.sharedValue;
         d = MenuActivity.dan;
         m = MenuActivity.mesec;
         try {
@@ -194,12 +196,12 @@ public class OfflineMode extends AppCompatActivity {
 
 
 
-                 Collections.sort(theList, new Comparator<String>() {
+                 /*Collections.sort(theList, new Comparator<String>() {
                         @Override
                         public int compare(String s1, String s2) {
                             return s1.compareToIgnoreCase(s2);
                         }
-                    });
+                    });*/
 
 
                 } else if (!(cursor.getString(2).equals(datum))) {
@@ -229,6 +231,20 @@ public class OfflineMode extends AppCompatActivity {
 
 
             }
+
+
+            if (theList.isEmpty() && theList2.isEmpty()){
+
+                textView.setVisibility(View.VISIBLE);
+
+            }else{
+
+                textView.setVisibility(View.GONE);
+
+
+            }
+
+
             if(theList.isEmpty()){
                 listView.setVisibility(View.GONE);
             }else{
@@ -236,7 +252,7 @@ public class OfflineMode extends AppCompatActivity {
                 listView.setAdapter(adapter1);
             }
             if (theList.isEmpty()){
-                listView2.setVisibility(View.INVISIBLE);
+                listView2.setVisibility(View.VISIBLE);
 
             }else{
                 OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
@@ -319,6 +335,16 @@ public class OfflineMode extends AppCompatActivity {
 
 
                 }
+                if (theList.isEmpty() && theList2.isEmpty()){
+
+                    textView.setVisibility(View.VISIBLE);
+
+                }else{
+
+                    textView.setVisibility(View.GONE);
+
+
+                }
 
                 if (theList.isEmpty()) {
                     listView.setVisibility(View.GONE);
@@ -327,7 +353,7 @@ public class OfflineMode extends AppCompatActivity {
                     listView.setAdapter(adapter1);
                 }
                 if (theList.isEmpty()){
-                    listView2.setVisibility(View.INVISIBLE);
+                    listView2.setVisibility(View.VISIBLE);
 
                 }else{
                     OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
@@ -347,6 +373,7 @@ public class OfflineMode extends AppCompatActivity {
             public void onClick(View view) {
                 progress = ProgressDialog.show(OfflineMode.this, "Sinhronizovanje baze podataka!",
                         "Downloading", true);
+
                 counter = 0;
                 contactBase.delete();
                 new Thread(new Runnable() {
@@ -386,6 +413,141 @@ public class OfflineMode extends AppCompatActivity {
                                 if (counter == list.data.length) {
 
                                     progress.dismiss();
+
+                                    try {
+                                        calendar.setDate(Calendar.getInstance().getTimeInMillis(), false, true);
+                                        Calendar calander = Calendar.getInstance();
+                                        int a = calander.get(Calendar.DAY_OF_MONTH);
+                                        int s = calander.get(Calendar.MONTH) + 1;
+                                        int n = calander.get(Calendar.YEAR);
+                                        d = String.valueOf(a);
+                                        m = String.valueOf(s);
+                                        String y = String.valueOf(n);
+                                        String kurcina = d + "." + m + "." + y + ".";
+         /*  lv = (ListView) findViewById(R.id.lv);
+            ls = (ListView) findViewById(R.id.ls);*/
+                                        listView.setVisibility(View.VISIBLE);
+                                        listView2.setVisibility(View.VISIBLE);
+                                        calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(kurcina).getTime(), false, true);
+                                        ArrayList<String> theList = new ArrayList<>();
+                                        ArrayList<String> theList2 = new ArrayList<>();
+                                        ArrayList<String> theList3 = new ArrayList<>();
+                                        ArrayList<String> theList4 = new ArrayList<>();
+                                        ArrayList<String> theList5 = new ArrayList<>();
+                                        ArrayList<String> theList6 = new ArrayList<>();
+                                        Cursor cursor = contactBase.list_all_list();
+
+                                        while (cursor.moveToNext()) {
+
+                                            if (cursor.getString(2).equals(kurcina)) {
+
+                                                theList.add(cursor.getString(1));
+
+                                                theList4.add(cursor.getString(4));
+
+                                                theList5.add(cursor.getString(5));
+
+                                                theList6.add(cursor.getString(3));
+
+                                                theList3.add(cursor.getString(1));
+
+
+
+                                            } else if (!(cursor.getString(2).equals(kurcina))) {
+
+                                                theList2.add(cursor.getString(1));
+                                                HashSet<String> hashSet = new HashSet<String>();
+                                                hashSet.addAll(theList2);
+                                                theList2.clear();
+                                                theList2.removeAll(theList);
+                                                theList2.addAll(hashSet);
+                                                theList2.removeAll(theList3);
+                                                Collections.sort(theList2, new Comparator<String>() {
+                                                    @Override
+                                                    public int compare(String s1, String s2) {
+                                                        return s1.compareToIgnoreCase(s2);
+                                                    }
+                                                });
+
+
+                                            }
+                                            imeBenda = theList.toArray(new String[0]);
+                                            ime = theList4.toArray(new String[0]);
+                                            grad = theList5.toArray(new String[0]);
+                                            restoran = theList6.toArray(new String[0]);
+                                            imeBenda2 = theList2.toArray(new String[0]);
+
+
+
+                                        }
+
+
+                                        if (theList.isEmpty() && theList2.isEmpty()){
+
+                                            textView.setVisibility(View.VISIBLE);
+
+                                        }else{
+
+                                            textView.setVisibility(View.GONE);
+
+
+                                        }
+
+
+                                        if(theList.isEmpty()){
+                                            listView.setVisibility(View.GONE);
+                                        }else{
+                                            OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
+                                            listView.setAdapter(adapter1);
+                                        }
+                                        if (theList.isEmpty()){
+                                            listView2.setVisibility(View.VISIBLE);
+
+                                        }else{
+                                            OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
+                                            listView2.setAdapter(adapter);
+                                        }
+
+                                        ListUtils.setDynamicHeight(listView2);
+                                        ListUtils.setDynamicHeight(listView);
+
+                                        listView = (ListView) findViewById(R.id.lv);
+                                        listView2 = (ListView) findViewById(R.id.ls);
+
+                                        listView.setFocusable(false);
+                                        listView2.setFocusable(false);
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                     AlertDialog.Builder builder1 = new AlertDialog.Builder(OfflineMode.this);
                                     builder1.setMessage("Baza je sinhronizovana!");
                                     builder1.setPositiveButton("Ok",
@@ -393,6 +555,10 @@ public class OfflineMode extends AppCompatActivity {
 
                                                 @Override
                                                 public void onClick(DialogInterface arg0, int arg1) {
+
+
+
+
 
                                                 }
                                             });
@@ -405,7 +571,11 @@ public class OfflineMode extends AppCompatActivity {
                     }
                 }).start();
 
-                // Toast.makeText(getApplicationContext(), "Baza je sinhronizovana!", Toast.LENGTH_SHORT).show();
+
+
+
+
+
 
 
             }
@@ -509,14 +679,23 @@ public class OfflineMode extends AppCompatActivity {
                     imeBenda2 = theList2.toArray(new String[0]);
 
                 }
+                if (theList.isEmpty() && theList2.isEmpty()){
 
+                    textView.setVisibility(View.VISIBLE);
+
+                }else{
+
+                    textView.setVisibility(View.GONE);
+
+
+                }
                 if (theList.isEmpty()) {
                     listView.setVisibility(View.GONE);
                 } else {
                     OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
                     listView.setAdapter(adapter1);
                 }if (theList.isEmpty()){
-                    listView2.setVisibility(View.INVISIBLE);
+                    listView2.setVisibility(View.VISIBLE);
 
                 }else{
                     OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
@@ -635,13 +814,22 @@ public class OfflineMode extends AppCompatActivity {
                 restoran = theList6.toArray(new String[0]);
                 imeBenda2 = theList2.toArray(new String[0]);
             }
+            if (theList.isEmpty() && theList2.isEmpty()){
+
+                textView.setVisibility(View.VISIBLE);
+
+            }else{
+
+                textView.setVisibility(View.GONE);
+
+            }
             if (theList.isEmpty()) {
                 listView.setVisibility(View.GONE);
             } else {
                 OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
                 listView.setAdapter(adapter1);
             }if (theList.isEmpty()){
-                listView2.setVisibility(View.INVISIBLE);
+                listView2.setVisibility(View.VISIBLE);
 
             }else{
                 OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
@@ -683,6 +871,13 @@ public class OfflineMode extends AppCompatActivity {
             mListView.setLayoutParams(params);
             mListView.requestLayout();
         }
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent inMain=new Intent(OfflineMode.this, MenuActivity.class);
+        inMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(inMain);
     }
 
 

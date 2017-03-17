@@ -124,7 +124,7 @@ public class Register extends AppCompatActivity {
                     Register.this.startActivity(myIntent);
 
                 } else if (id == R.id.nav6) {
-                    Intent myIntent = new Intent(Register.this, DialogList.class);
+                    Intent myIntent = new Intent(Register.this, Register.class);
                     Register.this.startActivity(myIntent);
 
                 }
@@ -221,6 +221,13 @@ public class Register extends AppCompatActivity {
                 .setNegativeButton("Ne", dialogClickListener).show();
 
 
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent inMain=new Intent(Register.this, MenuActivity.class);
+        inMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(inMain);
     }
 
 

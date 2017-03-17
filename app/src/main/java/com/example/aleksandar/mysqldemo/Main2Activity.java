@@ -358,6 +358,13 @@ public class Main2Activity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent inMain=new Intent(Main2Activity.this, MenuActivity.class);
+        inMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(inMain);
+    }
 
 
 }

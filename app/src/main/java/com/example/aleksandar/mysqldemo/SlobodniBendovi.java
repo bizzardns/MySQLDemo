@@ -298,6 +298,14 @@ public class SlobodniBendovi extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent inMain=new Intent(SlobodniBendovi.this, MenuActivity.class);
+        inMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(inMain);
+    }
+
 }
 
  /* ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, theList);

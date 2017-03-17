@@ -217,5 +217,12 @@ public class Counter extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent inMain=new Intent(Counter.this, MenuActivity.class);
+        inMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(inMain);
+    }
 
 }
