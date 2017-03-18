@@ -30,7 +30,7 @@ import java.util.HashMap;
 
 
 
-
+    SQLiteDatabase db;
 
 
 

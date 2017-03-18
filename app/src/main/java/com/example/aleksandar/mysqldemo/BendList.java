@@ -16,8 +16,8 @@ import java.net.URL;
 
 public class BendList {
 
-
-    String adress = "http://macakmisamuzika.com/android/spinner_names.php";
+    String adress = "http://lp-developers.com/spinner_names.php";
+    //String adress = "http://macakmisamuzika.com/android/spinner_names.php";
     InputStream is = null;
     String line = null;
     String result = null;

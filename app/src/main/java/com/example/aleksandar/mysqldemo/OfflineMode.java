@@ -152,7 +152,7 @@ public class OfflineMode extends AppCompatActivity {
         sItems = (Spinner) findViewById(R.id.spinner2);
         listView = (ListView) findViewById(R.id.lv);
         listView2 = (ListView) findViewById(R.id.ls);
-        textView = (TextView)findViewById(R.id.textView6);
+        textView = (TextView) findViewById(R.id.textView6);
 
        /* calendar.setDate(Calendar.getInstance().getTimeInMillis(), false, true);
         Calendar calander = Calendar.getInstance();
@@ -165,7 +165,7 @@ public class OfflineMode extends AppCompatActivity {
         String datum = d + "." + m + "." + y + ".";*/
 
 
-         datum = MenuActivity.sharedValue;
+        datum = MenuActivity.sharedValue;
         d = MenuActivity.dan;
         m = MenuActivity.mesec;
         try {
@@ -204,7 +204,7 @@ public class OfflineMode extends AppCompatActivity {
                     });*/
 
 
-                } else if (!(cursor.getString(2).equals(datum))) {
+                } else if (!(cursor.getString(2).equals(datum) || cursor.getString(2).isEmpty() )) {
 
                     theList2.add(cursor.getString(1));
                     HashSet<String> hashSet = new HashSet<String>();
@@ -229,15 +229,14 @@ public class OfflineMode extends AppCompatActivity {
                 imeBenda2 = theList2.toArray(new String[0]);
 
 
-
             }
 
 
-            if (theList.isEmpty() && theList2.isEmpty()){
+            if (theList.isEmpty() && theList2.isEmpty()) {
 
                 textView.setVisibility(View.VISIBLE);
 
-            }else{
+            } else {
 
                 textView.setVisibility(View.GONE);
 
@@ -245,16 +244,16 @@ public class OfflineMode extends AppCompatActivity {
             }
 
 
-            if(theList.isEmpty()){
+            if (theList.isEmpty()) {
                 listView.setVisibility(View.GONE);
-            }else{
+            } else {
                 OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
                 listView.setAdapter(adapter1);
             }
-            if (theList.isEmpty()){
+            if (theList2.isEmpty()) {
                 listView2.setVisibility(View.VISIBLE);
 
-            }else{
+            } else {
                 OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
                 listView2.setAdapter(adapter);
             }
@@ -314,7 +313,7 @@ public class OfflineMode extends AppCompatActivity {
                         restoran = theList6.toArray(new String[0]);
 
 
-                    } else if (!(cursor.getString(2).equals(adate))) {
+                    } else if (!(cursor.getString(2).equals(datum) || cursor.getString(2).isEmpty() )) {
 
                         theList2.add(cursor.getString(1));
                         HashSet<String> hashSet = new HashSet<String>();
@@ -335,11 +334,11 @@ public class OfflineMode extends AppCompatActivity {
 
 
                 }
-                if (theList.isEmpty() && theList2.isEmpty()){
+                if (theList.isEmpty() && theList2.isEmpty()) {
 
                     textView.setVisibility(View.VISIBLE);
 
-                }else{
+                } else {
 
                     textView.setVisibility(View.GONE);
 
@@ -352,10 +351,10 @@ public class OfflineMode extends AppCompatActivity {
                     OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
                     listView.setAdapter(adapter1);
                 }
-                if (theList.isEmpty()){
+                if (theList2.isEmpty()) {
                     listView2.setVisibility(View.VISIBLE);
 
-                }else{
+                } else {
                     OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
                     listView2.setAdapter(adapter);
                 }
@@ -452,8 +451,7 @@ public class OfflineMode extends AppCompatActivity {
                                                 theList3.add(cursor.getString(1));
 
 
-
-                                            } else if (!(cursor.getString(2).equals(kurcina))) {
+                                            } else if (!(cursor.getString(2).equals(kurcina) || cursor.getString(2).isEmpty() )) {
 
                                                 theList2.add(cursor.getString(1));
                                                 HashSet<String> hashSet = new HashSet<String>();
@@ -478,15 +476,14 @@ public class OfflineMode extends AppCompatActivity {
                                             imeBenda2 = theList2.toArray(new String[0]);
 
 
-
                                         }
 
 
-                                        if (theList.isEmpty() && theList2.isEmpty()){
+                                        if (theList.isEmpty() && theList2.isEmpty()) {
 
                                             textView.setVisibility(View.VISIBLE);
 
-                                        }else{
+                                        } else {
 
                                             textView.setVisibility(View.GONE);
 
@@ -494,16 +491,16 @@ public class OfflineMode extends AppCompatActivity {
                                         }
 
 
-                                        if(theList.isEmpty()){
+                                        if (theList.isEmpty()) {
                                             listView.setVisibility(View.GONE);
-                                        }else{
+                                        } else {
                                             OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
                                             listView.setAdapter(adapter1);
                                         }
-                                        if (theList.isEmpty()){
+                                        if (theList2.isEmpty()) {
                                             listView2.setVisibility(View.VISIBLE);
 
-                                        }else{
+                                        } else {
                                             OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
                                             listView2.setAdapter(adapter);
                                         }
@@ -521,33 +518,6 @@ public class OfflineMode extends AppCompatActivity {
                                     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     AlertDialog.Builder builder1 = new AlertDialog.Builder(OfflineMode.this);
                                     builder1.setMessage("Baza je sinhronizovana!");
                                     builder1.setPositiveButton("Ok",
@@ -555,9 +525,6 @@ public class OfflineMode extends AppCompatActivity {
 
                                                 @Override
                                                 public void onClick(DialogInterface arg0, int arg1) {
-
-
-
 
 
                                                 }
@@ -570,12 +537,6 @@ public class OfflineMode extends AppCompatActivity {
                         });
                     }
                 }).start();
-
-
-
-
-
-
 
 
             }
@@ -652,7 +613,7 @@ public class OfflineMode extends AppCompatActivity {
                         });*/
 
 
-                    } else if (!(cursor.getString(2).equals(adate))) {
+                    } else if(!(cursor.getString(2).equals(adate) || cursor.getString(2).isEmpty() )) {
 
                         theList2.add(cursor.getString(1));
                         HashSet<String> hashSet = new HashSet<String>();
@@ -670,7 +631,6 @@ public class OfflineMode extends AppCompatActivity {
                             }
                         });
 
-
                     }
                     imeBenda = theList.toArray(new String[0]);
                     ime = theList4.toArray(new String[0]);
@@ -679,11 +639,11 @@ public class OfflineMode extends AppCompatActivity {
                     imeBenda2 = theList2.toArray(new String[0]);
 
                 }
-                if (theList.isEmpty() && theList2.isEmpty()){
+                if (theList.isEmpty() && theList2.isEmpty()) {
 
                     textView.setVisibility(View.VISIBLE);
 
-                }else{
+                } else {
 
                     textView.setVisibility(View.GONE);
 
@@ -694,10 +654,11 @@ public class OfflineMode extends AppCompatActivity {
                 } else {
                     OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
                     listView.setAdapter(adapter1);
-                }if (theList.isEmpty()){
+                }
+                if (theList2.isEmpty()) {
                     listView2.setVisibility(View.VISIBLE);
 
-                }else{
+                } else {
                     OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
                     listView2.setAdapter(adapter);
                 }
@@ -790,7 +751,7 @@ public class OfflineMode extends AppCompatActivity {
                     });*/
 
 
-                } else if (!(cursor.getString(2).equals(kurcina))) {
+                } else if (!(cursor.getString(2).equals(kurcina) || cursor.getString(2).isEmpty())) {
 
                     theList2.add(cursor.getString(1));
                     HashSet<String> hashSet = new HashSet<String>();
@@ -799,7 +760,7 @@ public class OfflineMode extends AppCompatActivity {
                     theList2.removeAll(theList);
                     theList2.addAll(hashSet);
                     theList2.removeAll(theList3);
-                    Collections.sort(theList2, new Comparator<String>() {
+                 Collections.sort(theList2, new Comparator<String>() {
                         @Override
                         public int compare(String s1, String s2) {
                             return s1.compareToIgnoreCase(s2);
@@ -814,11 +775,11 @@ public class OfflineMode extends AppCompatActivity {
                 restoran = theList6.toArray(new String[0]);
                 imeBenda2 = theList2.toArray(new String[0]);
             }
-            if (theList.isEmpty() && theList2.isEmpty()){
+            if (theList.isEmpty() && theList2.isEmpty()) {
 
                 textView.setVisibility(View.VISIBLE);
 
-            }else{
+            } else {
 
                 textView.setVisibility(View.GONE);
 
@@ -828,10 +789,11 @@ public class OfflineMode extends AppCompatActivity {
             } else {
                 OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
                 listView.setAdapter(adapter1);
-            }if (theList.isEmpty()){
+            }
+            if (theList2.isEmpty()) {
                 listView2.setVisibility(View.VISIBLE);
 
-            }else{
+            } else {
                 OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
                 listView2.setAdapter(adapter);
             }
@@ -872,10 +834,11 @@ public class OfflineMode extends AppCompatActivity {
             mListView.requestLayout();
         }
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent inMain=new Intent(OfflineMode.this, MenuActivity.class);
+        Intent inMain = new Intent(OfflineMode.this, MenuActivity.class);
         inMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(inMain);
     }
