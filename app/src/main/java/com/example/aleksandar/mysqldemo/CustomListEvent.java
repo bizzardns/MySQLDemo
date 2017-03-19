@@ -5,6 +5,7 @@ package com.example.aleksandar.mysqldemo;
  */
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,7 @@ public class CustomListEvent extends BaseAdapter {
     String date;
     public static String jedan = null;
     public static String dva = null;
+
 
     public CustomListEvent(Context c, ArrayList<EventData> events) {
         this.c = c;
@@ -115,6 +117,9 @@ public class CustomListEvent extends BaseAdapter {
                         CustomListEvent.dva = datum;
                         BackgroundWorker backgroundWorker = new BackgroundWorker(c);
                         backgroundWorker.execute(type, imeBenda, datum);
+                /*        Intent intent = new Intent(c, SlobodniBendovi.class);
+                        c.startActivity(intent);*/
+                        /*Toast.makeText(c, "Kliknite opet na datum!", Toast.LENGTH_SHORT).show();*/
 
                         break;
 
