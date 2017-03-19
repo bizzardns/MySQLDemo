@@ -44,6 +44,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         String type = params[0];
 
         String login_url = "http://lp-developers.com/login.php";
+
         String addBand_url = "http://lp-developers.com/addBand.php";
         String deleteBand_url = "http://lp-developers.com/deleteBand.php";
         String register_url = "http://lp-developers.com/register.php";
