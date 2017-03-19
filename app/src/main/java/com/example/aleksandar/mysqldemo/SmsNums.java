@@ -45,10 +45,10 @@ public class SmsNums extends AppCompatActivity {
         broj_telefona = (EditText) findViewById(R.id.broj_telefona);
 
         ime = (EditText) findViewById(R.id.ime);
-        delete = (Button) findViewById(R.id.button5);
+       // delete = (Button) findViewById(R.id.button5);
 
         brisanje = (ListView) findViewById(R.id.brisanje);
-        brisanje.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
+        brisanje.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         theList = new ArrayList<>();
         cursor = numberDatabse.list_all_list();
         theList2 = new ArrayList<>();
@@ -57,7 +57,7 @@ public class SmsNums extends AppCompatActivity {
             theList.add(cursor.getString(2));
 
         }
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, theList);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice, theList);
         //listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, theList);
         brisanje.setAdapter(adapter);
 
@@ -71,15 +71,15 @@ public class SmsNums extends AppCompatActivity {
                 checkedItems = displayCheckedItems(brisanje
                         .getCheckedItemPositions());
                 String izabrani = checkedItems;
-                Toast.makeText(getApplicationContext(), checkedItems,
-                        Toast.LENGTH_SHORT).show();
+        /*        Toast.makeText(getApplicationContext(), checkedItems,
+                        Toast.LENGTH_SHORT).show();*/
 
                 MobNumber = izabrani.split("\\s*,\\s*");
             }
 
         });
 
-        delete.setOnClickListener(new View.OnClickListener() {
+      /*  delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SparseBooleanArray checkedItemPositions = brisanje.getCheckedItemPositions();
@@ -88,6 +88,10 @@ public class SmsNums extends AppCompatActivity {
                     if (checkedItemPositions.get(i)==true)
                     {
                         numberDatabse.deleteContact(i);
+                        Intent intent = new Intent(SmsNums.this, SmsActivity.class);
+                        startActivity(intent);
+                        Toast.makeText(getApplicationContext(), "Kontakt je obrisan!",
+                                Toast.LENGTH_SHORT).show();
 
                     }
                     adapter.notifyDataSetChanged();
@@ -101,7 +105,7 @@ public class SmsNums extends AppCompatActivity {
 
 
 
-                /*int itemCount = brisanje.getCount();
+                *//*int itemCount = brisanje.getCount();
 
                 for (int i = 0; i < itemCount; i++) {
                     if (checkedItemPositions.get(i)) {
@@ -110,9 +114,9 @@ public class SmsNums extends AppCompatActivity {
                     }
                 }
                 checkedItemPositions.clear();
-                adapter.notifyDataSetChanged();*/
+                adapter.notifyDataSetChanged();*//*
 
-        });
+        });*/
     }
 
     public void Save(View v) {
@@ -123,6 +127,8 @@ public class SmsNums extends AppCompatActivity {
         numberDatabse.save_u_imenik(ime1, broj1);
         Intent intent = new Intent(SmsNums.this, SmsActivity.class);
         startActivity(intent);
+        Toast.makeText(getApplicationContext(), "Kontakt je sačuvan!",
+                Toast.LENGTH_SHORT).show();
     }
 
 
@@ -157,9 +163,11 @@ public class SmsNums extends AppCompatActivity {
     public void Show(View v) {
 
 
-        /*numberDatabse.deleteContact(id);
+       numberDatabse.deleteContact(id);
         Intent intent = new Intent(SmsNums.this, SmsActivity.class);
-        startActivity(intent);*/
+        startActivity(intent);
+        Toast.makeText(getApplicationContext(), "Kontakt je obrisan!",
+                Toast.LENGTH_SHORT).show();
 
 
     }

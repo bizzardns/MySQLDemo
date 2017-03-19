@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:hint="Ukucaj poruku"
             android:maxLines="6"
+            android:inputType="textCapSentences"
             android:layout_below="@+id/view"
             android:layout_toLeftOf="@+id/imageSend"
             android:layout_toStartOf="@+id/imageSend">

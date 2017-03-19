@@ -50,6 +50,7 @@ public class SmsActivity extends AppCompatActivity {
     int broj;
     int name;
 int bla;
+    int i;
 
 
 
@@ -169,9 +170,21 @@ int bla;
             @Override
             public void onClick(View view) {
                 String text = sms.getText().toString();
-                for (int i = 0; i < MobNumber.length; i++) {
+                for (i = 0; i < MobNumber.length; i++) {
                     String tempMobileNumber = MobNumber[i];
                     sendSMS(tempMobileNumber, text);
+
+                    Toast.makeText(getApplicationContext(), "Sending...",
+                            Toast.LENGTH_SHORT).show();
+
+                }
+                if (i == MobNumber.length){
+
+                    Intent intent = new Intent(SmsActivity.this, SmsActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "Message Sent!",
+                            Toast.LENGTH_SHORT).show();
+
                 }
 
             }
@@ -206,8 +219,8 @@ int bla;
             smsManager.sendTextMessage(phoneNo, null, msg, null, null);
            /* Toast.makeText(getApplicationContext(), "Sending...",
                     Toast.LENGTH_LONG).show();*/
-            Toast.makeText(getApplicationContext(), "Message Sent",
-                    Toast.LENGTH_LONG).show();
+           /* Toast.makeText(getApplicationContext(), "Message Sent",
+                    Toast.LENGTH_LONG).show();*/
         } catch (Exception ex) {
             Toast.makeText(getApplicationContext(),ex.getMessage(),
                     Toast.LENGTH_LONG).show();

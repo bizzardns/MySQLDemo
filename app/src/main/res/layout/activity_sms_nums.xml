@@ -21,9 +21,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+
             android:hint="Ime"
 
-            android:inputType="textCapWords" />
+            android:inputType="textCapSentences" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout

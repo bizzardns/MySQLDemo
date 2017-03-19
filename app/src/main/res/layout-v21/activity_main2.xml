@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Grad"
-                    android:inputType="textCapWords" />
+                    android:inputType="textCapSentences" />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -106,7 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="600dp"
-                    android:inputType="textCapWords"
+                    android:inputType="textCapSentences"
                     android:ems="10"
                     android:hint="Ime"
                      />
@@ -134,7 +134,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Restoran"
-                    android:inputType="textCapWords" />
+                    android:inputType="textCapSentences" />
             </android.support.design.widget.TextInputLayout>
 
 
