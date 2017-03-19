@@ -54,7 +54,7 @@ public class Counter extends AppCompatActivity {
 
     String adress = "http://lp-developers.com/counter.php";
     String urlSumPerYear = "http://lp-developers.com/counterPerYear.php";
- /*   String adress = "http://macakmisamuzika.com/android/counter.php";
+    /*String adress = "http://macakmisamuzika.com/android/counter.php";
     String urlSumPerYear = "http://macakmisamuzika.com/android/counterPerYear.php";*/
     int a;
     String g;
