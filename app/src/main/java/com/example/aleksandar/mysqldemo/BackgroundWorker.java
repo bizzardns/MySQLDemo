@@ -398,16 +398,13 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         if (result.contains("trazeni")) {
-
             Toast.makeText(context,"Rezervacija jec vec uneta za trazeni bend i datum",Toast.LENGTH_SHORT).show();
 
         } else if (result.contains("Uspesno")) {
-
-
             Toast.makeText(context,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
 
 
-            final String[] MobNumber = {"0691050988"};
+            //final String[] MobNumber = {"0691050988"};
                String imeBenda = Main2Activity.jedan;
                String datum = Main2Activity.dva;
                String str_ime = Main2Activity.tri;
@@ -416,27 +413,27 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
 
 
-                for (int i = 0; i < MobNumber.length; i++) {
+                /*for (int i = 0; i < MobNumber.length; i++) {
                     String tempMobileNumber = MobNumber[i];
                     sendSMS(tempMobileNumber, imeBenda + ": " + "\n" + datum + "\n" + str_ime + "\n" + str_restoran + "\n" + str_mesto + "\n");
-                }
+                }*/
                 //Toast.makeText(Main2Activity.this,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, SlobodniBendovi.class);
                 context.startActivity(intent);
         }
         else if (result.contains("Success")) {
             Toast.makeText(context,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
-            final String[] MobNumber = {"0691050988"};
+            //final String[] MobNumber = {"0691050988"};
             String imeBenda = UpisIzKalendara.jedan;
             String datum = UpisIzKalendara.dva;
             String str_ime = UpisIzKalendara.tri;
             String str_restoran = UpisIzKalendara.cetiri;
             String str_mesto = UpisIzKalendara.pet;
 
-            for (int i = 0; i < MobNumber.length; i++) {
+           /* for (int i = 0; i < MobNumber.length; i++) {
                 String tempMobileNumber = MobNumber[i];
                 sendSMS(tempMobileNumber, imeBenda + ": " + "\n" + datum + "\n" + str_ime + "\n" + str_restoran + "\n" + str_mesto + "\n");
-            }
+            }*/
             //Toast.makeText(Main2Activity.this,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(context, SlobodniBendovi.class);
             context.startActivity(intent);
@@ -444,20 +441,32 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         }
 
         else if (result.contains("obrisana")) {
-
             Toast.makeText(context,"Rezervacija je uspesno obrisana",Toast.LENGTH_SHORT).show();
-            final String[] MobNumber = {"0691050988"};
+            //final String[] MobNumber = {"0691050988"};
             String imeBenda1 = CustomListEvent.jedan;
             String datum1= CustomListEvent.dva;
 
-            for (int i = 0; i < MobNumber.length; i++) {
+            /*for (int i = 0; i < MobNumber.length; i++) {
                 String tempMobileNumber = MobNumber[i];
                 sendSMS(tempMobileNumber, "Otkazana rezervacija:"+ "\n" + imeBenda1 + "\n" + datum1);
-            }
+            }*/
 
-        }else {
-            alertDialog.setMessage(result);
-            alertDialog.show();
+        }else if (result.contains("Dodali")) {
+            Toast.makeText(context, "Uspesno ste dodali bend", Toast.LENGTH_SHORT).show();
+            Intent i1 = new Intent (context, Register.class);
+            context.startActivity(i1);
+
+        }else if (result.contains("obrisali")) {
+            Toast.makeText(context, "Obrisali ste bend iz baze!", Toast.LENGTH_SHORT).show();
+            Intent i1 = new Intent (context, Register.class);
+            context.startActivity(i1);
+
+        }else if (result.contains("exists")) {
+            Toast.makeText(context, "Bend postoji u bazi!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            /*alertDialog.setMessage(result);
+            alertDialog.show();*/
         }
     }
 

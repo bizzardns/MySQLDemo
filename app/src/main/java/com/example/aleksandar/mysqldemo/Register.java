@@ -175,6 +175,8 @@ public class Register extends AppCompatActivity {
                             String type = "addBand";
                             BackgroundWorker backgroundWorker = new BackgroundWorker(Register.this);
                             backgroundWorker.execute(type, bend, telefon);
+                            /*Intent intent = new Intent(Register.this, Register.class);
+                            startActivity(intent);*/
                         } else {
                             Toast.makeText(Register.this, "Unesite naziv benda i brojeve telefona", Toast.LENGTH_LONG).show();
                         }
@@ -204,6 +206,8 @@ public class Register extends AppCompatActivity {
                             String type = "deleteBand";
                             BackgroundWorker backgroundWorker = new BackgroundWorker(Register.this);
                             backgroundWorker.execute(type, bend);
+                            Intent intent = new Intent(Register.this, Register.class);
+                            startActivity(intent);
                         } else {
                            // Toast.makeText(Register.this, "Uspesno ste obrisali bend iz baze", Toast.LENGTH_LONG).show();
                         }
