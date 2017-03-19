@@ -57,7 +57,7 @@ public class SlobodniBendovi extends AppCompatActivity {
 
     String urlAdress = " http://lp-developers.com/freebands.php";
     String urlAdress_reserved = " http://lp-developers.com/reservedOnDate.php";
-   /* String urlAdress = "http://macakmisamuzika.com/android/freebands.php";
+    /*String urlAdress = "http://macakmisamuzika.com/android/freebands.php";
     String urlAdress_reserved = "http://macakmisamuzika.com/android/reservedOnDate.php";*/
 
 

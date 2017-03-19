@@ -12,16 +12,13 @@
     <RelativeLayout
 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="0dp">
+        android:layout_height="match_parent">
 
         <Spinner
             android:id="@+id/spinner2"
             android:layout_width="wrap_content"
             android:layout_height="3dp"
-          android:layout_alignParentRight="true"
+            android:layout_alignParentRight="true"
             android:background="@color/common_plus_signin_btn_text_dark_default"
             android:popupBackground="@color/colorPrimary"
             android:visibility="invisible" />
@@ -33,6 +30,10 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:divider="?android:attr/colorControlHighlight"
             android:dividerHeight="0dp"
             android:footerDividersEnabled="true"
@@ -42,8 +43,14 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="230dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tv"
+            android:layout_marginLeft="5dp"
+            android:layout_toLeftOf="@+id/textView2"
+            android:layout_toStartOf="@+id/textView2"
             android:background="?android:attr/colorPrimary"
             android:padding="10dp"
             android:text="Bend"
@@ -51,10 +58,7 @@
             android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:textSize="18sp"
             android:textStyle="bold"
-            tools:ignore="HardcodedText,NewApi,RtlCompat"
-            android:layout_below="@+id/tv"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            tools:ignore="HardcodedText,NewApi,RtlCompat" />
 
         <TextView
             android:id="@+id/textView2"
@@ -64,8 +68,11 @@
             android:layout_alignBottom="@+id/textView"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
             android:background="?attr/colorPrimary"
-            android:padding="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="25dp"
+            android:paddingTop="10dp"
             android:text="Svadbe"
             android:textAlignment="center"
             android:textColor="@color/white"

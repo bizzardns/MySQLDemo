@@ -53,8 +53,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         String reserveIzKalendara_url = "http://lp-developers.com/reserveIzKalendara.php";
 
 
-
-        /*String login_url = "http://macakmisamuzika.com/android/login.php";
+     /*   String login_url = "http://macakmisamuzika.com/android/login.php";
         String addBand_url = "http://macakmisamuzika.com/android/addBand.php";
         String deleteBand_url = "http://macakmisamuzika.com/android/deleteBand.php";
         String register_url = "http://macakmisamuzika.com/android/register.php";

@@ -239,8 +239,6 @@ public class OfflineMode extends AppCompatActivity {
             } else {
 
                 textView.setVisibility(View.GONE);
-
-
             }
 
 
@@ -251,7 +249,7 @@ public class OfflineMode extends AppCompatActivity {
                 listView.setAdapter(adapter1);
             }
             if (theList2.isEmpty()) {
-                listView2.setVisibility(View.VISIBLE);
+                listView2.setVisibility(View.GONE);
 
             } else {
                 OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
@@ -352,7 +350,7 @@ public class OfflineMode extends AppCompatActivity {
                     listView.setAdapter(adapter1);
                 }
                 if (theList2.isEmpty()) {
-                    listView2.setVisibility(View.VISIBLE);
+                    listView2.setVisibility(View.GONE);
 
                 } else {
                     OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
@@ -498,7 +496,7 @@ public class OfflineMode extends AppCompatActivity {
                                             listView.setAdapter(adapter1);
                                         }
                                         if (theList2.isEmpty()) {
-                                            listView2.setVisibility(View.VISIBLE);
+                                            listView2.setVisibility(View.GONE);
 
                                         } else {
                                             OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
@@ -656,7 +654,7 @@ public class OfflineMode extends AppCompatActivity {
                     listView.setAdapter(adapter1);
                 }
                 if (theList2.isEmpty()) {
-                    listView2.setVisibility(View.VISIBLE);
+                    listView2.setVisibility(View.GONE);
 
                 } else {
                     OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
@@ -791,7 +789,7 @@ public class OfflineMode extends AppCompatActivity {
                 listView.setAdapter(adapter1);
             }
             if (theList2.isEmpty()) {
-                listView2.setVisibility(View.VISIBLE);
+                listView2.setVisibility(View.GONE);
 
             } else {
                 OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);

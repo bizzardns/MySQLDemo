@@ -52,12 +52,12 @@ public class CustomListCount extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         if(convertView==null)
         {
-            convertView=inflater.inflate(R.layout.list_single,parent,false);
+            convertView=inflater.inflate(R.layout.single_list_two,parent,false);
         }
 
-        TextView nameTxt= (TextView) convertView.findViewById(R.id.img);
+        TextView nameTxt= (TextView) convertView.findViewById(R.id.naziv);
         nameTxt.setText(events.get(position).getNaziv_benda());
-        TextView countTxt= (TextView) convertView.findViewById(R.id.txt);
+        TextView countTxt= (TextView) convertView.findViewById(R.id.broj);
         countTxt.setText(events.get(position).getCount());
 
 
