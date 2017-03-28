@@ -16,7 +16,7 @@ import java.net.URL;
 
 public class BrojacDatuma {
 
-   String adress = "http://lp-developers.com/counter.php";
+    String adress = "http://lp-developers.com/counter.php";
     //String adress = "http://macakmisamuzika.com/android/counter.php";
     InputStream is = null;
     String line = null;
