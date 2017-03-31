@@ -9,15 +9,14 @@
         android:id="@+id/bendTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:layout_toLeftOf="@+id/checkTxt"
+        android:layout_toStartOf="@+id/checkTxt" />
 
     <TextView
         android:id="@+id/imeTxt"
@@ -64,5 +63,18 @@
         android:textAlignment="textStart"
         android:textSize="14sp"
         android:textStyle="normal|bold" />
+
+    <TextView
+        android:id="@+id/checkTxt"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lokalTxt"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/bendTxt"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

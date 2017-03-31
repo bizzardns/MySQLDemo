@@ -70,11 +70,12 @@ public class Parser extends AsyncTask<Void, Void, Integer> {
                 String ime = jo.getString("ime");
                 String grad = jo.getString("grad");
                 String lokal = jo.getString("lokal");
+                String check = jo.getString("event");
 
 
                 e = new EventData();
                 e.setNaziv_benda(name);
-
+                e.setEvent(check);
                 e.setIme(ime);
                 e.setGrad(grad);
                 e.setLokal(lokal);

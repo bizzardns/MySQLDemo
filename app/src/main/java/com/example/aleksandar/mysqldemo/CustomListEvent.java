@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.aleksandar.mysqldemo.Event.EventData;
 import java.util.ArrayList;
 
+import static android.R.attr.colorBackground;
 import static android.R.attr.defaultValue;
 
 
@@ -33,8 +34,10 @@ public class CustomListEvent extends BaseAdapter {
     LayoutInflater inflater;
     String long_click;
     String date;
+    String checked;
     public static String jedan = null;
     public static String dva = null;
+    TextView check;
 
 
     public CustomListEvent(Context c, ArrayList<EventData> events) {
@@ -72,10 +75,11 @@ public class CustomListEvent extends BaseAdapter {
         TextView imeTxt= (TextView) convertView.findViewById(R.id.imeTxt);
         TextView gradTxt= (TextView) convertView.findViewById(R.id.gradTxt);
         TextView lokalTxt= (TextView) convertView.findViewById(R.id.lokalTxt);
+         check= (TextView) convertView.findViewById(R.id.checkTxt);
 
 
         nameTxt.setText(events.get(position).getNaziv_benda());
-
+        check.setText(events.get(position).getEvent());
         imeTxt.setText(events.get(position).getIme());
         gradTxt.setText(events.get(position).getGrad());
         lokalTxt.setText(events.get(position).getLokal());
@@ -89,7 +93,9 @@ public class CustomListEvent extends BaseAdapter {
             public boolean onLongClick(View v) {
 
                 long_click = events.get(position).getNaziv_benda();
+                checked = events.get(position).getEvent();
                 date = SlobodniBendovi.sharedValue;
+
 
                 brisi();
                 //Toast.makeText(c,events.get(position).getNaziv_benda(),Toast.LENGTH_SHORT).show();
@@ -101,39 +107,132 @@ public class CustomListEvent extends BaseAdapter {
 
         return convertView;
     }
+
     public void brisi() {
-        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case DialogInterface.BUTTON_POSITIVE:
-                        //setTitle(izabraniDatum + " " + bend); //LOGIKA ZA BRISANJE IZ BAZE
+
+        if (checked.equals("")) {
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_POSITIVE:
+                            //setTitle(izabraniDatum + " " + bend); //LOGIKA ZA BRISANJE IZ BAZE
 
 
-                        String imeBenda = long_click;
-                        String datum = date;
-                        String type = "obrisi";
-                        CustomListEvent.jedan = imeBenda;
-                        CustomListEvent.dva = datum;
-                        BackgroundWorker backgroundWorker = new BackgroundWorker(c);
-                        backgroundWorker.execute(type, imeBenda, datum);
+                            String imeBenda = long_click;
+                            String datum = date;
+                            String type = "obrisi";
+                            CustomListEvent.jedan = imeBenda;
+                            CustomListEvent.dva = datum;
+                            BackgroundWorker backgroundWorker = new BackgroundWorker(c);
+                            backgroundWorker.execute(type, imeBenda, datum);
                 /*        Intent intent = new Intent(c, SlobodniBendovi.class);
                         c.startActivity(intent);*/
                         /*Toast.makeText(c, "Kliknite opet na datum!", Toast.LENGTH_SHORT).show();*/
 
-                        break;
+                            break;
 
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        // Toast.makeText(Main3Activity.this, "NO", Toast.LENGTH_SHORT).show();
-                        break;
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            // Toast.makeText(Main3Activity.this, "NO", Toast.LENGTH_SHORT).show();
+                            break;
+
+
+                        case DialogInterface.BUTTON_NEUTRAL:
+                            //Toast.makeText(c, "OVDE IDE LOGIKA", Toast.LENGTH_SHORT).show();
+                            String imeBenda1 = long_click;
+                            String datum1 = date;
+                            String type1 = "check";
+                            BackgroundWorker backgroundWorker1 = new BackgroundWorker(c);
+                            backgroundWorker1.execute(type1, imeBenda1, datum1);
+
+
+                            break;
+                    }
                 }
-            }
-        };
+            };
 
-        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(c);
-        builder.setMessage("Da li želite da obrišete rezervaciju?").setPositiveButton("Da", dialogClickListener)
-                .setNegativeButton("Ne", dialogClickListener).show();
+            android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(c);
+            builder.setMessage("Da li želite da obrišete rezervaciju?").setPositiveButton("Da", dialogClickListener)
+                    .setNegativeButton("Ne", dialogClickListener).setNeutralButton("CHECK", dialogClickListener).show();
 
 
+        }else if (checked.equals("✓")){
+
+
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_POSITIVE:
+                            //setTitle(izabraniDatum + " " + bend); //LOGIKA ZA BRISANJE IZ BAZE
+
+
+                            String imeBenda = long_click;
+                            String datum = date;
+                            String type = "obrisi";
+                            CustomListEvent.jedan = imeBenda;
+                            CustomListEvent.dva = datum;
+                            BackgroundWorker backgroundWorker = new BackgroundWorker(c);
+                            backgroundWorker.execute(type, imeBenda, datum);
+                /*        Intent intent = new Intent(c, SlobodniBendovi.class);
+                        c.startActivity(intent);*/
+                        /*Toast.makeText(c, "Kliknite opet na datum!", Toast.LENGTH_SHORT).show();*/
+
+                            break;
+
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            // Toast.makeText(Main3Activity.this, "NO", Toast.LENGTH_SHORT).show();
+                            break;
+
+
+                        case DialogInterface.BUTTON_NEUTRAL:
+                            //Toast.makeText(c, "OVDE IDE LOGIKA", Toast.LENGTH_SHORT).show();
+                            String imeBenda1 = long_click;
+                            String datum1 = date;
+                            String type1 = "unCheck";
+                            BackgroundWorker backgroundWorker1 = new BackgroundWorker(c);
+                            backgroundWorker1.execute(type1, imeBenda1, datum1);
+
+
+                            break;
+                    }
+                }
+            };
+
+            android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(c);
+            builder.setMessage("Da li želite da obrišete rezervaciju?").setPositiveButton("Da", dialogClickListener)
+                    .setNegativeButton("Ne", dialogClickListener).setNeutralButton("UNCHECK", dialogClickListener).show();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
