@@ -61,7 +61,7 @@ public class SlobodniBendovi extends AppCompatActivity {
 
     String urlAdress = " http://lp-developers.com/freebands.php";
     String urlAdress_reserved = " http://lp-developers.com/reservedOnDate.php";
-   /* String urlAdress = "http://macakmisamuzika.com/android/freebands.php";
+    /*String urlAdress = "http://macakmisamuzika.com/android/freebands.php";
     String urlAdress_reserved = "http://macakmisamuzika.com/android/reservedOnDate.php";*/
 
 
@@ -308,7 +308,7 @@ public class SlobodniBendovi extends AppCompatActivity {
                     SendReceive sr1 = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
                     sr1.execute();
                     SlobodniBendovi.sharedValue = date;
-                    Toast.makeText(getApplicationContext(),date, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),date, Toast.LENGTH_SHORT).show();
 
                 }
 
