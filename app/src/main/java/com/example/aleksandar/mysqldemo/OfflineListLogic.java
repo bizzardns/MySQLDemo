@@ -19,13 +19,15 @@ public class OfflineListLogic extends ArrayAdapter<String> {
     private final String[] ime;
     private final String[] grad;
     private final String[] restoran;
-    public OfflineListLogic(Activity context, String[] imeBenda, String[] ime, String[] grad, String[] restoran) {
+    private final String[] event;
+    public OfflineListLogic(Activity context, String[] imeBenda, String[] ime, String[] grad, String[] restoran,String[] event) {
         super(context, R.layout.liste, imeBenda);
         this.context = context;
         this.imeBenda = imeBenda;
         this.ime = ime;
         this.grad = grad;
         this.restoran = restoran;
+        this.event = event;
 
     }
     @Override
@@ -37,11 +39,13 @@ public class OfflineListLogic extends ArrayAdapter<String> {
         TextView imeMladenacaTxt = (TextView) rowView.findViewById(R.id.imeTxt);
         TextView gradTxt = (TextView) rowView.findViewById(R.id.gradTxt);
         TextView restoranTxt = (TextView) rowView.findViewById(R.id.lokalTxt);
+        TextView eventTxt = (TextView) rowView.findViewById(R.id.checkTxt);
 
         imeBendaTxt.setText(imeBenda[position]);
         imeMladenacaTxt.setText(ime[position]);
         gradTxt.setText(grad[position]);
         restoranTxt.setText(restoran[position]);
+        eventTxt.setText(event[position]);
 
         return rowView;
     }

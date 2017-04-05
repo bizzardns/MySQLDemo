@@ -20,6 +20,8 @@ public class UpisIzKalendara extends AppCompatActivity {
     public static String tri = null;
     public static String cetiri = null;
     public static String pet = null;
+    public static String dan_custom = null;
+    public static String mesec_custom = null;
 
 
     @Override
@@ -67,6 +69,10 @@ public class UpisIzKalendara extends AppCompatActivity {
             String type = "izKalendara";
             BackgroundWorker backgroundWorker = new BackgroundWorker(this);
             backgroundWorker.execute(type, imeBenda, datum, str_ime, str_mesto, str_restoran);
+           //finish();
+           Intent intent = new Intent(UpisIzKalendara.this, SlobodniBendovi.class);
+            UpisIzKalendara.this.startActivity(intent);
+
         }
 
 

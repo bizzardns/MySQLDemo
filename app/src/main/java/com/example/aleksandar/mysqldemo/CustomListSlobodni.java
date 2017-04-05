@@ -68,6 +68,7 @@ public class CustomListSlobodni extends BaseAdapter {
                 myIntent.putExtra("Ime", long_click);
                 myIntent.putExtra("Datum", date);
                 c.startActivity(myIntent);
+
                 //Toast.makeText(c,events.get(position).getNaziv_benda(),Toast.LENGTH_SHORT).show();
                 return false;
             }

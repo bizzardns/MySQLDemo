@@ -75,7 +75,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dip"
-                android:background="@color/zauzeti"
+                android:background="@android:color/transparent"
                 android:divider="@android:color/background_light"
                 android:dividerHeight="8dp"></ListView>
 
@@ -86,7 +86,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/slobodni"
+                android:background="@android:color/transparent"
                 android:divider="@android:color/background_light"
                 android:dividerHeight="8dp"
                 android:footerDividersEnabled="true"></ListView>

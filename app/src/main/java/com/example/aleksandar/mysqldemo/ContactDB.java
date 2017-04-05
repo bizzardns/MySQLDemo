@@ -23,7 +23,7 @@ public class ContactDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE JAJE( ID INTEGER PRIMARY KEY AUTOINCREMENT, DATUM TEXT, BEND TEXT,IME TEXT,GRAD TEXT,LOKAL TEXT);");
+        sqLiteDatabase.execSQL("CREATE TABLE JAJE( ID INTEGER PRIMARY KEY AUTOINCREMENT, DATUM TEXT, BEND TEXT,IME TEXT,GRAD TEXT,LOKAL TEXT,EVENT TEXT);");
 
     }
 
@@ -32,7 +32,7 @@ public class ContactDB extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS JAJE;");
         onCreate(sqLiteDatabase);
     }
-    public void addContact(String datum,String bend,String ime,String grad,String lokal){
+    public void addContact(String datum,String bend,String ime,String grad,String lokal,String event){
 
         ContentValues contentValues = new ContentValues();
         contentValues.put("DATUM", datum);
@@ -40,6 +40,7 @@ public class ContactDB extends SQLiteOpenHelper {
         contentValues.put("IME", ime);
         contentValues.put("GRAD", grad);
         contentValues.put("LOKAL", lokal);
+        contentValues.put("EVENT", event);
 
         this.getWritableDatabase().insertOrThrow("JAJE", "", contentValues);
 

@@ -23,6 +23,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
 import com.example.aleksandar.mysqldemo.MySQL.SendReceiveSlobodni;
@@ -30,11 +31,14 @@ import com.example.aleksandar.mysqldemo.MySQL.SendReceiveSlobodni;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class SlobodniBendovi extends AppCompatActivity {
 
     public static String sharedValue = null;
+    public static String dan = null;
+    public static String mesec = null;
     CalendarView calendar;
     ImageView img;
     ListView lv = null;
@@ -57,7 +61,7 @@ public class SlobodniBendovi extends AppCompatActivity {
 
     String urlAdress = " http://lp-developers.com/freebands.php";
     String urlAdress_reserved = " http://lp-developers.com/reservedOnDate.php";
-    /*String urlAdress = "http://macakmisamuzika.com/android/freebands.php";
+   /* String urlAdress = "http://macakmisamuzika.com/android/freebands.php";
     String urlAdress_reserved = "http://macakmisamuzika.com/android/reservedOnDate.php";*/
 
 
@@ -84,28 +88,34 @@ public class SlobodniBendovi extends AppCompatActivity {
                 if (id == R.id.nav1) {
                     Intent myIntent = new Intent(SlobodniBendovi.this, SlobodniBendovi.class);
                     SlobodniBendovi.this.startActivity(myIntent);
+                    SlobodniBendovi.sharedValue = null;
+
 
                 } else if (id == R.id.nav2) {
                     Intent myIntent = new Intent(SlobodniBendovi.this, Main2Activity.class);
                     SlobodniBendovi.this.startActivity(myIntent);
+                    SlobodniBendovi.sharedValue = null;
                 } else if (id == R.id.nav3) {
                     Intent myIntent = new Intent(SlobodniBendovi.this, Counter.class);
                     SlobodniBendovi.this.startActivity(myIntent);
+                    SlobodniBendovi.sharedValue = null;
 
                 } else if (id == R.id.nav4) {
                     Intent myIntent = new Intent(SlobodniBendovi.this, SmsActivity.class);
                     SlobodniBendovi.this.startActivity(myIntent);
+                    SlobodniBendovi.sharedValue = null;
 
                 } else if (id == R.id.nav5) {
                     Intent myIntent = new Intent(SlobodniBendovi.this, OfflineMode.class);
                     SlobodniBendovi.this.startActivity(myIntent);
+                    SlobodniBendovi.sharedValue = null;
 
                 } else if (id == R.id.nav6) {
                     Intent myIntent = new Intent(SlobodniBendovi.this, Register.class);
                     SlobodniBendovi.this.startActivity(myIntent);
+                    SlobodniBendovi.sharedValue = null;
 
                 }
-
 
 
                 return true;
@@ -114,43 +124,69 @@ public class SlobodniBendovi extends AppCompatActivity {
         });
 
 
-        setTitle("");
-        sw = (ScrollView)findViewById(R.id.sw);
-        Calendar calander = Calendar.getInstance();
-        int a = calander.get(Calendar.DAY_OF_MONTH);
-        int s = calander.get(Calendar.MONTH) + 1;
-        int n = calander.get(Calendar.YEAR);
-        d = String.valueOf(a);
-        m = String.valueOf(s);
-        y = String.valueOf(n);
-        String danasnji_datum = d + "." + m + "." + y + ".";
-        lv = (ListView) findViewById(R.id.lv);
-        ls = (ListView) findViewById(R.id.ls);
+        if (SlobodniBendovi.sharedValue == null) {
+            Calendar calander = Calendar.getInstance();
+            int a = calander.get(Calendar.DAY_OF_MONTH);
+            int s = calander.get(Calendar.MONTH) + 1;
+            int n = calander.get(Calendar.YEAR);
+            d = String.valueOf(a);
+            m = String.valueOf(s);
+           SlobodniBendovi.dan = d;
+            SlobodniBendovi.mesec = m;
+            y = String.valueOf(n);
+            String danasnji_datum = d + "." + m + "." + y + ".";
+            calendar = (CalendarView) findViewById(R.id.calendarView);
+            calendar.setFirstDayOfWeek(Calendar.MONDAY);
+            lv = (ListView) findViewById(R.id.lv);
+            ls = (ListView) findViewById(R.id.ls);
+            setTitle("");
+            sw = (ScrollView) findViewById(R.id.sw);
+            SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, danasnji_datum, ls);
+            pr.execute();
+            SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, danasnji_datum, lv);
+            sr.execute();
+            SlobodniBendovi.sharedValue = danasnji_datum;
 
-        SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, danasnji_datum, ls);
-        pr.execute();
-        SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, danasnji_datum, lv);
-        sr.execute();
-        SlobodniBendovi.sharedValue = danasnji_datum;
+
+        } else {
+            calendar = (CalendarView) findViewById(R.id.calendarView);
+            calendar.setFirstDayOfWeek(Calendar.MONDAY);
+            d = CustomListEvent.dan_custom;
+            m = CustomListEvent.mesec_custom;
+            lv = (ListView) findViewById(R.id.lv);
+            ls = (ListView) findViewById(R.id.ls);
+            setTitle("");
+            sw = (ScrollView) findViewById(R.id.sw);
+            try {
+                calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(SlobodniBendovi.sharedValue).getTime(), false, true);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            // Toast.makeText(getApplicationContext(),kurcina, Toast.LENGTH_SHORT).show();
+            SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, SlobodniBendovi.sharedValue, ls);
+            pr.execute();
+            SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, SlobodniBendovi.sharedValue, lv);
+            sr.execute();
+
+        }
+
 
 
 
 
        /* lv.setVisibility(View.INVISIBLE);
         ls.setVisibility(View.INVISIBLE);*/
-        lv = (ListView) findViewById(R.id.lv);
-        ls = (ListView) findViewById(R.id.ls);
+    /*    lv = (ListView) findViewById(R.id.lv);
+        ls = (ListView) findViewById(R.id.ls);*/
         lv.setFocusable(false);
         ls.setFocusable(false);
 
-
-        calendar = (CalendarView) findViewById(R.id.calendarView);
-        calendar.setFirstDayOfWeek(Calendar.MONDAY);
 
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 // img.setVisibility(View.GONE);
+
                 ls.setVisibility(View.VISIBLE);
                 lv.setVisibility(View.VISIBLE);
 
@@ -158,9 +194,10 @@ public class SlobodniBendovi extends AppCompatActivity {
                 SlobodniBendovi.sharedValue = date;
                 d = String.valueOf(dayOfMonth);
                 m = String.valueOf((month + 1));
+                SlobodniBendovi.dan = d;
+                SlobodniBendovi.mesec = m;
                 SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
                 pr.execute();
-
                 SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
                 sr.execute();
 
@@ -170,7 +207,7 @@ public class SlobodniBendovi extends AppCompatActivity {
         });
 
 
-        ArrayList<String> theList = new ArrayList<>();
+        final ArrayList<String> theList = new ArrayList<>();
         theList.add("2017");
         theList.add("2018");
         theList.add("2019");
@@ -179,8 +216,8 @@ public class SlobodniBendovi extends AppCompatActivity {
         theList.add("2022");
         theList.add("2023");
         theList.add("2024");
-
-
+      /*  izabraniDatum = CustomListEvent.dva;
+        selectedDate = UpisIzKalendara.dva;*/
         sItems = (Spinner) findViewById(R.id.spinner2);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, theList);
@@ -190,36 +227,6 @@ public class SlobodniBendovi extends AppCompatActivity {
 
 
 
-        sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                kurac = sItems.getSelectedItem().toString();
-                //date = d + "." + m + "." + kurac + ".";
-                date = d + "." + m + "." + kurac + ".";
-                SlobodniBendovi.sharedValue = date;
-                try {
-                    calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(date).getTime(), false, true);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                String r = d + "." + m + "." + kurac + ".";
-                ls.setVisibility(View.VISIBLE);
-                lv.setVisibility(View.VISIBLE);
-                SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
-                pr.execute();
-
-                SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
-                sr.execute();
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-
-
-            }
-        });
 
 
     }
@@ -246,7 +253,7 @@ public class SlobodniBendovi extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.today) {
-            sw.smoothScrollTo(0,0);
+            sw.smoothScrollTo(0, 0);
             //Toast.makeText(getApplicationContext(),date, Toast.LENGTH_SHORT).show();
             calendar.setDate(Calendar.getInstance().getTimeInMillis(), false, true);
             Calendar calander = Calendar.getInstance();
@@ -256,11 +263,14 @@ public class SlobodniBendovi extends AppCompatActivity {
             d = String.valueOf(a);
             m = String.valueOf(s);
             y = String.valueOf(n);
+            SlobodniBendovi.dan = d;
+            SlobodniBendovi.mesec = m;
             String kurcina = d + "." + m + "." + y + ".";
          /*  lv = (ListView) findViewById(R.id.lv);
             ls = (ListView) findViewById(R.id.ls);*/
             ls.setVisibility(View.VISIBLE);
             lv.setVisibility(View.VISIBLE);
+
             // Toast.makeText(getApplicationContext(),kurcina, Toast.LENGTH_SHORT).show();
             SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, kurcina, ls);
             pr.execute();
@@ -271,9 +281,76 @@ public class SlobodniBendovi extends AppCompatActivity {
             return true;
         }
         if (id == R.id.spinner) {
-            sw.smoothScrollTo(0,0);
+            sw.smoothScrollTo(0, 0);
             sItems.performClick();
-            // Toast.makeText(getApplicationContext(),"godina", Toast.LENGTH_SHORT).show();
+
+            sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                    kurac = sItems.getSelectedItem().toString();
+                    //date = d + "." + m + "." + kurac + ".";
+                     d = SlobodniBendovi.dan;
+                      m = SlobodniBendovi.mesec;
+                    date = d + "." + m + "." + kurac + ".";
+
+                    try {
+                        calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(date).getTime(), false, true);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    ls.setVisibility(View.VISIBLE);
+                    lv.setVisibility(View.VISIBLE);
+
+                    SendReceiveSlobodni pr1 = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
+                    pr1.execute();
+
+                    SendReceive sr1 = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
+                    sr1.execute();
+                    SlobodniBendovi.sharedValue = date;
+                    Toast.makeText(getApplicationContext(),date, Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+
+
+
+
+                }
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+            // Toast.makeText(getApplicationContext(),kurac, Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if (id == R.id.sync) {
+
+            ls.setVisibility(View.VISIBLE);
+            lv.setVisibility(View.VISIBLE);
+            try {
+                calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(SlobodniBendovi.sharedValue).getTime(), false, true);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            // Toast.makeText(getApplicationContext(),kurcina, Toast.LENGTH_SHORT).show();
+            SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, SlobodniBendovi.sharedValue, ls);
+            pr.execute();
+            SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, SlobodniBendovi.sharedValue, lv);
+            sr.execute();
+
+
             return true;
         }
 
@@ -305,7 +382,7 @@ public class SlobodniBendovi extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent inMain=new Intent(SlobodniBendovi.this, MenuActivity.class);
+        Intent inMain = new Intent(SlobodniBendovi.this, MenuActivity.class);
         inMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(inMain);
     }

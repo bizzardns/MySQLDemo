@@ -59,6 +59,7 @@ public class OfflineMode extends AppCompatActivity {
     GetIme imeList = new GetIme();
     GetGrad gradList = new GetGrad();
     GetRestoran restoranList = new GetRestoran();
+    GetEvent eventList = new GetEvent();
     ProgressDialog progress;
 
     String d;
@@ -83,6 +84,7 @@ public class OfflineMode extends AppCompatActivity {
     String[] ime;
     String[] grad;
     String[] restoran;
+    String[] event;
     CalendarView calendar;
     String date;
     ListView listView;
@@ -176,6 +178,7 @@ public class OfflineMode extends AppCompatActivity {
             ArrayList<String> theList4 = new ArrayList<>();
             ArrayList<String> theList5 = new ArrayList<>();
             ArrayList<String> theList6 = new ArrayList<>();
+            ArrayList<String> theList7 = new ArrayList<>();
             Cursor cursor = contactBase.list_all_list();
 
             while (cursor.moveToNext()) {
@@ -184,11 +187,12 @@ public class OfflineMode extends AppCompatActivity {
 
                     theList.add(cursor.getString(1));
 
-                    theList4.add(cursor.getString(4));
+                    theList4.add(cursor.getString(3));
 
-                    theList5.add(cursor.getString(5));
+                    theList5.add(cursor.getString(4));
 
-                    theList6.add(cursor.getString(3));
+                    theList6.add(cursor.getString(5));
+                    theList7.add(cursor.getString(6));
 
                     theList3.add(cursor.getString(1));
 
@@ -222,11 +226,14 @@ public class OfflineMode extends AppCompatActivity {
 
 
                 }
+
                 imeBenda = theList.toArray(new String[0]);
                 ime = theList4.toArray(new String[0]);
                 grad = theList5.toArray(new String[0]);
                 restoran = theList6.toArray(new String[0]);
+                event = theList7.toArray(new String[0]);
                 imeBenda2 = theList2.toArray(new String[0]);
+
 
 
             }
@@ -245,7 +252,7 @@ public class OfflineMode extends AppCompatActivity {
             if (theList.isEmpty()) {
                 listView.setVisibility(View.GONE);
             } else {
-                OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
+                OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran,event);
                 listView.setAdapter(adapter1);
             }
             if (theList2.isEmpty()) {
@@ -287,6 +294,7 @@ public class OfflineMode extends AppCompatActivity {
                 ArrayList<String> theList4 = new ArrayList<>();
                 ArrayList<String> theList5 = new ArrayList<>();
                 ArrayList<String> theList6 = new ArrayList<>();
+                ArrayList<String> theList7 = new ArrayList<>();
 
                 Cursor cursor = contactBase.list_all_list();
 
@@ -295,12 +303,10 @@ public class OfflineMode extends AppCompatActivity {
                     if (cursor.getString(2).equals(adate)) {
 
                         theList.add(cursor.getString(1));
-
                         theList4.add(cursor.getString(3));
-
                         theList5.add(cursor.getString(4));
-
                         theList6.add(cursor.getString(5));
+                        theList7.add(cursor.getString(6));
 
                         theList3.add(cursor.getString(1));
 
@@ -309,6 +315,7 @@ public class OfflineMode extends AppCompatActivity {
                         ime = theList4.toArray(new String[0]);
                         grad = theList5.toArray(new String[0]);
                         restoran = theList6.toArray(new String[0]);
+                        event = theList7.toArray(new String[0]);
 
 
                     } else if (!(cursor.getString(2).equals(datum) || cursor.getString(2).isEmpty() )) {
@@ -346,7 +353,7 @@ public class OfflineMode extends AppCompatActivity {
                 if (theList.isEmpty()) {
                     listView.setVisibility(View.GONE);
                 } else {
-                    OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
+                    OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran,event);
                     listView.setAdapter(adapter1);
                 }
                 if (theList2.isEmpty()) {
@@ -381,6 +388,7 @@ public class OfflineMode extends AppCompatActivity {
                         imeList.getData();
                         gradList.getData();
                         restoranList.getData();
+                        eventList.getData();
 
 
                         for (int a = 0; a < list.data.length; a++) {
@@ -399,7 +407,11 @@ public class OfflineMode extends AppCompatActivity {
                             l = restoranList.data[a];
 
 
-                            contactBase.addContact(list.data[a], d, j, h, l);
+                            y = eventList.data[a];
+
+
+
+                            contactBase.addContact(list.data[a],d,j,h,l,y);
 
 
                         }
@@ -432,6 +444,7 @@ public class OfflineMode extends AppCompatActivity {
                                         ArrayList<String> theList4 = new ArrayList<>();
                                         ArrayList<String> theList5 = new ArrayList<>();
                                         ArrayList<String> theList6 = new ArrayList<>();
+                                        ArrayList<String> theList7 = new ArrayList<>();
                                         Cursor cursor = contactBase.list_all_list();
 
                                         while (cursor.moveToNext()) {
@@ -440,11 +453,12 @@ public class OfflineMode extends AppCompatActivity {
 
                                                 theList.add(cursor.getString(1));
 
-                                                theList4.add(cursor.getString(4));
+                                                theList4.add(cursor.getString(3));
 
-                                                theList5.add(cursor.getString(5));
+                                                theList5.add(cursor.getString(4));
 
-                                                theList6.add(cursor.getString(3));
+                                                theList6.add(cursor.getString(5));
+                                                theList7.add(cursor.getString(6));
 
                                                 theList3.add(cursor.getString(1));
 
@@ -471,6 +485,7 @@ public class OfflineMode extends AppCompatActivity {
                                             ime = theList4.toArray(new String[0]);
                                             grad = theList5.toArray(new String[0]);
                                             restoran = theList6.toArray(new String[0]);
+                                            event = theList7.toArray(new String[0]);
                                             imeBenda2 = theList2.toArray(new String[0]);
 
 
@@ -492,7 +507,7 @@ public class OfflineMode extends AppCompatActivity {
                                         if (theList.isEmpty()) {
                                             listView.setVisibility(View.GONE);
                                         } else {
-                                            OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
+                                            OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran,event);
                                             listView.setAdapter(adapter1);
                                         }
                                         if (theList2.isEmpty()) {
@@ -581,6 +596,7 @@ public class OfflineMode extends AppCompatActivity {
                 ArrayList<String> theList4 = new ArrayList<>();
                 ArrayList<String> theList5 = new ArrayList<>();
                 ArrayList<String> theList6 = new ArrayList<>();
+                ArrayList<String> theList7 = new ArrayList<>();
 
                 Cursor cursor = contactBase.list_all_list();
 
@@ -598,6 +614,7 @@ public class OfflineMode extends AppCompatActivity {
 
 
                         theList6.add(cursor.getString(5));
+                        theList7.add(cursor.getString(6));
 
 
                         theList3.add(cursor.getString(1));
@@ -634,6 +651,7 @@ public class OfflineMode extends AppCompatActivity {
                     ime = theList4.toArray(new String[0]);
                     grad = theList5.toArray(new String[0]);
                     restoran = theList6.toArray(new String[0]);
+                    event = theList7.toArray(new String[0]);
                     imeBenda2 = theList2.toArray(new String[0]);
 
                 }
@@ -650,7 +668,7 @@ public class OfflineMode extends AppCompatActivity {
                 if (theList.isEmpty()) {
                     listView.setVisibility(View.GONE);
                 } else {
-                    OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
+                    OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran,event);
                     listView.setAdapter(adapter1);
                 }
                 if (theList2.isEmpty()) {
@@ -725,6 +743,7 @@ public class OfflineMode extends AppCompatActivity {
             ArrayList<String> theList4 = new ArrayList<>();
             ArrayList<String> theList5 = new ArrayList<>();
             ArrayList<String> theList6 = new ArrayList<>();
+            ArrayList<String> theList7 = new ArrayList<>();
             Cursor cursor = contactBase.list_all_list();
 
             while (cursor.moveToNext()) {
@@ -733,11 +752,13 @@ public class OfflineMode extends AppCompatActivity {
 
                     theList.add(cursor.getString(1));
 
-                    theList4.add(cursor.getString(4));
+                    theList4.add(cursor.getString(3));
 
-                    theList5.add(cursor.getString(5));
+                    theList5.add(cursor.getString(4));
 
-                    theList6.add(cursor.getString(3));
+                    theList6.add(cursor.getString(5));
+
+                    theList7.add(cursor.getString(6));
 
                     theList3.add(cursor.getString(1));
 
@@ -771,6 +792,7 @@ public class OfflineMode extends AppCompatActivity {
                 ime = theList4.toArray(new String[0]);
                 grad = theList5.toArray(new String[0]);
                 restoran = theList6.toArray(new String[0]);
+                event = theList7.toArray(new String[0]);
                 imeBenda2 = theList2.toArray(new String[0]);
             }
             if (theList.isEmpty() && theList2.isEmpty()) {
@@ -785,7 +807,7 @@ public class OfflineMode extends AppCompatActivity {
             if (theList.isEmpty()) {
                 listView.setVisibility(View.GONE);
             } else {
-                OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran);
+                OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran,event);
                 listView.setAdapter(adapter1);
             }
             if (theList2.isEmpty()) {

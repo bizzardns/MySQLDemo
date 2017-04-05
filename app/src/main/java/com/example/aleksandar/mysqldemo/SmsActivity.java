@@ -1,10 +1,15 @@
 package com.example.aleksandar.mysqldemo;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
@@ -34,7 +39,6 @@ import java.util.ArrayList;
 public class SmsActivity extends AppCompatActivity {
 
 
-
     NumberDatabse numberDatabse;
     ListView brojevi;
     ArrayList<String> theList2;
@@ -49,11 +53,9 @@ public class SmsActivity extends AppCompatActivity {
     int id;
     int broj;
     int name;
-int bla;
+    int bla;
     int i;
-
-
-
+    Context c;
 
 
     EditText sms;
@@ -61,20 +63,21 @@ int bla;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.slide_in,R.anim.slide_out);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         setContentView(R.layout.activity_sms);
 
-        mDrawerLayout= (DrawerLayout) findViewById(R.id.drawerLayout);
-        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mNavigationView = (NavigationView) findViewById(R.id.nav_item);
         mNavigationView.setItemIconTintList(null);
-        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 //menuItem.setChecked(true);
@@ -107,7 +110,7 @@ int bla;
 
                 return true;
             }
-        } );
+        });
         // sv = (android.widget.SearchView) findViewById(R.id.searchView);
         numberDatabse = new NumberDatabse(this);
         brojevi = (ListView) findViewById(R.id.brojevi);
@@ -153,13 +156,38 @@ int bla;
 
 
                 MobNumber = izabrani.split("\\s*,\\s*");
-               /* Toast.makeText(getApplicationContext(), checkedItems,
+             /*Toast.makeText(getApplicationContext(), izabrani,
                         Toast.LENGTH_SHORT).show();*/
 
 
             }
 
         });
+        brojevi.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                cursor.moveToPosition(position);
+                String broj = cursor.getString(1);
+                String phone = "tel:" + broj;
+                Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(phone));
+
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return true;
+                }
+                startActivity(i);
+
+                return true;
+            }
+        });
+
+
 
 
 
@@ -169,26 +197,36 @@ int bla;
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = sms.getText().toString();
-                for (i = 0; i < MobNumber.length; i++) {
-                    String tempMobileNumber = MobNumber[i];
-                    sendSMS(tempMobileNumber, text);
-
-                    Toast.makeText(getApplicationContext(), "Sending...",
+                if (checkedItems == null) {
+                    Toast.makeText(getApplicationContext(), "Izaberite kontakt!",
                             Toast.LENGTH_SHORT).show();
 
+
+                }else{
+
+                    String text = sms.getText().toString();
+                    for (i = 0; i < MobNumber.length; i++) {
+                        String tempMobileNumber = MobNumber[i];
+                        sendSMS(tempMobileNumber, text);
+
+                        Toast.makeText(getApplicationContext(), "Sending...",
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+                    if (i == MobNumber.length) {
+
+                        Intent intent = new Intent(SmsActivity.this, SmsActivity.class);
+                        startActivity(intent);
+                        Toast.makeText(getApplicationContext(), "Message Sent!",
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+
+
                 }
-                if (i == MobNumber.length){
-
-                    Intent intent = new Intent(SmsActivity.this, SmsActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(getApplicationContext(), "Message Sent!",
-                            Toast.LENGTH_SHORT).show();
-
-                }
-
             }
         });
+
     }
  /*   public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -250,6 +288,7 @@ int bla;
 
             return true;
         }
+
 
 
         return super.onOptionsItemSelected(item);
@@ -337,3 +376,30 @@ int bla;
     }
 
 }
+/*  ZA CEKIRANJE SVIH ITEMA
+   if (id == R.id.All) {
+           int size = listAdapter.getCount();
+           // boolean check = brojevi.isItemChecked(0);
+           if(brojevi.isItemChecked(0)){
+           for(int i = 0; i<=size; i++){
+           brojevi.setItemChecked(i, false);
+           }
+           } else {
+           for(int i = 0; i<=size; i++){
+           brojevi.setItemChecked(i, true);
+           }
+//checkedItems = brojevi.getCheckedItemPositions().toString();
+           checkedItems = displayCheckedItems(brojevi
+           .getCheckedItemPositions());
+           String izabrani = checkedItems;
+
+
+           MobNumber = izabrani.split("\\s*,\\s*");
+
+           Toast.makeText(getApplicationContext(), checkedItems,
+           Toast.LENGTH_SHORT).show();
+           }
+
+
+           return true;
+           }*/

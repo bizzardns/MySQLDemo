@@ -3,6 +3,7 @@ package com.example.aleksandar.mysqldemo;
 /**
  * Created by Aleksandar on 3/1/2017.
  */
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,9 +14,14 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.aleksandar.mysqldemo.Event.EventData;
+import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
+import com.example.aleksandar.mysqldemo.MySQL.SendReceiveSlobodni;
+
 import java.util.ArrayList;
 
 import static android.R.attr.colorBackground;
@@ -35,8 +41,12 @@ public class CustomListEvent extends BaseAdapter {
     String long_click;
     String date;
     String checked;
+    public static String dan_custom = null;
+    public static String mesec_custom = null;
     public static String jedan = null;
     public static String dva = null;
+    String dan;
+    String mesec;
     TextView check;
 
 
@@ -45,7 +55,7 @@ public class CustomListEvent extends BaseAdapter {
         this.events = events;
 
         //INITIALIE
-        inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -65,17 +75,16 @@ public class CustomListEvent extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        if(convertView==null)
-        {
-            convertView=inflater.inflate(R.layout.liste,parent,false);
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.liste, parent, false);
+
         }
 
-        TextView nameTxt= (TextView) convertView.findViewById(R.id.bendTxt);
-
-        TextView imeTxt= (TextView) convertView.findViewById(R.id.imeTxt);
-        TextView gradTxt= (TextView) convertView.findViewById(R.id.gradTxt);
-        TextView lokalTxt= (TextView) convertView.findViewById(R.id.lokalTxt);
-         check= (TextView) convertView.findViewById(R.id.checkTxt);
+        TextView nameTxt = (TextView) convertView.findViewById(R.id.bendTxt);
+        TextView imeTxt = (TextView) convertView.findViewById(R.id.imeTxt);
+        TextView gradTxt = (TextView) convertView.findViewById(R.id.gradTxt);
+        TextView lokalTxt = (TextView) convertView.findViewById(R.id.lokalTxt);
+        check = (TextView) convertView.findViewById(R.id.checkTxt);
 
 
         nameTxt.setText(events.get(position).getNaziv_benda());
@@ -95,6 +104,9 @@ public class CustomListEvent extends BaseAdapter {
                 long_click = events.get(position).getNaziv_benda();
                 checked = events.get(position).getEvent();
                 date = SlobodniBendovi.sharedValue;
+                dan = SlobodniBendovi.dan;
+                mesec = SlobodniBendovi.mesec;
+
 
 
                 brisi();
@@ -124,10 +136,13 @@ public class CustomListEvent extends BaseAdapter {
                             String type = "obrisi";
                             CustomListEvent.jedan = imeBenda;
                             CustomListEvent.dva = datum;
+                            CustomListEvent.dan_custom = dan;
+                            CustomListEvent.mesec_custom = mesec;
                             BackgroundWorker backgroundWorker = new BackgroundWorker(c);
                             backgroundWorker.execute(type, imeBenda, datum);
-                /*        Intent intent = new Intent(c, SlobodniBendovi.class);
-                        c.startActivity(intent);*/
+
+                          Intent intent = new Intent(c, SlobodniBendovi.class);
+                            c.startActivity(intent);
                         /*Toast.makeText(c, "Kliknite opet na datum!", Toast.LENGTH_SHORT).show();*/
 
                             break;
@@ -141,9 +156,15 @@ public class CustomListEvent extends BaseAdapter {
                             //Toast.makeText(c, "OVDE IDE LOGIKA", Toast.LENGTH_SHORT).show();
                             String imeBenda1 = long_click;
                             String datum1 = date;
+                            CustomListEvent.dan_custom = dan;
+                            CustomListEvent.mesec_custom = mesec;
+
                             String type1 = "check";
                             BackgroundWorker backgroundWorker1 = new BackgroundWorker(c);
                             backgroundWorker1.execute(type1, imeBenda1, datum1);
+                            Intent intent1 = new Intent(c, SlobodniBendovi.class);
+                            c.startActivity(intent1);
+
 
 
                             break;
@@ -156,7 +177,7 @@ public class CustomListEvent extends BaseAdapter {
                     .setNegativeButton("Ne", dialogClickListener).setNeutralButton("CHECK", dialogClickListener).show();
 
 
-        }else if (checked.equals("✓")){
+        } else if (checked.equals("✓")) {
 
 
             DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -172,10 +193,12 @@ public class CustomListEvent extends BaseAdapter {
                             String type = "obrisi";
                             CustomListEvent.jedan = imeBenda;
                             CustomListEvent.dva = datum;
+                            CustomListEvent.dan_custom = dan;
+                            CustomListEvent.mesec_custom = mesec;
                             BackgroundWorker backgroundWorker = new BackgroundWorker(c);
                             backgroundWorker.execute(type, imeBenda, datum);
-                /*        Intent intent = new Intent(c, SlobodniBendovi.class);
-                        c.startActivity(intent);*/
+                            Intent intent = new Intent(c, SlobodniBendovi.class);
+                            c.startActivity(intent);
                         /*Toast.makeText(c, "Kliknite opet na datum!", Toast.LENGTH_SHORT).show();*/
 
                             break;
@@ -189,9 +212,13 @@ public class CustomListEvent extends BaseAdapter {
                             //Toast.makeText(c, "OVDE IDE LOGIKA", Toast.LENGTH_SHORT).show();
                             String imeBenda1 = long_click;
                             String datum1 = date;
+                            CustomListEvent.dan_custom = dan;
+                            CustomListEvent.mesec_custom = mesec;
                             String type1 = "unCheck";
                             BackgroundWorker backgroundWorker1 = new BackgroundWorker(c);
                             backgroundWorker1.execute(type1, imeBenda1, datum1);
+                           Intent intent1 = new Intent(c, SlobodniBendovi.class);
+                            c.startActivity(intent1);
 
 
                             break;
@@ -204,35 +231,8 @@ public class CustomListEvent extends BaseAdapter {
                     .setNegativeButton("Ne", dialogClickListener).setNeutralButton("UNCHECK", dialogClickListener).show();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

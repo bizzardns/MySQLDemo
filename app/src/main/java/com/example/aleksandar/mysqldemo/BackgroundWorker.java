@@ -51,7 +51,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         String delete_url = "http://lp-developers.com/delete.php";
         String freebands_url = "http://lp-developers.com/freebands.php";
         String check_url = "http://lp-developers.com/check.php";
-
         String reserveIzKalendara_url = "http://lp-developers.com/reserveIzKalendara.php";
 
 
@@ -62,7 +61,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         String reserve_url = "http://macakmisamuzika.com/android/reserve.php";
         String delete_url = "http://macakmisamuzika.com/android/delete.php";
         String freebands_url = "http://macakmisamuzika.com/android/freebands.php";
-        String reserveIzKalendara_url = "http://macakmisamuzika.com/android/reserveIzKalendara.php";*/
+        String reserveIzKalendara_url = "http://macakmisamuzika.com/android/reserveIzKalendara.php";
+        String check_url = "http://macakmisamuzika.com/android/check.php";*/
 
         if (type.equals("login")) {
             try {
@@ -515,8 +515,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 sendSMS(tempMobileNumber, imeBenda + ": " + "\n" + datum + "\n" + str_ime + "\n" + str_restoran + "\n" + str_mesto + "\n");
             }*/
             //Toast.makeText(Main2Activity.this,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(context, SlobodniBendovi.class);
-            context.startActivity(intent);
+           /* Intent intent = new Intent(context, SlobodniBendovi.class);
+            context.startActivity(intent);*/
 
         }
 
@@ -543,6 +543,12 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
         }else if (result.contains("exists")) {
             Toast.makeText(context, "Bend postoji u bazi!", Toast.LENGTH_SHORT).show();
+        }
+        else if (result.contains("Chekirano")) {
+            Toast.makeText(context, "Checked!", Toast.LENGTH_SHORT).show();
+        }
+        else if (result.contains("Unchekirano")) {
+            Toast.makeText(context, "Unchecked!", Toast.LENGTH_SHORT).show();
         }
         else {
             /*alertDialog.setMessage(result);
