@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.telephony.SmsManager;
 import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -32,8 +33,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     static final int TIME_OUT = 2000;
     static final int MSG_DISMISS_DIALOG = 0;
 
-
-
+    String datum_baza;
     BackgroundWorker(Context ctx) {
         context = ctx;
     }
@@ -52,6 +52,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         String freebands_url = "http://lp-developers.com/freebands.php";
         String check_url = "http://lp-developers.com/check.php";
         String reserveIzKalendara_url = "http://lp-developers.com/reserveIzKalendara.php";
+        String update_url = "http://lp-developers.com/updateIzKalendara.php";
 
 
         /*String login_url = "http://macakmisamuzika.com/android/login.php";
@@ -62,8 +63,55 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         String delete_url = "http://macakmisamuzika.com/android/delete.php";
         String freebands_url = "http://macakmisamuzika.com/android/freebands.php";
         String reserveIzKalendara_url = "http://macakmisamuzika.com/android/reserveIzKalendara.php";
-        String check_url = "http://macakmisamuzika.com/android/check.php";*/
+        String check_url = "http://macakmisamuzika.com/android/check.php";
+        String update_url = "http://macakmisamuzika.com/android/updateIzKalendara.php";*/
 
+        if (type.equals("updateIzKalendara")) {
+            try {
+                String naziv_benda = params[1];
+                String datum = params[2];
+                String ime = params[3];
+                String grad = params[4];
+                String lokal = params[5];
+               datum_baza = params[6];
+
+                URL url = new URL(update_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                String post_data = URLEncoder.encode("naziv_benda", "UTF-8") + "=" + URLEncoder.encode(naziv_benda, "UTF-8") + "&"
+                        + URLEncoder.encode("datum", "UTF-8") + "=" + URLEncoder.encode(datum, "UTF-8") + "&"
+                        + URLEncoder.encode("ime", "UTF-8") + "=" + URLEncoder.encode(ime, "UTF-8") + "&"
+                        + URLEncoder.encode("grad", "UTF-8") + "=" + URLEncoder.encode(grad, "UTF-8") + "&"
+                        + URLEncoder.encode("lokal", "UTF-8") + "=" + URLEncoder.encode(lokal, "UTF-8")+ "&"
+                        + URLEncoder.encode("datum_baza", "UTF-8") + "=" + URLEncoder.encode(datum_baza, "UTF-8");
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                String result = "";
+                String line = "";
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+
+                return result;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
         if (type.equals("login")) {
             try {
                 String user_name = params[1];
@@ -273,49 +321,49 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         }
 
         if (type.equals("obrisi")) {
-                try {
-                    String naziv_benda = params[1];
-                    String datum = params[2];
-
-
-                    URL url = new URL(delete_url);
-                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                    httpURLConnection.setRequestMethod("POST");
-                    httpURLConnection.setDoOutput(true);
-                    httpURLConnection.setDoInput(true);
-                    OutputStream outputStream = httpURLConnection.getOutputStream();
-                    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                    String post_data = URLEncoder.encode("naziv_benda", "UTF-8") + "=" + URLEncoder.encode(naziv_benda, "UTF-8") + "&"
-                            + URLEncoder.encode("datum", "UTF-8") + "=" + URLEncoder.encode(datum, "UTF-8");
-                    bufferedWriter.write(post_data);
-                    bufferedWriter.flush();
-                    bufferedWriter.close();
-                    outputStream.close();
-
-                    InputStream inputStream = httpURLConnection.getInputStream();
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                    String result = "";
-                    String line = "";
-                    while ((line = bufferedReader.readLine()) != null) {
-                        result += line;
-                    }
-                    bufferedReader.close();
-                    inputStream.close();
-                    httpURLConnection.disconnect();
-
-                    return result;
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
-        } if (type.equals("check")) {
             try {
                 String naziv_benda = params[1];
                 String datum = params[2];
 
+
+                URL url = new URL(delete_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                String post_data = URLEncoder.encode("naziv_benda", "UTF-8") + "=" + URLEncoder.encode(naziv_benda, "UTF-8") + "&"
+                        + URLEncoder.encode("datum", "UTF-8") + "=" + URLEncoder.encode(datum, "UTF-8");
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                String result = "";
+                String line = "";
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+
+                return result;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+        if (type.equals("check")) {
+            try {
+                String naziv_benda = params[1];
+                String datum = params[2];
 
 
                 URL url = new URL(check_url);
@@ -478,18 +526,18 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         if (result.contains("trazeni")) {
-            Toast.makeText(context,"Rezervacija jec vec uneta za trazeni bend i datum",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Rezervacija je vec uneta za trazeni bend i datum", Toast.LENGTH_SHORT).show();
 
         } else if (result.contains("Uspesno")) {
-            Toast.makeText(context,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Uspesno dodata rezervacija", Toast.LENGTH_SHORT).show();
 
 
             //final String[] MobNumber = {"0691050988"};
-               String imeBenda = Main2Activity.jedan;
-               String datum = Main2Activity.dva;
-               String str_ime = Main2Activity.tri;
-               String str_restoran = Main2Activity.cetiri;
-               String str_mesto = Main2Activity.pet;
+            String imeBenda = Main2Activity.jedan;
+            String datum = Main2Activity.dva;
+            String str_ime = Main2Activity.tri;
+            String str_restoran = Main2Activity.cetiri;
+            String str_mesto = Main2Activity.pet;
 
 
 
@@ -497,12 +545,11 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                     String tempMobileNumber = MobNumber[i];
                     sendSMS(tempMobileNumber, imeBenda + ": " + "\n" + datum + "\n" + str_ime + "\n" + str_restoran + "\n" + str_mesto + "\n");
                 }*/
-                //Toast.makeText(Main2Activity.this,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, SlobodniBendovi.class);
-                context.startActivity(intent);
-        }
-        else if (result.contains("Success")) {
-            Toast.makeText(context,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(Main2Activity.this,"Uspesno dodata rezervacija",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, SlobodniBendovi.class);
+            context.startActivity(intent);
+        } else if (result.contains("Success")) {
+            Toast.makeText(context, "Uspesno dodata rezervacija", Toast.LENGTH_SHORT).show();
             //final String[] MobNumber = {"0691050988"};
             String imeBenda = UpisIzKalendara.jedan;
             String datum = UpisIzKalendara.dva;
@@ -518,39 +565,46 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
            /* Intent intent = new Intent(context, SlobodniBendovi.class);
             context.startActivity(intent);*/
 
-        }
-
-        else if (result.contains("obrisana")) {
-            Toast.makeText(context,"Rezervacija je uspesno obrisana",Toast.LENGTH_SHORT).show();
+        } else if (result.contains("obrisana")) {
+            Toast.makeText(context, "Rezervacija je uspesno obrisana", Toast.LENGTH_SHORT).show();
             //final String[] MobNumber = {"0691050988"};
             String imeBenda1 = CustomListEvent.jedan;
-            String datum1= CustomListEvent.dva;
+            String datum1 = CustomListEvent.dva;
 
             /*for (int i = 0; i < MobNumber.length; i++) {
                 String tempMobileNumber = MobNumber[i];
                 sendSMS(tempMobileNumber, "Otkazana rezervacija:"+ "\n" + imeBenda1 + "\n" + datum1);
             }*/
 
-        }else if (result.contains("Dodali")) {
+        } else if (result.contains("Dodali")) {
             Toast.makeText(context, "Uspesno ste dodali bend", Toast.LENGTH_SHORT).show();
-            Intent i1 = new Intent (context, Register.class);
+            Intent i1 = new Intent(context, Register.class);
             context.startActivity(i1);
 
-        }else if (result.contains("obrisali")) {
+        } else if (result.contains("obrisali")) {
             Toast.makeText(context, "Obrisali ste bend iz baze!", Toast.LENGTH_SHORT).show();
-            Intent i1 = new Intent (context, Register.class);
+            Intent i1 = new Intent(context, Register.class);
             context.startActivity(i1);
 
-        }else if (result.contains("exists")) {
+        } else if (result.contains("exists")) {
             Toast.makeText(context, "Bend postoji u bazi!", Toast.LENGTH_SHORT).show();
-        }
-        else if (result.contains("Chekirano")) {
+        } else if (result.contains("Chekirano")) {
             Toast.makeText(context, "Checked!", Toast.LENGTH_SHORT).show();
-        }
-        else if (result.contains("Unchekirano")) {
+        } else if (result.contains("Unchekirano")) {
             Toast.makeText(context, "Unchecked!", Toast.LENGTH_SHORT).show();
         }
-        else {
+        else if (result.contains("Kurcina1")) {
+          /*  alertDialog.setMessage(result);
+            alertDialog.show();*/
+            Toast.makeText(context, "Rezervacija je vec uneta za trazeni bend i datum", Toast.LENGTH_SHORT).show();
+        }else if (result.contains("Updated")) {
+            /*alertDialog.setMessage(result);
+            alertDialog.show();*/
+
+            Toast.makeText(context, "Uspesan update!", Toast.LENGTH_SHORT).show();
+            /*Intent i1 = new Intent(context, SlobodniBendovi.class);
+            context.startActivity(i1);*/
+        } else {
             /*alertDialog.setMessage(result);
             alertDialog.show();*/
         }

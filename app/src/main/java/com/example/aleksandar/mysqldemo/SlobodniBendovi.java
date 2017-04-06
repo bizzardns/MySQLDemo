@@ -2,6 +2,7 @@ package com.example.aleksandar.mysqldemo;
 
 import android.content.Intent;
 import android.icu.util.Calendar;
+import android.icu.util.TimeZone;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -125,6 +126,7 @@ public class SlobodniBendovi extends AppCompatActivity {
 
 
         if (SlobodniBendovi.sharedValue == null) {
+            //TimeZone timeZone = TimeZone.getTimeZone("UTC");
             Calendar calander = Calendar.getInstance();
             int a = calander.get(Calendar.DAY_OF_MONTH);
             int s = calander.get(Calendar.MONTH) + 1;

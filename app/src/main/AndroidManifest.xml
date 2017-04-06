@@ -46,16 +46,10 @@
 
         <activity
             android:name=".SmsActivity"
-
-            android:screenOrientation="portrait"
-           >
-
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
-
-
-
         </activity>
         <activity
             android:name=".SpisakBendova"
@@ -82,16 +76,14 @@
         <activity
             android:name=".OfflineMode"
             android:screenOrientation="portrait" />
-        <activity android:name=".UpisIzKalendara"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SmsNums"
-            android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait">
-
-
-
-
-        </activity>
+        <activity
+            android:name=".UpisIzKalendara"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SmsNums"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".UpdateIzKalendara"></activity>
     </application>
 
 </manifest>

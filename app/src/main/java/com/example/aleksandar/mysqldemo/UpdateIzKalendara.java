@@ -9,12 +9,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class UpisIzKalendara extends AppCompatActivity {
+public class UpdateIzKalendara extends AppCompatActivity {
 
     String bend;
     String izabraniDatum;
     EditText ime, mesto, restoran;
-    TextView t1, t2;
+    TextView t1;
+    EditText t2;
+    String date,dan,mesec;
+    //String ime_mladenaca,lokal,grad;
     public static String jedan = null;
     public static String dva = null;
     public static String tri = null;
@@ -27,23 +30,32 @@ public class UpisIzKalendara extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upis_iz_kalendara);
+        setContentView(R.layout.activity_update_iz_kalendara);
         setTitle("");
 
         Intent intent = getIntent();
         bend = intent.getStringExtra("Ime");
         izabraniDatum = intent.getStringExtra("Datum");
+        String ime_mladenaca = intent.getStringExtra("Ime2");
+       String lokal = intent.getStringExtra("restoran");
+       String grad = intent.getStringExtra("grad");
 
 
         ime = (EditText) findViewById(R.id.editIme);
         mesto = (EditText) findViewById(R.id.editMesto);
         restoran = (EditText) findViewById(R.id.editRestoran);
-        // ime.setText(bend,TextView.BufferType.EDITABLE);
+         ime.setText(ime_mladenaca,TextView.BufferType.EDITABLE);
+        mesto.setText(grad,TextView.BufferType.EDITABLE);
+        restoran.setText(lokal,TextView.BufferType.EDITABLE);
 
         t1 = (TextView) findViewById(R.id.textView3);
         t1.setText(bend);
-        t2 = (TextView) findViewById(R.id.textView5);
-        t2.setText(izabraniDatum);
+        t2 = (EditText) findViewById(R.id.textView5);
+        t2.setText(izabraniDatum,TextView.BufferType.EDITABLE);
+
+        date = SlobodniBendovi.sharedValue;
+        dan = SlobodniBendovi.dan;
+        mesec = SlobodniBendovi.mesec;
 
 
     }
@@ -51,7 +63,8 @@ public class UpisIzKalendara extends AppCompatActivity {
     public void rez(View view) {
 
         String imeBenda = bend;
-        String datum = izabraniDatum;
+        String datum = t2.getText().toString();
+        String datum_baza = izabraniDatum;
         String str_ime = ime.getText().toString();
         String str_mesto = mesto.getText().toString();
         String str_restoran = restoran.getText().toString();
@@ -67,12 +80,17 @@ public class UpisIzKalendara extends AppCompatActivity {
             UpisIzKalendara.tri = str_ime;
             UpisIzKalendara.cetiri = str_mesto;
             UpisIzKalendara.pet = str_restoran;
-            String type = "izKalendara";
+            CustomListEvent.jedan = imeBenda;
+            CustomListEvent.dva = datum;
+            CustomListEvent.dan_custom = dan;
+            CustomListEvent.mesec_custom = mesec;
+            SlobodniBendovi.sharedValue = datum;
+            String type = "updateIzKalendara";
             BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-            backgroundWorker.execute(type, imeBenda, datum, str_ime, str_mesto, str_restoran);
-           //finish();
-           Intent intent = new Intent(UpisIzKalendara.this, SlobodniBendovi.class);
-            UpisIzKalendara.this.startActivity(intent);
+            backgroundWorker.execute(type, imeBenda, datum, str_ime, str_mesto, str_restoran, datum_baza);
+            //finish();
+            Intent intent = new Intent(UpdateIzKalendara.this, SlobodniBendovi.class);
+            UpdateIzKalendara.this.startActivity(intent);
 
         }
 
