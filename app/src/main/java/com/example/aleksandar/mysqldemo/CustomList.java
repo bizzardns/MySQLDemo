@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 /**
  * Created by Vlatko Popovic on 02-Feb-17.
  */
@@ -36,6 +38,37 @@ import android.widget.TextView;
 
             imageView.setText(imageId[position]);
             txtTitle.setText(web[position]);
+
+
+
+
+
+            rowView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+
+                    Toast.makeText(context, "jaje",
+                            Toast.LENGTH_SHORT).show();
+
+
+
+                    return false;
+                }
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             return rowView;
         }

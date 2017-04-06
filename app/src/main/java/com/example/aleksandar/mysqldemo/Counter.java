@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.aleksandar.mysqldemo.Event.EventData;
 import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
@@ -165,15 +166,15 @@ public class Counter extends AppCompatActivity {
 
         //bendList.getData();
         //list.getData();
-        //brojacBendova.getData();
-        //brojacDatuma.getData();
+       /* brojacBendova.getData();
+        brojacDatuma.getData();
 
-      /*  CustomList ada = new CustomList(Counter.this, brojacDatuma.data, brojacDatuma.data);
+        CustomList ada = new CustomList(Counter.this, brojacDatuma.data, brojacDatuma.data);
 
         ListView list = (ListView) findViewById(R.id.lv);
-        list.setAdapter(ada);*/
+        list.setAdapter(ada);
 
-      /*  list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -183,8 +184,8 @@ public class Counter extends AppCompatActivity {
 
                 //ovde da ubacim logiku
 
-                // Toast.makeText(getApplicationContext(), val,
-                //    Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), val,
+                    Toast.LENGTH_SHORT).show();
 
 
             }
