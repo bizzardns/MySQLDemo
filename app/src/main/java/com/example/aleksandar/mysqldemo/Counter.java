@@ -111,7 +111,7 @@ public class Counter extends AppCompatActivity {
         int n = calander.get(Calendar.YEAR);
 
         y = String.valueOf(n);
-        setTitle("Izabrana godina: " + y + ".");
+        setTitle("Godina: " + y + ".");
         tv_ukupno = (TextView) findViewById(R.id.textView4);
         tv = (TextView) findViewById(R.id.tv);
 
