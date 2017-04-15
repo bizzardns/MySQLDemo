@@ -60,10 +60,10 @@ public class SlobodniBendovi extends AppCompatActivity {
     private NavigationView mNavigationView;
 
 
-    String urlAdress = " http://lp-developers.com/freebands.php";
-    String urlAdress_reserved = " http://lp-developers.com/reservedOnDate.php";
-    /*String urlAdress = "http://macakmisamuzika.com/android/freebands.php";
-    String urlAdress_reserved = "http://macakmisamuzika.com/android/reservedOnDate.php";*/
+    /*String urlAdress = " http://lp-developers.com/freebands.php";
+    String urlAdress_reserved = " http://lp-developers.com/reservedOnDate.php";*/
+    String urlAdress = "http://macakmisamuzika.com/android/freebands.php";
+    String urlAdress_reserved = "http://macakmisamuzika.com/android/reservedOnDate.php";
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)

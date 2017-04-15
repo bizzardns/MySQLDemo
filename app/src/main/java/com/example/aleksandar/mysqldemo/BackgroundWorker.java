@@ -43,7 +43,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         String type = params[0];
 
-        String login_url = "http://lp-developers.com/login.php";
+        /*String login_url = "http://lp-developers.com/login.php";
         String addBand_url = "http://lp-developers.com/addBand.php";
         String deleteBand_url = "http://lp-developers.com/deleteBand.php";
         String register_url = "http://lp-developers.com/register.php";
@@ -52,10 +52,10 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         String freebands_url = "http://lp-developers.com/freebands.php";
         String check_url = "http://lp-developers.com/check.php";
         String reserveIzKalendara_url = "http://lp-developers.com/reserveIzKalendara.php";
-        String update_url = "http://lp-developers.com/updateIzKalendara.php";
+        String update_url = "http://lp-developers.com/updateIzKalendara.php";*/
 
 
-        /*String login_url = "http://macakmisamuzika.com/android/login.php";
+        String login_url = "http://macakmisamuzika.com/android/login.php";
         String addBand_url = "http://macakmisamuzika.com/android/addBand.php";
         String deleteBand_url = "http://macakmisamuzika.com/android/deleteBand.php";
         String register_url = "http://macakmisamuzika.com/android/register.php";
@@ -64,7 +64,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         String freebands_url = "http://macakmisamuzika.com/android/freebands.php";
         String reserveIzKalendara_url = "http://macakmisamuzika.com/android/reserveIzKalendara.php";
         String check_url = "http://macakmisamuzika.com/android/check.php";
-        String update_url = "http://macakmisamuzika.com/android/updateIzKalendara.php";*/
+        String update_url = "http://macakmisamuzika.com/android/updateIzKalendara.php";
 
         if (type.equals("updateIzKalendara")) {
             try {

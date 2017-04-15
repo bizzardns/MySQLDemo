@@ -1,9 +1,14 @@
 package com.example.aleksandar.mysqldemo;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -17,6 +22,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.telephony.SmsManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -111,6 +118,7 @@ public class SmsActivity extends AppCompatActivity {
                 return true;
             }
         });
+
         // sv = (android.widget.SearchView) findViewById(R.id.searchView);
         numberDatabse = new NumberDatabse(this);
         brojevi = (ListView) findViewById(R.id.brojevi);
@@ -127,7 +135,9 @@ public class SmsActivity extends AppCompatActivity {
         listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, theList);
         brojevi.setAdapter(listAdapter);
 
-
+        /*for(int i = 0; i< theList.size();i++){
+            brojevi.setItemChecked(i,true);
+        }*/
         //  SmsActivity.ListUtils.setDynamicHeight(brojevi);
      /*   sv.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
             @Override
@@ -142,8 +152,6 @@ public class SmsActivity extends AppCompatActivity {
                 return false;
             }
         });*/
-
-
         brojevi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -156,10 +164,9 @@ public class SmsActivity extends AppCompatActivity {
 
 
                 MobNumber = izabrani.split("\\s*,\\s*");
-             /*Toast.makeText(getApplicationContext(), izabrani,
+
+            /* Toast.makeText(getApplicationContext(), izabrani,
                         Toast.LENGTH_SHORT).show();*/
-
-
             }
 
         });
@@ -187,54 +194,84 @@ public class SmsActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
         setTitle("");
         sms= (EditText) findViewById(R.id.messageText);
+        final TextWatcher mTextEditorWatcher = new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() <= 153){
+
+                    setTitle(String.valueOf(s.length())+ "/1");
+
+                }else if (s.length() <= 306 && s.length() > 153 ){
+
+                    setTitle(String.valueOf(s.length())+ "/2");
+
+                }
+                else if (s.length() <= 459 && s.length() > 306 ){
+
+                    setTitle(String.valueOf(s.length())+ "/3");
+
+                }
+                else if (s.length() <= 612 && s.length() > 459 ){
+
+                    setTitle(String.valueOf(s.length())+ "/4");
+
+                }else{
+
+                    setTitle(String.valueOf(s.length())+ "/5");
+
+                }
+                //This sets a textview to the current length
+
+            }
+
+            public void afterTextChanged(Editable s) {
+            }
+        };
+        sms.addTextChangedListener(mTextEditorWatcher);
+
+
         send = (ImageView) findViewById(R.id.imageSend);
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (checkedItems == null) {
+                if (brojevi.getCheckedItemCount() == 0) {
                     Toast.makeText(getApplicationContext(), "Izaberite kontakt!",
                             Toast.LENGTH_SHORT).show();
 
 
-                }else{
+                }else if (sms.getText().toString().isEmpty()){
 
+                    Toast.makeText(getApplicationContext(), "Unesite poruku!",
+                            Toast.LENGTH_SHORT).show();
+
+                }
+                else{
                     String text = sms.getText().toString();
                     for (i = 0; i < MobNumber.length; i++) {
                         String tempMobileNumber = MobNumber[i];
-                        sendSMS(tempMobileNumber, text);
-
-                        Toast.makeText(getApplicationContext(), "Sending...",
-                                Toast.LENGTH_SHORT).show();
-
+                        MultipleSMS(tempMobileNumber, text);
+                        /*Toast.makeText(getApplicationContext(), "Sending...",
+                                Toast.LENGTH_SHORT).show();*/
                     }
                     if (i == MobNumber.length) {
 
                         Intent intent = new Intent(SmsActivity.this, SmsActivity.class);
                         startActivity(intent);
-                        Toast.makeText(getApplicationContext(), "Message Sent!",
+                       Toast.makeText(getApplicationContext(), "Message Sent!",
                                 Toast.LENGTH_SHORT).show();
-
                     }
-
-
                 }
             }
         });
-
     }
  /*   public boolean onCreateOptionsMenu(Menu menu) {
 
-
         menu.add("Settings").setIntent(new Intent(this, SmsNums.class));
-
-
-
 
         return true;
 
@@ -244,27 +281,23 @@ public class SmsActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_search, menu);
 
-
-
-
-
         return true;
     }
 
-    public void sendSMS(String phoneNo, String msg) {
+   /* public void sendSMS(String phoneNo, String msg) {
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNo, null, msg, null, null);
-           /* Toast.makeText(getApplicationContext(), "Sending...",
-                    Toast.LENGTH_LONG).show();*/
-           /* Toast.makeText(getApplicationContext(), "Message Sent",
-                    Toast.LENGTH_LONG).show();*/
+           *//* Toast.makeText(getApplicationContext(), "Sending...",
+                    Toast.LENGTH_LONG).show();*//*
+           *//* Toast.makeText(getApplicationContext(), "Message Sent",
+                    Toast.LENGTH_LONG).show();*//*
         } catch (Exception ex) {
             Toast.makeText(getApplicationContext(),ex.getMessage(),
                     Toast.LENGTH_LONG).show();
             ex.printStackTrace();
         }
-    }
+    }*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -276,13 +309,58 @@ public class SmsActivity extends AppCompatActivity {
 
         int id = item.getItemId();
 
-
         if (id == R.id.imenik) {
-
-
-
-            Intent intent = new Intent(SmsActivity.this, SmsNums.class);
+     Intent intent = new Intent(SmsActivity.this, SmsNums.class);
             startActivity(intent);
+
+
+
+            return true;
+        }
+        if (id == R.id.all) {
+
+            if(brojevi.getCheckedItemCount() == theList.size()){
+
+                for(int i = 0; i< theList.size();i++){
+
+
+                    brojevi.setItemChecked(i,false);
+                    checkedItems = displayCheckedItems(brojevi
+                            .getCheckedItemPositions());
+                    String izabrani = checkedItems;
+
+
+                    MobNumber = izabrani.split("\\s*,\\s*");
+                    /*Toast.makeText(getApplicationContext(), izabrani,
+                            Toast.LENGTH_SHORT).show();*/
+
+
+                }
+
+
+
+            }else{
+
+                for(int i = 0; i< theList.size();i++){
+
+
+                    brojevi.setItemChecked(i,true);
+                    checkedItems = displayCheckedItems(brojevi
+                            .getCheckedItemPositions());
+                    String izabrani = checkedItems;
+
+
+                    MobNumber = izabrani.split("\\s*,\\s*");
+                   /* Toast.makeText(getApplicationContext(), izabrani,
+                            Toast.LENGTH_SHORT).show();*/
+
+
+                }
+
+
+
+
+            }
 
 
 
@@ -373,6 +451,73 @@ public class SmsActivity extends AppCompatActivity {
 
 
 
+    }private void MultipleSMS(String phoneNumber, String message) {
+        String SENT = "SMS_SENT";
+        String DELIVERED = "SMS_DELIVERED";
+
+        PendingIntent sentPI = PendingIntent.getBroadcast(this, 0, new Intent(
+                SENT), 0);
+
+        PendingIntent deliveredPI = PendingIntent.getBroadcast(this, 0,
+                new Intent(DELIVERED), 0);
+
+        // ---when the SMS has been sent---
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context arg0, Intent arg1) {
+                switch (getResultCode()) {
+                    case Activity.RESULT_OK:
+                        ContentValues values = new ContentValues();
+                        for (int i = 0; i < MobNumber.length; i++) {
+                            values.put("address", MobNumber[i]);
+                            // txtPhoneNo.getText().toString());
+                            values.put("body", sms.getText().toString());
+                        }
+                        getContentResolver().insert(
+                                Uri.parse("content://sms/sent"), values);
+                       /* Toast.makeText(getBaseContext(), "SMS sent",
+                                Toast.LENGTH_SHORT).show();*/
+                        break;
+                    case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+                        /*Toast.makeText(getBaseContext(), "Generic failure",
+                                Toast.LENGTH_SHORT).show();*/
+                        break;
+                    case SmsManager.RESULT_ERROR_NO_SERVICE:
+                        /*Toast.makeText(getBaseContext(), "No service",
+                                Toast.LENGTH_SHORT).show();*/
+                        break;
+                    case SmsManager.RESULT_ERROR_NULL_PDU:
+                        /*Toast.makeText(getBaseContext(), "Null PDU",
+                                Toast.LENGTH_SHORT).show();*/
+                        break;
+                    case SmsManager.RESULT_ERROR_RADIO_OFF:
+                       /* Toast.makeText(getBaseContext(), "Radio off",
+                                Toast.LENGTH_SHORT).show();*/
+                        break;
+                }
+            }
+        }, new IntentFilter(SENT));
+
+        // ---when the SMS has been delivered---
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context arg0, Intent arg1) {
+                switch (getResultCode()) {
+                    case Activity.RESULT_OK:
+                        /*Toast.makeText(getBaseContext(), "SMS delivered",
+                                Toast.LENGTH_SHORT).show();*/
+                        break;
+                    case Activity.RESULT_CANCELED:
+                        /*Toast.makeText(getBaseContext(), "SMS not delivered",
+                                Toast.LENGTH_SHORT).show();*/
+                        break;
+                }
+            }
+        }, new IntentFilter(DELIVERED));
+
+        SmsManager sms = SmsManager.getDefault();
+        ArrayList<String> parts =sms.divideMessage(message);
+        sms.sendMultipartTextMessage(phoneNumber, null, parts, null, null);
     }
 
 }

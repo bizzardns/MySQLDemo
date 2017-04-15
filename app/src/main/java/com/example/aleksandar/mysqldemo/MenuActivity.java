@@ -14,8 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
+import android.view.animation.ScaleAnimation;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.aleksandar.mysqldemo.PROBA.DialogList;
@@ -63,6 +69,16 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+
+       /* ImageView splash = (ImageView) findViewById(R.id.imageView9);
+        Animation animSlide = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide);
+
+
+// Start the animation like this
+        splash.startAnimation(animSlide);*/
+
 
 
         Calendar calander = Calendar.getInstance();
@@ -205,4 +221,28 @@ public class MenuActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
 
         }
-}}
+}
+}
+
+        /*RotateAnimation anim = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setInterpolator(new LinearInterpolator());
+        anim.setRepeatCount(Animation.ABSOLUTE);
+        anim.setDuration(700);
+
+// Start animating the image
+        final ImageView splash = (ImageView) findViewById(R.id.imageView9);
+        splash.startAnimation(anim);*/
+        /*AlphaAnimation blinkanimation= new AlphaAnimation(0, 1); // Change alpha from fully visible to invisible
+        blinkanimation.setDuration(2000); // duration - half a second
+        blinkanimation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
+        //blinkanimation.setRepeatCount(1); // Repeat animation infinitely
+
+        blinkanimation.setRepeatMode(Animation.REVERSE);
+        ImageView splash = (ImageView) findViewById(R.id.imageView9);
+        splash.startAnimation(blinkanimation);*/
+// Later.. stop the animation
+// splash.setAnimation(null);
+       /* ImageView splash = (ImageView) findViewById(R.id.imageView9);
+        ScaleAnimation zoom = new ScaleAnimation(0, 0, 1, 1);
+
+        splash.startAnimation(zoom);*/

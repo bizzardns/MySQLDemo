@@ -125,7 +125,7 @@ public class SmsNums extends AppCompatActivity {
         String broj1 = broj_telefona.getText().toString();
 
         numberDatabse.save_u_imenik(ime1, broj1);
-        Intent intent = new Intent(SmsNums.this, SmsActivity.class);
+        Intent intent = new Intent(SmsNums.this, SmsNums.class);
         startActivity(intent);
         Toast.makeText(getApplicationContext(), "Kontakt je sačuvan!",
                 Toast.LENGTH_SHORT).show();
@@ -164,7 +164,7 @@ public class SmsNums extends AppCompatActivity {
 
 
        numberDatabse.deleteContact(id);
-        Intent intent = new Intent(SmsNums.this, SmsActivity.class);
+        Intent intent = new Intent(SmsNums.this, SmsNums.class);
         startActivity(intent);
         Toast.makeText(getApplicationContext(), "Kontakt je obrisan!",
                 Toast.LENGTH_SHORT).show();
@@ -191,6 +191,13 @@ public class SmsNums extends AppCompatActivity {
             mListView.setLayoutParams(params);
             mListView.requestLayout();
         }
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent inMain = new Intent(SmsNums.this, MenuActivity.class);
+        inMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(inMain);
     }
 
 

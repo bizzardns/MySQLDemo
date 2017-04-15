@@ -49,7 +49,7 @@ public class ContactDB extends SQLiteOpenHelper {
         Cursor cursor = this.getReadableDatabase().rawQuery("SELECT * FROM JAJE",null);
 
         while (cursor.moveToNext()) {
-                    textView.append(cursor.getString(1)+ "  " + cursor.getString(2)+"  " + cursor.getString(3)+"  "+cursor.getString(4)+"  "+ cursor.getString(5)+"  "+ cursor.getString(6)+"\n" );
+                    textView.append(cursor.getString(1)+ "  " + cursor.getString(2));
             }
 
         return cursor;

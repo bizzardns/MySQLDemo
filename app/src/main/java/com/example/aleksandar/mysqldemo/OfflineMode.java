@@ -52,9 +52,11 @@ import com.example.aleksandar.mysqldemo.SQLiteData.GetRestoran;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Set;
 
 public class OfflineMode extends AppCompatActivity {
     ReservationList list = new ReservationList();
@@ -231,7 +233,11 @@ public class OfflineMode extends AppCompatActivity {
 
 
 
-
+                    imeBenda = theList.toArray(new String[0]);
+                    ime = theList4.toArray(new String[0]);
+                    grad = theList5.toArray(new String[0]);
+                    restoran = theList6.toArray(new String[0]);
+                    event = theList7.toArray(new String[0]);
 
                  /*Collections.sort(theList, new Comparator<String>() {
                         @Override
@@ -260,11 +266,7 @@ public class OfflineMode extends AppCompatActivity {
 
                 }
 
-                imeBenda = theList.toArray(new String[0]);
-                ime = theList4.toArray(new String[0]);
-                grad = theList5.toArray(new String[0]);
-                restoran = theList6.toArray(new String[0]);
-                event = theList7.toArray(new String[0]);
+
                 imeBenda2 = theList2.toArray(new String[0]);
 
 
@@ -313,7 +315,7 @@ public class OfflineMode extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
 
-                String adate = dayOfMonth + "." + (month + 1) + "." + year + ".";
+                datum = dayOfMonth + "." + (month + 1) + "." + year + ".";
                 d = String.valueOf(dayOfMonth);
                 m = String.valueOf((month + 1));
 
@@ -333,7 +335,7 @@ public class OfflineMode extends AppCompatActivity {
 
                 while (cursor.moveToNext()) {
 
-                    if (cursor.getString(2).equals(adate)) {
+                    if (cursor.getString(2).equals(datum)) {
 
                         theList.add(cursor.getString(1));
                         theList4.add(cursor.getString(3));
@@ -349,6 +351,13 @@ public class OfflineMode extends AppCompatActivity {
                         grad = theList5.toArray(new String[0]);
                         restoran = theList6.toArray(new String[0]);
                         event = theList7.toArray(new String[0]);
+
+                       /* if(imeBenda.length == 21){
+
+                            listView2.setVisibility(View.GONE);
+
+
+                        }*/
 
 
                     } else if (!(cursor.getString(2).equals(datum) || cursor.getString(2).isEmpty() )) {
@@ -366,12 +375,20 @@ public class OfflineMode extends AppCompatActivity {
                                 return s1.compareToIgnoreCase(s2);
                             }
                         });
+
                         imeBenda2 = theList2.toArray(new String[0]);
+
+
+
 
                     }
 
 
                 }
+
+               /* Toast.makeText(getApplicationContext(), String.valueOf(imeBenda2.length),
+                        Toast.LENGTH_SHORT).show();*/
+
                 if (theList.isEmpty() && theList2.isEmpty()) {
 
                     textView.setVisibility(View.VISIBLE);
@@ -385,12 +402,16 @@ public class OfflineMode extends AppCompatActivity {
 
                 if (theList.isEmpty()) {
                     listView.setVisibility(View.GONE);
+                    /*Toast.makeText(getApplicationContext(), "Svi bendovi su slobodni!",
+                            Toast.LENGTH_SHORT).show();*/
                 } else {
                     OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran,event);
                     listView.setAdapter(adapter1);
                 }
                 if (theList2.isEmpty()) {
                     listView2.setVisibility(View.GONE);
+                    /*Toast.makeText(getApplicationContext(), "Svi bendovi su zauzeti!",
+                            Toast.LENGTH_SHORT).show();*/
 
                 } else {
                     OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
@@ -400,8 +421,11 @@ public class OfflineMode extends AppCompatActivity {
                 ListUtils.setDynamicHeight(listView);
 
 
+
             }
         });
+
+
 
 
         sync = (Button) findViewById(R.id.button6);

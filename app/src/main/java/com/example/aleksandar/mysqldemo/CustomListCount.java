@@ -172,7 +172,7 @@ public class CustomListCount extends BaseAdapter {
                         browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                         c.startActivity(browserIntent);
                         break;
-                    case "MEDITERANEO ":
+                    case "MEDITERANEO":
                         url = "http://www.mediteraneobend.com";
                         browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                         c.startActivity(browserIntent);
