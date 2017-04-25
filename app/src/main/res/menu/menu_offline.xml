@@ -2,6 +2,12 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/search"
+        android:icon="@android:drawable/ic_search_category_default"
+        android:orderInCategory="0"
+        app:showAsAction="always"
+        android:title="" />
+    <item
         android:id="@+id/sync"
         android:icon="@android:drawable/stat_notify_sync_noanim"
         android:orderInCategory="0"

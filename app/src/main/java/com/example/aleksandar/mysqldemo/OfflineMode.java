@@ -784,6 +784,10 @@ public class OfflineMode extends AppCompatActivity {
             // Toast.makeText(getApplicationContext(),"godina", Toast.LENGTH_SHORT).show();
             return true;
         }
+        if (id == R.id.search) {
+            Intent intent = new Intent(getApplicationContext(), AllReservations.class);
+            startActivity(intent);
+        }
         if (id == R.id.today) {
             sw.smoothScrollTo(0, 0);
             calendar.setDate(Calendar.getInstance().getTimeInMillis(), false, true);
