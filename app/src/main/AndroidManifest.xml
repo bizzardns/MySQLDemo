@@ -85,7 +85,21 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".UpdateIzKalendara" />
         <activity android:name=".TestiranjeOffline" />
-        <activity android:name=".AllReservations"></activity>
+        <activity android:name=".AllReservations">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+
+        </activity>
     </application>
 
 </manifest>

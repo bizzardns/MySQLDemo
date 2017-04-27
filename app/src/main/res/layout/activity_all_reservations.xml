@@ -7,44 +7,39 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="com.example.aleksandar.mysqldemo.AllReservations">
 
-<ScrollView
-    android:id="@+id/sw"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:fillViewport="true"
-    android:paddingBottom="8dp">
-
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/main_layout"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:layout_height="68dp"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <ListView
-            android:id="@+id/lv"
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dip"
-            android:background="@android:color/transparent"
-            android:divider="@android:color/background_light"
-            android:dividerHeight="8dp"></ListView>
-
-    </LinearLayout>
-
-</ScrollView>
+            android:layout_below="@+id/toolbar"
+            android:background="?attr/colorPrimary"
+            android:elevation="6dp"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
 
-<android.support.design.widget.NavigationView
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/tab_layout">
+
+        </android.support.v4.view.ViewPager>
+
+
+    </RelativeLayout>
+
+
+    <android.support.design.widget.NavigationView
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:id="@+id/nav_item"
