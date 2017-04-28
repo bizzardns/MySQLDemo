@@ -138,14 +138,14 @@ public class AllReservations extends AppCompatActivity {
 
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("GRAD"));
-        tabLayout.addTab(tabLayout.newTab().setText("LOKAL"));
-        tabLayout.addTab(tabLayout.newTab().setText("IME"));
+        tabLayout.addTab(tabLayout.newTab().setText("GRAD").setIcon(R.drawable.grad_dva));
+        tabLayout.addTab(tabLayout.newTab().setText("LOKAL").setIcon(R.drawable.restoran));
+        tabLayout.addTab(tabLayout.newTab().setText("IME").setIcon(R.drawable.imena));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        viewPager.setCurrentItem(1);
+
 
         final PagerAdapter adapter = new PagerAdapter
                 (getSupportFragmentManager(), tabLayout.getTabCount());
@@ -249,14 +249,14 @@ public class AllReservations extends AppCompatActivity {
         while (cursor.moveToNext()) {
 
 
-            theList.add(cursor.getString(4) + "\n" +cursor.getString(1) +"\n"+ cursor.getString(2)+"\n"+ cursor.getString(5)+"  " +cursor.getString(6));
+            theList.add(cursor.getString(4) + "\n" +cursor.getString(1) +"\n"+ cursor.getString(2)+"\n"+ cursor.getString(5)+"\n"+ cursor.getString(3)+"  " +cursor.getString(6));
 
             imeBenda = theList.toArray(new String[0]);
 
         }
 
         // listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, imeBenda);
-        listAdapter = new ArrayAdapter<String>(this, R.layout.liste, R.id.bendTxt, imeBenda);
+        listAdapter = new ArrayAdapter<String>(this, R.layout.search_liste, R.id.bendTxt, imeBenda);
         listView.setAdapter(listAdapter);
 
     }
@@ -268,14 +268,14 @@ public class AllReservations extends AppCompatActivity {
         while (cursor.moveToNext()) {
 
 
-            theList.add(cursor.getString(5) + "\n" +cursor.getString(1) +"\n"+ cursor.getString(2)+"\n"+ cursor.getString(4)+"  " +cursor.getString(6));
+            theList.add(cursor.getString(5) + "\n" +cursor.getString(1) +"\n"+ cursor.getString(2)+"\n"+ cursor.getString(4)+"\n"+ cursor.getString(3)+"  " +cursor.getString(6));
 
             imeBenda = theList.toArray(new String[0]);
 
         }
 
         // listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, imeBenda);
-        listAdapter = new ArrayAdapter<String>(this, R.layout.liste, R.id.bendTxt, imeBenda);
+        listAdapter = new ArrayAdapter<String>(this, R.layout.search_liste, R.id.bendTxt, imeBenda);
         listView.setAdapter(listAdapter);
 
     }
@@ -287,14 +287,14 @@ public class AllReservations extends AppCompatActivity {
         while (cursor.moveToNext()) {
 
 
-            theList.add(cursor.getString(3) + "\n" +cursor.getString(1) +"\n"+ cursor.getString(2)+"\n"+ cursor.getString(5)+"  " +cursor.getString(6));
+            theList.add(cursor.getString(3) + "\n" +cursor.getString(1) +"\n"+ cursor.getString(2)+"\n"+ cursor.getString(5)+"\n"+ cursor.getString(4)+"  " +cursor.getString(6));
 
             imeBenda = theList.toArray(new String[0]);
 
         }
 
         // listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, imeBenda);
-        listAdapter = new ArrayAdapter<String>(this, R.layout.liste, R.id.bendTxt, imeBenda);
+        listAdapter = new ArrayAdapter<String>(this, R.layout.search_liste, R.id.bendTxt, imeBenda);
         listView.setAdapter(listAdapter);
 
     }

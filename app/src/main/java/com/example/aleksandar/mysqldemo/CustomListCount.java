@@ -65,9 +65,9 @@ public class CustomListCount extends BaseAdapter {
         countTxt.setText(events.get(position).getCount());
 
 
-        convertView.setOnLongClickListener(new View.OnLongClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
 
                 bend = String.valueOf(events.get(position).getNaziv_benda());
 
@@ -182,7 +182,9 @@ public class CustomListCount extends BaseAdapter {
 
 
                 //Toast.makeText(c, events.get(position).getNaziv_benda(), Toast.LENGTH_SHORT).show();
-                return false;
+
+
+
             }
         });
 
