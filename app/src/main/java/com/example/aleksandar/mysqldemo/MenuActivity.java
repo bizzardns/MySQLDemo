@@ -71,13 +71,13 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
 
-       /* ImageView splash = (ImageView) findViewById(R.id.imageView9);
+        ImageView splash = (ImageView) findViewById(R.id.imageView9);
         Animation animSlide = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.slide);
 
 
 // Start the animation like this
-        splash.startAnimation(animSlide);*/
+        splash.startAnimation(animSlide);
 
 
 

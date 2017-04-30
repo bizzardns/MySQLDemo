@@ -35,6 +35,7 @@ public class SmsNums extends AppCompatActivity {
     Button delete;
     int idx;
     int id;
+    String ime1,broj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,15 +121,32 @@ public class SmsNums extends AppCompatActivity {
     }
 
     public void Save(View v) {
+        ime1 = ime.getText().toString();
+        broj = broj_telefona.getText().toString();
+        if (broj.isEmpty()){
 
-        String ime1 = ime.getText().toString();
-        String broj1 = broj_telefona.getText().toString();
+            Toast.makeText(getApplicationContext(), "Unesite ime!",
+                    Toast.LENGTH_SHORT).show();
 
-        numberDatabse.save_u_imenik(ime1, broj1);
-        Intent intent = new Intent(SmsNums.this, SmsNums.class);
-        startActivity(intent);
-        Toast.makeText(getApplicationContext(), "Kontakt je sačuvan!",
-                Toast.LENGTH_SHORT).show();
+
+        }else if(ime1.isEmpty()){
+
+            Toast.makeText(getApplicationContext(), "Unesite broj!",
+                    Toast.LENGTH_SHORT).show();
+
+
+
+        } else{
+            /*ime1 = ime.getText().toString();
+            broj = broj_telefona.getText().toString();*/
+            numberDatabse.save_u_imenik(ime1, broj);
+            Intent intent = new Intent(SmsNums.this, SmsNums.class);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Kontakt je sačuvan!",
+                    Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 
 
@@ -195,7 +213,7 @@ public class SmsNums extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent inMain = new Intent(SmsNums.this, MenuActivity.class);
+        Intent inMain = new Intent(SmsNums.this, SmsActivity.class);
         inMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(inMain);
     }

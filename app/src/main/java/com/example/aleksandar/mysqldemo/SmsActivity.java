@@ -160,6 +160,22 @@ public class SmsActivity extends AppCompatActivity implements
             }
 
         });
+
+        brojevi.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                cursor.moveToPosition(position);
+                String num = cursor.getString(1);
+                Toast.makeText(getApplicationContext(), num,
+                        Toast.LENGTH_LONG).show();
+
+                return false;
+            }
+        });
+
+
+
      /*   ArrayAdapter stringAdapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_multiple_choice,
