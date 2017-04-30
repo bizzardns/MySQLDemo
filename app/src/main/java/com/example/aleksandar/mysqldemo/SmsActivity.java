@@ -514,6 +514,7 @@ public class SmsActivity extends AppCompatActivity implements
         SmsManager sms = SmsManager.getDefault();
         ArrayList<String> parts =sms.divideMessage(message);
         sms.sendMultipartTextMessage(phoneNumber, null, parts, null, null);
+       // setTitle(sd);
     }
     @Override
     public boolean hasActions(int position, SwipeDirection direction){
