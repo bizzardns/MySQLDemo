@@ -40,10 +40,13 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.aleksandar.mysqldemo.PROBA.NumberDatabse;
+import com.wdullaer.swipeactionadapter.SwipeActionAdapter;
+import com.wdullaer.swipeactionadapter.SwipeDirection;
 
 import java.util.ArrayList;
 
-public class SmsActivity extends AppCompatActivity {
+public class SmsActivity extends AppCompatActivity implements
+        SwipeActionAdapter.SwipeActionListener {
 
 
     NumberDatabse numberDatabse;
@@ -63,10 +66,11 @@ public class SmsActivity extends AppCompatActivity {
     int bla;
     int i;
     Context c;
-
-
     EditText sms;
     ImageView send;
+    protected SwipeActionAdapter mAdapter;
+
+
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
@@ -121,8 +125,12 @@ public class SmsActivity extends AppCompatActivity {
 
         // sv = (android.widget.SearchView) findViewById(R.id.searchView);
         numberDatabse = new NumberDatabse(this);
+      /* numberDatabse.save_u_imenik("Sale", "123");
+        numberDatabse.save_u_imenik("Mirko", "234");
+        numberDatabse.save_u_imenik("Slavko", "345");*/
         brojevi = (ListView) findViewById(R.id.brojevi);
         brojevi.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
+
         theList = new ArrayList<>();
         cursor = numberDatabse.list_all_list();
         //theList2 = new ArrayList<>();
@@ -132,67 +140,52 @@ public class SmsActivity extends AppCompatActivity {
 
         }
 
-        listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, theList);
-        brojevi.setAdapter(listAdapter);
 
-        /*for(int i = 0; i< theList.size();i++){
-            brojevi.setItemChecked(i,true);
-        }*/
-        //  SmsActivity.ListUtils.setDynamicHeight(brojevi);
-     /*   sv.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String text) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String text) {
-
-                listAdapter.getFilter().filter(text);
-                return false;
-            }
-        });*/
+        // String[] content = new String[1000];
+        for (int i=0;i<theList.size();i++) {
+            theList.toArray()[i] = "Row " + (i + 1);
+        }
         brojevi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 bla = position;
-                checkedItems = displayCheckedItems(brojevi
-                        .getCheckedItemPositions());
+                checkedItems = displayCheckedItems(brojevi.getCheckedItemPositions());
+
                 String izabrani = checkedItems;
 
 
                 MobNumber = izabrani.split("\\s*,\\s*");
 
-            /* Toast.makeText(getApplicationContext(), izabrani,
-                        Toast.LENGTH_SHORT).show();*/
+                Toast.makeText(getApplicationContext(), izabrani,
+                        Toast.LENGTH_SHORT).show();
             }
 
         });
-        brojevi.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                cursor.moveToPosition(position);
-                String broj = cursor.getString(1);
-                String phone = "tel:" + broj;
-                Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(phone));
+     /*   ArrayAdapter stringAdapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_multiple_choice,
+                R.layout.row_bg,
+                R.id.text,
 
-                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return true;
-                }
-                startActivity(i);
+                new ArrayList<>(lista)
+        );*/
+        ArrayAdapter<String> stringAdapter = new ArrayAdapter<String>
+                (SmsActivity.this,
+                        android.R.layout.simple_list_item_multiple_choice,
+                        android.R.id.text1, theList );
 
-                return true;
-            }
-        });
+        mAdapter = new SwipeActionAdapter(stringAdapter);
+        mAdapter.setSwipeActionListener(this)
+                .setDimBackgrounds(true)
+                .setListView(brojevi);
+        brojevi.setAdapter(mAdapter);
+
+        mAdapter.addBackground(SwipeDirection.DIRECTION_FAR_LEFT,R.layout.row_bg_left_far)
+                .addBackground(SwipeDirection.DIRECTION_NORMAL_LEFT, R.layout.row_bg_left)
+                .addBackground(SwipeDirection.DIRECTION_FAR_RIGHT, R.layout.row_bg_right_far)
+                .addBackground(SwipeDirection.DIRECTION_NORMAL_RIGHT,R.layout.row_bg_right);
 
         setTitle("");
         sms= (EditText) findViewById(R.id.messageText);
@@ -262,12 +255,15 @@ public class SmsActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(SmsActivity.this, SmsActivity.class);
                         startActivity(intent);
-                       Toast.makeText(getApplicationContext(), "Message Sent!",
+                        Toast.makeText(getApplicationContext(), "Message Sent!",
                                 Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
+
+
+
     }
  /*   public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -518,6 +514,119 @@ public class SmsActivity extends AppCompatActivity {
         SmsManager sms = SmsManager.getDefault();
         ArrayList<String> parts =sms.divideMessage(message);
         sms.sendMultipartTextMessage(phoneNumber, null, parts, null, null);
+    }
+    @Override
+    public boolean hasActions(int position, SwipeDirection direction){
+        if(direction.isLeft()) return true;
+        if(direction.isRight()) return true;
+        return false;
+    }
+
+    @Override
+    public boolean shouldDismiss(int position, SwipeDirection direction){
+        return direction == SwipeDirection.DIRECTION_NORMAL_LEFT;
+    }
+
+    @Override
+    public void onSwipe(int[] positionList, SwipeDirection[] directionList){
+        for(int i=0;i<positionList.length;i++) {
+            SwipeDirection direction = directionList[i];
+            int position = positionList[i];
+            String dir = "";
+
+
+            switch (direction) {
+                case DIRECTION_FAR_LEFT:
+                    dir = "Far left";
+                    cursor.moveToPosition(position);
+                    String broj1 = cursor.getString(1);
+                    Uri uri = Uri.parse("smsto:"+ broj1);
+                    Intent it = new Intent(Intent.ACTION_SENDTO, uri);
+                    //it.putExtra("sms_body", "");
+
+
+                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+
+                    }
+                    startActivity(it);
+
+                    break;
+                case DIRECTION_NORMAL_LEFT:
+                    dir = "Left";
+                    cursor.moveToPosition(position);
+                    String broj2 = cursor.getString(1);
+                    Uri uri2 = Uri.parse("smsto:"+ broj2);
+                    Intent it2 = new Intent(Intent.ACTION_SENDTO, uri2);
+                    //it.putExtra("sms_body", "");
+
+
+                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+
+                    }
+                    startActivity(it2);
+
+
+
+
+                    break;
+                case DIRECTION_FAR_RIGHT:
+                    dir = "Far right";
+                    cursor.moveToPosition(position);
+                    String broj = cursor.getString(1);
+                    String phone = "tel:" + broj;
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(phone));
+
+                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+
+                    }
+                    startActivity(intent);
+                    break;
+                case DIRECTION_NORMAL_RIGHT:
+                    /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("Test Dialog").setMessage("You swiped right").create().show();*/
+                    dir = "Right";
+                    cursor.moveToPosition(position);
+                    String broj3 = cursor.getString(1);
+                    String phone3 = "tel:" + broj3;
+                    Intent intent3 = new Intent(Intent.ACTION_CALL, Uri.parse(phone3));
+
+                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+
+                    }
+                    startActivity(intent3);
+                    break;
+            }
+            /*Toast.makeText(this,dir + " swipe Action triggered on " + mAdapter.getItem(position),Toast.LENGTH_SHORT).show();*/
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
 }
