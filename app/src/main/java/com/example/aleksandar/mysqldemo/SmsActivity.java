@@ -123,17 +123,14 @@ public class SmsActivity extends AppCompatActivity implements
             }
         });
 
-        // sv = (android.widget.SearchView) findViewById(R.id.searchView);
+
         numberDatabse = new NumberDatabse(this);
-      /* numberDatabse.save_u_imenik("Sale", "123");
-        numberDatabse.save_u_imenik("Mirko", "234");
-        numberDatabse.save_u_imenik("Slavko", "345");*/
+
         brojevi = (ListView) findViewById(R.id.brojevi);
         brojevi.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
 
         theList = new ArrayList<>();
         cursor = numberDatabse.list_all_list();
-        //theList2 = new ArrayList<>();
         while (cursor.moveToNext()) {
 
             theList.add(cursor.getString(2));
@@ -158,8 +155,8 @@ public class SmsActivity extends AppCompatActivity implements
 
                 MobNumber = izabrani.split("\\s*,\\s*");
 
-                Toast.makeText(getApplicationContext(), izabrani,
-                        Toast.LENGTH_SHORT).show();
+                /*Toast.makeText(getApplicationContext(), izabrani,
+                        Toast.LENGTH_SHORT).show();*/
             }
 
         });
