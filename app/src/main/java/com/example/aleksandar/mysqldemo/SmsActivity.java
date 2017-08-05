@@ -3,6 +3,7 @@ package com.example.aleksandar.mysqldemo;
 import android.Manifest;
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,6 +12,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.icu.util.Calendar;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -43,7 +45,12 @@ import com.example.aleksandar.mysqldemo.PROBA.NumberDatabse;
 import com.wdullaer.swipeactionadapter.SwipeActionAdapter;
 import com.wdullaer.swipeactionadapter.SwipeDirection;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 
 public class SmsActivity extends AppCompatActivity implements
         SwipeActionAdapter.SwipeActionListener {
@@ -52,6 +59,7 @@ public class SmsActivity extends AppCompatActivity implements
     NumberDatabse numberDatabse;
     ListView brojevi;
     ArrayList<String> theList2;
+    ProgressDialog progress;
     Cursor cursor;
     ArrayList<String> theList;
     ArrayAdapter listAdapter;
@@ -100,6 +108,8 @@ public class SmsActivity extends AppCompatActivity implements
                 } else if (id == R.id.nav2) {
                     Intent myIntent = new Intent(SmsActivity.this, Main2Activity.class);
                     SmsActivity.this.startActivity(myIntent);
+                    /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                            Toast.LENGTH_SHORT).show();*/
                 } else if (id == R.id.nav3) {
                     Intent myIntent = new Intent(SmsActivity.this, Counter.class);
                     SmsActivity.this.startActivity(myIntent);
@@ -115,6 +125,8 @@ public class SmsActivity extends AppCompatActivity implements
                 } else if (id == R.id.nav6) {
                     Intent myIntent = new Intent(SmsActivity.this, Register.class);
                     SmsActivity.this.startActivity(myIntent);
+                    /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                            Toast.LENGTH_SHORT).show();*/
 
                 }
 
@@ -257,20 +269,82 @@ public class SmsActivity extends AppCompatActivity implements
 
                 }
                 else{
-                    String text = sms.getText().toString();
-                    for (i = 0; i < MobNumber.length; i++) {
-                        String tempMobileNumber = MobNumber[i];
-                        MultipleSMS(tempMobileNumber, text);
+
+
+                    progress = ProgressDialog.show(SmsActivity.this, "",
+                            "Sending...", true);
+
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+
+
+                            String text = sms.getText().toString();
+                            for (i = 0; i < MobNumber.length; i++) {
+                                String tempMobileNumber = MobNumber[i];
+                                MultipleSMS(tempMobileNumber, text);
                         /*Toast.makeText(getApplicationContext(), "Sending...",
                                 Toast.LENGTH_SHORT).show();*/
-                    }
-                    if (i == MobNumber.length) {
+                            }
 
-                        Intent intent = new Intent(SmsActivity.this, SmsActivity.class);
-                        startActivity(intent);
-                        Toast.makeText(getApplicationContext(), "Message Sent!",
-                                Toast.LENGTH_SHORT).show();
-                    }
+
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (i == MobNumber.length) {
+                                        // Toast.makeText(getApplicationContext(),String.valueOf(counter),Toast.LENGTH_SHORT).show();
+                                        progress.dismiss();
+
+                                        android.app.AlertDialog.Builder builder1 = new android.app.AlertDialog.Builder(SmsActivity.this);
+                                        builder1.setMessage("Message sent!");
+                                        builder1.setPositiveButton("Ok",
+                                                new DialogInterface.OnClickListener() {
+
+                                                    @Override
+                                                    public void onClick(DialogInterface arg0, int arg1) {
+                                                        Intent intent = new Intent(SmsActivity.this, SmsActivity.class);
+                                                        startActivity(intent);
+
+                                                    }
+                                                });
+                                        builder1.show();
+
+
+                                           /* Toast.makeText(getApplicationContext(), "Message Sent!",
+                                                    Toast.LENGTH_SHORT).show();*/
+
+
+
+
+                                    }
+                                }
+                            });
+                        }
+                    }).start();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 }
             }
         });
@@ -538,7 +612,9 @@ public class SmsActivity extends AppCompatActivity implements
 
     @Override
     public boolean shouldDismiss(int position, SwipeDirection direction){
-        return direction == SwipeDirection.DIRECTION_NORMAL_LEFT;
+        return true; /*direction == SwipeDirection.DIRECTION_FAR_RIGHT || direction == SwipeDirection.DIRECTION_FAR_LEFT
+                || direction == SwipeDirection.DIRECTION_NORMAL_RIGHT || direction == SwipeDirection.DIRECTION_NORMAL_LEFT;*/
+
     }
 
     @Override
@@ -551,11 +627,14 @@ public class SmsActivity extends AppCompatActivity implements
 
             switch (direction) {
                 case DIRECTION_FAR_LEFT:
+                    Toast.makeText(getApplicationContext(), "Message...",
+                            Toast.LENGTH_SHORT).show();
                     dir = "Far left";
                     cursor.moveToPosition(position);
                     String broj1 = cursor.getString(1);
                     Uri uri = Uri.parse("smsto:"+ broj1);
                     Intent it = new Intent(Intent.ACTION_SENDTO, uri);
+
                     //it.putExtra("sms_body", "");
 
 
@@ -573,6 +652,8 @@ public class SmsActivity extends AppCompatActivity implements
 
                     break;
                 case DIRECTION_NORMAL_LEFT:
+                    Toast.makeText(getApplicationContext(), "Message...",
+                            Toast.LENGTH_SHORT).show();
                     dir = "Left";
                     cursor.moveToPosition(position);
                     String broj2 = cursor.getString(1);
@@ -598,11 +679,14 @@ public class SmsActivity extends AppCompatActivity implements
 
                     break;
                 case DIRECTION_FAR_RIGHT:
+                    Toast.makeText(getApplicationContext(), "Calling...",
+                            Toast.LENGTH_SHORT).show();
                     dir = "Far right";
                     cursor.moveToPosition(position);
                     String broj = cursor.getString(1);
                     String phone = "tel:" + broj;
                     Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(phone));
+
 
                     if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                         // TODO: Consider calling
@@ -617,6 +701,8 @@ public class SmsActivity extends AppCompatActivity implements
                     startActivity(intent);
                     break;
                 case DIRECTION_NORMAL_RIGHT:
+                    Toast.makeText(getApplicationContext(), "Calling...",
+                            Toast.LENGTH_SHORT).show();
                     /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setTitle("Test Dialog").setMessage("You swiped right").create().show();*/
                     dir = "Right";
@@ -624,6 +710,7 @@ public class SmsActivity extends AppCompatActivity implements
                     String broj3 = cursor.getString(1);
                     String phone3 = "tel:" + broj3;
                     Intent intent3 = new Intent(Intent.ACTION_CALL, Uri.parse(phone3));
+
 
                     if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                         // TODO: Consider calling

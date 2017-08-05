@@ -96,6 +96,8 @@ public class SlobodniBendovi extends AppCompatActivity {
                     Intent myIntent = new Intent(SlobodniBendovi.this, Main2Activity.class);
                     SlobodniBendovi.this.startActivity(myIntent);
                     SlobodniBendovi.sharedValue = null;
+                    /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                            Toast.LENGTH_SHORT).show();*/
                 } else if (id == R.id.nav3) {
                     Intent myIntent = new Intent(SlobodniBendovi.this, Counter.class);
                     SlobodniBendovi.this.startActivity(myIntent);
@@ -115,6 +117,8 @@ public class SlobodniBendovi extends AppCompatActivity {
                     Intent myIntent = new Intent(SlobodniBendovi.this, Register.class);
                     SlobodniBendovi.this.startActivity(myIntent);
                     SlobodniBendovi.sharedValue = null;
+                    /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                            Toast.LENGTH_SHORT).show();*/
 
                 }
 
@@ -128,6 +132,7 @@ public class SlobodniBendovi extends AppCompatActivity {
         if (SlobodniBendovi.sharedValue == null) {
             //TimeZone timeZone = TimeZone.getTimeZone("UTC");
             Calendar calander = Calendar.getInstance();
+            //calander.get(Calendar.HOUR_OF_DAY);
             int a = calander.get(Calendar.DAY_OF_MONTH);
             int s = calander.get(Calendar.MONTH) + 1;
             int n = calander.get(Calendar.YEAR);

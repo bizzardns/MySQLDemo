@@ -136,6 +136,8 @@ public class MenuActivity extends AppCompatActivity {
 
 
         }
+        /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                Toast.LENGTH_SHORT).show();*/
     }
     public void btn2(View v)
     {  v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
@@ -221,6 +223,8 @@ public class MenuActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
 
         }
+       /* Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                Toast.LENGTH_SHORT).show();*/
 }
 }
 

@@ -105,6 +105,8 @@ public class AllReservations extends AppCompatActivity {
                 } else if (id == R.id.nav2) {
                     Intent myIntent = new Intent(AllReservations.this, Main2Activity.class);
                     AllReservations.this.startActivity(myIntent);
+                    /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                            Toast.LENGTH_SHORT).show();*/
                 } else if (id == R.id.nav3) {
                     Intent myIntent = new Intent(AllReservations.this, Counter.class);
                     AllReservations.this.startActivity(myIntent);
@@ -120,6 +122,8 @@ public class AllReservations extends AppCompatActivity {
                 } else if (id == R.id.nav6) {
                     Intent myIntent = new Intent(AllReservations.this, Register.class);
                     AllReservations.this.startActivity(myIntent);
+                    /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                            Toast.LENGTH_SHORT).show();*/
 
                 }
 
