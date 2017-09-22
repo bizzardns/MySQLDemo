@@ -687,110 +687,15 @@ public class OfflineMode extends AppCompatActivity {
             startActivity(intent);
         }
         if (id == R.id.today) {
-            sw.smoothScrollTo(0, 0);
-            calendar.setDate(Calendar.getInstance().getTimeInMillis(), false, true);
-            Calendar calander = Calendar.getInstance();
-            int a = calander.get(Calendar.DAY_OF_MONTH);
-            int s = calander.get(Calendar.MONTH) + 1;
-            int n = calander.get(Calendar.YEAR);
-            d = String.valueOf(a);
-            m = String.valueOf(s);
-            String y = String.valueOf(n);
-            String kurcina = d + "." + m + "." + y + ".";
-         /*  lv = (ListView) findViewById(R.id.lv);
-            ls = (ListView) findViewById(R.id.ls);*/
-            listView.setVisibility(View.VISIBLE);
-            listView2.setVisibility(View.VISIBLE);
-
-
-            ArrayList<String> theList = new ArrayList<>();
-            ArrayList<String> theList2 = new ArrayList<>();
-            ArrayList<String> theList3 = new ArrayList<>();
-            ArrayList<String> theList4 = new ArrayList<>();
-            ArrayList<String> theList5 = new ArrayList<>();
-            ArrayList<String> theList6 = new ArrayList<>();
-            ArrayList<String> theList7 = new ArrayList<>();
-            Cursor cursor = contactBase.list_all_list();
-
-            while (cursor.moveToNext()) {
-
-                if (cursor.getString(2).equals(kurcina)) {
-
-                    theList.add(cursor.getString(1));
-
-                    theList4.add(cursor.getString(3));
-
-                    theList5.add(cursor.getString(4));
-
-                    theList6.add(cursor.getString(5));
-
-                    theList7.add(cursor.getString(6));
-
-                    theList3.add(cursor.getString(1));
-
-                    /*Collections.sort(theList, new Comparator<String>() {
-                        @Override
-                        public int compare(String s1, String s2) {
-                            return s1.compareToIgnoreCase(s2);
-                        }
-                    });*/
 
 
 
-                } else if (!(cursor.getString(2).equals(kurcina) || cursor.getString(2).isEmpty())) {
-
-                    theList2.add(cursor.getString(1));
-
-                }
-
-
-            }
-            if (theList.isEmpty() && theList2.isEmpty()) {
-
-                textView.setVisibility(View.VISIBLE);
-
-            } else {
-
-                textView.setVisibility(View.GONE);
-
-            }
-            if (theList.isEmpty()) {
-                listView.setVisibility(View.GONE);
-            } else {
-                imeBenda = theList.toArray(new String[0]);
-                ime = theList4.toArray(new String[0]);
-                grad = theList5.toArray(new String[0]);
-                restoran = theList6.toArray(new String[0]);
-                event = theList7.toArray(new String[0]);
-                OfflineListLogic adapter1 = new OfflineListLogic(OfflineMode.this, imeBenda, ime, grad, restoran,event);
-                listView.setAdapter(adapter1);
-            }
-            if (theList2.isEmpty()) {
-                listView2.setVisibility(View.GONE);
-
-            } else {
-                HashSet<String> hashSet = new HashSet<String>();
-                hashSet.addAll(theList2);
-                theList2.clear();
-                //theList2.removeAll(theList);
-                theList2.addAll(hashSet);
-                //theList2.retainAll(theList);
-                theList2.removeAll(theList);
-                Collections.sort(theList2, new Comparator<String>() {
-                    @Override
-                    public int compare(String s1, String s2) {
-                        return s1.compareToIgnoreCase(s2);
-                    }
-                });
-                imeBenda2 = theList2.toArray(new String[0]);
-                OfflineSlobodniLogic adapter = new OfflineSlobodniLogic(OfflineMode.this, imeBenda2);
-                listView2.setAdapter(adapter);
-            }
-            ListUtils.setDynamicHeight(listView2);
-            ListUtils.setDynamicHeight(listView);
-            //sync.performClick();
-            // Toast.makeText(getApplicationContext(),"godina", Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(getIntent());
             return true;
+
+
+
         }
         if (id == R.id.spinner) {
             sw.smoothScrollTo(0, 0);

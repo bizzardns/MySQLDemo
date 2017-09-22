@@ -54,7 +54,7 @@ public class ParserSlobodni extends AsyncTask<Void, Void, Integer> {
             SlobodniBendovi.ListUtils.setDynamicHeight(ls);
 
         } else {
-            Toast.makeText(c, "Unable to parse", Toast.LENGTH_SHORT).show();
+            Toast.makeText(c, "Server not responding!", Toast.LENGTH_SHORT).show();
         }
     }
 

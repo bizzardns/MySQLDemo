@@ -228,25 +228,3 @@ public class MenuActivity extends AppCompatActivity {
 }
 }
 
-        /*RotateAnimation anim = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        anim.setInterpolator(new LinearInterpolator());
-        anim.setRepeatCount(Animation.ABSOLUTE);
-        anim.setDuration(700);
-
-// Start animating the image
-        final ImageView splash = (ImageView) findViewById(R.id.imageView9);
-        splash.startAnimation(anim);*/
-        /*AlphaAnimation blinkanimation= new AlphaAnimation(0, 1); // Change alpha from fully visible to invisible
-        blinkanimation.setDuration(2000); // duration - half a second
-        blinkanimation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
-        //blinkanimation.setRepeatCount(1); // Repeat animation infinitely
-
-        blinkanimation.setRepeatMode(Animation.REVERSE);
-        ImageView splash = (ImageView) findViewById(R.id.imageView9);
-        splash.startAnimation(blinkanimation);*/
-// Later.. stop the animation
-// splash.setAnimation(null);
-       /* ImageView splash = (ImageView) findViewById(R.id.imageView9);
-        ScaleAnimation zoom = new ScaleAnimation(0, 0, 1, 1);
-
-        splash.startAnimation(zoom);*/

@@ -58,7 +58,7 @@ public class SendRecieveEvent extends AsyncTask<Void, Void, String> {
         super.onPostExecute(s);
         pd.dismiss();
         if (s == null) {
-            Toast.makeText(c, "Neuspesno, vraca null", Toast.LENGTH_SHORT).show();
+            Toast.makeText(c, "Server not responding!", Toast.LENGTH_SHORT).show();
         } else {
             //CALL DATA PARSER
             EventParser parser = new EventParser(c, rv, s);

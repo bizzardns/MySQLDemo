@@ -334,7 +334,7 @@ public class Main2Activity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.today) {
-            //Toast.makeText(getApplicationContext(),date, Toast.LENGTH_SHORT).show();
+            /*//Toast.makeText(getApplicationContext(),date, Toast.LENGTH_SHORT).show();
             calendar_unos.setDate(Calendar.getInstance().getTimeInMillis(), false, true);
             Calendar calander = Calendar.getInstance();
             int a = calander.get(Calendar.DAY_OF_MONTH);
@@ -345,8 +345,9 @@ public class Main2Activity extends AppCompatActivity {
             y = String.valueOf(n);
             izabraniDatum = d + "." + m + "." + y + ".";
 
-            // Toast.makeText(getApplicationContext(),kurcina, Toast.LENGTH_SHORT).show();
-
+            // Toast.makeText(getApplicationContext(),kurcina, Toast.LENGTH_SHORT).show();*/
+            finish();
+            startActivity(getIntent());
 
             return true;
         }

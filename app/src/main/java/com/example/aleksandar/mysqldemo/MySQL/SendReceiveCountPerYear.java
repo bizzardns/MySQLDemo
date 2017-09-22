@@ -71,7 +71,7 @@ public class SendReceiveCountPerYear extends AsyncTask<Void, Void, String> {
 
             }
         }else if (s == null) {
-            Toast.makeText(c, "Send receive null", Toast.LENGTH_SHORT).show();
+            Toast.makeText(c, "Server not responding!", Toast.LENGTH_SHORT).show();
         }
 
     }

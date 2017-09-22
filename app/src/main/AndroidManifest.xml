@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
+
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"

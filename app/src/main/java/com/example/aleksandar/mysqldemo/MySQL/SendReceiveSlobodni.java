@@ -74,7 +74,7 @@ public class SendReceiveSlobodni extends AsyncTask<Void, Void, String> {
                 //Toast.makeText(c, "Slobodni parser null", Toast.LENGTH_SHORT).show();
             }
         } else if (s == null) {
-            Toast.makeText(c, "Parser slobodni null", Toast.LENGTH_SHORT).show();
+            Toast.makeText(c, "Server not responding!", Toast.LENGTH_SHORT).show();
         }
 
     }

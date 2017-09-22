@@ -29,9 +29,11 @@ import android.widget.Toast;
 import com.example.aleksandar.mysqldemo.MySQL.SendReceive;
 import com.example.aleksandar.mysqldemo.MySQL.SendReceiveSlobodni;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 
 
@@ -258,11 +260,12 @@ public class SlobodniBendovi extends AppCompatActivity {
         }
         int id = item.getItemId();
 
+
         //noinspection SimplifiableIfStatement
+
         if (id == R.id.today) {
-            sw.smoothScrollTo(0, 0);
-            //Toast.makeText(getApplicationContext(),date, Toast.LENGTH_SHORT).show();
-            calendar.setDate(Calendar.getInstance().getTimeInMillis(), false, true);
+            /*sw.smoothScrollTo(0, 0);
+            calendar.setDate(Calendar.getInstance().getTimeInMillis(),false,true);
             Calendar calander = Calendar.getInstance();
             int a = calander.get(Calendar.DAY_OF_MONTH);
             int s = calander.get(Calendar.MONTH) + 1;
@@ -273,17 +276,18 @@ public class SlobodniBendovi extends AppCompatActivity {
             SlobodniBendovi.dan = d;
             SlobodniBendovi.mesec = m;
             String kurcina = d + "." + m + "." + y + ".";
-         /*  lv = (ListView) findViewById(R.id.lv);
-            ls = (ListView) findViewById(R.id.ls);*/
+
             ls.setVisibility(View.VISIBLE);
             lv.setVisibility(View.VISIBLE);
 
             // Toast.makeText(getApplicationContext(),kurcina, Toast.LENGTH_SHORT).show();
-            SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, kurcina, ls);
+            SendReceiveSlobodni pr = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this,kurcina , ls);
             pr.execute();
             SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, kurcina, lv);
-            sr.execute();
-
+            sr.execute();*/
+            SlobodniBendovi.sharedValue = null;
+            finish();
+            startActivity(getIntent());
 
             return true;
         }
@@ -294,20 +298,24 @@ public class SlobodniBendovi extends AppCompatActivity {
             sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                    kurac = sItems.getSelectedItem().toString();
+                     kurac = sItems.getSelectedItem().toString();
                     //date = d + "." + m + "." + kurac + ".";
-                     d = SlobodniBendovi.dan;
-                      m = SlobodniBendovi.mesec;
-                    date = d + "." + m + "." + kurac + ".";
+                     String d = SlobodniBendovi.dan;
+                     String  m = SlobodniBendovi.mesec;
+                    String date = d + "." + m + "." + kurac + ".";
 
                     try {
                         calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(date).getTime(), false, true);
+
                     } catch (ParseException e) {
+
+                        //Toast.makeText(getApplicationContext(),"CATCH", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
 
                     ls.setVisibility(View.VISIBLE);
                     lv.setVisibility(View.VISIBLE);
+
 
                     SendReceiveSlobodni pr1 = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
                     pr1.execute();
@@ -315,7 +323,7 @@ public class SlobodniBendovi extends AppCompatActivity {
                     SendReceive sr1 = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
                     sr1.execute();
                     SlobodniBendovi.sharedValue = date;
-                    //Toast.makeText(getApplicationContext(),date, Toast.LENGTH_SHORT).show();
+                  //Toast.makeText(getApplicationContext(),date, Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -327,17 +335,6 @@ public class SlobodniBendovi extends AppCompatActivity {
 
                 }
             });
-
-
-
-
-
-
-
-
-
-
-
 
             // Toast.makeText(getApplicationContext(),kurac, Toast.LENGTH_SHORT).show();
             return true;

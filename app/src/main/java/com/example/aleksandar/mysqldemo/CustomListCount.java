@@ -178,6 +178,13 @@ public class CustomListCount extends BaseAdapter {
                         c.startActivity(browserIntent);
                         //Toast.makeText(c,events.get(position).getNaziv_benda(),Toast.LENGTH_SHORT).show();
                         break;
+                    case "GAME OVER":
+                        url = "http://www.gameoverbend.com";
+                        browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        c.startActivity(browserIntent);
+                        //Toast.makeText(c,events.get(position).getNaziv_benda(),Toast.LENGTH_SHORT).show();
+                        break;
+
                 }
 
 

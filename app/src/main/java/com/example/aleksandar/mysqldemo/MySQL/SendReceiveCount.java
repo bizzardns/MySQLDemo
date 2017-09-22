@@ -71,7 +71,7 @@ public class SendReceiveCount extends AsyncTask<Void, Void, String> {
 
             }
         }else if (s == null) {
-            Toast.makeText(c, "Parser null", Toast.LENGTH_SHORT).show();
+            Toast.makeText(c, "Server not responding!", Toast.LENGTH_SHORT).show();
         }
 
     }
