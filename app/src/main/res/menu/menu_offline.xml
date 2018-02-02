@@ -22,7 +22,53 @@
         android:id="@+id/spinner"
         android:title="Year"
         app:showAsAction="always"
-        android:orderInCategory="0"/>
+        android:orderInCategory="0">
+        <menu>
+
+        <item
+            android:id="@+id/action_menu1"
+
+
+            android:title="2017. godina" />
+
+        <item
+            android:id="@+id/action_menu2"
+
+
+            android:title="2018. godina" />
+        <item
+            android:id="@+id/action_menu3"
+
+            android:title="2019. godina" />
+        <item
+            android:id="@+id/action_menu4"
+
+            android:title="2020. godina" />
+        <item
+            android:id="@+id/action_menu5"
+
+            android:title="2021. godina" />
+        <item
+            android:id="@+id/action_menu6"
+
+            android:title="2022. godina" />
+        <item
+            android:id="@+id/action_menu7"
+
+
+            android:title="2023. godina" />
+        <item
+            android:id="@+id/action_menu8"
+
+            android:title="2024. godina" />
+        <item
+            android:id="@+id/action_menu9"
+
+            android:title="2025. godina" />
+
+</menu>
+
+    </item>
 
 
 

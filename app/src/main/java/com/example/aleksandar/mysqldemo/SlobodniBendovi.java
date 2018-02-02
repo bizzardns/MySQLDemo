@@ -216,7 +216,7 @@ public class SlobodniBendovi extends AppCompatActivity {
         });
 
 
-        final ArrayList<String> theList = new ArrayList<>();
+      /*  final ArrayList<String> theList = new ArrayList<>();
         theList.add("2017");
         theList.add("2018");
         theList.add("2019");
@@ -225,14 +225,14 @@ public class SlobodniBendovi extends AppCompatActivity {
         theList.add("2022");
         theList.add("2023");
         theList.add("2024");
-      /*  izabraniDatum = CustomListEvent.dva;
-        selectedDate = UpisIzKalendara.dva;*/
+      *//*  izabraniDatum = CustomListEvent.dva;
+        selectedDate = UpisIzKalendara.dva;*//*
         sItems = (Spinner) findViewById(R.id.spinner2);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, theList);
 
         // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sItems.setAdapter(adapter);
+        sItems.setAdapter(adapter);*/
 
 
 
@@ -293,50 +293,7 @@ public class SlobodniBendovi extends AppCompatActivity {
         }
         if (id == R.id.spinner) {
             sw.smoothScrollTo(0, 0);
-            sItems.performClick();
 
-            sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                     kurac = sItems.getSelectedItem().toString();
-                    //date = d + "." + m + "." + kurac + ".";
-                     String d = SlobodniBendovi.dan;
-                     String  m = SlobodniBendovi.mesec;
-                    String date = d + "." + m + "." + kurac + ".";
-
-                    try {
-                        calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(date).getTime(), false, true);
-
-                    } catch (ParseException e) {
-
-                        //Toast.makeText(getApplicationContext(),"CATCH", Toast.LENGTH_SHORT).show();
-                        e.printStackTrace();
-                    }
-
-                    ls.setVisibility(View.VISIBLE);
-                    lv.setVisibility(View.VISIBLE);
-
-
-                    SendReceiveSlobodni pr1 = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
-                    pr1.execute();
-
-                    SendReceive sr1 = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
-                    sr1.execute();
-                    SlobodniBendovi.sharedValue = date;
-                  //Toast.makeText(getApplicationContext(),date, Toast.LENGTH_SHORT).show();
-
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parentView) {
-
-
-
-
-                }
-            });
-
-            // Toast.makeText(getApplicationContext(),kurac, Toast.LENGTH_SHORT).show();
             return true;
         }
         if (id == R.id.sync) {
@@ -353,6 +310,276 @@ public class SlobodniBendovi extends AppCompatActivity {
             pr.execute();
             SendReceive sr = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, SlobodniBendovi.sharedValue, lv);
             sr.execute();
+
+
+            return true;
+        }
+        if(id == R.id.action_menu1){
+
+            String d = SlobodniBendovi.dan;
+            String  m = SlobodniBendovi.mesec;
+            String date = d + "." + m + "." + "2017" + ".";
+
+            try {
+                calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(date).getTime(), false, true);
+
+            } catch (ParseException e) {
+
+                //Toast.makeText(getApplicationContext(),"CATCH", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+
+            ls.setVisibility(View.VISIBLE);
+            lv.setVisibility(View.VISIBLE);
+
+
+            SendReceiveSlobodni pr1 = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
+            pr1.execute();
+
+            SendReceive sr1 = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
+            sr1.execute();
+            SlobodniBendovi.sharedValue = date;
+
+
+
+            return true;
+        }
+        if(id == R.id.action_menu2){
+
+            String d = SlobodniBendovi.dan;
+            String  m = SlobodniBendovi.mesec;
+            String date = d + "." + m + "." + "2018" + ".";
+
+            try {
+                calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(date).getTime(), false, true);
+
+            } catch (ParseException e) {
+
+                //Toast.makeText(getApplicationContext(),"CATCH", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+
+            ls.setVisibility(View.VISIBLE);
+            lv.setVisibility(View.VISIBLE);
+
+
+            SendReceiveSlobodni pr1 = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
+            pr1.execute();
+
+            SendReceive sr1 = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
+            sr1.execute();
+            SlobodniBendovi.sharedValue = date;
+
+
+
+            return true;
+        }
+        if(id == R.id.action_menu3){
+
+            String d = SlobodniBendovi.dan;
+            String  m = SlobodniBendovi.mesec;
+            String date = d + "." + m + "." + "2019" + ".";
+
+            try {
+                calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(date).getTime(), false, true);
+
+            } catch (ParseException e) {
+
+                //Toast.makeText(getApplicationContext(),"CATCH", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+
+            ls.setVisibility(View.VISIBLE);
+            lv.setVisibility(View.VISIBLE);
+
+
+            SendReceiveSlobodni pr1 = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
+            pr1.execute();
+
+            SendReceive sr1 = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
+            sr1.execute();
+            SlobodniBendovi.sharedValue = date;
+
+
+
+            return true;
+        }
+        if(id == R.id.action_menu4){
+
+            String d = SlobodniBendovi.dan;
+            String  m = SlobodniBendovi.mesec;
+            String date = d + "." + m + "." + "2020" + ".";
+
+            try {
+                calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(date).getTime(), false, true);
+
+            } catch (ParseException e) {
+
+                //Toast.makeText(getApplicationContext(),"CATCH", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+
+            ls.setVisibility(View.VISIBLE);
+            lv.setVisibility(View.VISIBLE);
+
+
+            SendReceiveSlobodni pr1 = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
+            pr1.execute();
+
+            SendReceive sr1 = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
+            sr1.execute();
+            SlobodniBendovi.sharedValue = date;
+
+
+
+            return true;
+        }
+        if(id == R.id.action_menu5){
+
+            String d = SlobodniBendovi.dan;
+            String  m = SlobodniBendovi.mesec;
+            String date = d + "." + m + "." + "2021" + ".";
+
+            try {
+                calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(date).getTime(), false, true);
+
+            } catch (ParseException e) {
+
+                //Toast.makeText(getApplicationContext(),"CATCH", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+
+            ls.setVisibility(View.VISIBLE);
+            lv.setVisibility(View.VISIBLE);
+
+
+            SendReceiveSlobodni pr1 = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
+            pr1.execute();
+
+            SendReceive sr1 = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
+            sr1.execute();
+            SlobodniBendovi.sharedValue = date;
+
+
+
+            return true;
+        }
+        if(id == R.id.action_menu6){
+
+            String d = SlobodniBendovi.dan;
+            String  m = SlobodniBendovi.mesec;
+            String date = d + "." + m + "." + "2022" + ".";
+
+            try {
+                calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(date).getTime(), false, true);
+
+            } catch (ParseException e) {
+
+                //Toast.makeText(getApplicationContext(),"CATCH", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+
+            ls.setVisibility(View.VISIBLE);
+            lv.setVisibility(View.VISIBLE);
+
+
+            SendReceiveSlobodni pr1 = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
+            pr1.execute();
+
+            SendReceive sr1 = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
+            sr1.execute();
+            SlobodniBendovi.sharedValue = date;
+
+
+
+            return true;
+        }
+        if(id == R.id.action_menu7){
+
+            String d = SlobodniBendovi.dan;
+            String  m = SlobodniBendovi.mesec;
+            String date = d + "." + m + "." + "2023" + ".";
+
+            try {
+                calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(date).getTime(), false, true);
+
+            } catch (ParseException e) {
+
+                //Toast.makeText(getApplicationContext(),"CATCH", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+
+            ls.setVisibility(View.VISIBLE);
+            lv.setVisibility(View.VISIBLE);
+
+
+            SendReceiveSlobodni pr1 = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
+            pr1.execute();
+
+            SendReceive sr1 = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
+            sr1.execute();
+            SlobodniBendovi.sharedValue = date;
+
+
+
+            return true;
+        }
+        if(id == R.id.action_menu8){
+
+            String d = SlobodniBendovi.dan;
+            String  m = SlobodniBendovi.mesec;
+            String date = d + "." + m + "." + "2024" + ".";
+
+            try {
+                calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(date).getTime(), false, true);
+
+            } catch (ParseException e) {
+
+                //Toast.makeText(getApplicationContext(),"CATCH", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+
+            ls.setVisibility(View.VISIBLE);
+            lv.setVisibility(View.VISIBLE);
+
+
+            SendReceiveSlobodni pr1 = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
+            pr1.execute();
+
+            SendReceive sr1 = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
+            sr1.execute();
+            SlobodniBendovi.sharedValue = date;
+
+
+
+            return true;
+        }
+        if(id == R.id.action_menu9){
+
+            String d = SlobodniBendovi.dan;
+            String  m = SlobodniBendovi.mesec;
+            String date = d + "." + m + "." + "2025" + ".";
+
+            try {
+                calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(date).getTime(), false, true);
+
+            } catch (ParseException e) {
+
+                //Toast.makeText(getApplicationContext(),"CATCH", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+
+            ls.setVisibility(View.VISIBLE);
+            lv.setVisibility(View.VISIBLE);
+
+
+            SendReceiveSlobodni pr1 = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
+            pr1.execute();
+
+            SendReceive sr1 = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
+            sr1.execute();
+            SlobodniBendovi.sharedValue = date;
+
 
 
             return true;
@@ -389,6 +616,18 @@ public class SlobodniBendovi extends AppCompatActivity {
         Intent inMain = new Intent(SlobodniBendovi.this, MenuActivity.class);
         inMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(inMain);
+    }
+
+    public void getYear(){
+
+
+
+
+
+
+
+
+
     }
 
 }
@@ -557,3 +796,51 @@ public class SlobodniBendovi extends AppCompatActivity {
 
             }
         });*/
+
+
+
+
+          /*  sItems.performClick();
+
+            sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                     kurac = sItems.getSelectedItem().toString();
+                    //date = d + "." + m + "." + kurac + ".";
+                     String d = SlobodniBendovi.dan;
+                     String  m = SlobodniBendovi.mesec;
+                    String date = d + "." + m + "." + kurac + ".";
+
+                    try {
+                        calendar.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(date).getTime(), false, true);
+
+                    } catch (ParseException e) {
+
+                        //Toast.makeText(getApplicationContext(),"CATCH", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+
+                    ls.setVisibility(View.VISIBLE);
+                    lv.setVisibility(View.VISIBLE);
+
+
+                    SendReceiveSlobodni pr1 = new SendReceiveSlobodni(urlAdress, SlobodniBendovi.this, date, ls);
+                    pr1.execute();
+
+                    SendReceive sr1 = new SendReceive(urlAdress_reserved, SlobodniBendovi.this, date, lv);
+                    sr1.execute();
+                    SlobodniBendovi.sharedValue = date;
+                  //Toast.makeText(getApplicationContext(),date, Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+
+
+
+
+                }
+            });*/
+
+// Toast.makeText(getApplicationContext(),kurac, Toast.LENGTH_SHORT).show();

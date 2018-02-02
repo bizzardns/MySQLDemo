@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.example.aleksandar.mysqldemo"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 12
-        versionName "2.0.1"
+        versionCode 13
+        versionName "2.1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

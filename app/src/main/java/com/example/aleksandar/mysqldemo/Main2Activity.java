@@ -201,7 +201,7 @@ public class Main2Activity extends AppCompatActivity {
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
 
-        ArrayList<String> theList = new ArrayList<>();
+       /* ArrayList<String> theList = new ArrayList<>();
         theList.add("2017");
         theList.add("2018");
         theList.add("2019");
@@ -241,7 +241,7 @@ public class Main2Activity extends AppCompatActivity {
 
 
             }
-        });
+        });*/
 
     }
 
@@ -352,10 +352,108 @@ public class Main2Activity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.spinner) {
-            cItems.performClick();
+            //cItems.performClick();
 
             return true;
         }
+        if(id == R.id.action_menu1){
+
+            izabraniDatum = d + "." + m + "." + "2017" + ".";
+
+            //  Toast.makeText(getApplicationContext(),izabraniDatum, Toast.LENGTH_SHORT).show();
+
+            try {
+                calendar_unos.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(izabraniDatum).getTime(), false, true);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+
+
+            return true;
+        }
+        if(id == R.id.action_menu2){
+
+            izabraniDatum = d + "." + m + "." + "2018" + ".";
+
+            //  Toast.makeText(getApplicationContext(),izabraniDatum, Toast.LENGTH_SHORT).show();
+
+            try {
+                calendar_unos.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(izabraniDatum).getTime(), false, true);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+
+
+            return true;
+        }
+        if(id == R.id.action_menu3){
+            izabraniDatum = d + "." + m + "." + "2019" + ".";
+            try {
+                calendar_unos.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(izabraniDatum).getTime(), false, true);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+        if(id == R.id.action_menu4){
+            izabraniDatum = d + "." + m + "." + "2020" + ".";
+            try {
+                calendar_unos.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(izabraniDatum).getTime(), false, true);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+        if(id == R.id.action_menu5){
+            izabraniDatum = d + "." + m + "." + "2021" + ".";
+            try {
+                calendar_unos.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(izabraniDatum).getTime(), false, true);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+        if(id == R.id.action_menu6){
+            izabraniDatum = d + "." + m + "." + "2022" + ".";
+            try {
+                calendar_unos.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(izabraniDatum).getTime(), false, true);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+        if(id == R.id.action_menu7){
+            izabraniDatum = d + "." + m + "." + "2023" + ".";
+            try {
+                calendar_unos.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(izabraniDatum).getTime(), false, true);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+        if(id == R.id.action_menu8){
+            izabraniDatum = d + "." + m + "." + "2024" + ".";
+            try {
+                calendar_unos.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(izabraniDatum).getTime(), false, true);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+        if(id == R.id.action_menu9){
+            izabraniDatum = d + "." + m + "." + "2025" + ".";
+            try {
+                calendar_unos.setDate(new SimpleDateFormat("dd.MM.yyyy.").parse(izabraniDatum).getTime(), false, true);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+
 
         return super.onOptionsItemSelected(item);
     }

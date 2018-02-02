@@ -35,7 +35,8 @@
         android:layout_marginTop="15dp"
         android:textAlignment="textStart"
         android:textSize="14sp"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:gravity="start" />
 
     <TextView
         android:id="@+id/gradTxt"
@@ -46,7 +47,8 @@
         android:layout_centerVertical="true"
         android:layout_marginTop="15dp"
         android:textAlignment="textStart"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:gravity="start" />
 
     <TextView
         android:id="@+id/lokalTxt"
@@ -63,7 +65,8 @@
         android:paddingLeft="15dp"
         android:textAlignment="textStart"
         android:textSize="14sp"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:gravity="start" />
 
     <TextView
         android:id="@+id/checkTxt"
