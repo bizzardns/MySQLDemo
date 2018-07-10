@@ -73,10 +73,10 @@ public class Counter extends AppCompatActivity {
                     Counter.this.startActivity(myIntent);
 
                 } else if (id == R.id.nav2) {
-                    Intent myIntent = new Intent(Counter.this, Main2Activity.class);
-                    Counter.this.startActivity(myIntent);
-                    /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
-                            Toast.LENGTH_SHORT).show();*/
+                    /*Intent myIntent = new Intent(Counter.this, Main2Activity.class);
+                    Counter.this.startActivity(myIntent);*/
+                    Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                            Toast.LENGTH_SHORT).show();
                 } else if (id == R.id.nav3) {
                     Intent myIntent = new Intent(Counter.this, Counter.class);
                     Counter.this.startActivity(myIntent);
@@ -90,10 +90,10 @@ public class Counter extends AppCompatActivity {
                     Counter.this.startActivity(myIntent);
 
                 } else if (id == R.id.nav6) {
-                    Intent myIntent = new Intent(Counter.this, Register.class);
-                    Counter.this.startActivity(myIntent);
-                    /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
-                            Toast.LENGTH_SHORT).show();*/
+                   /* Intent myIntent = new Intent(Counter.this, Register.class);
+                    Counter.this.startActivity(myIntent);*/
+                    Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                            Toast.LENGTH_SHORT).show();
 
                 }
 

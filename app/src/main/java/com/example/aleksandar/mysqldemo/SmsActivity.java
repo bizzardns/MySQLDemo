@@ -109,10 +109,10 @@ public class SmsActivity extends AppCompatActivity implements
                     SmsActivity.this.startActivity(myIntent);
 
                 } else if (id == R.id.nav2) {
-                    Intent myIntent = new Intent(SmsActivity.this, Main2Activity.class);
-                    SmsActivity.this.startActivity(myIntent);
-                    /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
-                            Toast.LENGTH_SHORT).show();*/
+                    /*Intent myIntent = new Intent(SmsActivity.this, Main2Activity.class);
+                    SmsActivity.this.startActivity(myIntent);*/
+                    Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                            Toast.LENGTH_SHORT).show();
                 } else if (id == R.id.nav3) {
                     Intent myIntent = new Intent(SmsActivity.this, Counter.class);
                     SmsActivity.this.startActivity(myIntent);
@@ -126,10 +126,10 @@ public class SmsActivity extends AppCompatActivity implements
                     SmsActivity.this.startActivity(myIntent);
 
                 } else if (id == R.id.nav6) {
-                    Intent myIntent = new Intent(SmsActivity.this, Register.class);
-                    SmsActivity.this.startActivity(myIntent);
-                    /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
-                            Toast.LENGTH_SHORT).show();*/
+                    /*Intent myIntent = new Intent(SmsActivity.this, Register.class);
+                    SmsActivity.this.startActivity(myIntent);*/
+                    Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                            Toast.LENGTH_SHORT).show();
 
                 }
 

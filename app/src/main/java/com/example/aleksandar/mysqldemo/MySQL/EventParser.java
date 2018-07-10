@@ -53,7 +53,7 @@ public class EventParser extends AsyncTask<Void, Void, Integer> {
         super.onPostExecute(result);
         pd.dismiss();
         if (result == 0) {
-            Toast.makeText(c, "Event Parser unable to parse", Toast.LENGTH_SHORT).show();
+            Toast.makeText(c, "Server not responding!", Toast.LENGTH_SHORT).show();
         } else {
             //BIND DATA USING ADAPTER
             Adapter adapter = new Adapter(c, events);

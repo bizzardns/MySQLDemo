@@ -95,11 +95,11 @@ public class SlobodniBendovi extends AppCompatActivity {
 
 
                 } else if (id == R.id.nav2) {
-                    Intent myIntent = new Intent(SlobodniBendovi.this, Main2Activity.class);
+                    /*Intent myIntent = new Intent(SlobodniBendovi.this, Main2Activity.class);
                     SlobodniBendovi.this.startActivity(myIntent);
-                    SlobodniBendovi.sharedValue = null;
-                    /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
-                            Toast.LENGTH_SHORT).show();*/
+                    SlobodniBendovi.sharedValue = null;*/
+                    Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                            Toast.LENGTH_SHORT).show();
                 } else if (id == R.id.nav3) {
                     Intent myIntent = new Intent(SlobodniBendovi.this, Counter.class);
                     SlobodniBendovi.this.startActivity(myIntent);
@@ -116,11 +116,11 @@ public class SlobodniBendovi extends AppCompatActivity {
                     SlobodniBendovi.sharedValue = null;
 
                 } else if (id == R.id.nav6) {
-                    Intent myIntent = new Intent(SlobodniBendovi.this, Register.class);
+                    /*Intent myIntent = new Intent(SlobodniBendovi.this, Register.class);
                     SlobodniBendovi.this.startActivity(myIntent);
-                    SlobodniBendovi.sharedValue = null;
-                    /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
-                            Toast.LENGTH_SHORT).show();*/
+                    SlobodniBendovi.sharedValue = null;*/
+                    Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                            Toast.LENGTH_SHORT).show();
 
                 }
 

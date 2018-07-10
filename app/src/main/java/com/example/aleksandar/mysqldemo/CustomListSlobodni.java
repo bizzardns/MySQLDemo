@@ -58,7 +58,11 @@ public class CustomListSlobodni extends BaseAdapter {
         TextView nameTxt= (TextView) convertView.findViewById(R.id.bendTxt);
         nameTxt.setText(events.get(position).getNaziv_benda());
 
-        convertView.setOnLongClickListener(new View.OnLongClickListener() {
+
+
+        //ENABLE FOR MM ADMIN
+
+       /* convertView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
 
@@ -72,7 +76,7 @@ public class CustomListSlobodni extends BaseAdapter {
                 //Toast.makeText(c,events.get(position).getNaziv_benda(),Toast.LENGTH_SHORT).show();
                 return false;
             }
-        });
+        });*/
 
 
 

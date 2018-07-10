@@ -30,6 +30,8 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.aleksandar.mysqldemo.SQLiteData.GetEvent;
 import com.example.aleksandar.mysqldemo.SQLiteData.GetGrad;
 import com.example.aleksandar.mysqldemo.SQLiteData.GetIme;
@@ -131,10 +133,10 @@ public class OfflineMode extends AppCompatActivity {
                     OfflineMode.this.startActivity(myIntent);
 
                 } else if (id == R.id.nav2) {
-                    Intent myIntent = new Intent(OfflineMode.this, Main2Activity.class);
-                    OfflineMode.this.startActivity(myIntent);
-                    /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
-                            Toast.LENGTH_SHORT).show();*/
+                   /* Intent myIntent = new Intent(OfflineMode.this, Main2Activity.class);
+                    OfflineMode.this.startActivity(myIntent);*/
+                    Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                            Toast.LENGTH_SHORT).show();
                 } else if (id == R.id.nav3) {
                     Intent myIntent = new Intent(OfflineMode.this, Counter.class);
                     OfflineMode.this.startActivity(myIntent);
@@ -148,10 +150,10 @@ public class OfflineMode extends AppCompatActivity {
                     OfflineMode.this.startActivity(myIntent);
 
                 } else if (id == R.id.nav6) {
-                    Intent myIntent = new Intent(OfflineMode.this, Register.class);
-                    OfflineMode.this.startActivity(myIntent);
-                    /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
-                            Toast.LENGTH_SHORT).show();*/
+                    /*Intent myIntent = new Intent(OfflineMode.this, Register.class);
+                    OfflineMode.this.startActivity(myIntent);*/
+                    Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                            Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }

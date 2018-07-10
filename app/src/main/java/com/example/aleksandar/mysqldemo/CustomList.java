@@ -48,8 +48,8 @@ import android.widget.Toast;
                 public boolean onLongClick(View v) {
 
 
-                    Toast.makeText(context, "jaje",
-                            Toast.LENGTH_SHORT).show();
+                   /* Toast.makeText(context, "",
+                            Toast.LENGTH_SHORT).show();*/
 
 
 

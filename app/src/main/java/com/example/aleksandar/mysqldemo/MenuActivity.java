@@ -8,23 +8,17 @@ import android.icu.util.Calendar;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
-import android.view.animation.ScaleAnimation;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import com.example.aleksandar.mysqldemo.PROBA.DialogList;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -106,7 +100,7 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }}
     public void btn5(View v)
-    {v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
+    {/*v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
         if(isNetworkConnectionAvailable()== true){
 
         final ProgressDialog progressDialog = new ProgressDialog(MenuActivity.this);
@@ -135,9 +129,9 @@ public class MenuActivity extends AppCompatActivity {
 
 
 
-        }
-        /*Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
-                Toast.LENGTH_SHORT).show();*/
+        }*/
+        Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                Toast.LENGTH_SHORT).show();
     }
     public void btn2(View v)
     {  v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
@@ -194,7 +188,7 @@ public class MenuActivity extends AppCompatActivity {
 
     }
     public void btn4(View v)
-    {  if(isNetworkConnectionAvailable()== true){
+    {  /*if(isNetworkConnectionAvailable()== true){
         v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.image_click));
 
 
@@ -222,9 +216,10 @@ public class MenuActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Admin panel",
                 Toast.LENGTH_SHORT).show();
 
-        }
-       /* Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
-                Toast.LENGTH_SHORT).show();*/
+        }*/
+        Toast.makeText(getApplicationContext(), "Ova opcija Vam nije dostupna!",
+                Toast.LENGTH_SHORT).show();
+
 }
 }
 

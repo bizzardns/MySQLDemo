@@ -98,8 +98,9 @@ public class CustomListEvent extends BaseAdapter {
 
 
         //ITEM CLICKS
+        //ENABLE FOR MM ADMIN
 
-        convertView.setOnLongClickListener(new View.OnLongClickListener() {
+       /* convertView.setOnLongClickListener(new View.OnLongClickListener() {
 
             @Override
             public boolean onLongClick(View v) {
@@ -122,7 +123,7 @@ public class CustomListEvent extends BaseAdapter {
             }
 
 
-        });
+        });*/
 
         return convertView;
     }
